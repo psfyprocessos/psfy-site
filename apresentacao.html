@@ -1,0 +1,2342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSFY — Apresentação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --preto: #000000;
+    --azul: #0a52cc;
+    --azul-hover: #0847b0;
+    --branco: #ffffff;
+    --azul-claro: #e1e9f9;
+    --cinza: #f2f2f2;
+    --cinza-texto: #6b6b6b;
+    --cinza-borda: #e5e5e5;
+    --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--preto);
+    color: var(--preto);
+    -webkit-font-smoothing: antialiased;
+  }
+  .italic { font-style: italic; font-weight: 400; color: var(--azul); }
+
+  /* ===== CONTAINER PRINCIPAL ===== */
+  .deck {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .slide.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .slide-inner {
+    width: 100%;
+    height: 100%;
+    padding: 125px 80px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  /* Capa não tem logo no topo (justify-content: flex-end), volta ao padding original */
+  .slide-capa .slide-inner {
+    padding: 64px 80px;
+  }
+
+  /* ===== LOGO HEADER ===== */
+  .deck-header {
+    position: absolute;
+    top: 32px;
+    left: 80px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .deck-header .dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--azul);
+    border: 2px solid currentColor;
+  }
+  .deck-header .brand {
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    border: 2px solid currentColor;
+    padding: 4px 14px;
+    border-radius: 999px;
+  }
+
+  /* ===== INDICADOR DE SLIDES (laterais) ===== */
+  .slide-indicator {
+    position: absolute;
+    left: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 10;
+  }
+  .slide-indicator span {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.3;
+    transition: opacity 0.3s, height 0.3s;
+  }
+  .slide-indicator span.current {
+    opacity: 1;
+    height: 24px;
+  }
+
+  /* ===== NAVEGAÇÃO ===== */
+  .nav-controls {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+  }
+  .nav-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--branco);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: background 0.2s, transform 0.2s;
+    font-family: inherit;
+  }
+  .nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+  .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .nav-btn svg { width: 20px; height: 20px; }
+
+  .slide-counter {
+    position: fixed;
+    bottom: 44px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--branco);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 8px 18px;
+    border-radius: 999px;
+    z-index: 100;
+  }
+
+  /* ===== SLIDE 1: CAPA ===== */
+  .slide-capa {
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 30%, rgba(10, 82, 204, 0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(10, 82, 204, 0.1) 0%, transparent 60%),
+      var(--preto);
+    color: var(--branco);
+  }
+  .slide-capa .slide-inner {
+    justify-content: flex-end;
+  }
+  .capa-decoration {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--azul) 0%, var(--azul-hover) 100%);
+    border-radius: 0 0 0 60% / 0 0 0 50%;
+    overflow: hidden;
+  }
+  .capa-decoration::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+  }
+  .capa-titulo {
+    font-size: clamp(80px, 12vw, 180px);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .capa-subtitle {
+    font-size: 22px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 16px;
+    font-weight: 500;
+    position: relative;
+    z-index: 2;
+  }
+  .capa-desc {
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 540px;
+    line-height: 1.6;
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 2;
+  }
+  .capa-url {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ===== SLIDES GERAIS ===== */
+  .slide-light {
+    background: var(--branco);
+    color: var(--preto);
+  }
+  .slide-dark {
+    background: var(--preto);
+    color: var(--branco);
+  }
+  .slide-blue {
+    background: linear-gradient(135deg, var(--azul) 0%, var(--azul-hover) 100%);
+    color: var(--branco);
+    position: relative;
+    overflow: hidden;
+  }
+  .slide-blue::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 60%);
+  }
+  .slide-blue::after {
+    content: '';
+    position: absolute;
+    bottom: -200px;
+    left: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--azul);
+    margin-bottom: 32px;
+  }
+  .section-label::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--azul);
+  }
+  .slide-dark .section-label { color: var(--azul-claro); }
+  .slide-dark .section-label::before { background: var(--azul-claro); }
+  .slide-blue .section-label { color: var(--azul-claro); }
+  .slide-blue .section-label::before { background: var(--azul-claro); }
+
+  .slide-titulo {
+    font-size: clamp(48px, 6vw, 88px);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 32px;
+  }
+  .slide-titulo-md {
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .slide-texto {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--cinza-texto);
+    max-width: 720px;
+    margin-bottom: 16px;
+  }
+  .slide-dark .slide-texto { color: rgba(255,255,255,0.7); }
+  .slide-blue .slide-texto { color: rgba(255,255,255,0.85); }
+
+  /* ===== SLIDE 2: QUEM SOMOS ===== */
+  .quem-somos-content {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  .quem-somos-img {
+    aspect-ratio: 3/4;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+  .quem-somos-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .quem-somos-img-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 24px;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+    color: white;
+  }
+  .quem-somos-img-nome {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .quem-somos-img-cargo {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-top: 2px;
+  }
+
+  /* Selos de prêmio */
+  .premios-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .premio-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--azul-claro);
+    border: 1px solid rgba(10, 82, 204, 0.2);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--azul);
+  }
+  .premio-badge svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  /* ===== SLIDE 3: CORE OPERAÇÃO + STATS ===== */
+  .core-content {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .stack-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 32px;
+  }
+  .stack-mini {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+  }
+  .stack-mini.highlight {
+    background: var(--azul);
+    color: var(--branco);
+    border-color: var(--azul);
+  }
+  .stack-mini-nome {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .stack-mini-cat {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cinza-texto);
+  }
+  .stack-mini.highlight .stack-mini-cat { color: rgba(255,255,255,0.8); }
+
+  .stats-side {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .stat-block {
+    border-left: 3px solid var(--azul);
+    padding-left: 24px;
+  }
+  .stat-block-numero {
+    font-size: clamp(56px, 6vw, 80px);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 8px;
+    color: var(--azul);
+  }
+  .stat-block-label {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--preto);
+  }
+
+  /* ===== SLIDE: POR QUE A PSFY ===== */
+  .porque-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .porque-card {
+    background: white;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 20px;
+    padding: 32px;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    position: relative;
+  }
+  .porque-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(10, 82, 204, 0.08);
+    border-color: var(--azul);
+  }
+  .porque-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--azul-claro);
+    color: var(--azul);
+    display: grid;
+    place-items: center;
+    margin-bottom: 20px;
+  }
+  .porque-card-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  .porque-card-titulo {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+  .porque-card-desc {
+    font-size: 14px;
+    color: var(--cinza-texto);
+    line-height: 1.55;
+  }
+  .porque-card-desc strong {
+    color: var(--preto);
+    font-weight: 500;
+  }
+  .porque-destaque {
+    grid-column: span 2;
+    background: linear-gradient(135deg, var(--azul) 0%, var(--azul-hover) 100%);
+    color: white;
+    border: none;
+  }
+  .porque-destaque .porque-card-icon {
+    background: rgba(255,255,255,0.15);
+    color: white;
+  }
+  .porque-destaque .porque-card-titulo {
+    color: white;
+    font-size: 22px;
+  }
+  .porque-destaque .porque-card-desc {
+    color: rgba(255,255,255,0.9);
+    font-size: 15px;
+  }
+  .porque-destaque .porque-card-desc strong {
+    color: white;
+    font-weight: 600;
+  }
+  .porque-destaque:hover {
+    border-color: transparent;
+    box-shadow: 0 20px 50px rgba(10, 82, 204, 0.35);
+  }
+
+  /* ===== SLIDE: RESULTADOS / CASES ===== */
+  .resultados-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .resultado-card {
+    background: white;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 20px;
+    padding: 36px 32px;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .resultado-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--azul);
+    box-shadow: 0 20px 40px rgba(10, 82, 204, 0.08);
+  }
+  .resultado-card-cliente {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--azul);
+    margin-bottom: 16px;
+  }
+  .resultado-card-numero {
+    font-size: clamp(48px, 5vw, 64px);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--preto);
+    margin-bottom: 12px;
+  }
+  .resultado-card-numero .unidade {
+    font-size: 0.5em;
+    color: var(--azul);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .resultado-card-metrica {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--preto);
+  }
+  .resultado-card-divider {
+    height: 1px;
+    background: var(--cinza-borda);
+    margin-bottom: 20px;
+  }
+  .resultado-card-desc {
+    font-size: 14px;
+    color: var(--cinza-texto);
+    line-height: 1.55;
+  }
+  .resultado-card-em-breve {
+    background: var(--cinza);
+    border: 1px dashed var(--cinza-borda);
+  }
+  .resultado-card-em-breve .resultado-card-numero {
+    color: var(--cinza-texto);
+    font-size: 32px;
+  }
+
+  /* ===== SLIDE CLIENTES (INTERATIVO) ===== */
+  .clientes-grid-deck {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 24px;
+    max-height: 62vh;
+  }
+  .cliente-deck {
+    background: var(--cinza);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 16px;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    min-height: 0;
+  }
+  .cliente-deck:hover {
+    transform: translateY(-4px);
+    border-color: var(--azul);
+    box-shadow: 0 12px 30px rgba(10, 82, 204, 0.15);
+  }
+  .cliente-deck-nome {
+    font-size: 19px;
+    font-weight: 700;
+    color: #999;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    text-align: center;
+    transition: color 0.3s;
+  }
+  .cliente-deck:hover .cliente-deck-nome {
+    color: var(--preto);
+  }
+  .cliente-deck-segmento {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #b0b0b0;
+    margin-bottom: 14px;
+    transition: color 0.3s;
+  }
+  .cliente-deck:hover .cliente-deck-segmento {
+    color: var(--azul);
+  }
+  .cliente-deck-icone {
+    width: 44px;
+    height: 44px;
+    color: #c0c0c0;
+    transition: color 0.3s, transform 0.3s;
+    margin-bottom: 12px;
+  }
+  .cliente-deck:hover .cliente-deck-icone {
+    color: var(--azul);
+    transform: scale(1.1);
+  }
+  .cliente-deck-cta {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #b0b0b0;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  .cliente-deck:hover .cliente-deck-cta {
+    color: var(--azul);
+  }
+
+  /* Overlay de processos quando ativo */
+  .cliente-deck-processos {
+    position: absolute;
+    inset: 0;
+    background: var(--preto);
+    color: var(--branco);
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 16px;
+  }
+  .cliente-deck.ativo .cliente-deck-processos {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .cliente-deck-processos-titulo {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .cliente-deck-processos-segmento {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--azul-claro);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .cliente-deck-processos-lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .cliente-deck-processos-item {
+    font-size: 12px;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.85);
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+  }
+  .cliente-deck-processos-item::before {
+    content: '→';
+    color: var(--azul-claro);
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+  .cliente-deck-fechar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: var(--branco);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 14px;
+    line-height: 1;
+    font-family: inherit;
+    transition: background 0.2s;
+  }
+  .cliente-deck-fechar:hover {
+    background: rgba(255,255,255,0.2);
+  }
+
+  /* Responsivo: telas verticais ou estreitas */
+  @media (max-aspect-ratio: 4/3), (max-width: 900px) {
+    .clientes-grid-deck {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+    }
+    .cliente-deck-icone { width: 56px; height: 56px; }
+    .cliente-deck-nome { font-size: 17px; }
+  }
+
+  /* ===== SLIDE PERGUNTA (transição) ===== */
+  .slide-pergunta .slide-inner {
+    justify-content: center;
+  }
+  .pergunta-titulo {
+    font-size: clamp(80px, 11vw, 160px);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 0.95;
+    max-width: 900px;
+  }
+  .pergunta-titulo .italic { color: var(--azul); }
+
+  /* ===== SLIDE FORMATOS ===== */
+  .formatos-grid-deck {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .formato-card-deck {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 20px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .formato-card-deck.destaque {
+    background: var(--preto);
+    color: var(--branco);
+    border: none;
+  }
+  .formato-card-deck-badge {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: var(--azul);
+    color: var(--branco);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+  .formato-card-deck-numero {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--azul);
+    margin-bottom: 24px;
+  }
+  .formato-card-deck.destaque .formato-card-deck-numero { color: var(--azul-claro); }
+  .formato-card-deck-titulo {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .formato-card-deck-desc {
+    font-size: 13px;
+    color: var(--cinza-texto);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .formato-card-deck.destaque .formato-card-deck-desc { color: rgba(255,255,255,0.6); }
+  .formato-card-deck-preco {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--azul);
+    margin-bottom: 8px;
+  }
+  .formato-card-deck-orcamento {
+    font-size: 12px;
+    color: var(--cinza-texto);
+    margin-bottom: 20px;
+  }
+  .formato-card-deck-orcamento strong { color: var(--preto); font-weight: 700; }
+  .formato-card-deck.destaque .formato-card-deck-orcamento strong { color: var(--branco); }
+  .formato-card-deck-divider {
+    border-top: 1px solid var(--cinza-borda);
+    margin-bottom: 16px;
+  }
+  .formato-card-deck.destaque .formato-card-deck-divider { border-color: rgba(255,255,255,0.1); }
+  .formato-card-deck-items {
+    list-style: none;
+    flex: 1;
+  }
+  .formato-card-deck-item {
+    display: flex;
+    gap: 8px;
+    padding: 6px 0;
+    font-size: 13px;
+    color: var(--preto);
+  }
+  .formato-card-deck.destaque .formato-card-deck-item { color: rgba(255,255,255,0.85); }
+  .formato-card-deck-item .arrow { color: var(--azul); font-weight: 700; }
+  .formato-card-deck.destaque .formato-card-deck-item .arrow { color: var(--azul-claro); }
+
+  /* ===== SLIDE PROCESSO (TIMELINE) ===== */
+  .processo-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    height: 100%;
+    justify-content: center;
+  }
+  .processo-header h2 {
+    margin-bottom: 16px;
+  }
+  .processo-header .slide-texto {
+    margin-bottom: 24px;
+    max-width: 800px;
+  }
+  .processo-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--azul-claro);
+    color: var(--azul);
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .processo-tag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--azul);
+  }
+
+  /* ===== TOGGLE PACOTE DE HORAS ===== */
+  .toggle-pacote-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  .toggle-pacote {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 20px 10px 16px;
+    background: white;
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cinza-texto);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .toggle-pacote:hover {
+    border-color: #22c55e;
+    color: #16a34a;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.12);
+  }
+  .toggle-pacote-switch {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    background: var(--cinza-borda);
+    border-radius: 999px;
+    transition: background 0.3s;
+  }
+  .toggle-pacote-switch::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .toggle-pacote.ativo {
+    border-color: #22c55e;
+    background: #f0fdf4;
+    color: #16a34a;
+  }
+  .toggle-pacote.ativo .toggle-pacote-switch {
+    background: #22c55e;
+  }
+  .toggle-pacote.ativo .toggle-pacote-switch::after {
+    transform: translateX(16px);
+  }
+  .toggle-pacote-icone {
+    color: currentColor;
+    display: grid;
+    place-items: center;
+  }
+  .toggle-pacote-icone svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* ===== ESTADO ATIVO: ETAPAS COM PACOTE DE HORAS ===== */
+  .timeline-horizontal.pacote-ativo .timeline-step-pacote .timeline-step-bolinha {
+    border-color: #22c55e;
+    color: #16a34a;
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.15), 0 4px 12px rgba(34, 197, 94, 0.25);
+    animation: pulse-verde 2s ease-in-out infinite;
+  }
+  .timeline-horizontal.pacote-ativo .timeline-step-pacote .timeline-step-num {
+    color: #16a34a;
+  }
+  @keyframes pulse-verde {
+    0%, 100% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.15), 0 4px 12px rgba(34, 197, 94, 0.25); }
+    50% { box-shadow: 0 0 0 12px rgba(34, 197, 94, 0.05), 0 4px 16px rgba(34, 197, 94, 0.35); }
+  }
+
+  /* Tooltip que aparece quando toggle está ativo */
+  .timeline-step-tooltip {
+    margin-top: 14px;
+    padding: 10px 12px;
+    background: #f0fdf4;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 10px;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #15803d;
+    max-width: 140px;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.4s, transform 0.4s;
+    pointer-events: none;
+    text-align: left;
+  }
+  .timeline-step-tooltip strong {
+    display: block;
+    color: #16a34a;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+  .timeline-horizontal.pacote-ativo .timeline-step-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Card pós-projeto destacado quando toggle ativo */
+  .timeline-horizontal.pacote-ativo .pos-projeto-card {
+    transform: scale(1.03);
+    box-shadow: 0 16px 40px rgba(34, 197, 94, 0.2);
+    border-color: #22c55e;
+    border-width: 2px;
+  }
+  .timeline-horizontal.pacote-ativo .timeline-conector {
+    color: #16a34a;
+    transform: scale(1.15);
+    transition: transform 0.3s;
+  }
+
+  /* ===== TIMELINE HORIZONTAL MODERNA ===== */
+  .timeline-horizontal {
+    position: relative;
+    padding: 40px 0 20px;
+  }
+
+  /* Container principal: timeline + card pós-projeto */
+  .timeline-fluxo {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: stretch;
+  }
+
+  /* Bloco da timeline */
+  .timeline-track-wrapper {
+    position: relative;
+  }
+  .timeline-track-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--azul);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .timeline-track-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--azul-claro), transparent);
+  }
+  .timeline-track {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+  }
+  /* Linha conectora atrás dos cards */
+  .timeline-track::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 7%;
+    right: 7%;
+    height: 2px;
+    background: linear-gradient(to right, var(--azul) 0%, var(--azul-claro) 100%);
+    z-index: 0;
+  }
+
+  .timeline-step {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 0 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .timeline-step-bolinha {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: white;
+    border: 2.5px solid var(--azul);
+    display: grid;
+    place-items: center;
+    margin-bottom: 18px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--azul);
+    letter-spacing: -0.02em;
+    box-shadow: 0 4px 12px rgba(10, 82, 204, 0.12);
+    transition: transform 0.3s, box-shadow 0.3s;
+    flex-shrink: 0;
+  }
+  .timeline-step:hover .timeline-step-bolinha {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(10, 82, 204, 0.25);
+  }
+  .timeline-step-num {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--azul);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .timeline-step-titulo {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    min-height: 36px;
+  }
+  .timeline-step-desc {
+    font-size: 11.5px;
+    color: var(--cinza-texto);
+    line-height: 1.5;
+    max-width: 130px;
+  }
+
+  /* Conector entre timeline e card pós-projeto */
+  .timeline-conector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #22c55e;
+    align-self: center;
+    margin-top: 18px;
+  }
+  .timeline-conector svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Card pós-projeto (Pacote de Horas) */
+  .pos-projeto-card {
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+    border: 1.5px solid rgba(34, 197, 94, 0.3);
+    border-radius: 20px;
+    padding: 28px 26px;
+    width: 280px;
+    align-self: center;
+    margin-top: 18px;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .pos-projeto-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(34, 197, 94, 0.15);
+  }
+  .pos-projeto-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: white;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #16a34a;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .pos-projeto-tag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+  }
+  .pos-projeto-titulo {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .pos-projeto-subtitulo {
+    font-size: 12px;
+    color: #16a34a;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .pos-projeto-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .pos-projeto-lista li {
+    font-size: 12.5px;
+    color: var(--cinza-texto);
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .pos-projeto-lista li::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #22c55e;
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  /* ===== SLIDE PACOTE DE HORAS ===== */
+  .pacote-horas-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .pacote-horas-visual {
+    background: linear-gradient(135deg, var(--preto) 0%, #0a1a3a 100%);
+    border-radius: 24px;
+    padding: 48px 40px;
+    color: var(--branco);
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .pacote-horas-visual::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(10, 82, 204, 0.5) 0%, transparent 60%);
+  }
+  .pacote-horas-numero {
+    font-size: 88px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    color: var(--azul-claro);
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .pacote-horas-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .pacote-horas-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--branco);
+    width: fit-content;
+    position: relative;
+  }
+  .pacote-horas-tag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+  }
+
+  .pacote-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 24px;
+  }
+  .pacote-feature {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .pacote-feature-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--azul-claro);
+    color: var(--azul);
+    display: grid;
+    place-items: center;
+  }
+  .pacote-feature-icon svg { width: 18px; height: 18px; }
+  .pacote-feature-content {
+    flex: 1;
+  }
+  .pacote-feature-titulo {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 2px;
+  }
+  .pacote-feature-desc {
+    font-size: 13px;
+    color: var(--cinza-texto);
+    line-height: 1.5;
+  }
+
+  /* ===== CTA FORMULÁRIO ===== */
+  .cta-form {
+    margin-top: 32px;
+    padding: 24px;
+    background: var(--azul-claro);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .cta-form-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--azul);
+    color: var(--branco);
+    display: grid;
+    place-items: center;
+  }
+  .cta-form-icon svg { width: 22px; height: 22px; }
+  .cta-form-content { flex: 1; }
+  .cta-form-titulo {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 2px;
+  }
+  .cta-form-link {
+    font-size: 13px;
+    color: var(--azul);
+    font-weight: 500;
+  }
+  .cta-deck {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .cta-deck .slide-titulo {
+    margin-bottom: 24px;
+  }
+  .cta-deck-info {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-top: 56px;
+    flex-wrap: wrap;
+  }
+  .cta-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .cta-info-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    font-weight: 500;
+  }
+  .cta-info-valor {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--branco);
+  }
+
+  /* ===== CTA FINAL: BOTÕES ===== */
+  .cta-deck-acoes {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+  .cta-deck-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 32px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    cursor: pointer;
+  }
+  .cta-deck-btn-primary {
+    background: white;
+    color: var(--azul);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+  .cta-deck-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+  }
+  .cta-deck-btn-secondary {
+    background: rgba(255,255,255,0.12);
+    color: white;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(10px);
+  }
+  .cta-deck-btn-secondary:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+  }
+  .cta-deck-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* ===== HINT TECLADO ===== */
+  .keyboard-hint {
+    position: fixed;
+    top: 32px;
+    right: 32px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 50;
+    animation: fade-out 5s 3s forwards;
+  }
+  .slide-light ~ .keyboard-hint,
+  body:has(.slide.active.slide-light) .keyboard-hint { color: rgba(0,0,0,0.4); }
+
+  @keyframes fade-out {
+    to { opacity: 0; pointer-events: none; }
+  }
+
+  /* ===== ANIMAÇÕES ENTRADA ===== */
+  .slide.active .anim-up {
+    animation: slide-up 0.7s 0.2s both cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .slide.active .anim-up-2 {
+    animation: slide-up 0.7s 0.4s both cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .slide.active .anim-up-3 {
+    animation: slide-up 0.7s 0.6s both cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .slide.active .anim-fade {
+    animation: fade-in 0.8s 0.3s both;
+  }
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- ============== SLIDE 1: CAPA ============== -->
+  <section class="slide slide-capa active">
+    <div class="capa-decoration"></div>
+    <div class="deck-header" style="color: white;">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="anim-up">
+        <h1 class="capa-titulo">PSFY.</h1>
+      </div>
+      <div class="anim-up-2">
+        <p class="capa-subtitle">Processos Simples</p>
+      </div>
+      <div class="anim-up-3">
+        <p class="capa-desc">
+          Orquestramos processos com <strong style="color:#fff">Pipefy</strong>, AI Agents e governança de dados.
+        </p>
+        <p class="capa-url">www.PSFY.com.br</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 2: QUEM SOMOS ============== -->
+  <section class="slide slide-light">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="quem-somos-content">
+        <div class="anim-fade">
+          <div class="quem-somos-img">
+            <img src="henrique-foto.jpg" alt="Henrique Ribeiro, fundador da PSFY">
+            <div class="quem-somos-img-overlay">
+              <div class="quem-somos-img-nome">Henrique Ribeiro</div>
+              <div class="quem-somos-img-cargo">Fundador da PSFY</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="anim-up">
+            <div class="section-label">Quem está por trás</div>
+            <h2 class="slide-titulo-md">3 anos de Pipefy.<br><span class="italic">Dois prêmios.</span> Uma consultoria.</h2>
+          </div>
+          <div class="anim-up-2">
+            <p class="slide-texto">
+              Engenheiro Agrônomo pela <strong>UFPR</strong>, mas processo sempre foi paixão — comecei na faculdade tocando uma empresa de entrega de orgânicos e descobri que gostava mais de <strong>desenhar como as coisas funcionam</strong> do que da parte técnica do agro.
+            </p>
+            <p class="slide-texto" style="margin-top: 14px;">
+              Na Pipefy fui responsável pela <strong>melhoria contínua do back office</strong> e depois atuei no time de <strong>Parceiros</strong>, ajudando outras consultorias a estruturar processos. Em 2024 fundei a PSFY pra levar essa visão prática a empresas de qualquer setor.
+            </p>
+
+            <div class="premios-row">
+              <div class="premio-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="7"/>
+                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+                </svg>
+                Pipefy Agile Finance Team
+              </div>
+              <div class="premio-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="7"/>
+                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+                </svg>
+                Pipefy Best Internal Pipe 2024
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 3: CORE DA OPERAÇÃO ============== -->
+  <section class="slide slide-light">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="core-content">
+        <div>
+          <div class="anim-up">
+            <div class="section-label">Pipefy como core</div>
+            <h2 class="slide-titulo-md">Pipefy é o <span class="italic">core</span> da operação.</h2>
+          </div>
+          <div class="anim-up-2">
+            <p class="slide-texto">
+              Potencializamos a plataforma com integrações, automações e agentes de IA para tornar a operação <strong>mais eficiente, escalável e inteligente</strong>.
+            </p>
+            <div class="stack-mini-grid">
+              <div class="stack-mini highlight">
+                <div class="stack-mini-nome">Pipefy</div>
+                <div class="stack-mini-cat">Core</div>
+              </div>
+              <div class="stack-mini highlight">
+                <div class="stack-mini-nome">Pipefy AI</div>
+                <div class="stack-mini-cat">AI Studio</div>
+              </div>
+              <div class="stack-mini">
+                <div class="stack-mini-nome">MS Azure</div>
+                <div class="stack-mini-cat">Cloud</div>
+              </div>
+              <div class="stack-mini">
+                <div class="stack-mini-nome">Google W.</div>
+                <div class="stack-mini-cat">Produtividade</div>
+              </div>
+              <div class="stack-mini">
+                <div class="stack-mini-nome">Make</div>
+                <div class="stack-mini-cat">Integrações</div>
+              </div>
+              <div class="stack-mini">
+                <div class="stack-mini-nome">Claude</div>
+                <div class="stack-mini-cat">IA</div>
+              </div>
+              <div class="stack-mini">
+                <div class="stack-mini-nome">OpenAI</div>
+                <div class="stack-mini-cat">LLM</div>
+              </div>
+              <div class="stack-mini">
+                <div class="stack-mini-nome">Typebot</div>
+                <div class="stack-mini-cat">Chatbots</div>
+              </div>
+              <div class="stack-mini">
+                <div class="stack-mini-nome">Zapier</div>
+                <div class="stack-mini-cat">Integrações</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="stats-side anim-up-3">
+          <div class="stat-block">
+            <div class="stat-block-numero">20+</div>
+            <div class="stat-block-label">Clientes ativos</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-block-numero">80+</div>
+            <div class="stat-block-label">Processos implementados</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-block-numero">25+</div>
+            <div class="stat-block-label">Processos com Pipefy AI</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-block-numero">5</div>
+            <div class="stat-block-label">Anos com Pipefy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE NOVO: POR QUE A PSFY ============== -->
+  <section class="slide slide-light">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="anim-up">
+        <div class="section-label">Por que a PSFY</div>
+        <h2 class="slide-titulo-md">Diferente de outras consultorias <span class="italic">de Pipefy</span>.</h2>
+      </div>
+
+      <div class="porque-grid anim-up-2">
+        <!-- Destaque grande -->
+        <div class="porque-card porque-destaque">
+          <div class="porque-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <div class="porque-card-titulo">Processo é sobre pessoas.</div>
+          <div class="porque-card-desc">
+            Mais importante que entregar um pipe novo é o seu time <strong>saber usar a ferramenta pra ganhar tempo</strong> — pra um cafezinho, pra ir embora mais cedo, pra ficar com a família. Tecnologia é meio, não fim.
+          </div>
+        </div>
+
+        <!-- Card 1 -->
+        <div class="porque-card">
+          <div class="porque-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <div class="porque-card-titulo">Pipefy avançado, entregue rápido.</div>
+          <div class="porque-card-desc">
+            Estruturas que <strong>poucos consultores dominam</strong> — como rodar solução e banco de dados em um único pipe, com automações condicionais — entregues em prazos curtos, sem sacrificar qualidade.
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="porque-card">
+          <div class="porque-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="7"/>
+              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+            </svg>
+          </div>
+          <div class="porque-card-titulo">Reconhecida pela própria Pipefy.</div>
+          <div class="porque-card-desc">
+            Dois prêmios internos da Pipefy: <strong>Agile Finance Team</strong> e <strong>Best Internal Pipe 2024</strong>. Poucos consultores podem dizer o mesmo — e isso vira método aplicado em cada cliente.
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="porque-card">
+          <div class="porque-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18"/>
+              <path d="M5 21V7l8-4v18"/>
+              <path d="M19 21V11l-6-4"/>
+            </svg>
+          </div>
+          <div class="porque-card-titulo">De startup a multinacional.</div>
+          <div class="porque-card-desc">
+            Atendemos desde startups e suplementos até <strong>Diageo (30 mil colaboradores no mundo)</strong>, locação de guindastes e distribuição. Vivência diversa que traz repertório pra qualquer setor.
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="porque-card">
+          <div class="porque-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div class="porque-card-titulo">Tira você das planilhas e softwares caros.</div>
+          <div class="porque-card-desc">
+            Foco em empresas com até 50 pessoas que querem <strong>parar com trabalho manual</strong> e sair de softwares de cara manutenção, sem trocar uma dor por outra.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 4: CLIENTES (INTERATIVO) ============== -->
+  <section class="slide slide-light">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="anim-up">
+        <div class="section-label">Quem confia na PSFY</div>
+        <h2 class="slide-titulo-md">Clientes que <span class="italic">orquestram</span> com a gente.</h2>
+        <p class="slide-texto" style="font-size: 15px; margin-bottom: 0;">Clique em uma empresa para ver os processos que automatizamos.</p>
+      </div>
+      <div class="clientes-grid-deck anim-up-2">
+
+        <!-- Diageo -->
+        <div class="cliente-deck" data-cliente="diageo">
+          <svg class="cliente-deck-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 2h8l-1 7a3 3 0 0 1-3 3 3 3 0 0 1-3-3L8 2z"/>
+            <path d="M12 12v8"/>
+            <path d="M9 22h6"/>
+          </svg>
+          <div class="cliente-deck-nome">Diageo</div>
+          <div class="cliente-deck-segmento">Bebidas</div>
+          <div class="cliente-deck-cta">Ver processos →</div>
+          <div class="cliente-deck-processos">
+            <button class="cliente-deck-fechar" aria-label="Fechar">×</button>
+            <div class="cliente-deck-processos-titulo">Diageo</div>
+            <div class="cliente-deck-processos-segmento">Bebidas alcoólicas</div>
+            <ul class="cliente-deck-processos-lista">
+              <li class="cliente-deck-processos-item">Gestão de frotas</li>
+              <li class="cliente-deck-processos-item">Sinistros</li>
+              <li class="cliente-deck-processos-item">Entrega e retirada de veículos</li>
+              <li class="cliente-deck-processos-item">Reserva de salas</li>
+              <li class="cliente-deck-processos-item">Cartões de benefícios</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- GRS -->
+        <div class="cliente-deck" data-cliente="grs">
+          <svg class="cliente-deck-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="5" cy="17" r="3"/>
+            <circle cx="19" cy="17" r="3"/>
+            <path d="M14 17H8l-3-7h6l5 7"/>
+            <path d="M11 10l2-3h3"/>
+          </svg>
+          <div class="cliente-deck-nome">GRS</div>
+          <div class="cliente-deck-segmento">Motos</div>
+          <div class="cliente-deck-cta">Ver processos →</div>
+          <div class="cliente-deck-processos">
+            <button class="cliente-deck-fechar" aria-label="Fechar">×</button>
+            <div class="cliente-deck-processos-titulo">GRS</div>
+            <div class="cliente-deck-processos-segmento">Peças e aftermarket</div>
+            <ul class="cliente-deck-processos-lista">
+              <li class="cliente-deck-processos-item">RH</li>
+              <li class="cliente-deck-processos-item">Controle de influenciadores</li>
+              <li class="cliente-deck-processos-item">Compras automatizado</li>
+              <li class="cliente-deck-processos-item">Comercial (SDR, Closer, CS)</li>
+              <li class="cliente-deck-processos-item">AI Agent — gestão de cultura</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- W Rental -->
+        <div class="cliente-deck" data-cliente="wrental">
+          <svg class="cliente-deck-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18"/>
+            <path d="M5 21V7l8-4v18"/>
+            <path d="M19 21V11l-6-4"/>
+            <path d="M9 9v.01"/>
+            <path d="M9 13v.01"/>
+            <path d="M9 17v.01"/>
+          </svg>
+          <div class="cliente-deck-nome">W Rental</div>
+          <div class="cliente-deck-segmento">Guindastes</div>
+          <div class="cliente-deck-cta">Ver processos →</div>
+          <div class="cliente-deck-processos">
+            <button class="cliente-deck-fechar" aria-label="Fechar">×</button>
+            <div class="cliente-deck-processos-titulo">W Rental</div>
+            <div class="cliente-deck-processos-segmento">Indústria pesada</div>
+            <ul class="cliente-deck-processos-lista">
+              <li class="cliente-deck-processos-item">Compras integrado com cotações</li>
+              <li class="cliente-deck-processos-item">Manutenção de equipamentos</li>
+              <li class="cliente-deck-processos-item">Solicitação de garantias</li>
+              <li class="cliente-deck-processos-item">Solicitações de fretes</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Coca-Cola FEMSA -->
+        <div class="cliente-deck" data-cliente="coca">
+          <svg class="cliente-deck-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 17h4V5H2v12h3"/>
+            <path d="M20 17h2v-3.34a4 4 0 0 0-1.17-2.83L19 9h-5"/>
+            <circle cx="7.5" cy="17.5" r="2.5"/>
+            <circle cx="17.5" cy="17.5" r="2.5"/>
+          </svg>
+          <div class="cliente-deck-nome">Coca-Cola FEMSA</div>
+          <div class="cliente-deck-segmento">Distribuição</div>
+          <div class="cliente-deck-cta">Ver processos →</div>
+          <div class="cliente-deck-processos">
+            <button class="cliente-deck-fechar" aria-label="Fechar">×</button>
+            <div class="cliente-deck-processos-titulo">Coca-Cola FEMSA</div>
+            <div class="cliente-deck-processos-segmento">Distribuição</div>
+            <ul class="cliente-deck-processos-lista">
+              <li class="cliente-deck-processos-item">Contas a pagar</li>
+              <li class="cliente-deck-processos-item">Comercial</li>
+              <li class="cliente-deck-processos-item">Jurídico</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pipefy -->
+        <div class="cliente-deck" data-cliente="pipefy">
+          <svg class="cliente-deck-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+          <div class="cliente-deck-nome">Pipefy</div>
+          <div class="cliente-deck-segmento">Software</div>
+          <div class="cliente-deck-cta">Ver processos →</div>
+          <div class="cliente-deck-processos">
+            <button class="cliente-deck-fechar" aria-label="Fechar">×</button>
+            <div class="cliente-deck-processos-titulo">Pipefy</div>
+            <div class="cliente-deck-processos-segmento">Software / SaaS</div>
+            <ul class="cliente-deck-processos-lista">
+              <li class="cliente-deck-processos-item">Consultorias para colaboradores da Pipefy</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Forton -->
+        <div class="cliente-deck" data-cliente="forton">
+          <svg class="cliente-deck-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6.5 6.5l11 11"/>
+            <path d="M21 21l-1-1"/>
+            <path d="M3 3l1 1"/>
+            <path d="M18 22l4-4"/>
+            <path d="M2 6l4-4"/>
+            <path d="M3 10l7-7"/>
+            <path d="M14 21l7-7"/>
+          </svg>
+          <div class="cliente-deck-nome">Forton</div>
+          <div class="cliente-deck-segmento">Academia</div>
+          <div class="cliente-deck-cta">Ver processos →</div>
+          <div class="cliente-deck-processos">
+            <button class="cliente-deck-fechar" aria-label="Fechar">×</button>
+            <div class="cliente-deck-processos-titulo">Forton</div>
+            <div class="cliente-deck-processos-segmento">Suplementos / Academia</div>
+            <ul class="cliente-deck-processos-lista">
+              <li class="cliente-deck-processos-item">Gestão de produtos</li>
+              <li class="cliente-deck-processos-item">Gestão de leads</li>
+              <li class="cliente-deck-processos-item">Atendimento ao cliente</li>
+              <li class="cliente-deck-processos-item">Gestão de estoque</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Playrec -->
+        <div class="cliente-deck" data-cliente="playrec">
+          <svg class="cliente-deck-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="22"/>
+          </svg>
+          <div class="cliente-deck-nome">Playrec</div>
+          <div class="cliente-deck-segmento">Gravações</div>
+          <div class="cliente-deck-cta">Ver processos →</div>
+          <div class="cliente-deck-processos">
+            <button class="cliente-deck-fechar" aria-label="Fechar">×</button>
+            <div class="cliente-deck-processos-titulo">Playrec</div>
+            <div class="cliente-deck-processos-segmento">Estúdio de gravações</div>
+            <ul class="cliente-deck-processos-lista">
+              <li class="cliente-deck-processos-item">Entrada de demandas</li>
+              <li class="cliente-deck-processos-item">Gestão de colaboradores</li>
+              <li class="cliente-deck-processos-item">Financeiro</li>
+              <li class="cliente-deck-processos-item">Integração com WhatsApp</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- PD7 Tech -->
+        <div class="cliente-deck" data-cliente="pd7">
+          <svg class="cliente-deck-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+          <div class="cliente-deck-nome">PD7 Tech</div>
+          <div class="cliente-deck-segmento">Estoque</div>
+          <div class="cliente-deck-cta">Ver processos →</div>
+          <div class="cliente-deck-processos">
+            <button class="cliente-deck-fechar" aria-label="Fechar">×</button>
+            <div class="cliente-deck-processos-titulo">PD7 Tech</div>
+            <div class="cliente-deck-processos-segmento">Gestão de estoque</div>
+            <ul class="cliente-deck-processos-lista">
+              <li class="cliente-deck-processos-item">Gestão de estoque</li>
+              <li class="cliente-deck-processos-item">Integrações</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE NOVO: RESULTADOS / CASES ============== -->
+  <section class="slide slide-light">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="anim-up">
+        <div class="section-label">Resultados</div>
+        <h2 class="slide-titulo-md">Não é sobre o pipe. É sobre <span class="italic">o que ele destrava</span>.</h2>
+      </div>
+
+      <div class="resultados-grid anim-up-2">
+        <!-- CASE 1 - PLACEHOLDER -->
+        <div class="resultado-card resultado-card-em-breve">
+          <div class="resultado-card-cliente">Em breve</div>
+          <div class="resultado-card-numero">Case 01</div>
+          <div class="resultado-card-metrica">Aguardando depoimento</div>
+          <div class="resultado-card-divider"></div>
+          <div class="resultado-card-desc">
+            Substituir por: cliente real, métrica concreta (ex: redução de tempo, % de erros eliminados, valor poupado) e descrição curta do que foi feito.
+          </div>
+        </div>
+
+        <!-- CASE 2 - PLACEHOLDER -->
+        <div class="resultado-card resultado-card-em-breve">
+          <div class="resultado-card-cliente">Em breve</div>
+          <div class="resultado-card-numero">Case 02</div>
+          <div class="resultado-card-metrica">Aguardando depoimento</div>
+          <div class="resultado-card-divider"></div>
+          <div class="resultado-card-desc">
+            Substituir por: cliente real, métrica concreta (ex: redução de tempo, % de erros eliminados, valor poupado) e descrição curta do que foi feito.
+          </div>
+        </div>
+
+        <!-- CASE 3 - PLACEHOLDER -->
+        <div class="resultado-card resultado-card-em-breve">
+          <div class="resultado-card-cliente">Em breve</div>
+          <div class="resultado-card-numero">Case 03</div>
+          <div class="resultado-card-metrica">Aguardando depoimento</div>
+          <div class="resultado-card-divider"></div>
+          <div class="resultado-card-desc">
+            Substituir por: cliente real, métrica concreta (ex: redução de tempo, % de erros eliminados, valor poupado) e descrição curta do que foi feito.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 5: PERGUNTA ============== -->
+  <section class="slide slide-pergunta slide-light">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-indicator">
+      <span></span>
+      <span class="current"></span>
+      <span></span>
+    </div>
+    <div class="slide-inner">
+      <div class="anim-up">
+        <h2 class="pergunta-titulo">
+          Qual o <span class="italic">formato</span><br>
+          ideal para sua<br>
+          empresa?
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 6: FORMATOS ============== -->
+  <section class="slide slide-light" style="background: linear-gradient(135deg, #e8f5e9 0%, var(--azul-claro) 100%);">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="anim-up">
+        <h2 class="slide-titulo-md" style="margin-bottom: 16px;">FORMATOS</h2>
+      </div>
+      <div class="formatos-grid-deck anim-up-2">
+        <div class="formato-card-deck">
+          <div class="formato-card-deck-numero">Formato 01</div>
+          <h3 class="formato-card-deck-titulo">Pacote de Horas</h3>
+          <p class="formato-card-deck-desc">Para quem já tem Pipefy rodando e precisa de ajustes, correções ou pequenas implementações.</p>
+          <div class="formato-card-deck-preco">4 a 20 horas mensais</div>
+          <div class="formato-card-deck-orcamento">Orçamento inicial: <strong>a partir de R$ 1.200,00</strong></div>
+          <div class="formato-card-deck-divider"></div>
+          <ul class="formato-card-deck-items">
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Execução por demanda</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Cronograma flexível</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Ideal para manutenção evolutiva</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Sem compromisso de longo prazo</li>
+          </ul>
+        </div>
+
+        <div class="formato-card-deck destaque">
+          <div class="formato-card-deck-badge">Mais pedido</div>
+          <div class="formato-card-deck-numero">Formato 02</div>
+          <h3 class="formato-card-deck-titulo">Consultoria Mensal</h3>
+          <p class="formato-card-deck-desc">Analista dedicado para evoluir processos continuamente, com reuniões e roadmap recorrente.</p>
+          <div class="formato-card-deck-preco">Compromisso mensal</div>
+          <div class="formato-card-deck-orcamento">Orçamento inicial: <strong>a partir de R$ 3.250,00</strong></div>
+          <div class="formato-card-deck-divider"></div>
+          <ul class="formato-card-deck-items">
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Analista dedicado ao cliente</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Reuniões semanais de evolução</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Roadmap contínuo de melhorias</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Suporte prioritário</li>
+          </ul>
+        </div>
+
+        <div class="formato-card-deck">
+          <div class="formato-card-deck-numero">Formato 03</div>
+          <h3 class="formato-card-deck-titulo">Projeto Fechado</h3>
+          <p class="formato-card-deck-desc">Para estruturar uma área específica do zero, com escopo e prazo definidos, podendo incluir AI Agents.</p>
+          <div class="formato-card-deck-preco">Escopo e prazo fechados</div>
+          <div class="formato-card-deck-orcamento">Orçamento inicial: <strong>sob consulta</strong></div>
+          <div class="formato-card-deck-divider"></div>
+          <ul class="formato-card-deck-items">
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Levantamento detalhado</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Desenvolvimento em etapas</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Implementação de AI Agents</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Treinamento e handoff da equipe</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE: COMO TRABALHAMOS (CONSULTORIA/PROJETOS + PACOTE DE HORAS) ============== -->
+  <section class="slide slide-light">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="processo-content">
+        <div class="processo-header">
+          <div class="anim-up">
+            <div class="section-label">Como trabalhamos</div>
+            <h2 class="slide-titulo-md">Método em <span class="italic">6 etapas</span> + manutenção evolutiva.</h2>
+            <p class="slide-texto">
+              Entrega em etapas com transparência total — você acompanha, valida e aprova cada parte. Quando o projeto está pronto e rodando, o <strong>Pacote de Horas</strong> entra como manutenção evolutiva.
+            </p>
+            <div class="processo-tag anim-up-2">Método PSFY</div>
+          </div>
+        </div>
+
+        <div class="timeline-horizontal anim-up-2" id="timeline-horizontal">
+
+          <!-- Toggle: onde o Pacote de Horas faz sentido -->
+          <div class="toggle-pacote-wrapper">
+            <button type="button" class="toggle-pacote" id="toggle-pacote">
+              <span class="toggle-pacote-icone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="16" x2="12" y2="12"/>
+                  <line x1="12" y1="8" x2="12.01" y2="8"/>
+                </svg>
+              </span>
+              <span>Onde o Pacote de Horas faz sentido?</span>
+              <span class="toggle-pacote-switch"></span>
+            </button>
+          </div>
+
+          <div class="timeline-fluxo">
+
+            <!-- Bloco da timeline 1-6 -->
+            <div class="timeline-track-wrapper">
+              <div class="timeline-track-label">Projeto · Consultoria</div>
+              <div class="timeline-track">
+                <div class="timeline-step">
+                  <div class="timeline-step-bolinha">01</div>
+                  <div class="timeline-step-num">Kickoff</div>
+                  <div class="timeline-step-titulo">Reunião e priorização</div>
+                  <div class="timeline-step-desc">Entendemos o contexto e alinhamos prioridades.</div>
+                </div>
+
+                <div class="timeline-step">
+                  <div class="timeline-step-bolinha">02</div>
+                  <div class="timeline-step-num">Planejamento</div>
+                  <div class="timeline-step-titulo">Estimativa e ordem</div>
+                  <div class="timeline-step-desc">Estimamos tempo e organizamos a sequência ideal.</div>
+                </div>
+
+                <!-- Etapa 03: Pacote de Horas atua -->
+                <div class="timeline-step timeline-step-pacote">
+                  <div class="timeline-step-bolinha">03</div>
+                  <div class="timeline-step-num">Desenho</div>
+                  <div class="timeline-step-titulo">Mapeamento no Miro</div>
+                  <div class="timeline-step-desc">Estruturamos o projeto antes de qualquer código.</div>
+                  <div class="timeline-step-tooltip">
+                    <strong>Pacote de Horas</strong>
+                    Apoio no mapeamento e nas opções que o Pipefy oferece desde o desenho.
+                  </div>
+                </div>
+
+                <div class="timeline-step">
+                  <div class="timeline-step-bolinha">04</div>
+                  <div class="timeline-step-num">Execução</div>
+                  <div class="timeline-step-titulo">Reuniões semanais</div>
+                  <div class="timeline-step-desc">Alinhamento e validação contínuos.</div>
+                </div>
+
+                <!-- Etapa 05: Pacote de Horas atua -->
+                <div class="timeline-step timeline-step-pacote">
+                  <div class="timeline-step-bolinha">05</div>
+                  <div class="timeline-step-num">Ajustes</div>
+                  <div class="timeline-step-titulo">Pipe dedicado</div>
+                  <div class="timeline-step-desc">Ajustes via pipe próprio — resolvidos rápido.</div>
+                  <div class="timeline-step-tooltip">
+                    <strong>Pacote de Horas</strong>
+                    Ajustes pontuais no pipe, automações, emails e integrações.
+                  </div>
+                </div>
+
+                <!-- Etapa 06: Pacote de Horas atua -->
+                <div class="timeline-step timeline-step-pacote">
+                  <div class="timeline-step-bolinha">06</div>
+                  <div class="timeline-step-num">Projeto ON</div>
+                  <div class="timeline-step-titulo">Treinamento e handoff</div>
+                  <div class="timeline-step-desc">Equipe treinada, produto entregue e funcionando.</div>
+                  <div class="timeline-step-tooltip">
+                    <strong>Pacote de Horas</strong>
+                    Treinamentos de plataforma e como melhor utilizar o Pipefy.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Conector visual -->
+            <div class="timeline-conector">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </div>
+
+            <!-- Card pós-projeto: Pacote de Horas -->
+            <div class="pos-projeto-card">
+              <div class="pos-projeto-tag">Após o handoff</div>
+              <div class="pos-projeto-titulo">Pacote de Horas</div>
+              <div class="pos-projeto-subtitulo">Manutenção evolutiva</div>
+              <ul class="pos-projeto-lista">
+                <li>Para empresas que <strong style="color: var(--preto); font-weight: 600;">já têm processo montado</strong></li>
+                <li>Ajustes pontuais sem abrir novo projeto</li>
+                <li>Treinamentos específicos pra equipe</li>
+                <li>Pequenas evoluções e otimizações</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 9: CTA FINAL ============== -->
+  <section class="slide slide-blue">
+    <div class="deck-header" style="color: white;">
+      <span class="dot" style="background: white;"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="cta-deck">
+        <div class="anim-up">
+          <h2 class="slide-titulo">Vamos <span style="color: var(--azul-claro); font-style: italic; font-weight: 400;">orquestrar</span> seu próximo processo?</h2>
+        </div>
+        <div class="anim-up-2">
+          <p class="slide-texto" style="color: rgba(255,255,255,0.85); margin: 0 auto; font-size: 20px;">
+            Solicite um orçamento detalhado ou agende uma conversa de 30 minutos. Mapeamos oportunidades, entendemos seu cenário e mostramos como ficaria na prática.
+          </p>
+        </div>
+
+        <div class="cta-deck-acoes anim-up-3">
+          <a href="https://psfy.com.br/orcamento" target="_blank" class="cta-deck-btn cta-deck-btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+            Solicitar orçamento
+          </a>
+          <a href="https://wa.me/5541995041300?text=Ol%C3%A1!%20Vim%20pela%20apresenta%C3%A7%C3%A3o%20e%20gostaria%20de%20agendar%20uma%20conversa." target="_blank" class="cta-deck-btn cta-deck-btn-secondary">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Agendar conversa
+          </a>
+        </div>
+
+        <div class="cta-deck-info anim-up-3" style="margin-top: 40px;">
+          <div class="cta-info-item">
+            <div class="cta-info-label">WhatsApp</div>
+            <div class="cta-info-valor">+55 41 99504-1300</div>
+          </div>
+          <div class="cta-info-item">
+            <div class="cta-info-label">E-mail</div>
+            <div class="cta-info-valor">contato@psfy.com.br</div>
+          </div>
+          <div class="cta-info-item">
+            <div class="cta-info-label">Site</div>
+            <div class="cta-info-valor">www.psfy.com.br</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ============== CONTROLES ============== -->
+<div class="keyboard-hint">← → Navegar  ·  F Tela cheia</div>
+<div class="slide-counter"><span id="current">1</span> / <span id="total">7</span></div>
+<div class="nav-controls">
+  <button class="nav-btn" id="prev" aria-label="Anterior">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+  </button>
+  <button class="nav-btn" id="next" aria-label="Próximo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"/>
+    </svg>
+  </button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  const counterCurrent = document.getElementById('current');
+  const counterTotal = document.getElementById('total');
+  const btnPrev = document.getElementById('prev');
+  const btnNext = document.getElementById('next');
+  let current = 0;
+
+  counterTotal.textContent = total;
+
+  function showSlide(idx) {
+    slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+    counterCurrent.textContent = idx + 1;
+    btnPrev.disabled = idx === 0;
+    btnNext.disabled = idx === total - 1;
+
+    // Atualiza cor dos controles baseado no slide ativo
+    const activeSlide = slides[idx];
+    const isLight = activeSlide.classList.contains('slide-light');
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.style.background = isLight ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.1)';
+      btn.style.borderColor = isLight ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)';
+      btn.style.color = isLight ? '#000' : '#fff';
+    });
+    document.querySelector('.slide-counter').style.color = isLight ? '#000' : '#fff';
+    document.querySelector('.slide-counter').style.background = isLight ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.08)';
+    document.querySelector('.slide-counter').style.borderColor = isLight ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.15)';
+  }
+
+  function next() { if (current < total - 1) { current++; showSlide(current); } }
+  function prev() { if (current > 0) { current--; showSlide(current); } }
+
+  btnPrev.addEventListener('click', prev);
+  btnNext.addEventListener('click', next);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+    if (e.key === 'Home') { current = 0; showSlide(current); }
+    if (e.key === 'End') { current = total - 1; showSlide(current); }
+    if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  });
+
+  // Inicializa
+  showSlide(0);
+
+  // ===== INTERATIVIDADE DOS CLIENTES =====
+  document.querySelectorAll('.cliente-deck').forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Se clicou no botão fechar, fecha
+      if (e.target.classList.contains('cliente-deck-fechar')) {
+        e.stopPropagation();
+        card.classList.remove('ativo');
+        return;
+      }
+      // Se já está ativo e clicou fora do botão fechar, ignora
+      if (card.classList.contains('ativo')) return;
+      
+      // Fecha todos os outros e abre esse
+      document.querySelectorAll('.cliente-deck.ativo').forEach(c => c.classList.remove('ativo'));
+      card.classList.add('ativo');
+    });
+  });
+
+  // Fecha card aberto ao trocar de slide
+  function fecharCardsClientes() {
+    document.querySelectorAll('.cliente-deck.ativo').forEach(c => c.classList.remove('ativo'));
+  }
+  // Hook nas funções next/prev
+  const _next = next, _prev = prev;
+  next = function() { fecharCardsClientes(); _next(); };
+  prev = function() { fecharCardsClientes(); _prev(); };
+  btnNext.removeEventListener('click', _next);
+  btnPrev.removeEventListener('click', _prev);
+  btnNext.addEventListener('click', next);
+  btnPrev.addEventListener('click', prev);
+
+  // ===== TOGGLE PACOTE DE HORAS =====
+  // Quando o usuário clica no botão "Onde o Pacote de Horas faz sentido?",
+  // adicionamos a classe .pacote-ativo no container da timeline.
+  // O CSS cuida do resto: destaca etapas 3, 5, 6 e mostra os tooltips.
+  const togglePacote = document.getElementById('toggle-pacote');
+  const timelineContainer = document.getElementById('timeline-horizontal');
+  if (togglePacote && timelineContainer) {
+    togglePacote.addEventListener('click', () => {
+      togglePacote.classList.toggle('ativo');
+      timelineContainer.classList.toggle('pacote-ativo');
+    });
+  }
+</script>
+
+</body>
+</html>
