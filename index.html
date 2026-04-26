@@ -547,6 +547,9 @@
     transform: translateY(-4px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
   }
+  .projeto-card.projeto-hidden {
+    display: none;
+  }
   .projeto-header {
     display: flex;
     justify-content: space-between;
@@ -595,6 +598,35 @@
   }
   .projeto-item.ia::before {
     background: #f59e0b;
+  }
+  .projetos-toggle-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+  .projetos-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 28px;
+    background: var(--preto);
+    color: var(--branco);
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .projetos-toggle-btn:hover {
+    background: var(--azul);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(10, 82, 204, 0.25);
+  }
+  .projetos-toggle-btn span {
+    transition: transform 0.2s;
+  }
+  .projetos-toggle-btn.ativo span {
+    transform: rotate(180deg);
   }
 
   /* ============ GOVERNANÇA ============ */
@@ -978,9 +1010,9 @@
       <nav class="nav">
         <ul class="nav-links">
           <li><a href="#diferenciais">Diferenciais</a></li>
+          <li><a href="#formatos">Formatos</a></li>
           <li><a href="#stack">Stack</a></li>
           <li><a href="#projetos">Projetos</a></li>
-          <li><a href="#formatos">Formatos</a></li>
           <li><a href="orcamento.html">Orçamento</a></li>
         </ul>
         <a href="orcamento.html" class="btn btn-primary">
@@ -1003,7 +1035,7 @@
       </h1>
 
       <p class="hero-description">
-        Consultoria especializada em <strong>Pipefy, Pipefy AI e AI Studio</strong>. Desenhamos, automatizamos e mantemos workflows de backoffice, RH, compras, financeiro e comercial — do no-code tradicional à automação com agentes de IA.
+        Consultoria especializada em <strong>Pipefy, Pipefy AI e AI Studio</strong>. Desenhamos, automatizamos e mantemos workflows de backoffice, RH, compras, financeiro e comercial, do no-code tradicional à automação com agentes de IA.
       </p>
 
       <div class="hero-cta">
@@ -1083,6 +1115,68 @@
     </div>
   </section>
 
+  <!-- =========== FORMATOS =========== -->
+  <section class="section" id="formatos" style="background: var(--cinza);">
+    <div class="section-inner">
+      <div class="section-label">Como trabalhamos</div>
+      <h2 class="section-title">Três formatos. Você escolhe o que <span class="italic">encaixa</span> no seu momento.</h2>
+      <p class="section-subtitle">
+        Desde ajustes pontuais até consultoria mensal com analista dedicado. Todos os formatos começam com um diagnóstico.
+      </p>
+
+      <div class="formatos-grid">
+        <div class="formato-card">
+          <div class="formato-numero">Formato 01</div>
+          <h3 class="formato-titulo">Pacote de Horas</h3>
+          <p class="formato-desc">Para quem já tem Pipefy rodando e precisa de ajustes, correções ou pequenas implementações.</p>
+          <div class="formato-preco">4 a 20 horas mensais</div>
+          <div class="formato-orcamento">Orçamento inicial: <strong>a partir de R$ 1.200,00</strong></div>
+          <div class="formato-divider"></div>
+          <ul class="formato-items">
+            <li class="formato-item"><span class="arrow">→</span>Execução por demanda</li>
+            <li class="formato-item"><span class="arrow">→</span>Cronograma flexível</li>
+            <li class="formato-item"><span class="arrow">→</span>Ideal para manutenção evolutiva</li>
+            <li class="formato-item"><span class="arrow">→</span>Sem compromisso de longo prazo</li>
+          </ul>
+          <a href="orcamento.html?formato=horas" class="formato-btn">Quero saber mais</a>
+        </div>
+
+        <div class="formato-card destaque">
+          <div class="formato-badge">Mais pedido</div>
+          <div class="formato-numero">Formato 02</div>
+          <h3 class="formato-titulo">Consultoria Mensal</h3>
+          <p class="formato-desc">Analista dedicado para evoluir processos continuamente, com reuniões e roadmap recorrente.</p>
+          <div class="formato-preco">Compromisso mensal</div>
+          <div class="formato-orcamento">Orçamento inicial: <strong>sob consulta</strong></div>
+          <div class="formato-divider"></div>
+          <ul class="formato-items">
+            <li class="formato-item"><span class="arrow">→</span>Analista dedicado ao cliente</li>
+            <li class="formato-item"><span class="arrow">→</span>Reuniões semanais de evolução</li>
+            <li class="formato-item"><span class="arrow">→</span>Roadmap contínuo de melhorias</li>
+            <li class="formato-item"><span class="arrow">→</span>Suporte prioritário</li>
+          </ul>
+          <a href="orcamento.html?formato=consultoria" class="formato-btn">Conversar sobre</a>
+        </div>
+
+        <div class="formato-card">
+          <div class="formato-numero">Formato 03</div>
+          <h3 class="formato-titulo">Projeto Fechado</h3>
+          <p class="formato-desc">Para estruturar uma área específica do zero, com escopo e prazo definidos, podendo incluir AI Agents.</p>
+          <div class="formato-preco">Escopo e prazo fechados</div>
+          <div class="formato-orcamento">Orçamento inicial: <strong>sob consulta</strong></div>
+          <div class="formato-divider"></div>
+          <ul class="formato-items">
+            <li class="formato-item"><span class="arrow">→</span>Levantamento detalhado</li>
+            <li class="formato-item"><span class="arrow">→</span>Desenvolvimento em etapas</li>
+            <li class="formato-item"><span class="arrow">→</span>Implementação de AI Agents se aplicável</li>
+            <li class="formato-item"><span class="arrow">→</span>Treinamento e handoff da equipe</li>
+          </ul>
+          <a href="orcamento.html?formato=projeto" class="formato-btn">Começar um projeto</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- =========== STACK =========== -->
   <section class="section" id="stack">
     <div class="section-inner">
@@ -1154,7 +1248,7 @@
       <div class="ecossistema-content">
         <p class="ecossistema-desc">
           Com a recente parceria estratégica entre <strong>Pipefy e Microsoft</strong>, desenvolvemos integrações com Microsoft Azure, Microsoft 365, Teams e SharePoint, permitindo que seus processos rodem exatamente onde seus times já estão.<br><br>
-          Também trabalhamos com Google Workspace completo (Drive, Sheets, Gmail, Calendar e Apps Script), conectando Gmail, agendas, planilhas e documentos diretamente aos fluxos do Pipefy.
+          Também trabalhamos com Google Workspace completo, conectando Gmail, agendas, planilhas e documentos diretamente aos fluxos do Pipefy.
         </p>
 
         <div class="eco-grid">
@@ -1185,7 +1279,7 @@
       <div class="section-label">Projetos</div>
       <h2 class="section-title">Processos reais, <span class="italic">entregues</span> para empresas reais.</h2>
       <p class="section-subtitle">
-        Uma amostra dos projetos que entregamos ao longo dos últimos anos — de financeiras e indústria pesada até saúde, real estate e SaaS.
+        Uma amostra dos projetos que entregamos ao longo dos últimos anos, de financeiras e indústria pesada até saúde, real estate e SaaS.
       </p>
 
       <div class="projetos-grid">
@@ -1212,7 +1306,7 @@
             <li class="projeto-item">RH</li>
             <li class="projeto-item">Controle de influenciadores</li>
             <li class="projeto-item">Compras automatizado</li>
-            <li class="projeto-item">Comercial (SDR, Closer, CS)</li>
+            <li class="projeto-item">Comercial SDR, Closer e CS</li>
             <li class="projeto-item ia">AI Agent para gestão de cultura</li>
           </ul>
         </div>
@@ -1220,7 +1314,7 @@
         <div class="projeto-card">
           <div class="projeto-header">
             <span class="projeto-numero">03</span>
-            <span class="projeto-categoria">Bebidas (multinacional)</span>
+            <span class="projeto-categoria">Bebidas multinacional</span>
           </div>
           <h3 class="projeto-titulo">Operações corporativas em escala</h3>
           <ul class="projeto-items">
@@ -1246,7 +1340,7 @@
           </ul>
         </div>
 
-        <div class="projeto-card">
+        <div class="projeto-card projeto-extra projeto-hidden">
           <div class="projeto-header">
             <span class="projeto-numero">05</span>
             <span class="projeto-categoria">Mídia</span>
@@ -1260,7 +1354,7 @@
           </ul>
         </div>
 
-        <div class="projeto-card">
+        <div class="projeto-card projeto-extra projeto-hidden">
           <div class="projeto-header">
             <span class="projeto-numero">06</span>
             <span class="projeto-categoria">Comércio exterior</span>
@@ -1274,7 +1368,7 @@
           </ul>
         </div>
 
-        <div class="projeto-card">
+        <div class="projeto-card projeto-extra projeto-hidden">
           <div class="projeto-header">
             <span class="projeto-numero">07</span>
             <span class="projeto-categoria">Contábil</span>
@@ -1288,7 +1382,7 @@
           </ul>
         </div>
 
-        <div class="projeto-card">
+        <div class="projeto-card projeto-extra projeto-hidden">
           <div class="projeto-header">
             <span class="projeto-numero">08</span>
             <span class="projeto-categoria">Saúde</span>
@@ -1301,7 +1395,7 @@
           </ul>
         </div>
 
-        <div class="projeto-card">
+        <div class="projeto-card projeto-extra projeto-hidden">
           <div class="projeto-header">
             <span class="projeto-numero">09</span>
             <span class="projeto-categoria">Real estate</span>
@@ -1315,7 +1409,7 @@
           </ul>
         </div>
 
-        <div class="projeto-card">
+        <div class="projeto-card projeto-extra projeto-hidden">
           <div class="projeto-header">
             <span class="projeto-numero">10</span>
             <span class="projeto-categoria">Legal / Finance</span>
@@ -1329,12 +1423,12 @@
           </ul>
         </div>
 
-        <div class="projeto-card">
+        <div class="projeto-card projeto-extra projeto-hidden">
           <div class="projeto-header">
             <span class="projeto-numero">11</span>
             <span class="projeto-categoria">SaaS</span>
           </div>
-          <h3 class="projeto-titulo">Plataforma de software (400 colaboradores)</h3>
+          <h3 class="projeto-titulo">Plataforma de software com 400 colaboradores</h3>
           <ul class="projeto-items">
             <li class="projeto-item">Chat da plataforma com IA</li>
             <li class="projeto-item">Contas a pagar e receber</li>
@@ -1343,6 +1437,12 @@
             <li class="projeto-item ia">Gestão de iniciativas</li>
           </ul>
         </div>
+      </div>
+
+      <div class="projetos-toggle-wrap">
+        <button type="button" class="projetos-toggle-btn" id="toggleProjetos">
+          Ver todos os projetos <span>↓</span>
+        </button>
       </div>
     </div>
   </section>
@@ -1398,71 +1498,6 @@
               <div class="gov-desc">Tratamento de dados sensíveis com responsabilidade</div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========== FORMATOS =========== -->
-  <section class="section" id="formatos" style="background: var(--cinza);">
-    <div class="section-inner">
-      <div class="section-label">Como trabalhamos</div>
-      <h2 class="section-title">Três formatos. Você escolhe o que <span class="italic">encaixa</span> no seu momento.</h2>
-      <p class="section-subtitle">
-        Desde ajustes pontuais até consultoria mensal com analista dedicado. Todos os formatos começam com um diagnóstico.
-      </p>
-
-      <div class="formatos-grid">
-        <!-- Formato 01: Pacote de Horas -->
-        <div class="formato-card">
-          <div class="formato-numero">Formato 01</div>
-          <h3 class="formato-titulo">Pacote de Horas</h3>
-          <p class="formato-desc">Para quem já tem Pipefy rodando e precisa de ajustes, correções ou pequenas implementações.</p>
-          <div class="formato-preco">4 a 20 horas mensais</div>
-          <div class="formato-orcamento">Orçamento inicial: <strong>a partir de R$ 1.200,00</strong></div>
-          <div class="formato-divider"></div>
-          <ul class="formato-items">
-            <li class="formato-item"><span class="arrow">→</span>Execução por demanda</li>
-            <li class="formato-item"><span class="arrow">→</span>Cronograma flexível</li>
-            <li class="formato-item"><span class="arrow">→</span>Ideal para manutenção evolutiva</li>
-            <li class="formato-item"><span class="arrow">→</span>Sem compromisso de longo prazo</li>
-          </ul>
-          <a href="orcamento.html?formato=horas" class="formato-btn">Quero saber mais</a>
-        </div>
-
-        <!-- Formato 02: Consultoria Mensal (DESTAQUE) -->
-        <div class="formato-card destaque">
-          <div class="formato-badge">Mais pedido</div>
-          <div class="formato-numero">Formato 02</div>
-          <h3 class="formato-titulo">Consultoria Mensal</h3>
-          <p class="formato-desc">Analista dedicado para evoluir processos continuamente, com reuniões e roadmap recorrente.</p>
-          <div class="formato-preco">Compromisso mensal</div>
-          <div class="formato-orcamento">Orçamento inicial: <strong>sob consulta</strong></div>
-          <div class="formato-divider"></div>
-          <ul class="formato-items">
-            <li class="formato-item"><span class="arrow">→</span>Analista dedicado ao cliente</li>
-            <li class="formato-item"><span class="arrow">→</span>Reuniões semanais de evolução</li>
-            <li class="formato-item"><span class="arrow">→</span>Roadmap contínuo de melhorias</li>
-            <li class="formato-item"><span class="arrow">→</span>Suporte prioritário</li>
-          </ul>
-          <a href="orcamento.html?formato=consultoria" class="formato-btn">Conversar sobre</a>
-        </div>
-
-        <!-- Formato 03: Projeto Fechado -->
-        <div class="formato-card">
-          <div class="formato-numero">Formato 03</div>
-          <h3 class="formato-titulo">Projeto Fechado</h3>
-          <p class="formato-desc">Para estruturar uma área específica do zero, com escopo e prazo definidos, podendo incluir AI Agents.</p>
-          <div class="formato-preco">Escopo e prazo fechados</div>
-          <div class="formato-orcamento">Orçamento inicial: <strong>sob consulta</strong></div>
-          <div class="formato-divider"></div>
-          <ul class="formato-items">
-            <li class="formato-item"><span class="arrow">→</span>Levantamento detalhado</li>
-            <li class="formato-item"><span class="arrow">→</span>Desenvolvimento em etapas</li>
-            <li class="formato-item"><span class="arrow">→</span>Implementação de AI Agents (se aplicável)</li>
-            <li class="formato-item"><span class="arrow">→</span>Treinamento e handoff da equipe</li>
-          </ul>
-          <a href="orcamento.html?formato=projeto" class="formato-btn">Começar um projeto</a>
         </div>
       </div>
     </div>
@@ -1535,9 +1570,9 @@
           <div class="footer-col-titulo">Navegação</div>
           <ul>
             <li><a href="#diferenciais">Diferenciais</a></li>
+            <li><a href="#formatos">Formatos</a></li>
             <li><a href="#stack">Stack</a></li>
             <li><a href="#projetos">Projetos</a></li>
-            <li><a href="#formatos">Formatos</a></li>
             <li><a href="apresentacao.html">Deck PSFY</a></li>
           </ul>
         </div>
@@ -1559,6 +1594,41 @@
       </div>
     </div>
   </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.getElementById('toggleProjetos');
+    const projetosExtras = document.querySelectorAll('.projeto-extra');
+
+    if (!toggleBtn || projetosExtras.length === 0) return;
+
+    let projetosVisiveis = false;
+
+    toggleBtn.addEventListener('click', function () {
+      projetosVisiveis = !projetosVisiveis;
+
+      projetosExtras.forEach(function (card) {
+        card.classList.toggle('projeto-hidden', !projetosVisiveis);
+      });
+
+      if (projetosVisiveis) {
+        toggleBtn.innerHTML = 'Mostrar menos <span>↓</span>';
+        toggleBtn.classList.add('ativo');
+      } else {
+        toggleBtn.innerHTML = 'Ver todos os projetos <span>↓</span>';
+        toggleBtn.classList.remove('ativo');
+
+        const projetosSection = document.getElementById('projetos');
+        if (projetosSection) {
+          projetosSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
