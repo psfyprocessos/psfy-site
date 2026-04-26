@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSFY — Solicitar Orçamento</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet">
+<style>
+  /* ============ VARIÁVEIS (mesmas do site) ============ */
+  :root {
+    --preto: #000000;
+    --azul: #0a52cc;
+    --azul-hover: #0847b0;
+    --branco: #ffffff;
+    --azul-claro: #e1e9f9;
+    --cinza: #f2f2f2;
+    --cinza-texto: #6b6b6b;
+    --cinza-texto-escuro: #4a4a4a;
+    --cinza-borda: #e5e5e5;
+    --cinza-escuro: #1a1a1a;
+    --verde: #22c55e;
+    --vermelho: #ef4444;
+
+    --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --max-width: 1280px;
+    --max-width-form: 880px;
+    --radius: 12px;
+    --radius-lg: 20px;
+  }
+
+  /* ============ RESET ============ */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--branco);
+    color: var(--preto);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+  .italic {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--azul);
+  }
+
+  /* ============ HEADER ============ */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--cinza-borda);
+  }
+  .header-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo img {
+    height: 80px;
+    width: auto;
+    display: block;
+  }
+  .nav-back {
+    font-size: 15px;
+    color: var(--cinza-texto);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--azul); }
+
+  /* ============ HERO DO FORMULÁRIO ============ */
+  .form-hero {
+    padding: 80px 32px 40px;
+    background:
+      radial-gradient(ellipse 80% 50% at 80% 20%, var(--azul-claro) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(225, 233, 249, 0.6) 0%, transparent 50%),
+      var(--branco);
+    text-align: center;
+  }
+  .form-hero-inner {
+    max-width: var(--max-width-form);
+    margin: 0 auto;
+  }
+  .form-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px 8px 12px;
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 999px;
+    font-size: 14px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  .form-hero-badge .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--verde);
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+  }
+  .form-hero h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  .form-hero p {
+    font-size: 18px;
+    color: var(--cinza-texto);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* ============ CONTAINER DO FORMULÁRIO ============ */
+  .form-container {
+    max-width: var(--max-width-form);
+    margin: 0 auto;
+    padding: 40px 32px 120px;
+  }
+
+  /* ============ INDICADOR DE PASSOS ============ */
+  .steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--cinza);
+    font-size: 14px;
+    color: var(--cinza-texto);
+    transition: all 0.3s;
+  }
+  .step.ativo {
+    background: var(--azul);
+    color: var(--branco);
+  }
+  .step.concluido {
+    background: var(--verde);
+    color: var(--branco);
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .step.ativo .step-num,
+  .step.concluido .step-num {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  .step-conector {
+    width: 30px;
+    height: 1px;
+    background: var(--cinza-borda);
+  }
+
+  /* ============ BLOCOS DO FORMULÁRIO ============ */
+  .form-bloco {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    margin-bottom: 24px;
+    transition: border-color 0.2s;
+  }
+  .form-bloco:focus-within {
+    border-color: var(--azul);
+  }
+  .form-bloco-titulo {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .form-bloco-subtitulo {
+    font-size: 15px;
+    color: var(--cinza-texto);
+    margin-bottom: 32px;
+  }
+
+  /* ============ ESCOLHA DE FORMATO (CARDS) ============ */
+  .formato-opcoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .formato-opcao {
+    border: 2px solid var(--cinza-borda);
+    border-radius: var(--radius);
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--branco);
+    text-align: left;
+    width: 100%;
+    display: block;
+  }
+  .formato-opcao:hover {
+    border-color: var(--azul);
+    transform: translateY(-2px);
+  }
+  .formato-opcao.selecionado {
+    border-color: var(--azul);
+    background: var(--azul-claro);
+    box-shadow: 0 8px 20px rgba(10, 82, 204, 0.15);
+  }
+  .formato-opcao-num {
+    font-size: 12px;
+    color: var(--cinza-texto);
+    font-weight: 500;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .formato-opcao-titulo {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .formato-opcao-desc {
+    font-size: 13px;
+    color: var(--cinza-texto);
+    line-height: 1.4;
+  }
+
+  /* ============ CAMPOS ============ */
+  .form-grupo {
+    margin-bottom: 24px;
+  }
+  .form-grupo:last-child { margin-bottom: 0; }
+
+  .form-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--preto);
+  }
+  .form-label .obrigatorio {
+    color: var(--azul);
+    font-weight: 700;
+    margin-left: 2px;
+  }
+  .form-help {
+    font-size: 13px;
+    color: var(--cinza-texto);
+    margin-top: 6px;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--preto);
+    background: var(--branco);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgba(10, 82, 204, 0.1);
+  }
+  .form-textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+  }
+
+  /* ============ OPÇÕES (RADIO E CHECKBOX EM CARDS) ============ */
+  .form-opcoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+  }
+  .form-opcoes.uma-coluna {
+    grid-template-columns: 1fr;
+  }
+  .form-opcao-item {
+    position: relative;
+  }
+  .form-opcao-item input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .form-opcao-item label {
+    display: block;
+    padding: 14px 18px;
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+    background: var(--branco);
+  }
+  .form-opcao-item label:hover {
+    border-color: var(--azul);
+  }
+  .form-opcao-item input:checked + label {
+    border-color: var(--azul);
+    background: var(--azul-claro);
+    color: var(--azul);
+    font-weight: 500;
+  }
+
+  /* ============ SEÇÕES CONDICIONAIS ============ */
+  .condicional {
+    display: none;
+  }
+  .condicional.ativo {
+    display: block;
+    animation: fadeIn 0.4s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============ BLOCO DE PERGUNTAS DENTRO DO FORMATO 3 ============ */
+  .sub-bloco {
+    padding-top: 24px;
+    margin-top: 24px;
+    border-top: 1px solid var(--cinza-borda);
+  }
+  .sub-bloco:first-child {
+    padding-top: 0;
+    margin-top: 0;
+    border-top: none;
+  }
+  .sub-bloco-titulo {
+    font-size: 14px;
+    color: var(--azul);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  /* ============ BOTÃO ENVIAR ============ */
+  .form-acoes {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .btn-enviar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--azul);
+    color: var(--branco);
+    padding: 18px 40px;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 16px;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    width: 100%;
+    max-width: 400px;
+  }
+  .btn-enviar:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(10, 82, 204, 0.3);
+    background: var(--azul-hover);
+  }
+  .btn-enviar:disabled {
+    background: var(--cinza-borda);
+    cursor: not-allowed;
+  }
+  .btn-aviso {
+    font-size: 13px;
+    color: var(--cinza-texto);
+    text-align: center;
+    max-width: 480px;
+  }
+
+  /* ============ MENSAGEM DE ERRO ============ */
+  .erro-msg {
+    color: var(--vermelho);
+    font-size: 13px;
+    margin-top: 8px;
+    display: none;
+  }
+  .erro-msg.visivel {
+    display: block;
+  }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    background: var(--cinza-escuro);
+    color: var(--branco);
+    padding: 60px 32px 30px;
+  }
+  .footer-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    text-align: center;
+  }
+  .footer p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+  }
+  .footer a {
+    color: var(--azul-claro);
+  }
+
+  /* ============ RESPONSIVO ============ */
+  @media (max-width: 640px) {
+    .form-hero { padding: 50px 20px 30px; }
+    .form-container { padding: 30px 20px 80px; }
+    .form-bloco { padding: 28px 20px; }
+    .step { font-size: 13px; padding: 6px 12px; }
+    .step-conector { width: 16px; }
+    .logo img { height: 50px; }
+    .header-inner { padding: 16px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =========== HEADER =========== -->
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="/logo.png" alt="PSFY">
+    </a>
+    <a href="index.html" class="nav-back">
+      ← Voltar para o site
+    </a>
+  </div>
+</header>
+
+<!-- =========== HERO =========== -->
+<section class="form-hero">
+  <div class="form-hero-inner">
+    <div class="form-hero-badge">
+      <span class="dot"></span>
+      <span>Resposta em até <strong>1 dia útil</strong></span>
+    </div>
+    <h1>Vamos entender seu <span class="italic">cenário</span>.</h1>
+    <p>Responda só o que souber — o resto a gente conversa. Ao enviar, abrimos uma conversa no WhatsApp com tudo organizado.</p>
+  </div>
+</section>
+
+<!-- =========== FORMULÁRIO =========== -->
+<div class="form-container">
+
+  <!-- Indicador de passos -->
+  <div class="steps">
+    <div class="step ativo" id="step-1">
+      <span class="step-num">1</span>
+      <span>Formato</span>
+    </div>
+    <div class="step-conector"></div>
+    <div class="step" id="step-2">
+      <span class="step-num">2</span>
+      <span>Detalhes</span>
+    </div>
+    <div class="step-conector"></div>
+    <div class="step" id="step-3">
+      <span class="step-num">3</span>
+      <span>Contato</span>
+    </div>
+  </div>
+
+  <!-- ====== BLOCO 1: ESCOLHA DO FORMATO ====== -->
+  <div class="form-bloco">
+    <h2 class="form-bloco-titulo">Qual formato encaixa no seu momento?</h2>
+    <p class="form-bloco-subtitulo">Escolha um para começar. Você pode mudar a qualquer momento.</p>
+
+    <div class="formato-opcoes">
+      <button type="button" class="formato-opcao" data-formato="horas">
+        <div class="formato-opcao-num">Formato 01</div>
+        <div class="formato-opcao-titulo">Pacote de Horas</div>
+        <div class="formato-opcao-desc">Ajustes pontuais. De 4 a 20 horas.</div>
+      </button>
+
+      <button type="button" class="formato-opcao" data-formato="consultoria">
+        <div class="formato-opcao-num">Formato 02</div>
+        <div class="formato-opcao-titulo">Consultoria Mensal</div>
+        <div class="formato-opcao-desc">Analista dedicado, evolução contínua.</div>
+      </button>
+
+      <button type="button" class="formato-opcao" data-formato="projeto">
+        <div class="formato-opcao-num">Formato 03</div>
+        <div class="formato-opcao-titulo">Projeto Fechado</div>
+        <div class="formato-opcao-desc">Estruturar uma área do zero.</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- ====== BLOCO 2A: FORMATO HORAS ====== -->
+  <div class="form-bloco condicional" id="bloco-horas">
+    <h2 class="form-bloco-titulo">Pacote de Horas</h2>
+    <p class="form-bloco-subtitulo">Ideal pra quem já tem Pipefy rodando e precisa de ajustes ou pequenas implementações.</p>
+
+    <div class="form-grupo">
+      <label class="form-label">Quantas horas você imagina precisar?</label>
+      <div class="form-opcoes">
+        <div class="form-opcao-item">
+          <input type="radio" name="horas-qtd" id="h-4" value="4 horas">
+          <label for="h-4">4 horas</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="horas-qtd" id="h-8" value="8 horas">
+          <label for="h-8">8 horas</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="horas-qtd" id="h-12" value="12 horas">
+          <label for="h-12">12 horas</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="horas-qtd" id="h-20" value="20 horas">
+          <label for="h-20">20 horas</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="horas-qtd" id="h-naosei" value="Não sei ainda">
+          <label for="h-naosei">Não sei ainda</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-grupo">
+      <label class="form-label" for="horas-uso">Pra que você pretende usar essas horas?</label>
+      <textarea class="form-textarea" id="horas-uso" placeholder="Ex: ajustes na automação que já tenho, pequenas integrações, tirar dúvidas sobre fluxos..."></textarea>
+    </div>
+
+    <div class="form-grupo">
+      <label class="form-label">Tem algum prazo?</label>
+      <div class="form-opcoes">
+        <div class="form-opcao-item">
+          <input type="radio" name="horas-prazo" id="hp-sem" value="Sem pressa">
+          <label for="hp-sem">Sem pressa</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="horas-prazo" id="hp-sem-semana" value="Esta semana">
+          <label for="hp-sem-semana">Esta semana</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="horas-prazo" id="hp-mes" value="Este mês">
+          <label for="hp-mes">Este mês</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== BLOCO 2B: FORMATO CONSULTORIA ====== -->
+  <div class="form-bloco condicional" id="bloco-consultoria">
+    <h2 class="form-bloco-titulo">Consultoria Mensal</h2>
+    <p class="form-bloco-subtitulo">Pra quem quer pensar junto e evoluir processos com acompanhamento contínuo.</p>
+
+    <div class="form-grupo">
+      <label class="form-label">Qual o objetivo principal da consultoria?</label>
+      <div class="form-opcoes uma-coluna">
+        <div class="form-opcao-item">
+          <input type="radio" name="cons-objetivo" id="co-mapear" value="Mapear processos pra automatizar">
+          <label for="co-mapear">Mapear processos pra automatizar</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="cons-objetivo" id="co-ferramentas" value="Escolher ferramentas certas">
+          <label for="co-ferramentas">Escolher ferramentas certas</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="cons-objetivo" id="co-revisar" value="Revisar automação existente">
+          <label for="co-revisar">Revisar automação que já existe</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="cons-objetivo" id="co-treinar" value="Treinar minha equipe">
+          <label for="co-treinar">Treinar minha equipe</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="cons-objetivo" id="co-outro" value="Outro">
+          <label for="co-outro">Outro objetivo</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-grupo">
+      <label class="form-label">Em que etapa você está?</label>
+      <div class="form-opcoes uma-coluna">
+        <div class="form-opcao-item">
+          <input type="radio" name="cons-etapa" id="ce-comeco" value="Não sei por onde começar">
+          <label for="ce-comeco">Não sei por onde começar</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="cons-etapa" id="ce-priorizar" value="Tenho ideias mas não sei priorizar">
+          <label for="ce-priorizar">Tenho ideias mas não sei priorizar</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="cons-etapa" id="ce-tentei" value="Já tentei e não deu certo">
+          <label for="ce-tentei">Já tentei e não deu certo</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-grupo">
+      <label class="form-label" for="cons-equipe">Quantas pessoas da equipe estariam envolvidas?</label>
+      <input type="text" class="form-input" id="cons-equipe" placeholder="Ex: 3 pessoas — eu, financeiro e operações">
+    </div>
+  </div>
+
+  <!-- ====== BLOCO 2C: FORMATO PROJETO ====== -->
+  <div class="form-bloco condicional" id="bloco-projeto">
+    <h2 class="form-bloco-titulo">Projeto Fechado</h2>
+    <p class="form-bloco-subtitulo">Pra estruturar uma área específica com escopo e prazo definidos. Vou te fazer algumas perguntas pra entender melhor — quanto mais contexto, mais precisa fica a proposta.</p>
+
+    <!-- BLOCO A: SOBRE A EMPRESA -->
+    <div class="sub-bloco">
+      <div class="sub-bloco-titulo">Sobre sua empresa</div>
+
+      <div class="form-grupo">
+        <label class="form-label" for="proj-empresa-faz">O que sua empresa faz?</label>
+        <textarea class="form-textarea" id="proj-empresa-faz" placeholder="Em 1 ou 2 frases. Ex: somos uma agência de marketing focada em e-commerce..."></textarea>
+      </div>
+
+      <div class="form-grupo">
+        <label class="form-label">Tamanho da equipe</label>
+        <div class="form-opcoes">
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-equipe" id="pe-1" value="Sou eu sozinho">
+            <label for="pe-1">Sou eu sozinho</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-equipe" id="pe-2" value="2 a 5 pessoas">
+            <label for="pe-2">2 a 5 pessoas</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-equipe" id="pe-3" value="6 a 20 pessoas">
+            <label for="pe-3">6 a 20 pessoas</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-equipe" id="pe-4" value="Mais de 20 pessoas">
+            <label for="pe-4">+20 pessoas</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-grupo">
+        <label class="form-label">Qual área precisa da automação?</label>
+        <div class="form-opcoes">
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-area" id="pa-vendas" value="Vendas">
+            <label for="pa-vendas">Vendas</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-area" id="pa-marketing" value="Marketing">
+            <label for="pa-marketing">Marketing</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-area" id="pa-financeiro" value="Financeiro">
+            <label for="pa-financeiro">Financeiro</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-area" id="pa-atendimento" value="Atendimento">
+            <label for="pa-atendimento">Atendimento</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-area" id="pa-operacoes" value="Operações">
+            <label for="pa-operacoes">Operações</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-area" id="pa-outro" value="Outro">
+            <label for="pa-outro">Outra área</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO B: A DOR -->
+    <div class="sub-bloco">
+      <div class="sub-bloco-titulo">A dor que queremos resolver</div>
+
+      <div class="form-grupo">
+        <label class="form-label" for="proj-processo">Qual processo você quer automatizar? Como funciona hoje?</label>
+        <textarea class="form-textarea" id="proj-processo" placeholder="Descreva como o processo acontece hoje, mesmo que seja bagunçado. Ex: 'cliente manda pedido no WhatsApp, eu copio pra planilha, mando pro financeiro por email...'"></textarea>
+        <div class="form-help">Quanto mais detalhe, mais preciso fica meu entendimento.</div>
+      </div>
+
+      <div class="form-grupo">
+        <label class="form-label">O que mais te incomoda nesse processo hoje?</label>
+        <div class="form-help" style="margin-top: -4px; margin-bottom: 12px;">Pode marcar mais de um.</div>
+        <div class="form-opcoes uma-coluna">
+          <div class="form-opcao-item">
+            <input type="checkbox" name="proj-dor" id="pd-tempo" value="Toma muito tempo">
+            <label for="pd-tempo">Toma muito tempo</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="checkbox" name="proj-dor" id="pd-erros" value="Tem muitos erros">
+            <label for="pd-erros">Tem muitos erros</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="checkbox" name="proj-dor" id="pd-pessoa" value="Depende de uma pessoa específica">
+            <label for="pd-pessoa">Depende de uma pessoa específica</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="checkbox" name="proj-dor" id="pd-cliente" value="Cliente reclama">
+            <label for="pd-cliente">Cliente reclama</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="checkbox" name="proj-dor" id="pd-visibilidade" value="Não tenho visibilidade do que tá rolando">
+            <label for="pd-visibilidade">Não tenho visibilidade do que tá rolando</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="checkbox" name="proj-dor" id="pd-escalar" value="Não consigo escalar">
+            <label for="pd-escalar">Não consigo escalar</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-grupo">
+        <label class="form-label" for="proj-mudaria">Se esse problema fosse resolvido, o que mudaria?</label>
+        <textarea class="form-textarea" id="proj-mudaria" placeholder="Ex: 'meu time deixaria de gastar 10h por semana retrabalhando' ou 'conseguiria atender 3x mais clientes sem contratar'..."></textarea>
+        <div class="form-help">Essa resposta nos ajuda a desenhar a solução com foco no resultado.</div>
+      </div>
+
+      <div class="form-grupo">
+        <label class="form-label">Já tentou resolver isso antes?</label>
+        <div class="form-opcoes">
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-tentou" id="pt-nao" value="Não">
+            <label for="pt-nao">Não</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-tentou" id="pt-ferr" value="Sim, com ferramenta">
+            <label for="pt-ferr">Sim, com ferramenta</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-tentou" id="pt-pessoa" value="Sim, contratando alguém">
+            <label for="pt-pessoa">Sim, contratando alguém</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-tentou" id="pt-interno" value="Sim, internamente">
+            <label for="pt-interno">Sim, internamente</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO C: CONTEXTO -->
+    <div class="sub-bloco">
+      <div class="sub-bloco-titulo">Contexto e expectativa</div>
+
+      <div class="form-grupo">
+        <label class="form-label" for="proj-ferramentas">Quais ferramentas sua empresa já usa?</label>
+        <input type="text" class="form-input" id="proj-ferramentas" placeholder="Ex: planilhas, CRM próprio, WhatsApp Business, sistema X...">
+      </div>
+
+      <div class="form-grupo">
+        <label class="form-label">Tem orçamento definido?</label>
+        <div class="form-opcoes uma-coluna">
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-orcamento" id="po-1" value="Até R$ 5.000">
+            <label for="po-1">Até R$ 5.000</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-orcamento" id="po-2" value="R$ 5.000 a R$ 15.000">
+            <label for="po-2">R$ 5.000 a R$ 15.000</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-orcamento" id="po-3" value="R$ 15.000 a R$ 40.000">
+            <label for="po-3">R$ 15.000 a R$ 40.000</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-orcamento" id="po-4" value="Acima de R$ 40.000">
+            <label for="po-4">Acima de R$ 40.000</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-orcamento" id="po-5" value="Quero entender antes">
+            <label for="po-5">Quero entender antes de definir</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-grupo">
+        <label class="form-label">Prazo desejado</label>
+        <div class="form-opcoes">
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-prazo" id="pp-1" value="Urgente">
+            <label for="pp-1">Urgente</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-prazo" id="pp-2" value="Em até 1 mês">
+            <label for="pp-2">Em até 1 mês</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-prazo" id="pp-3" value="2 a 3 meses">
+            <label for="pp-3">2 a 3 meses</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-prazo" id="pp-4" value="Flexível">
+            <label for="pp-4">Flexível</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== BLOCO 3: CONTATO (sempre aparece quando algum formato é escolhido) ====== -->
+  <div class="form-bloco condicional" id="bloco-contato">
+    <h2 class="form-bloco-titulo">Pra fechar, seu contato</h2>
+    <p class="form-bloco-subtitulo">Pra te chamar no WhatsApp e dar continuidade.</p>
+
+    <div class="form-grupo">
+      <label class="form-label" for="contato-nome">Seu nome <span class="obrigatorio">*</span></label>
+      <input type="text" class="form-input" id="contato-nome" placeholder="Como prefere ser chamado?" required>
+      <div class="erro-msg" id="erro-nome">Por favor, preencha seu nome.</div>
+    </div>
+
+    <div class="form-grupo">
+      <label class="form-label" for="contato-empresa">Empresa</label>
+      <input type="text" class="form-input" id="contato-empresa" placeholder="Nome da sua empresa">
+    </div>
+
+    <div class="form-grupo">
+      <label class="form-label" for="contato-email">Email</label>
+      <input type="email" class="form-input" id="contato-email" placeholder="seu@email.com">
+    </div>
+
+    <div class="form-acoes">
+      <button type="button" class="btn-enviar" id="btn-enviar">
+        Enviar pelo WhatsApp →
+      </button>
+      <p class="btn-aviso">Ao clicar, vamos abrir o WhatsApp com sua mensagem já formatada. Você só precisa apertar enviar.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- =========== FOOTER =========== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p>© 2026 PSFY, Processos Simples. <a href="index.html">Voltar para o site</a></p>
+  </div>
+</footer>
+
+<script>
+  /* ============================================
+     LÓGICA DO FORMULÁRIO
+     - 1. Escolha de formato → mostra campos certos
+     - 2. Indicador de passos atualiza
+     - 3. Ao enviar → monta mensagem e abre WhatsApp
+     ============================================ */
+
+  // Número de WhatsApp (formato internacional, sem + ou espaços)
+  const WHATSAPP_NUMERO = '5541995041300';
+
+  // Pega elementos
+  const opcoesFormato = document.querySelectorAll('.formato-opcao');
+  const blocoHoras = document.getElementById('bloco-horas');
+  const blocoConsultoria = document.getElementById('bloco-consultoria');
+  const blocoProjeto = document.getElementById('bloco-projeto');
+  const blocoContato = document.getElementById('bloco-contato');
+  const step1 = document.getElementById('step-1');
+  const step2 = document.getElementById('step-2');
+  const step3 = document.getElementById('step-3');
+  const btnEnviar = document.getElementById('btn-enviar');
+
+  let formatoEscolhido = null;
+
+  // ===== 1. CLIQUE NOS CARDS DE FORMATO =====
+  opcoesFormato.forEach(card => {
+    card.addEventListener('click', () => {
+      // Remove seleção de todos
+      opcoesFormato.forEach(c => c.classList.remove('selecionado'));
+      // Marca o clicado
+      card.classList.add('selecionado');
+
+      formatoEscolhido = card.dataset.formato;
+
+      // Esconde todos os blocos condicionais primeiro
+      blocoHoras.classList.remove('ativo');
+      blocoConsultoria.classList.remove('ativo');
+      blocoProjeto.classList.remove('ativo');
+
+      // Mostra o bloco do formato escolhido
+      if (formatoEscolhido === 'horas') blocoHoras.classList.add('ativo');
+      if (formatoEscolhido === 'consultoria') blocoConsultoria.classList.add('ativo');
+      if (formatoEscolhido === 'projeto') blocoProjeto.classList.add('ativo');
+
+      // Sempre mostra o bloco de contato
+      blocoContato.classList.add('ativo');
+
+      // Atualiza indicador de passos
+      step1.classList.remove('ativo');
+      step1.classList.add('concluido');
+      step2.classList.add('ativo');
+
+      // Faz scroll suave até o próximo bloco
+      setTimeout(() => {
+        const proximoBloco = document.querySelector('.condicional.ativo');
+        if (proximoBloco) {
+          proximoBloco.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    });
+  });
+
+  // ===== 2. ATUALIZA PASSO 3 QUANDO PREENCHE NOME =====
+  document.getElementById('contato-nome').addEventListener('input', (e) => {
+    if (e.target.value.trim().length > 0) {
+      step2.classList.remove('ativo');
+      step2.classList.add('concluido');
+      step3.classList.add('ativo');
+    } else {
+      step3.classList.remove('ativo');
+      step2.classList.add('ativo');
+      step2.classList.remove('concluido');
+    }
+  });
+
+  // ===== 3. FUNÇÕES AUXILIARES =====
+
+  // Pega valor de radio (retorna string ou "Não informado")
+  function getRadio(nome) {
+    const el = document.querySelector(`input[name="${nome}"]:checked`);
+    return el ? el.value : null;
+  }
+
+  // Pega valores de checkbox (retorna array de strings)
+  function getCheckboxes(nome) {
+    const els = document.querySelectorAll(`input[name="${nome}"]:checked`);
+    return Array.from(els).map(el => el.value);
+  }
+
+  // Pega valor de input/textarea (retorna string ou null)
+  function getInput(id) {
+    const valor = document.getElementById(id).value.trim();
+    return valor.length > 0 ? valor : null;
+  }
+
+  // Adiciona linha na mensagem só se tiver valor
+  function linha(label, valor) {
+    if (!valor || (Array.isArray(valor) && valor.length === 0)) return '';
+    if (Array.isArray(valor)) {
+      return `*${label}:*\n${valor.map(v => `• ${v}`).join('\n')}\n\n`;
+    }
+    return `*${label}:* ${valor}\n\n`;
+  }
+
+  // ===== 4. ENVIO DO FORMULÁRIO =====
+  btnEnviar.addEventListener('click', () => {
+    // Validação simples: precisa ter formato escolhido e nome preenchido
+    const nome = getInput('contato-nome');
+    const erroNome = document.getElementById('erro-nome');
+
+    if (!formatoEscolhido) {
+      alert('Por favor, escolha um formato no início do formulário.');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (!nome) {
+      erroNome.classList.add('visivel');
+      document.getElementById('contato-nome').focus();
+      return;
+    }
+    erroNome.classList.remove('visivel');
+
+    // Monta mensagem
+    let msg = `Olá! Vim pelo site e quero solicitar um orçamento.\n\n`;
+    msg += `━━━━━━━━━━━━━━━━━━\n\n`;
+
+    // Dados de contato
+    msg += `*👤 CONTATO*\n\n`;
+    msg += linha('Nome', nome);
+    msg += linha('Empresa', getInput('contato-empresa'));
+    msg += linha('Email', getInput('contato-email'));
+
+    msg += `━━━━━━━━━━━━━━━━━━\n\n`;
+
+    // Dados do formato
+    if (formatoEscolhido === 'horas') {
+      msg += `*📦 FORMATO: PACOTE DE HORAS*\n\n`;
+      msg += linha('Quantidade desejada', getRadio('horas-qtd'));
+      msg += linha('Uso pretendido', getInput('horas-uso'));
+      msg += linha('Prazo', getRadio('horas-prazo'));
+    }
+
+    if (formatoEscolhido === 'consultoria') {
+      msg += `*🎯 FORMATO: CONSULTORIA MENSAL*\n\n`;
+      msg += linha('Objetivo principal', getRadio('cons-objetivo'));
+      msg += linha('Etapa atual', getRadio('cons-etapa'));
+      msg += linha('Pessoas envolvidas', getInput('cons-equipe'));
+    }
+
+    if (formatoEscolhido === 'projeto') {
+      msg += `*🚀 FORMATO: PROJETO FECHADO*\n\n`;
+
+      msg += `*— Sobre a empresa —*\n\n`;
+      msg += linha('O que a empresa faz', getInput('proj-empresa-faz'));
+      msg += linha('Tamanho da equipe', getRadio('proj-equipe'));
+      msg += linha('Área que precisa de automação', getRadio('proj-area'));
+
+      msg += `*— A dor —*\n\n`;
+      msg += linha('Processo a automatizar', getInput('proj-processo'));
+      msg += linha('Principais incômodos', getCheckboxes('proj-dor'));
+      msg += linha('O que mudaria se resolvido', getInput('proj-mudaria'));
+      msg += linha('Já tentou resolver antes', getRadio('proj-tentou'));
+
+      msg += `*— Contexto e expectativa —*\n\n`;
+      msg += linha('Ferramentas atuais', getInput('proj-ferramentas'));
+      msg += linha('Orçamento', getRadio('proj-orcamento'));
+      msg += linha('Prazo desejado', getRadio('proj-prazo'));
+    }
+
+    // Codifica para URL e abre WhatsApp
+    const msgCodificada = encodeURIComponent(msg);
+    const url = `https://wa.me/${WHATSAPP_NUMERO}?text=${msgCodificada}`;
+    window.open(url, '_blank');
+  });
+</script>
+
+</body>
+</html>
