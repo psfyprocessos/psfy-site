@@ -79,6 +79,28 @@
     width: auto;
     display: block;
   }
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 15px;
+    color: var(--preto);
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.ativo {
+    opacity: 1;
+    color: var(--azul);
+    font-weight: 500;
+  }
   .nav-back {
     font-size: 15px;
     color: var(--cinza-texto);
@@ -450,6 +472,9 @@
   }
 
   /* ============ RESPONSIVO ============ */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+  }
   @media (max-width: 640px) {
     .form-hero { padding: 50px 20px 30px; }
     .form-container { padding: 30px 20px 80px; }
@@ -469,9 +494,15 @@
     <a href="index.html" class="logo">
       <img src="/logo.png" alt="PSFY">
     </a>
-    <a href="index.html" class="nav-back">
-      ← Voltar para o site
-    </a>
+    <nav class="nav">
+      <ul class="nav-links">
+        <li><a href="index.html#diferenciais">Diferenciais</a></li>
+        <li><a href="index.html#stack">Stack</a></li>
+        <li><a href="index.html#projetos">Projetos</a></li>
+        <li><a href="index.html#formatos">Formatos</a></li>
+        <li><a href="orcamento.html" class="ativo">Orçamento</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
 
@@ -791,32 +822,6 @@
       </div>
 
       <div class="form-grupo">
-        <label class="form-label">Tem orçamento definido?</label>
-        <div class="form-opcoes uma-coluna">
-          <div class="form-opcao-item">
-            <input type="radio" name="proj-orcamento" id="po-1" value="Até R$ 5.000">
-            <label for="po-1">Até R$ 5.000</label>
-          </div>
-          <div class="form-opcao-item">
-            <input type="radio" name="proj-orcamento" id="po-2" value="R$ 5.000 a R$ 15.000">
-            <label for="po-2">R$ 5.000 a R$ 15.000</label>
-          </div>
-          <div class="form-opcao-item">
-            <input type="radio" name="proj-orcamento" id="po-3" value="R$ 15.000 a R$ 40.000">
-            <label for="po-3">R$ 15.000 a R$ 40.000</label>
-          </div>
-          <div class="form-opcao-item">
-            <input type="radio" name="proj-orcamento" id="po-4" value="Acima de R$ 40.000">
-            <label for="po-4">Acima de R$ 40.000</label>
-          </div>
-          <div class="form-opcao-item">
-            <input type="radio" name="proj-orcamento" id="po-5" value="Quero entender antes">
-            <label for="po-5">Quero entender antes de definir</label>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-grupo">
         <label class="form-label">Prazo desejado</label>
         <div class="form-opcoes">
           <div class="form-opcao-item">
@@ -901,6 +906,19 @@
   const btnEnviar = document.getElementById('btn-enviar');
 
   let formatoEscolhido = null;
+
+  // ===== 0. PRÉ-SELEÇÃO VIA URL =====
+  // Se o cliente vier de "orcamento.html?formato=horas" (ou consultoria/projeto),
+  // já marcamos o card automaticamente. Melhora a UX — não precisa escolher de novo.
+  const urlParams = new URLSearchParams(window.location.search);
+  const formatoUrl = urlParams.get('formato');
+  if (formatoUrl && ['horas', 'consultoria', 'projeto'].includes(formatoUrl)) {
+    // Espera um instante pro DOM estar 100% pronto e simula o clique no card certo
+    setTimeout(() => {
+      const cardAlvo = document.querySelector(`.formato-opcao[data-formato="${formatoUrl}"]`);
+      if (cardAlvo) cardAlvo.click();
+    }, 100);
+  }
 
   // ===== 1. CLIQUE NOS CARDS DE FORMATO =====
   opcoesFormato.forEach(card => {
@@ -1044,7 +1062,6 @@
 
       msg += `*— Contexto e expectativa —*\n\n`;
       msg += linha('Ferramentas atuais', getInput('proj-ferramentas'));
-      msg += linha('Orçamento', getRadio('proj-orcamento'));
       msg += linha('Prazo desejado', getRadio('proj-prazo'));
     }
 
