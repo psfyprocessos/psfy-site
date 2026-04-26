@@ -883,6 +883,42 @@
     background: var(--azul);
   }
 
+  /* ===== BOTÃO CENTRAL ABAIXO DOS FORMATOS ===== */
+  .formatos-cta-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-top: 48px;
+  }
+  .formatos-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--azul);
+    color: white;
+    padding: 18px 36px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    box-shadow: 0 8px 24px rgba(10, 82, 204, 0.3);
+  }
+  .formatos-cta-btn:hover {
+    transform: translateY(-2px);
+    background: var(--azul-hover);
+    box-shadow: 0 12px 32px rgba(10, 82, 204, 0.4);
+  }
+  .formatos-cta-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+  .formatos-cta-aviso {
+    font-size: 13px;
+    color: var(--cinza-texto);
+  }
+
   /* ===== TOGGLE PACOTE DE HORAS ===== */
   .toggle-pacote-wrapper {
     display: flex;
@@ -1187,24 +1223,22 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
   }
   .pos-projeto-lista li {
     font-size: 12.5px;
     color: var(--cinza-texto);
-    line-height: 1.4;
+    line-height: 1.5;
     display: flex;
     align-items: flex-start;
-    gap: 8px;
+    gap: 10px;
   }
-  .pos-projeto-lista li::before {
-    content: '';
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: #22c55e;
-    margin-top: 7px;
+  .pos-projeto-lista li svg {
+    width: 16px;
+    height: 16px;
+    color: #22c55e;
     flex-shrink: 0;
+    margin-top: 1px;
   }
 
   /* ===== SLIDE PACOTE DE HORAS ===== */
@@ -1418,6 +1452,176 @@
   .cta-deck-btn svg {
     width: 18px;
     height: 18px;
+  }
+
+  /* ===== BOTÃO TERCIÁRIO: VOLTAR AO SITE ===== */
+  .cta-voltar-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    margin-top: 24px;
+    cursor: pointer;
+    transition: color 0.2s, gap 0.2s;
+    background: none;
+    border: none;
+    font-family: inherit;
+  }
+  .cta-voltar-link:hover {
+    color: white;
+    gap: 12px;
+  }
+  .cta-voltar-link svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* ===== MODAL DE CAPTURA ===== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: modalFadeIn 0.3s ease;
+  }
+  .modal-overlay.ativo {
+    display: flex;
+  }
+  @keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .modal-card {
+    background: white;
+    border-radius: 24px;
+    max-width: 460px;
+    width: 100%;
+    padding: 40px 36px 32px;
+    position: relative;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    animation: modalSlideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  @keyframes modalSlideUp {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .modal-fechar {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--cinza);
+    border: none;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    color: var(--cinza-texto);
+    transition: background 0.2s, color 0.2s;
+  }
+  .modal-fechar:hover {
+    background: var(--cinza-borda);
+    color: var(--preto);
+  }
+  .modal-fechar svg {
+    width: 18px;
+    height: 18px;
+  }
+  .modal-titulo {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--preto);
+    margin-bottom: 8px;
+    line-height: 1.2;
+    padding-right: 32px;
+  }
+  .modal-titulo .italic {
+    color: var(--azul);
+  }
+  .modal-subtitulo {
+    font-size: 14px;
+    color: var(--cinza-texto);
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  .modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .modal-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--preto);
+    background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .modal-input:focus {
+    outline: none;
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgba(10, 82, 204, 0.1);
+  }
+  .modal-acoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+    flex-direction: column;
+  }
+  .modal-btn-primary {
+    background: var(--azul);
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .modal-btn-primary:hover {
+    background: var(--azul-hover);
+    transform: translateY(-1px);
+  }
+  .modal-btn-secundario {
+    background: transparent;
+    color: var(--cinza-texto);
+    border: none;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.2s;
+  }
+  .modal-btn-secundario:hover {
+    color: var(--preto);
+  }
+  .modal-aviso {
+    font-size: 12px;
+    color: var(--cinza-texto);
+    text-align: center;
+    margin-top: 16px;
+    line-height: 1.5;
   }
 
   /* ===== HINT TECLADO ===== */
@@ -2041,6 +2245,19 @@
           </ul>
         </div>
       </div>
+
+      <div class="formatos-cta-wrapper anim-up-3">
+        <a href="https://psfy.com.br/orcamento" target="_blank" class="formatos-cta-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+          Solicitar orçamento detalhado
+        </a>
+        <p class="formatos-cta-aviso">Em até 1 dia útil você recebe uma proposta sob medida.</p>
+      </div>
     </div>
   </section>
 
@@ -2155,14 +2372,34 @@
 
             <!-- Card pós-projeto: Pacote de Horas -->
             <div class="pos-projeto-card">
-              <div class="pos-projeto-tag">Após o handoff</div>
+              <div class="pos-projeto-tag">Ajuda experiente</div>
               <div class="pos-projeto-titulo">Pacote de Horas</div>
               <div class="pos-projeto-subtitulo">Manutenção evolutiva</div>
               <ul class="pos-projeto-lista">
-                <li>Para empresas que <strong style="color: var(--preto); font-weight: 600;">já têm processo montado</strong></li>
-                <li>Ajustes pontuais sem abrir novo projeto</li>
-                <li>Treinamentos específicos pra equipe</li>
-                <li>Pequenas evoluções e otimizações</li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  Para empresas que já têm processo montado
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  Ajustes pontuais sem abrir novo projeto
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  Treinamentos específicos pra equipe
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  Pequenas evoluções e otimizações
+                </li>
               </ul>
             </div>
 
@@ -2221,6 +2458,14 @@
             <div class="cta-info-valor">www.psfy.com.br</div>
           </div>
         </div>
+
+        <a href="https://psfy.com.br" class="cta-voltar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"/>
+            <polyline points="12 19 5 12 12 5"/>
+          </svg>
+          Voltar para o site
+        </a>
       </div>
     </div>
   </section>
