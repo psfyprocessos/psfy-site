@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PSFY — Orquestração de processos com Pipefy</title>
+<link rel="icon" type="image/png" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet">
@@ -69,24 +70,11 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    font-weight: 700;
-    font-size: 20px;
-    letter-spacing: -0.02em;
   }
-  .logo-mark {
-    width: 32px;
-    height: 32px;
-    background: var(--preto);
-    border-radius: 8px;
-    display: grid;
-    place-items: center;
-  }
-  .logo-mark::after {
-    content: '';
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--azul);
+  .logo img {
+    height: 40px;
+    width: auto;
+    display: block;
   }
   .nav {
     display: flex;
@@ -274,7 +262,7 @@
     margin-bottom: 64px;
   }
 
-  /* ============ DIFERENCIAIS (POR QUE A PSFY) ============ */
+  /* ============ DIFERENCIAIS ============ */
   .diferenciais {
     background: var(--preto);
     color: var(--branco);
@@ -356,20 +344,11 @@
     margin-bottom: 24px;
   }
   .powered-by-frase {
+    font-family: var(--font-sans);
     font-size: clamp(32px, 5vw, 64px);
     font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1.1;
-    color: var(--preto);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  .powered-by-frase .pipefy-logo {
-    display: inline-flex;
-    align-items: center;
     color: var(--preto);
   }
 
@@ -404,6 +383,7 @@
   .formato-card.destaque .formato-item { border-color: rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.85); }
   .formato-card.destaque .formato-item .arrow { color: var(--azul-claro); }
   .formato-card.destaque .formato-divider { border-color: rgba(255, 255, 255, 0.08); }
+  .formato-card.destaque .formato-orcamento { color: var(--azul-claro); }
 
   .formato-badge {
     position: absolute;
@@ -444,7 +424,20 @@
     font-style: italic;
     color: var(--azul);
     font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .formato-orcamento {
+    font-size: 14px;
+    color: var(--cinza-texto);
+    font-weight: 500;
     margin-bottom: 24px;
+  }
+  .formato-orcamento strong {
+    color: var(--preto);
+    font-weight: 700;
+  }
+  .formato-card.destaque .formato-orcamento strong {
+    color: var(--branco);
   }
   .formato-divider {
     border-top: 1px solid var(--cinza-borda);
@@ -809,16 +802,18 @@
     box-shadow: 0 12px 30px rgba(10, 82, 204, 0.4);
   }
 
-  /* ============ CLIENTES ============ */
+  /* ============ CLIENTES (CARROSSEL) ============ */
   .clientes {
-    padding: 80px 32px;
+    padding: 80px 0;
     background: var(--branco);
     border-top: 1px solid var(--cinza-borda);
+    overflow: hidden;
   }
   .clientes-inner {
     max-width: var(--max-width);
     margin: 0 auto;
     text-align: center;
+    padding: 0 32px;
   }
   .clientes-titulo {
     font-size: 13px;
@@ -828,27 +823,44 @@
     color: var(--cinza-texto);
     margin-bottom: 48px;
   }
-  .clientes-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 40px;
-    align-items: center;
+
+  .carrossel-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  }
+  .carrossel-track {
+    display: flex;
+    width: max-content;
+    animation: scroll-clientes 30s linear infinite;
+  }
+  .carrossel-track:hover {
+    animation-play-state: paused;
   }
   .cliente-logo {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 60px;
+    min-width: 200px;
+    padding: 0 40px;
     color: #b8b8b8;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 20px;
     letter-spacing: -0.02em;
     transition: color 0.3s, transform 0.3s;
     text-align: center;
+    flex-shrink: 0;
   }
   .cliente-logo:hover {
     color: var(--cinza-texto);
     transform: scale(1.05);
+  }
+  @keyframes scroll-clientes {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 
   /* ============ FOOTER ============ */
@@ -869,9 +881,11 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     margin-bottom: 32px;
   }
-  .footer .logo { color: var(--branco); margin-bottom: 20px; }
-  .footer .logo-mark { background: var(--branco); }
-  .footer .logo-mark::after { background: var(--azul); }
+  .footer .logo { margin-bottom: 20px; }
+  .footer .logo img {
+    height: 36px;
+    filter: brightness(0) invert(1);
+  }
   .footer-desc {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.55);
@@ -931,7 +945,6 @@
     .formatos-grid,
     .projetos-grid { grid-template-columns: 1fr; }
     .stack-grid { grid-template-columns: repeat(3, 1fr); }
-    .clientes-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; }
     .governanca-content,
     .ecossistema-content { grid-template-columns: 1fr; gap: 40px; }
     .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -948,10 +961,10 @@
     .hero-cta { flex-direction: column; align-items: stretch; }
     .btn { justify-content: center; }
     .stack-grid { grid-template-columns: repeat(2, 1fr); }
-    .clientes-grid { grid-template-columns: repeat(2, 1fr); }
     .footer-top { grid-template-columns: 1fr; }
     .formato-card { padding: 32px 24px; }
     .diferencial-card { padding: 32px 24px; }
+    .cliente-logo { min-width: 150px; padding: 0 24px; font-size: 18px; }
   }
 </style>
 </head>
@@ -961,8 +974,7 @@
   <header class="header">
     <div class="header-inner">
       <a href="#" class="logo">
-        <span class="logo-mark"></span>
-        <span>PSFY</span>
+        <img src="/logo.png" alt="PSFY">
       </a>
       <nav class="nav">
         <ul class="nav-links">
@@ -1066,14 +1078,9 @@
   <!-- =========== SOMOS MOVIDOS POR PIPEFY =========== -->
   <section class="powered-by">
     <div class="powered-by-inner">
-      <div class="powered-by-label">Parceiro oficial</div>
+      <div class="powered-by-label">Software oficial</div>
       <div class="powered-by-frase">
-        <span>Somos movidos por</span>
-        <span class="pipefy-logo">
-          <svg width="200" height="56" viewBox="0 0 200 56" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <text x="0" y="44" font-family="DM Sans, sans-serif" font-size="52" font-weight="700" letter-spacing="-0.04em">pipefy</text>
-          </svg>
-        </span>
+        Somos movidos por Pipefy
       </div>
     </div>
   </section>
@@ -1408,11 +1415,13 @@
       </p>
 
       <div class="formatos-grid">
+        <!-- Formato 01: Pacote de Horas -->
         <div class="formato-card">
           <div class="formato-numero">Formato 01</div>
           <h3 class="formato-titulo">Pacote de Horas</h3>
           <p class="formato-desc">Para quem já tem Pipefy rodando e precisa de ajustes, correções ou pequenas implementações.</p>
           <div class="formato-preco">4 a 20 horas mensais</div>
+          <div class="formato-orcamento">Orçamento inicial: <strong>a partir de R$ 1.200,00</strong></div>
           <div class="formato-divider"></div>
           <ul class="formato-items">
             <li class="formato-item"><span class="arrow">→</span>Execução por demanda</li>
@@ -1424,28 +1433,14 @@
              target="_blank" class="formato-btn">Quero saber mais</a>
         </div>
 
+        <!-- Formato 02: Consultoria Mensal (DESTAQUE) -->
         <div class="formato-card destaque">
           <div class="formato-badge">Mais pedido</div>
           <div class="formato-numero">Formato 02</div>
-          <h3 class="formato-titulo">Projeto Fechado</h3>
-          <p class="formato-desc">Para estruturar uma área específica do zero, com escopo e prazo definidos, podendo incluir AI Agents.</p>
-          <div class="formato-preco">Escopo e prazo fechados</div>
-          <div class="formato-divider"></div>
-          <ul class="formato-items">
-            <li class="formato-item"><span class="arrow">→</span>Levantamento detalhado</li>
-            <li class="formato-item"><span class="arrow">→</span>Desenvolvimento em etapas</li>
-            <li class="formato-item"><span class="arrow">→</span>Implementação de AI Agents (se aplicável)</li>
-            <li class="formato-item"><span class="arrow">→</span>Treinamento e handoff da equipe</li>
-          </ul>
-          <a href="https://wa.me/5541995041300?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20um%20projeto."
-             target="_blank" class="formato-btn">Começar um projeto</a>
-        </div>
-
-        <div class="formato-card">
-          <div class="formato-numero">Formato 03</div>
           <h3 class="formato-titulo">Consultoria Mensal</h3>
           <p class="formato-desc">Analista dedicado para evoluir processos continuamente, com reuniões e roadmap recorrente.</p>
           <div class="formato-preco">Compromisso mensal</div>
+          <div class="formato-orcamento">Orçamento inicial: <strong>a partir de R$ 3.250,00</strong></div>
           <div class="formato-divider"></div>
           <ul class="formato-items">
             <li class="formato-item"><span class="arrow">→</span>Analista dedicado ao cliente</li>
@@ -1455,6 +1450,24 @@
           </ul>
           <a href="https://wa.me/5541995041300?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20Consultoria%20Mensal."
              target="_blank" class="formato-btn">Conversar sobre</a>
+        </div>
+
+        <!-- Formato 03: Projeto Fechado -->
+        <div class="formato-card">
+          <div class="formato-numero">Formato 03</div>
+          <h3 class="formato-titulo">Projeto Fechado</h3>
+          <p class="formato-desc">Para estruturar uma área específica do zero, com escopo e prazo definidos, podendo incluir AI Agents.</p>
+          <div class="formato-preco">Escopo e prazo fechados</div>
+          <div class="formato-orcamento">Orçamento inicial: <strong>sob consulta</strong></div>
+          <div class="formato-divider"></div>
+          <ul class="formato-items">
+            <li class="formato-item"><span class="arrow">→</span>Levantamento detalhado</li>
+            <li class="formato-item"><span class="arrow">→</span>Desenvolvimento em etapas</li>
+            <li class="formato-item"><span class="arrow">→</span>Implementação de AI Agents (se aplicável)</li>
+            <li class="formato-item"><span class="arrow">→</span>Treinamento e handoff da equipe</li>
+          </ul>
+          <a href="https://wa.me/5541995041300?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20um%20projeto."
+             target="_blank" class="formato-btn">Começar um projeto</a>
         </div>
       </div>
     </div>
@@ -1475,17 +1488,29 @@
     </div>
   </section>
 
-  <!-- =========== CLIENTES =========== -->
+  <!-- =========== CLIENTES (CARROSSEL) =========== -->
   <section class="clientes">
     <div class="clientes-inner">
       <div class="clientes-titulo">Clientes e parceiros</div>
-      <div class="clientes-grid">
+    </div>
+    <div class="carrossel-wrapper">
+      <div class="carrossel-track">
         <div class="cliente-logo">W Rental</div>
-        <div class="cliente-logo">DIAGEO</div>
-        <div class="cliente-logo">PlayRec</div>
-        <div class="cliente-logo">GRS Racing</div>
-        <div class="cliente-logo">pipefy</div>
+        <div class="cliente-logo">Diageo</div>
+        <div class="cliente-logo">Playrec</div>
+        <div class="cliente-logo">GRS</div>
+        <div class="cliente-logo">Pipefy</div>
         <div class="cliente-logo">Okiar</div>
+        <div class="cliente-logo">WCap</div>
+        <div class="cliente-logo">Forton</div>
+        <div class="cliente-logo">W Rental</div>
+        <div class="cliente-logo">Diageo</div>
+        <div class="cliente-logo">Playrec</div>
+        <div class="cliente-logo">GRS</div>
+        <div class="cliente-logo">Pipefy</div>
+        <div class="cliente-logo">Okiar</div>
+        <div class="cliente-logo">WCap</div>
+        <div class="cliente-logo">Forton</div>
       </div>
     </div>
   </section>
@@ -1496,8 +1521,7 @@
       <div class="footer-top">
         <div>
           <a href="#" class="logo">
-            <span class="logo-mark"></span>
-            <span>PSFY</span>
+            <img src="/logo.png" alt="PSFY">
           </a>
           <p class="footer-desc">
             Consultoria de orquestração de processos com <a href="#">Pipefy</a>, Pipefy AI, Microsoft Azure, Google Workspace e Claude. Baseados no Brasil, atendendo nacionalmente.
@@ -1510,7 +1534,7 @@
           <ul>
             <li><a href="mailto:contato@psfy.com.br">contato@psfy.com.br</a></li>
             <li><a href="https://wa.me/5541995041300" target="_blank">+55 41 99504-1300</a></li>
-            <li><a href="#">LinkedIn</a></li>
+            <li><a href="https://linkedin.com/company/psfy" target="_blank">LinkedIn</a></li>
           </ul>
         </div>
 
