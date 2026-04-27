@@ -878,16 +878,22 @@
     height: 60px;
     min-width: 200px;
     padding: 0 40px;
-    color: #b8b8b8;
-    font-weight: 700;
-    font-size: 20px;
-    letter-spacing: -0.02em;
-    transition: color 0.3s, transform 0.3s;
-    text-align: center;
     flex-shrink: 0;
   }
-  .cliente-logo:hover {
-    color: var(--cinza-texto);
+  .cliente-logo img {
+    max-height: 100%;
+    max-width: 160px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    /* Filtro que deixa o logo cinza:
+       grayscale(1) tira a cor; opacity(0.55) deixa mais "apagado" */
+    filter: grayscale(1) opacity(0.55);
+    transition: filter 0.3s, transform 0.3s;
+  }
+  .cliente-logo:hover img {
+    /* No hover volta ao colorido original */
+    filter: grayscale(0) opacity(1);
     transform: scale(1.05);
   }
   @keyframes scroll-clientes {
@@ -995,7 +1001,8 @@
     .footer-top { grid-template-columns: 1fr; }
     .formato-card { padding: 32px 24px; }
     .diferencial-card { padding: 32px 24px; }
-    .cliente-logo { min-width: 150px; padding: 0 24px; font-size: 18px; }
+    .cliente-logo { min-width: 150px; padding: 0 24px; height: 50px; }
+    .cliente-logo img { max-width: 120px; }
   }
 </style>
 </head>
@@ -1523,22 +1530,20 @@
     </div>
     <div class="carrossel-wrapper">
       <div class="carrossel-track">
-        <div class="cliente-logo">W Rental</div>
-        <div class="cliente-logo">Diageo</div>
-        <div class="cliente-logo">Playrec</div>
-        <div class="cliente-logo">GRS</div>
-        <div class="cliente-logo">Pipefy</div>
-        <div class="cliente-logo">Okiar</div>
-        <div class="cliente-logo">WCapital</div>
-        <div class="cliente-logo">Forton</div>
-        <div class="cliente-logo">W Rental</div>
-        <div class="cliente-logo">Diageo</div>
-        <div class="cliente-logo">Playrec</div>
-        <div class="cliente-logo">GRS</div>
-        <div class="cliente-logo">Pipefy</div>
-        <div class="cliente-logo">Okiar</div>
-        <div class="cliente-logo">WCapital</div>
-        <div class="cliente-logo">Forton</div>
+        <!-- Primeira sequência (6 logos) -->
+        <div class="cliente-logo"><img src="logos/diageo.png" alt="Diageo"></div>
+        <div class="cliente-logo"><img src="logos/wrental.png" alt="W Rental"></div>
+        <div class="cliente-logo"><img src="logos/pipefy.png" alt="Pipefy"></div>
+        <div class="cliente-logo"><img src="logos/forton.png" alt="Forton"></div>
+        <div class="cliente-logo"><img src="logos/playrec.png" alt="Playrec"></div>
+        <div class="cliente-logo"><img src="logos/okiar.png" alt="Okiar"></div>
+        <!-- Sequência duplicada (necessária para o efeito de scroll infinito) -->
+        <div class="cliente-logo"><img src="logos/diageo.png" alt="Diageo"></div>
+        <div class="cliente-logo"><img src="logos/wrental.png" alt="W Rental"></div>
+        <div class="cliente-logo"><img src="logos/pipefy.png" alt="Pipefy"></div>
+        <div class="cliente-logo"><img src="logos/forton.png" alt="Forton"></div>
+        <div class="cliente-logo"><img src="logos/playrec.png" alt="Playrec"></div>
+        <div class="cliente-logo"><img src="logos/okiar.png" alt="Okiar"></div>
       </div>
     </div>
   </section>
