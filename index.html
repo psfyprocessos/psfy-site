@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PSFY — Orquestração de processos com Pipefy</title>
+<title>PSFY: Orquestração de processos com Pipefy</title>
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -289,7 +289,7 @@
 
   .diferenciais-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     position: relative;
   }
@@ -896,6 +896,15 @@
     filter: grayscale(0) opacity(1);
     transform: scale(1.05);
   }
+  /* Logos com fundo escuro: aplica invert(1) para "transformar" o fundo preto em branco
+     (combina com o fundo branco do site, só no estado cinza padrão.
+     No hover, removemos tudo e mostramos o logo original com fundo escuro. */
+  .cliente-logo.logo-fundo-escuro img {
+    filter: grayscale(1) opacity(0.55) invert(1);
+  }
+  .cliente-logo.logo-fundo-escuro:hover img {
+    filter: grayscale(0) opacity(1) invert(0);
+  }
   @keyframes scroll-clientes {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
@@ -1106,6 +1115,13 @@
           <h3 class="diferencial-titulo">Entrega em etapas</h3>
           <p class="diferencial-desc">
             Levantamento, desenvolvimento e validação por etapas. Você testa e aprova cada parte antes da próxima. Transparência total no cronograma.
+          </p>
+        </div>
+        <div class="diferencial-card">
+          <div class="diferencial-numero">04</div>
+          <h3 class="diferencial-titulo">De startup a multinacional</h3>
+          <p class="diferencial-desc">
+            Atendemos empresas pequenas, médias e grandes. Iniciamos em setores a partir de 10 colaboradores, sem trocar uma dor por outra.
           </p>
         </div>
       </div>
@@ -1534,16 +1550,16 @@
         <div class="cliente-logo"><img src="logos/diageo.png" alt="Diageo"></div>
         <div class="cliente-logo"><img src="logos/wrental.png" alt="W Rental"></div>
         <div class="cliente-logo"><img src="logos/pipefy.png" alt="Pipefy"></div>
-        <div class="cliente-logo"><img src="logos/forton.png" alt="Forton"></div>
+        <div class="cliente-logo logo-fundo-escuro"><img src="logos/forton.png" alt="Forton"></div>
         <div class="cliente-logo"><img src="logos/playrec.png" alt="Playrec"></div>
-        <div class="cliente-logo"><img src="logos/okiar.png" alt="Okiar"></div>
+        <div class="cliente-logo logo-fundo-escuro"><img src="logos/okiar.png" alt="Okiar"></div>
         <!-- Sequência duplicada (necessária para o efeito de scroll infinito) -->
         <div class="cliente-logo"><img src="logos/diageo.png" alt="Diageo"></div>
         <div class="cliente-logo"><img src="logos/wrental.png" alt="W Rental"></div>
         <div class="cliente-logo"><img src="logos/pipefy.png" alt="Pipefy"></div>
-        <div class="cliente-logo"><img src="logos/forton.png" alt="Forton"></div>
+        <div class="cliente-logo logo-fundo-escuro"><img src="logos/forton.png" alt="Forton"></div>
         <div class="cliente-logo"><img src="logos/playrec.png" alt="Playrec"></div>
-        <div class="cliente-logo"><img src="logos/okiar.png" alt="Okiar"></div>
+        <div class="cliente-logo logo-fundo-escuro"><img src="logos/okiar.png" alt="Okiar"></div>
       </div>
     </div>
   </section>
