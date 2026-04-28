@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PSFY — Apresentação</title>
+<title>PSFY: Apresentação</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet">
@@ -69,7 +69,7 @@
     padding: 64px 80px;
   }
 
-  /* ===== LOGO HEADER (interno aos slides — usado só na capa) ===== */
+  /* ===== LOGO HEADER (interno aos slides, usado só na capa) ===== */
   .deck-header {
     position: absolute;
     top: 32px;
@@ -94,7 +94,7 @@
     padding: 4px 14px;
     border-radius: 999px;
   }
-  /* Esconde o header interno em slides "light" — usamos a faixa fixa (.deck-topbar) */
+  /* Esconde o header interno em slides "light", usamos a faixa fixa (.deck-topbar) */
   .slide-light .deck-header {
     display: none;
   }
@@ -114,7 +114,7 @@
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    pointer-events: none; /* deixa cliques passarem para os slides — só a logo e contador são clicáveis se precisar */
+    pointer-events: none; /* deixa cliques passarem para os slides. Só a logo e contador são clicáveis se precisar */
   }
   .deck-topbar .deck-topbar-left,
   .deck-topbar .deck-topbar-right {
@@ -638,7 +638,7 @@
   /* ===== SLIDE CLIENTES (INTERATIVO) ===== */
   .clientes-grid-deck {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 14px;
     margin-top: 24px;
@@ -687,16 +687,30 @@
   .cliente-deck:hover .cliente-deck-segmento {
     color: var(--azul);
   }
-  .cliente-deck-icone {
-    width: 44px;
-    height: 44px;
-    color: #c0c0c0;
-    transition: color 0.3s, transform 0.3s;
+  /* Logo do cliente: imagem cinza por padrão, colorida no hover.
+     Substitui o antigo .cliente-deck-icone (SVG). */
+  .cliente-deck-logo {
+    height: 56px;
+    max-width: 80%;
+    width: auto;
+    object-fit: contain;
     margin-bottom: 12px;
+    /* Filtro cinza padrão (mesmo padrão do site) */
+    filter: grayscale(1) opacity(0.55);
+    transition: filter 0.3s, transform 0.3s;
   }
-  .cliente-deck:hover .cliente-deck-icone {
-    color: var(--azul);
-    transform: scale(1.1);
+  .cliente-deck:hover .cliente-deck-logo {
+    /* No hover: volta colorido + leve zoom */
+    filter: grayscale(0) opacity(1);
+    transform: scale(1.08);
+  }
+  /* Tratamento especial para logos com fundo escuro (Forton, Okiar):
+     invertemos as cores para o fundo "sumir" no card cinza claro */
+  .cliente-deck-logo.logo-fundo-escuro {
+    filter: grayscale(1) opacity(0.55) invert(1);
+  }
+  .cliente-deck:hover .cliente-deck-logo.logo-fundo-escuro {
+    filter: grayscale(0) opacity(1) invert(0);
   }
   .cliente-deck-cta {
     font-size: 10px;
@@ -791,9 +805,9 @@
   @media (max-aspect-ratio: 4/3), (max-width: 900px) {
     .clientes-grid-deck {
       grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 1fr);
     }
-    .cliente-deck-icone { width: 56px; height: 56px; }
+    .cliente-deck-logo { height: 48px; }
     .cliente-deck-nome { font-size: 17px; }
 
     /* Em mobile: padding menor nos slides + esconde a faixa fixa
@@ -1788,7 +1802,7 @@
           </div>
           <div class="anim-up-2">
             <p class="slide-texto">
-              Engenheiro Agrônomo pela <strong>UFPR</strong>, mas processo sempre foi paixão — comecei na faculdade tocando uma empresa de entrega de orgânicos e descobri que gostava mais de <strong>desenhar como as coisas funcionam</strong> do que da parte técnica do agro.
+              Engenheiro Agrônomo pela <strong>UFPR</strong>, mas processo sempre foi paixão. Comecei na faculdade tocando uma empresa de entrega de orgânicos e descobri que gostava mais de <strong>desenhar como as coisas funcionam</strong> do que da parte técnica do agro.
             </p>
             <p class="slide-texto" style="margin-top: 14px;">
               Na Pipefy fui responsável pela <strong>melhoria contínua do back office</strong> e depois atuei no time de <strong>Parceiros</strong>, ajudando outras consultorias a estruturar processos. Em 2024 fundei a PSFY pra levar essa visão prática a empresas de qualquer setor.
@@ -1917,7 +1931,7 @@
           </div>
           <div class="porque-card-titulo">Processo é sobre pessoas.</div>
           <div class="porque-card-desc">
-            Mais importante que entregar um pipe novo é o seu time <strong>saber usar a ferramenta pra ganhar tempo</strong> — pra um cafezinho, pra ir embora mais cedo, pra ficar com a família. Tecnologia é meio, não fim.
+            Mais importante que entregar um pipe novo é o seu time <strong>saber usar a ferramenta pra ganhar tempo</strong>: pra um cafezinho, pra ir embora mais cedo, pra ficar com a família. Tecnologia é meio, não fim.
           </div>
         </div>
 
@@ -1930,7 +1944,7 @@
           </div>
           <div class="porque-card-titulo">Pipefy avançado, entregue rápido.</div>
           <div class="porque-card-desc">
-            Estruturas que <strong>poucos consultores dominam</strong> — como rodar solução e banco de dados em um único pipe, com automações condicionais — entregues em prazos curtos, sem sacrificar qualidade.
+            Estruturas que <strong>poucos consultores dominam</strong> (como rodar solução e banco de dados em um único pipe, com automações condicionais), entregues em prazos curtos, sem sacrificar qualidade.
           </div>
         </div>
 
@@ -1944,7 +1958,7 @@
           </div>
           <div class="porque-card-titulo">Reconhecida pela própria Pipefy.</div>
           <div class="porque-card-desc">
-            Dois prêmios internos da Pipefy: <strong>Agile Finance Team</strong> e <strong>Best Internal Pipe 2024</strong>. Poucos consultores podem dizer o mesmo — e isso vira método aplicado em cada cliente.
+            Dois prêmios internos da Pipefy: <strong>Agile Finance Team</strong> e <strong>Best Internal Pipe 2024</strong>. Poucos consultores podem dizer o mesmo. Isso vira método aplicado em cada cliente.
           </div>
         </div>
 
@@ -1996,11 +2010,7 @@
 
         <!-- Diageo -->
         <div class="cliente-deck" data-cliente="diageo">
-          <svg class="cliente-deck-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 2h8l-1 7a3 3 0 0 1-3 3 3 3 0 0 1-3-3L8 2z"/>
-            <path d="M12 12v8"/>
-            <path d="M9 22h6"/>
-          </svg>
+          <img class="cliente-deck-logo" src="logos/diageo.png" alt="Diageo">
           <div class="cliente-deck-nome">Diageo</div>
           <div class="cliente-deck-segmento">Bebidas</div>
           <div class="cliente-deck-cta">Ver processos →</div>
@@ -2018,41 +2028,9 @@
           </div>
         </div>
 
-        <!-- GRS -->
-        <div class="cliente-deck" data-cliente="grs">
-          <svg class="cliente-deck-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="5" cy="17" r="3"/>
-            <circle cx="19" cy="17" r="3"/>
-            <path d="M14 17H8l-3-7h6l5 7"/>
-            <path d="M11 10l2-3h3"/>
-          </svg>
-          <div class="cliente-deck-nome">GRS</div>
-          <div class="cliente-deck-segmento">Motos</div>
-          <div class="cliente-deck-cta">Ver processos →</div>
-          <div class="cliente-deck-processos">
-            <button class="cliente-deck-fechar" aria-label="Fechar">×</button>
-            <div class="cliente-deck-processos-titulo">GRS</div>
-            <div class="cliente-deck-processos-segmento">Peças e aftermarket</div>
-            <ul class="cliente-deck-processos-lista">
-              <li class="cliente-deck-processos-item">RH</li>
-              <li class="cliente-deck-processos-item">Controle de influenciadores</li>
-              <li class="cliente-deck-processos-item">Compras automatizado</li>
-              <li class="cliente-deck-processos-item">Comercial (SDR, Closer, CS)</li>
-              <li class="cliente-deck-processos-item">AI Agent — gestão de cultura</li>
-            </ul>
-          </div>
-        </div>
-
         <!-- W Rental -->
         <div class="cliente-deck" data-cliente="wrental">
-          <svg class="cliente-deck-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 21h18"/>
-            <path d="M5 21V7l8-4v18"/>
-            <path d="M19 21V11l-6-4"/>
-            <path d="M9 9v.01"/>
-            <path d="M9 13v.01"/>
-            <path d="M9 17v.01"/>
-          </svg>
+          <img class="cliente-deck-logo" src="logos/wrental.png" alt="W Rental">
           <div class="cliente-deck-nome">W Rental</div>
           <div class="cliente-deck-segmento">Guindastes</div>
           <div class="cliente-deck-cta">Ver processos →</div>
@@ -2069,37 +2047,9 @@
           </div>
         </div>
 
-        <!-- Coca-Cola FEMSA -->
-        <div class="cliente-deck" data-cliente="coca">
-          <svg class="cliente-deck-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M10 17h4V5H2v12h3"/>
-            <path d="M20 17h2v-3.34a4 4 0 0 0-1.17-2.83L19 9h-5"/>
-            <circle cx="7.5" cy="17.5" r="2.5"/>
-            <circle cx="17.5" cy="17.5" r="2.5"/>
-          </svg>
-          <div class="cliente-deck-nome">Coca-Cola FEMSA</div>
-          <div class="cliente-deck-segmento">Distribuição</div>
-          <div class="cliente-deck-cta">Ver processos →</div>
-          <div class="cliente-deck-processos">
-            <button class="cliente-deck-fechar" aria-label="Fechar">×</button>
-            <div class="cliente-deck-processos-titulo">Coca-Cola FEMSA</div>
-            <div class="cliente-deck-processos-segmento">Distribuição</div>
-            <ul class="cliente-deck-processos-lista">
-              <li class="cliente-deck-processos-item">Contas a pagar</li>
-              <li class="cliente-deck-processos-item">Comercial</li>
-              <li class="cliente-deck-processos-item">Jurídico</li>
-            </ul>
-          </div>
-        </div>
-
         <!-- Pipefy -->
         <div class="cliente-deck" data-cliente="pipefy">
-          <svg class="cliente-deck-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="7" height="7" rx="1"/>
-            <rect x="14" y="3" width="7" height="7" rx="1"/>
-            <rect x="3" y="14" width="7" height="7" rx="1"/>
-            <rect x="14" y="14" width="7" height="7" rx="1"/>
-          </svg>
+          <img class="cliente-deck-logo" src="logos/pipefy.png" alt="Pipefy">
           <div class="cliente-deck-nome">Pipefy</div>
           <div class="cliente-deck-segmento">Software</div>
           <div class="cliente-deck-cta">Ver processos →</div>
@@ -2113,19 +2063,11 @@
           </div>
         </div>
 
-        <!-- Forton -->
+        <!-- Forton (logo com fundo escuro) -->
         <div class="cliente-deck" data-cliente="forton">
-          <svg class="cliente-deck-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6.5 6.5l11 11"/>
-            <path d="M21 21l-1-1"/>
-            <path d="M3 3l1 1"/>
-            <path d="M18 22l4-4"/>
-            <path d="M2 6l4-4"/>
-            <path d="M3 10l7-7"/>
-            <path d="M14 21l7-7"/>
-          </svg>
+          <img class="cliente-deck-logo logo-fundo-escuro" src="logos/forton.png" alt="Forton">
           <div class="cliente-deck-nome">Forton</div>
-          <div class="cliente-deck-segmento">Academia</div>
+          <div class="cliente-deck-segmento">Suplementos</div>
           <div class="cliente-deck-cta">Ver processos →</div>
           <div class="cliente-deck-processos">
             <button class="cliente-deck-fechar" aria-label="Fechar">×</button>
@@ -2142,11 +2084,7 @@
 
         <!-- Playrec -->
         <div class="cliente-deck" data-cliente="playrec">
-          <svg class="cliente-deck-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
-            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-            <line x1="12" y1="19" x2="12" y2="22"/>
-          </svg>
+          <img class="cliente-deck-logo" src="logos/playrec.png" alt="Playrec">
           <div class="cliente-deck-nome">Playrec</div>
           <div class="cliente-deck-segmento">Gravações</div>
           <div class="cliente-deck-cta">Ver processos →</div>
@@ -2163,23 +2101,20 @@
           </div>
         </div>
 
-        <!-- MKS -->
-        <div class="cliente-deck" data-cliente="MKS">
-          <svg class="cliente-deck-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-            <line x1="12" y1="22.08" x2="12" y2="12"/>
-          </svg>
-          <div class="cliente-deck-nome">MKS</div>
-          <div class="cliente-deck-segmento">Estoque</div>
+        <!-- Okiar (logo com fundo escuro) -->
+        <div class="cliente-deck" data-cliente="okiar">
+          <img class="cliente-deck-logo logo-fundo-escuro" src="logos/okiar.png" alt="Okiar">
+          <div class="cliente-deck-nome">Okiar</div>
+          <div class="cliente-deck-segmento">Financeiro</div>
           <div class="cliente-deck-cta">Ver processos →</div>
           <div class="cliente-deck-processos">
             <button class="cliente-deck-fechar" aria-label="Fechar">×</button>
-            <div class="cliente-deck-processos-titulo">MKS</div>
-            <div class="cliente-deck-processos-segmento">Gestão de estoque</div>
+            <div class="cliente-deck-processos-titulo">Okiar</div>
+            <div class="cliente-deck-processos-segmento">Financeiro</div>
             <ul class="cliente-deck-processos-lista">
-              <li class="cliente-deck-processos-item">Gestão de estoque</li>
-              <li class="cliente-deck-processos-item">Integrações</li>
+              <li class="cliente-deck-processos-item">Pacote de Horas (4h mensais)</li>
+              <li class="cliente-deck-processos-item">Ajustes em processos existentes</li>
+              <li class="cliente-deck-processos-item">Integrações via iPaaS da Pipefy</li>
             </ul>
           </div>
         </div>
@@ -2242,7 +2177,7 @@
           <h3 class="formato-card-deck-titulo">Consultoria Mensal</h3>
           <p class="formato-card-deck-desc">Analista dedicado para evoluir processos continuamente, com reuniões e roadmap recorrente.</p>
           <div class="formato-card-deck-preco">Compromisso mensal</div>
-          <div class="formato-card-deck-orcamento">Orçamento inicial: <strong>a partir de R$ 3.250,00</strong></div>
+          <div class="formato-card-deck-orcamento">Orçamento inicial: <strong>sob consulta</strong></div>
           <div class="formato-card-deck-divider"></div>
           <ul class="formato-card-deck-items">
             <li class="formato-card-deck-item"><span class="arrow">→</span>Analista dedicado ao cliente</li>
@@ -2296,7 +2231,7 @@
             <div class="section-label">Como trabalhamos</div>
             <h2 class="slide-titulo-md">Método em <span class="italic">6 etapas</span> + manutenção evolutiva.</h2>
             <p class="slide-texto">
-              Entrega em etapas com transparência total — você acompanha, valida e aprova cada parte. Quando o projeto está pronto e rodando, o <strong>Pacote de Horas</strong> entra como manutenção evolutiva.
+              Entrega em etapas com transparência total: você acompanha, valida e aprova cada parte. Quando o projeto está pronto e rodando, o <strong>Pacote de Horas</strong> entra como manutenção evolutiva.
             </p>
             <div class="processo-tag anim-up-2">Método PSFY</div>
           </div>
@@ -2363,7 +2298,7 @@
                   <div class="timeline-step-bolinha">05</div>
                   <div class="timeline-step-num">Ajustes</div>
                   <div class="timeline-step-titulo">Pipe dedicado</div>
-                  <div class="timeline-step-desc">Ajustes via pipe próprio — resolvidos rápido.</div>
+                  <div class="timeline-step-desc">Ajustes via pipe próprio, resolvidos rápido.</div>
                   <div class="timeline-step-tooltip">
                     <strong>Pacote de Horas</strong>
                     Ajustes pontuais no pipe, automações, emails e integrações.
