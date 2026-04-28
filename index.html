@@ -896,14 +896,15 @@
     filter: grayscale(0) opacity(1);
     transform: scale(1.05);
   }
-  /* Logos com fundo escuro: aplica invert(1) para "transformar" o fundo preto em branco
-     (combina com o fundo branco do site, só no estado cinza padrão.
+  /* Logos com fundo escuro: usamos brightness(0) + invert(0.6) pra "transformar"
+     o logo num cinza médio bem visível no fundo branco do site.
      No hover, removemos tudo e mostramos o logo original com fundo escuro. */
   .cliente-logo.logo-fundo-escuro img {
-    filter: grayscale(1) opacity(0.55) invert(1);
+    filter: brightness(0) invert(0.55);
   }
   .cliente-logo.logo-fundo-escuro:hover img {
-    filter: grayscale(0) opacity(1) invert(0);
+    filter: none;
+    transform: scale(1.05);
   }
   @keyframes scroll-clientes {
     from { transform: translateX(0); }
