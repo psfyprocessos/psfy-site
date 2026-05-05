@@ -823,6 +823,80 @@
     }
   }
 
+  /* ===== SLIDE DEPOIMENTO ===== */
+  .slide-depoimento .slide-inner {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .depoimento-content {
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .depoimento-content .section-label {
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+  /* Aspas grandes ornamentais */
+  .depoimento-aspas {
+    font-family: Georgia, serif;
+    font-size: 140px;
+    line-height: 0.5;
+    color: var(--azul);
+    opacity: 0.25;
+    margin-bottom: 24px;
+    user-select: none;
+  }
+  .depoimento-texto {
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.55;
+    color: var(--preto);
+    font-weight: 400;
+    margin-bottom: 48px;
+    letter-spacing: -0.01em;
+  }
+  .depoimento-autor {
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+    padding-top: 32px;
+    border-top: 1px solid var(--cinza-borda);
+  }
+  .depoimento-autor-logo {
+    height: 40px;
+    width: auto;
+    flex-shrink: 0;
+  }
+  .depoimento-autor-info {
+    text-align: left;
+  }
+  .depoimento-autor-nome {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--preto);
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+  }
+  .depoimento-autor-cargo {
+    font-size: 14px;
+    color: var(--cinza-texto);
+  }
+  /* Mobile */
+  @media (max-aspect-ratio: 4/3), (max-width: 900px) {
+    .depoimento-aspas {
+      font-size: 90px;
+    }
+    .depoimento-autor {
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+    .depoimento-autor-info {
+      text-align: center;
+    }
+  }
+
   /* ===== SLIDE PERGUNTA (transição) ===== */
   .slide-pergunta .slide-inner {
     justify-content: center;
@@ -1988,6 +2062,36 @@
           <div class="porque-card-titulo">Tira você das planilhas e softwares caros.</div>
           <div class="porque-card-desc">
             Foco em empresas pequenas, médias e grandes que querem <strong>parar com trabalho manual</strong>. Iniciamos em setores a partir de 10 colaboradores, sem trocar uma dor por outra.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE DEPOIMENTO ============== -->
+  <section class="slide slide-light slide-depoimento">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="depoimento-content">
+        <div class="anim-up">
+          <div class="section-label">Feedback de cliente</div>
+        </div>
+        <div class="anim-up-2">
+          <div class="depoimento-aspas">&ldquo;</div>
+          <p class="depoimento-texto">
+            A PSFY tem sido uma parceira importante no apoio aos nossos processos na Diageo. Já utilizávamos o Pipefy no dia a dia, mas havia a necessidade de evoluir alguns fluxos, principalmente os relacionados à frota, para ganhar mais eficiência e automação. A PSFY ajudou a melhorar processos que já existiam, apoiando a criação de automações mais robustas, uso de banco de dados e condicionais, sempre de forma prática e alinhada à nossa operação.
+          </p>
+        </div>
+        <div class="anim-up-3">
+          <div class="depoimento-autor">
+            <img class="depoimento-autor-logo" src="logos/diageo.png" alt="Diageo">
+            <div class="depoimento-autor-info">
+              <div class="depoimento-autor-nome">Hernani Rocha</div>
+              <div class="depoimento-autor-cargo">Especialista em Gestão de Frota LATAM, Diageo</div>
+            </div>
           </div>
         </div>
       </div>
