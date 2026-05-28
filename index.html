@@ -599,6 +599,27 @@
   .projeto-item.ia::before {
     background: #f59e0b;
   }
+  .projeto-impacto {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--cinza-borda);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--cinza-texto-escuro);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .projeto-impacto::before {
+    content: '→';
+    color: var(--azul);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .projeto-impacto strong {
+    color: var(--preto);
+    font-weight: 600;
+  }
   .projetos-toggle-wrap {
     display: flex;
     justify-content: center;
@@ -1124,15 +1145,15 @@
     <div class="hero-inner">
       <div class="hero-badge">
         <span class="dot"></span>
-        Especialistas em <strong>Pipefy</strong>
+        Consultoria de <strong>orquestração de processos</strong>
       </div>
 
       <h1>
-        Orquestramos processos com <span class="pipefy-highlight">Pipefy</span>, AI Agents e <span class="italic">governança de dados</span>.
+        Orquestramos a <span class="pipefy-highlight">operação</span> de empresas em <span class="italic">crescimento</span>.
       </h1>
 
       <p class="hero-description">
-        Consultoria especializada em <strong>Pipefy, Pipefy AI e AI Studio</strong>. Desenhamos, automatizamos e mantemos workflows de backoffice, RH, compras, financeiro e comercial, do no-code tradicional à automação com agentes de IA.
+        Consultoria de <strong>orquestração e automação de processos para PMEs</strong>. Desenhamos, automatizamos e mantemos workflows de backoffice, RH, compras, financeiro e comercial, usando Pipefy como plataforma principal e IA quando o processo pede.
       </p>
 
       <div class="hero-cta">
@@ -1160,8 +1181,8 @@
           <div class="stat-label">Processos com IA</div>
         </div>
         <div>
-          <div class="stat-number">5<span class="unit">anos</span></div>
-          <div class="stat-label">Com Pipefy</div>
+          <div class="stat-number">11<span class="plus">+</span></div>
+          <div class="stat-label">Setores atendidos</div>
         </div>
       </div>
     </div>
@@ -1449,6 +1470,7 @@
             <li class="projeto-item ia">Reserva de salas</li>
             <li class="projeto-item ia">Cartões de benefícios</li>
           </ul>
+          <div class="projeto-impacto"><span><strong>Impacto:</strong> 5 fluxos críticos centralizados em ambiente auditável, eliminando controles paralelos em planilhas.</span></div>
         </div>
 
         <div class="projeto-card">
@@ -1463,6 +1485,7 @@
             <li class="projeto-item">Gestão de formas de pagamento</li>
             <li class="projeto-item ia">Gestão de audiências</li>
           </ul>
+          <div class="projeto-impacto"><span><strong>Impacto:</strong> Triagem de e-mails e contratos automatizada com IA, reduzindo trabalho manual recorrente da equipe jurídica.</span></div>
         </div>
 
         <div class="projeto-card">
@@ -1477,6 +1500,7 @@
             <li class="projeto-item ia">Solicitação de garantias</li>
             <li class="projeto-item ia">Solicitações de fretes</li>
           </ul>
+          <div class="projeto-impacto"><span><strong>Impacto:</strong> Cotação, compras e manutenção passaram a rodar em fluxo único, com rastreabilidade fim a fim.</span></div>
         </div>
 
         <div class="projeto-card projeto-extra projeto-hidden">
@@ -1490,6 +1514,7 @@
             <li class="projeto-item">Comercial</li>
             <li class="projeto-item ia">Jurídico</li>
           </ul>
+          <div class="projeto-impacto"><span><strong>Impacto:</strong> Três áreas (financeiro, comercial, jurídico) unificadas numa operação padronizada e mensurável.</span></div>
         </div>
 
         <div class="projeto-card projeto-extra projeto-hidden">
@@ -1505,6 +1530,7 @@
             <li class="projeto-item">Comercial SDR, Closer e CS</li>
             <li class="projeto-item ia">AI Agent para gestão de cultura</li>
           </ul>
+          <div class="projeto-impacto"><span><strong>Impacto:</strong> Funil comercial completo (SDR, Closer, CS) estruturado com automações e IA aplicada a gestão de cultura.</span></div>
         </div>
 
         <div class="projeto-card projeto-extra projeto-hidden">
@@ -1519,6 +1545,7 @@
             <li class="projeto-item">Financeiro</li>
             <li class="projeto-item ia">Integração com WhatsApp</li>
           </ul>
+          <div class="projeto-impacto"><span><strong>Impacto:</strong> Entrada de demandas e financeiro integrados ao WhatsApp, centralizando o que antes vivia em conversas dispersas.</span></div>
         </div>
 
         <div class="projeto-card projeto-extra projeto-hidden">
@@ -1533,6 +1560,7 @@
             <li class="projeto-item">Financeiro</li>
             <li class="projeto-item ia">Jurídico</li>
           </ul>
+          <div class="projeto-impacto"><span><strong>Impacto:</strong> Quatro áreas operacionais (produtos, equipes, financeiro, jurídico) padronizadas em uma operação única.</span></div>
         </div>
 
         <div class="projeto-card projeto-extra projeto-hidden">
@@ -1547,6 +1575,7 @@
             <li class="projeto-item">Desenquadramento</li>
             <li class="projeto-item">Financeiro</li>
           </ul>
+          <div class="projeto-impacto"><span><strong>Impacto:</strong> Jornada do cliente do onboarding ao desenquadramento estruturada num fluxo único e auditável.</span></div>
         </div>
 
         <div class="projeto-card projeto-extra projeto-hidden">
@@ -1560,6 +1589,7 @@
             <li class="projeto-item">Gestão de médicos</li>
             <li class="projeto-item ia">Gestão de carga horária</li>
           </ul>
+          <div class="projeto-impacto"><span><strong>Impacto:</strong> Recrutamento, gestão de médicos e carga horária centralizados, eliminando controles isolados por unidade.</span></div>
         </div>
 
         <div class="projeto-card projeto-extra projeto-hidden">
@@ -1574,6 +1604,7 @@
             <li class="projeto-item">Financeiro e contratos</li>
             <li class="projeto-item ia">Integração com software de contratos</li>
           </ul>
+          <div class="projeto-impacto"><span><strong>Impacto:</strong> Empreendimentos, aprovações e contratos integrados, com handoff automatizado para o software de contratos.</span></div>
         </div>
 
         <div class="projeto-card projeto-extra projeto-hidden">
@@ -1589,6 +1620,7 @@
             <li class="projeto-item">Parcerias</li>
             <li class="projeto-item ia">Gestão de iniciativas</li>
           </ul>
+          <div class="projeto-impacto"><span><strong>Impacto:</strong> Operação interna estruturada em múltiplas frentes (finanças, compras, RH, parcerias) com IA aplicada no chat da própria plataforma.</span></div>
         </div>
       </div>
 
