@@ -635,180 +635,78 @@
     font-size: 32px;
   }
 
-  /* ===== SLIDE CLIENTES (INTERATIVO) ===== */
-  .clientes-grid-deck {
+  /* ===== SLIDE GRS: PROCESSOS EM SEQUÊNCIA ===== */
+  .grs-fluxo {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 14px;
-    margin-top: 24px;
-    max-height: 62vh;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 40px;
   }
-  .cliente-deck {
-    background: var(--cinza);
-    border: 1px solid var(--cinza-borda);
-    border-radius: 16px;
-    padding: 18px 16px;
+  .grs-fluxo .resultado-card {
+    margin: 0;
+  }
+  .grs-conector {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-    min-height: 0;
-  }
-  .cliente-deck:hover {
-    transform: translateY(-4px);
-    border-color: var(--azul);
-    box-shadow: 0 12px 30px rgba(10, 82, 204, 0.15);
-  }
-  .cliente-deck-nome {
-    font-size: 19px;
-    font-weight: 700;
-    color: #999;
-    letter-spacing: -0.02em;
-    margin-bottom: 6px;
-    text-align: center;
-    transition: color 0.3s;
-  }
-  .cliente-deck:hover .cliente-deck-nome {
-    color: var(--preto);
-  }
-  .cliente-deck-segmento {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #b0b0b0;
-    margin-bottom: 14px;
-    transition: color 0.3s;
-  }
-  .cliente-deck:hover .cliente-deck-segmento {
     color: var(--azul);
   }
-  /* Logo do cliente: imagem cinza por padrão, colorida no hover.
-     Substitui o antigo .cliente-deck-icone (SVG). */
-  .cliente-deck-logo {
-    height: 56px;
-    max-width: 80%;
+  .grs-conector svg {
+    width: 44px;
+    height: 44px;
+  }
+  @media (max-width: 900px) {
+    .grs-fluxo {
+      grid-template-columns: 1fr;
+    }
+    .grs-conector svg { transform: rotate(90deg); }
+  }
+
+  /* ===== SLIDE CLIENTES (MARQUEE DE LOGOS) ===== */
+  .logos-marquee {
+    overflow: hidden;
+    margin-top: 56px;
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  }
+  .logos-track {
+    display: flex;
+    width: max-content;
+    animation: logos-scroll 30s linear infinite;
+  }
+  .logos-marquee:hover .logos-track {
+    animation-play-state: paused;
+  }
+  .logos-set {
+    display: flex;
+    align-items: center;
+    gap: 96px;
+    padding-right: 96px;
+    flex-shrink: 0;
+  }
+  .logos-set img {
+    height: 60px;
     width: auto;
+    max-width: 180px;
     object-fit: contain;
-    margin-bottom: 12px;
-    /* Filtro cinza padrão (mesmo padrão do site) */
     filter: grayscale(1) opacity(0.55);
     transition: filter 0.3s, transform 0.3s;
   }
-  .cliente-deck:hover .cliente-deck-logo {
-    /* No hover: volta colorido + leve zoom */
+  .logos-set img:hover {
     filter: grayscale(0) opacity(1);
-    transform: scale(1.08);
+    transform: scale(1.06);
   }
-  /* Tratamento especial para logos com fundo escuro (Forton, Okiar):
-     invertemos as cores para o fundo "sumir" no card cinza claro */
-  .cliente-deck-logo.logo-fundo-escuro {
-    filter: grayscale(1) opacity(0.55) invert(1);
-  }
-  .cliente-deck:hover .cliente-deck-logo.logo-fundo-escuro {
-    filter: grayscale(0) opacity(1) invert(0);
-  }
-  .cliente-deck-cta {
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #b0b0b0;
-    font-weight: 500;
-    transition: color 0.3s;
-  }
-  .cliente-deck:hover .cliente-deck-cta {
-    color: var(--azul);
-  }
-
-  /* Overlay de processos quando ativo */
-  .cliente-deck-processos {
-    position: absolute;
-    inset: 0;
-    background: var(--preto);
-    color: var(--branco);
-    padding: 18px 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    opacity: 0;
-    transform: translateY(8px);
-    pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 16px;
-  }
-  .cliente-deck.ativo .cliente-deck-processos {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-  .cliente-deck-processos-titulo {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 4px;
-    letter-spacing: -0.01em;
-  }
-  .cliente-deck-processos-segmento {
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--azul-claro);
-    margin-bottom: 12px;
-    font-weight: 500;
-  }
-  .cliente-deck-processos-lista {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-  .cliente-deck-processos-item {
-    font-size: 12px;
-    line-height: 1.4;
-    color: rgba(255,255,255,0.85);
-    display: flex;
-    gap: 6px;
-    align-items: flex-start;
-  }
-  .cliente-deck-processos-item::before {
-    content: '→';
-    color: var(--azul-claro);
-    flex-shrink: 0;
-    font-weight: 700;
-  }
-  .cliente-deck-fechar {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.1);
-    border: none;
-    color: var(--branco);
-    cursor: pointer;
-    display: grid;
-    place-items: center;
-    font-size: 14px;
-    line-height: 1;
-    font-family: inherit;
-    transition: background 0.2s;
-  }
-  .cliente-deck-fechar:hover {
-    background: rgba(255,255,255,0.2);
+  @keyframes logos-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 
   /* Responsivo: telas verticais ou estreitas */
   @media (max-aspect-ratio: 4/3), (max-width: 900px) {
-    .clientes-grid-deck {
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-    }
-    .cliente-deck-logo { height: 48px; }
-    .cliente-deck-nome { font-size: 17px; }
+    .logos-set { gap: 48px; padding-right: 48px; }
+    .logos-set img { height: 40px; max-width: 120px; }
 
     /* Em mobile: padding menor nos slides + esconde a faixa fixa
        (mobile usa o deck-header interno de cada slide, mais compacto) */
@@ -1845,7 +1743,7 @@
       </div>
       <div class="anim-up-3">
         <p class="capa-desc">
-          Orquestramos processos com <strong style="color:#fff">Pipefy</strong>, AI Agents e governança de dados.
+          Orquestramos processos com <strong style="color:#fff">automações</strong>, AI Agents e governança de dados.
         </p>
         <p class="capa-url">www.PSFY.com.br</p>
       </div>
@@ -1914,19 +1812,19 @@
       <div class="core-content">
         <div>
           <div class="anim-up">
-            <div class="section-label">Pipefy como core</div>
-            <h2 class="slide-titulo-md">Pipefy é o <span class="italic">core</span> da operação.</h2>
+            <div class="section-label">Nossa especialidade</div>
+            <h2 class="slide-titulo-md">Especialistas em ferramentas de <span class="italic">melhoria de processos</span>.</h2>
           </div>
           <div class="anim-up-2">
             <p class="slide-texto">
-              Potencializamos a plataforma com integrações, automações e agentes de IA para tornar a operação <strong>mais eficiente, escalável e inteligente</strong>.
+              Dominamos as principais ferramentas do mercado e as potencializamos com integrações, automações e agentes de IA para tornar a operação <strong>mais eficiente, escalável e inteligente</strong>.
             </p>
             <div class="stack-mini-grid">
-              <div class="stack-mini highlight">
+              <div class="stack-mini">
                 <div class="stack-mini-nome">Pipefy</div>
-                <div class="stack-mini-cat">Core</div>
+                <div class="stack-mini-cat">Processos</div>
               </div>
-              <div class="stack-mini highlight">
+              <div class="stack-mini">
                 <div class="stack-mini-nome">Pipefy AI</div>
                 <div class="stack-mini-cat">AI Studio</div>
               </div>
@@ -1972,11 +1870,11 @@
           </div>
           <div class="stat-block">
             <div class="stat-block-numero">25+</div>
-            <div class="stat-block-label">Processos com Pipefy AI</div>
+            <div class="stat-block-label">Processos com IA</div>
           </div>
           <div class="stat-block">
-            <div class="stat-block-numero">5</div>
-            <div class="stat-block-label">Anos com Pipefy</div>
+            <div class="stat-block-numero">40+</div>
+            <div class="stat-block-label">Integrações realizadas</div>
           </div>
         </div>
       </div>
@@ -1992,7 +1890,7 @@
     <div class="slide-inner">
       <div class="anim-up">
         <div class="section-label">Por que a PSFY</div>
-        <h2 class="slide-titulo-md">Diferente de outras consultorias <span class="italic">de Pipefy</span>.</h2>
+        <h2 class="slide-titulo-md">Diferente de outras <span class="italic">consultorias</span>.</h2>
       </div>
 
       <div class="porque-grid anim-up-2">
@@ -2005,7 +1903,7 @@
           </div>
           <div class="porque-card-titulo">Processo é sobre pessoas.</div>
           <div class="porque-card-desc">
-            Mais importante que entregar um pipe novo é o seu time <strong>saber usar a ferramenta pra ganhar tempo</strong>: pra um cafezinho, pra ir embora mais cedo, pra ficar com a família. Tecnologia é meio, não fim.
+            Mais importante que entregar um processo novo é o seu time <strong>saber usar a ferramenta pra ganhar tempo</strong>: pra um cafezinho, pra ir embora mais cedo, pra ficar com a família. Tecnologia é meio, não fim.
           </div>
         </div>
 
@@ -2016,9 +1914,9 @@
               <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
             </svg>
           </div>
-          <div class="porque-card-titulo">Pipefy avançado, entregue rápido.</div>
+          <div class="porque-card-titulo">Habilidade de entregar com qualidade.</div>
           <div class="porque-card-desc">
-            Estruturas que <strong>poucos consultores dominam</strong> (como rodar solução e banco de dados em um único pipe, com automações condicionais), entregues em prazos curtos, sem sacrificar qualidade.
+            Estruturas que <strong>poucos consultores dominam</strong> (como rodar solução e banco de dados em um único fluxo, com automações condicionais), entregues em prazos curtos, sem sacrificar qualidade.
           </div>
         </div>
 
@@ -2030,9 +1928,9 @@
               <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
             </svg>
           </div>
-          <div class="porque-card-titulo">Reconhecida pela própria Pipefy.</div>
+          <div class="porque-card-titulo">Consultor com todos os treinamentos da Pipefy.</div>
           <div class="porque-card-desc">
-            Dois prêmios internos da Pipefy: <strong>Agile Finance Team</strong> e <strong>Best Internal Pipe 2024</strong>. Poucos consultores podem dizer o mesmo. Isso vira método aplicado em cada cliente.
+            Todos os treinamentos oficiais concluídos, além de dois prêmios internos: <strong>Agile Finance Team</strong> e <strong>Best Internal Pipe 2024</strong>. Conhecimento que vira método aplicado em cada cliente.
           </div>
         </div>
 
@@ -2098,7 +1996,45 @@
     </div>
   </section>
 
-  <!-- ============== SLIDE 4: CLIENTES (INTERATIVO) ============== -->
+  <!-- ============== SLIDE: CLIENTES (LOGOS EM MOVIMENTO) ============== -->
+  <section class="slide slide-light">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="anim-up" style="text-align: center;">
+        <div class="section-label" style="justify-content: center;">Quem confia na PSFY</div>
+        <h2 class="slide-titulo-md">Clientes que <span class="italic">orquestram</span> com a gente.</h2>
+      </div>
+      <div class="logos-marquee anim-up-2">
+        <div class="logos-track">
+          <div class="logos-set">
+            <img src="logos/diageo.png" alt="Diageo">
+            <img src="logos/wrental.png" alt="W Rental">
+            <img src="logos/grs.png" alt="GRS">
+            <img src="logos/labhoro.png" alt="Labhoro">
+            <img src="logos/pipefy.png" alt="Pipefy">
+            <img src="logos/forton.png" alt="Forton">
+            <img src="logos/playrec.png" alt="Playrec">
+            <img src="logos/okiar.png" alt="Okiar">
+          </div>
+          <div class="logos-set" aria-hidden="true">
+            <img src="logos/diageo.png" alt="">
+            <img src="logos/wrental.png" alt="">
+            <img src="logos/grs.png" alt="">
+            <img src="logos/labhoro.png" alt="">
+            <img src="logos/pipefy.png" alt="">
+            <img src="logos/forton.png" alt="">
+            <img src="logos/playrec.png" alt="">
+            <img src="logos/okiar.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE: CASES 1 (WRENTAL / DIAGEO / LABHORO) ============== -->
   <section class="slide slide-light">
     <div class="deck-header">
       <span class="dot"></span>
@@ -2106,120 +2042,42 @@
     </div>
     <div class="slide-inner">
       <div class="anim-up">
-        <div class="section-label">Quem confia na PSFY</div>
-        <h2 class="slide-titulo-md">Clientes que <span class="italic">orquestram</span> com a gente.</h2>
-        <p class="slide-texto" style="font-size: 15px; margin-bottom: 0;">Clique em uma empresa para ver os processos que automatizamos.</p>
+        <div class="section-label">Cases de sucesso</div>
+        <h2 class="slide-titulo-md">Processos que <span class="italic">funcionam</span> na prática.</h2>
       </div>
-      <div class="clientes-grid-deck anim-up-2">
 
-        <!-- Diageo -->
-        <div class="cliente-deck" data-cliente="diageo">
-          <img class="cliente-deck-logo" src="logos/diageo.png" alt="Diageo">
-          <div class="cliente-deck-nome">Diageo</div>
-          <div class="cliente-deck-segmento">Bebidas</div>
-          <div class="cliente-deck-cta">Ver processos →</div>
-          <div class="cliente-deck-processos">
-            <button class="cliente-deck-fechar" aria-label="Fechar">×</button>
-            <div class="cliente-deck-processos-titulo">Diageo</div>
-            <div class="cliente-deck-processos-segmento">Bebidas alcoólicas</div>
-            <ul class="cliente-deck-processos-lista">
-              <li class="cliente-deck-processos-item">Gestão de frotas</li>
-              <li class="cliente-deck-processos-item">Sinistros</li>
-              <li class="cliente-deck-processos-item">Entrega e retirada de veículos</li>
-              <li class="cliente-deck-processos-item">Reserva de salas</li>
-              <li class="cliente-deck-processos-item">Cartões de benefícios</li>
-            </ul>
+      <div class="resultados-grid anim-up-2">
+
+        <!-- Case: Wrental Compras -->
+        <div class="resultado-card">
+          <div class="resultado-card-cliente">Wrental · Compras</div>
+          <div class="resultado-card-numero">5.500<span class="unidade">+ pedidos</span></div>
+          <div class="resultado-card-metrica">Concluídos em 18 meses</div>
+          <div class="resultado-card-divider"></div>
+          <div class="resultado-card-desc">
+            Compras do estoque ao faturamento, com aprovação por interface e nota fiscal automática. O time economiza cerca de 30 horas por semana. O compras foi a porta de entrada e hoje são 20 processos rodando a operação.
           </div>
         </div>
 
-        <!-- W Rental -->
-        <div class="cliente-deck" data-cliente="wrental">
-          <img class="cliente-deck-logo" src="logos/wrental.png" alt="W Rental">
-          <div class="cliente-deck-nome">W Rental</div>
-          <div class="cliente-deck-segmento">Guindastes</div>
-          <div class="cliente-deck-cta">Ver processos →</div>
-          <div class="cliente-deck-processos">
-            <button class="cliente-deck-fechar" aria-label="Fechar">×</button>
-            <div class="cliente-deck-processos-titulo">W Rental</div>
-            <div class="cliente-deck-processos-segmento">Indústria pesada</div>
-            <ul class="cliente-deck-processos-lista">
-              <li class="cliente-deck-processos-item">Compras integrado com cotações</li>
-              <li class="cliente-deck-processos-item">Manutenção de equipamentos</li>
-              <li class="cliente-deck-processos-item">Solicitação de garantias</li>
-              <li class="cliente-deck-processos-item">Solicitações de fretes</li>
-            </ul>
+        <!-- Case: Diageo Salas -->
+        <div class="resultado-card">
+          <div class="resultado-card-cliente">Diageo · Reserva de salas</div>
+          <div class="resultado-card-numero" style="font-size: 36px;">Adeus, email</div>
+          <div class="resultado-card-metrica">Autonomia total pro solicitante</div>
+          <div class="resultado-card-divider"></div>
+          <div class="resultado-card-desc">
+            Formulário que só abre com a validação do Outlook e aciona sozinho a equipe certa pra cada demanda. Cada solicitante acompanha o próprio pedido por um portal, do agendamento ao custo do catering.
           </div>
         </div>
 
-        <!-- Pipefy -->
-        <div class="cliente-deck" data-cliente="pipefy">
-          <img class="cliente-deck-logo" src="logos/pipefy.png" alt="Pipefy">
-          <div class="cliente-deck-nome">Pipefy</div>
-          <div class="cliente-deck-segmento">Software</div>
-          <div class="cliente-deck-cta">Ver processos →</div>
-          <div class="cliente-deck-processos">
-            <button class="cliente-deck-fechar" aria-label="Fechar">×</button>
-            <div class="cliente-deck-processos-titulo">Pipefy</div>
-            <div class="cliente-deck-processos-segmento">Software / SaaS</div>
-            <ul class="cliente-deck-processos-lista">
-              <li class="cliente-deck-processos-item">Consultorias para colaboradores da Pipefy</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Forton (logo com fundo escuro) -->
-        <div class="cliente-deck" data-cliente="forton">
-          <img class="cliente-deck-logo" src="logos/forton.png" alt="Forton">
-          <div class="cliente-deck-nome">Forton</div>
-          <div class="cliente-deck-segmento">Suplementos</div>
-          <div class="cliente-deck-cta">Ver processos →</div>
-          <div class="cliente-deck-processos">
-            <button class="cliente-deck-fechar" aria-label="Fechar">×</button>
-            <div class="cliente-deck-processos-titulo">Forton</div>
-            <div class="cliente-deck-processos-segmento">Suplementos / Academia</div>
-            <ul class="cliente-deck-processos-lista">
-              <li class="cliente-deck-processos-item">Gestão de produtos</li>
-              <li class="cliente-deck-processos-item">Gestão de leads</li>
-              <li class="cliente-deck-processos-item">Atendimento ao cliente</li>
-              <li class="cliente-deck-processos-item">Gestão de estoque</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Playrec -->
-        <div class="cliente-deck" data-cliente="playrec">
-          <img class="cliente-deck-logo" src="logos/playrec.png" alt="Playrec">
-          <div class="cliente-deck-nome">Playrec</div>
-          <div class="cliente-deck-segmento">Gravações</div>
-          <div class="cliente-deck-cta">Ver processos →</div>
-          <div class="cliente-deck-processos">
-            <button class="cliente-deck-fechar" aria-label="Fechar">×</button>
-            <div class="cliente-deck-processos-titulo">Playrec</div>
-            <div class="cliente-deck-processos-segmento">Estúdio de gravações</div>
-            <ul class="cliente-deck-processos-lista">
-              <li class="cliente-deck-processos-item">Entrada de demandas</li>
-              <li class="cliente-deck-processos-item">Gestão de colaboradores</li>
-              <li class="cliente-deck-processos-item">Financeiro</li>
-              <li class="cliente-deck-processos-item">Integração com WhatsApp</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Okiar (logo com fundo escuro) -->
-        <div class="cliente-deck" data-cliente="okiar">
-          <img class="cliente-deck-logo" src="logos/okiar.png" alt="Okiar">
-          <div class="cliente-deck-nome">Okiar</div>
-          <div class="cliente-deck-segmento">Financeiro</div>
-          <div class="cliente-deck-cta">Ver processos →</div>
-          <div class="cliente-deck-processos">
-            <button class="cliente-deck-fechar" aria-label="Fechar">×</button>
-            <div class="cliente-deck-processos-titulo">Okiar</div>
-            <div class="cliente-deck-processos-segmento">Financeiro</div>
-            <ul class="cliente-deck-processos-lista">
-              <li class="cliente-deck-processos-item">Pacote de Horas (4h mensais)</li>
-              <li class="cliente-deck-processos-item">Ajustes em processos existentes</li>
-              <li class="cliente-deck-processos-item">Integrações via iPaaS da Pipefy</li>
-            </ul>
+        <!-- Case: Labhoro Contratos -->
+        <div class="resultado-card">
+          <div class="resultado-card-cliente">Labhoro · Contratos</div>
+          <div class="resultado-card-numero">12h<span class="unidade"> de mapeamento</span></div>
+          <div class="resultado-card-metrica">15 pessoas ouvidas na empresa</div>
+          <div class="resultado-card-divider"></div>
+          <div class="resultado-card-desc">
+            O diagnóstico mostrou que a ferramenta da empresa era boa e não precisava ser trocada. A saída foi integrar o que já existe ao Google Workspace, com aprovações e rastreabilidade de contratos. Em desenvolvimento.
           </div>
         </div>
 
@@ -2227,97 +2085,48 @@
     </div>
   </section>
 
-  <!-- ============== SLIDE 5: PERGUNTA ============== -->
-  <section class="slide slide-pergunta slide-light">
-    <div class="deck-header">
-      <span class="dot"></span>
-      <span class="brand">PSFY.</span>
-    </div>
-    <div class="slide-indicator">
-      <span></span>
-      <span class="current"></span>
-      <span></span>
-    </div>
-    <div class="slide-inner">
-      <div class="anim-up">
-        <h2 class="pergunta-titulo">
-          Qual o <span class="italic">formato</span><br>
-          ideal para sua<br>
-          empresa?
-        </h2>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============== SLIDE 6: FORMATOS ============== -->
-  <section class="slide slide-light" style="background: linear-gradient(135deg, #e8f5e9 0%, var(--azul-claro) 100%);">
+  <!-- ============== SLIDE: CASES 2 (GRS EM SEQUÊNCIA) ============== -->
+  <section class="slide slide-light">
     <div class="deck-header">
       <span class="dot"></span>
       <span class="brand">PSFY.</span>
     </div>
     <div class="slide-inner">
       <div class="anim-up">
-        <h2 class="slide-titulo-md" style="margin-bottom: 16px;">FORMATOS</h2>
-      </div>
-      <div class="formatos-grid-deck anim-up-2">
-        <div class="formato-card-deck">
-          <div class="formato-card-deck-numero">Formato 01</div>
-          <h3 class="formato-card-deck-titulo">Pacote de Horas</h3>
-          <p class="formato-card-deck-desc">Para quem já tem Pipefy rodando e precisa de ajustes, correções ou pequenas implementações.</p>
-          <div class="formato-card-deck-preco">4 a 20 horas mensais</div>
-          <div class="formato-card-deck-orcamento">Orçamento inicial: <strong>a partir de R$ 1.200,00</strong></div>
-          <div class="formato-card-deck-divider"></div>
-          <ul class="formato-card-deck-items">
-            <li class="formato-card-deck-item"><span class="arrow">→</span>Execução por demanda</li>
-            <li class="formato-card-deck-item"><span class="arrow">→</span>Cronograma flexível</li>
-            <li class="formato-card-deck-item"><span class="arrow">→</span>Ideal para manutenção evolutiva</li>
-            <li class="formato-card-deck-item"><span class="arrow">→</span>Sem compromisso de longo prazo</li>
-          </ul>
-        </div>
-
-        <div class="formato-card-deck destaque">
-          <div class="formato-card-deck-badge">Mais pedido</div>
-          <div class="formato-card-deck-numero">Formato 02</div>
-          <h3 class="formato-card-deck-titulo">Consultoria Mensal</h3>
-          <p class="formato-card-deck-desc">Analista dedicado para evoluir processos continuamente, com reuniões e roadmap recorrente.</p>
-          <div class="formato-card-deck-preco">Compromisso mensal</div>
-          <div class="formato-card-deck-orcamento">Orçamento inicial: <strong>sob consulta</strong></div>
-          <div class="formato-card-deck-divider"></div>
-          <ul class="formato-card-deck-items">
-            <li class="formato-card-deck-item"><span class="arrow">→</span>Analista dedicado ao cliente</li>
-            <li class="formato-card-deck-item"><span class="arrow">→</span>Reuniões semanais de evolução</li>
-            <li class="formato-card-deck-item"><span class="arrow">→</span>Roadmap contínuo de melhorias</li>
-            <li class="formato-card-deck-item"><span class="arrow">→</span>Suporte prioritário</li>
-          </ul>
-        </div>
-
-        <div class="formato-card-deck">
-          <div class="formato-card-deck-numero">Formato 03</div>
-          <h3 class="formato-card-deck-titulo">Projeto Fechado</h3>
-          <p class="formato-card-deck-desc">Para estruturar uma área específica do zero, com escopo e prazo definidos, podendo incluir AI Agents.</p>
-          <div class="formato-card-deck-preco">Escopo e prazo fechados</div>
-          <div class="formato-card-deck-orcamento">Orçamento inicial: <strong>sob consulta</strong></div>
-          <div class="formato-card-deck-divider"></div>
-          <ul class="formato-card-deck-items">
-            <li class="formato-card-deck-item"><span class="arrow">→</span>Levantamento detalhado</li>
-            <li class="formato-card-deck-item"><span class="arrow">→</span>Desenvolvimento em etapas</li>
-            <li class="formato-card-deck-item"><span class="arrow">→</span>Implementação de AI Agents</li>
-            <li class="formato-card-deck-item"><span class="arrow">→</span>Treinamento e handoff da equipe</li>
-          </ul>
-        </div>
+        <div class="section-label">Cases de sucesso</div>
+        <h2 class="slide-titulo-md">GRS. Do primeiro contato à <span class="italic">recompra</span>.</h2>
+        <p class="slide-texto">Dois processos conectados que cobrem o ciclo completo do cliente. Quem fecha no primeiro entra direto no segundo.</p>
       </div>
 
-      <div class="formatos-cta-wrapper anim-up-3">
-        <a href="orcamento.html" target="_blank" class="formatos-cta-btn">
+      <div class="grs-fluxo">
+
+        <div class="resultado-card anim-up-2">
+          <div class="resultado-card-cliente">Processo 1 · Vendas e leads</div>
+          <div class="resultado-card-numero">11.000<span class="unidade">+ leads</span></div>
+          <div class="resultado-card-metrica">250 clientes ativos na plataforma</div>
+          <div class="resultado-card-divider"></div>
+          <div class="resultado-card-desc">
+            Funil da prospecção ao fechamento. Uma IA qualifica o lead antes do SDR entrar, e tudo fica registrado por etiquetas, então a operação continua de pé mesmo se alguém do time sair.
+          </div>
+        </div>
+
+        <div class="grs-conector anim-up-2">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <line x1="16" y1="13" x2="8" y2="13"/>
-            <line x1="16" y1="17" x2="8" y2="17"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
           </svg>
-          Solicitar orçamento detalhado
-        </a>
-        <p class="formatos-cta-aviso">Em até 1 dia útil você recebe uma proposta sob medida.</p>
+        </div>
+
+        <div class="resultado-card anim-up-3">
+          <div class="resultado-card-cliente">Processo 2 · Pós venda</div>
+          <div class="resultado-card-numero">7,5 <span class="unidade">→ 9,5 NPS</span></div>
+          <div class="resultado-card-metrica">Satisfação do cliente</div>
+          <div class="resultado-card-divider"></div>
+          <div class="resultado-card-desc">
+            Acompanhamento em 45, 90 e 120 dias por email e WhatsApp via Typebot. A IA lê as respostas e direciona os próximos passos, do envio de brinde ao formulário de insatisfação.
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -2425,6 +2234,101 @@
 
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 5: PERGUNTA ============== -->
+  <section class="slide slide-pergunta slide-light">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-indicator">
+      <span></span>
+      <span class="current"></span>
+      <span></span>
+    </div>
+    <div class="slide-inner">
+      <div class="anim-up">
+        <h2 class="pergunta-titulo">
+          Qual o <span class="italic">formato</span><br>
+          ideal para sua<br>
+          empresa?
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 6: FORMATOS ============== -->
+  <section class="slide slide-light" style="background: linear-gradient(135deg, #e8f5e9 0%, var(--azul-claro) 100%);">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="anim-up">
+        <h2 class="slide-titulo-md" style="margin-bottom: 16px;">FORMATOS</h2>
+      </div>
+      <div class="formatos-grid-deck anim-up-2">
+        <div class="formato-card-deck">
+          <div class="formato-card-deck-numero">Formato 01</div>
+          <h3 class="formato-card-deck-titulo">Pacote de Horas</h3>
+          <p class="formato-card-deck-desc">Para quem já tem Pipefy rodando e precisa de ajustes, correções ou pequenas implementações.</p>
+          <div class="formato-card-deck-preco">4 a 20 horas mensais</div>
+          <div class="formato-card-deck-orcamento">Orçamento inicial: <strong>a partir de R$ 1.200,00</strong></div>
+          <div class="formato-card-deck-divider"></div>
+          <ul class="formato-card-deck-items">
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Execução por demanda</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Cronograma flexível</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Ideal para manutenção evolutiva</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Sem compromisso de longo prazo</li>
+          </ul>
+        </div>
+
+        <div class="formato-card-deck destaque">
+          <div class="formato-card-deck-badge">Mais pedido</div>
+          <div class="formato-card-deck-numero">Formato 02</div>
+          <h3 class="formato-card-deck-titulo">Consultoria Mensal</h3>
+          <p class="formato-card-deck-desc">Analista dedicado para evoluir processos continuamente, com reuniões e roadmap recorrente.</p>
+          <div class="formato-card-deck-preco">Compromisso mensal</div>
+          <div class="formato-card-deck-orcamento">Orçamento inicial: <strong>sob consulta</strong></div>
+          <div class="formato-card-deck-divider"></div>
+          <ul class="formato-card-deck-items">
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Analista dedicado ao cliente</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Reuniões semanais de evolução</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Roadmap contínuo de melhorias</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Suporte prioritário</li>
+          </ul>
+        </div>
+
+        <div class="formato-card-deck">
+          <div class="formato-card-deck-numero">Formato 03</div>
+          <h3 class="formato-card-deck-titulo">Projeto Fechado</h3>
+          <p class="formato-card-deck-desc">Para estruturar uma área específica do zero, com escopo e prazo definidos, podendo incluir AI Agents.</p>
+          <div class="formato-card-deck-preco">Escopo e prazo fechados</div>
+          <div class="formato-card-deck-orcamento">Orçamento inicial: <strong>sob consulta</strong></div>
+          <div class="formato-card-deck-divider"></div>
+          <ul class="formato-card-deck-items">
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Levantamento detalhado</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Desenvolvimento em etapas</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Implementação de AI Agents</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Treinamento e handoff da equipe</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="formatos-cta-wrapper anim-up-3">
+        <a href="orcamento.html" target="_blank" class="formatos-cta-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+          Solicitar orçamento detalhado
+        </a>
+        <p class="formatos-cta-aviso">Em até 1 dia útil você recebe uma proposta sob medida.</p>
       </div>
     </div>
   </section>
@@ -2562,37 +2466,6 @@
 
   // Inicializa
   showSlide(0);
-
-  // ===== INTERATIVIDADE DOS CLIENTES =====
-  document.querySelectorAll('.cliente-deck').forEach(card => {
-    card.addEventListener('click', (e) => {
-      // Se clicou no botão fechar, fecha
-      if (e.target.classList.contains('cliente-deck-fechar')) {
-        e.stopPropagation();
-        card.classList.remove('ativo');
-        return;
-      }
-      // Se já está ativo e clicou fora do botão fechar, ignora
-      if (card.classList.contains('ativo')) return;
-      
-      // Fecha todos os outros e abre esse
-      document.querySelectorAll('.cliente-deck.ativo').forEach(c => c.classList.remove('ativo'));
-      card.classList.add('ativo');
-    });
-  });
-
-  // Fecha card aberto ao trocar de slide
-  function fecharCardsClientes() {
-    document.querySelectorAll('.cliente-deck.ativo').forEach(c => c.classList.remove('ativo'));
-  }
-  // Hook nas funções next/prev
-  const _next = next, _prev = prev;
-  next = function() { fecharCardsClientes(); _next(); };
-  prev = function() { fecharCardsClientes(); _prev(); };
-  btnNext.removeEventListener('click', _next);
-  btnPrev.removeEventListener('click', _prev);
-  btnNext.addEventListener('click', next);
-  btnPrev.addEventListener('click', prev);
 
   // ===== TOGGLE PACOTE DE HORAS =====
   // Quando o usuário clica no botão "Onde o Pacote de Horas faz sentido?",
