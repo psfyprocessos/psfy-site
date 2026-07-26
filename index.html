@@ -1870,7 +1870,7 @@
     // WEBHOOK DO MAKE. Quando quiser receber os leads, cole aqui a
     // URL do webhook que o Make gera e tire as duas barras do var abaixo.
     // var WEBHOOK = "https://hook.us1.make.com/xxxxxxxx";
-    var WEBHOOK = null;
+    var WEBHOOK = "https://hook.us2.make.com/ielxivwl581cl1ukeafwkianee8ytk8b";
     // ============================================================
 
     var bolha = document.getElementById("psfyBotBolha");
@@ -1973,7 +1973,6 @@
         try {
           fetch(WEBHOOK, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(respostas)
           });
         } catch (e) {}
