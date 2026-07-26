@@ -1884,24 +1884,36 @@
 
     var fluxo = [
       {
-        pergunta: "Oi! Sou o assistente da PSFY. Pra te ajudar melhor, qual o porte da sua empresa?",
-        campo: "porte",
-        opcoes: ["Até 10 pessoas", "De 10 a 50", "De 50 a 200", "Mais de 200"]
-      },
-      {
-        pergunta: "Qual área está mais bagunçada ou manual hoje?",
+        pergunta: "Oi! Sou o assistente da PSFY. Qual a sua área de trabalho?",
         campo: "area",
-        opcoes: ["Financeiro", "Compras", "RH", "Comercial", "Backoffice", "Ainda não sei"]
+        opcoes: ["Financeiro", "Compras", "RH", "Comercial", "Backoffice", "Outra"]
       },
       {
-        pergunta: "Você já usa alguma ferramenta pra organizar processos?",
-        campo: "ferramenta",
-        opcoes: ["Uso Pipefy", "Uso outra ferramenta", "Só planilha e email", "Não uso nada"]
+        pergunta: "Qual nível de automação você precisa?",
+        campo: "nivel_automacao",
+        opcoes: ["Baixo", "Médio", "Alto"]
       },
       {
-        pergunta: "Perfeito. Por último, me diz seu nome e um contato, WhatsApp ou email.",
-        campo: "contato",
-        input: true
+        pergunta: "Qual software você usa hoje?",
+        campo: "software",
+        opcoes: ["Pipefy", "Outro"],
+        condicional: {
+          gatilho: "Outro",
+          campo: "software_qual",
+          placeholder: "Qual software você usa?"
+        }
+      },
+      {
+        pergunta: "Qual o seu nome?",
+        campo: "nome",
+        input: "texto",
+        placeholder: "Seu nome"
+      },
+      {
+        pergunta: "Qual o seu telefone?",
+        campo: "telefone",
+        input: "telefone",
+        placeholder: "Ex: 41 99999-0000"
       }
     ];
 
@@ -1921,50 +1933,99 @@
     }
     function limpaAcoes() { acoes.innerHTML = ""; }
 
+    // Conta os dígitos ignorando parênteses, traços, espaços e o +
+    function contaDigitos(txt) {
+      return (txt.match(/\d/g) || []).length;
+    }
+
+    // Mostra um campo de digitação genérico. Ao enviar, valida e chama o callback.
+    function mostraInput(placeholder, validador, aoEnviar) {
+      var wrap = document.createElement("div");
+      wrap.className = "psfy-bot-input-wrap";
+      var inp = document.createElement("input");
+      inp.className = "psfy-bot-input";
+      inp.type = "text";
+      inp.placeholder = placeholder || "";
+      var btn = document.createElement("button");
+      btn.className = "psfy-bot-enviar";
+      btn.textContent = "Enviar";
+      function envia() {
+        var valor = inp.value.trim();
+        var erro = validador ? validador(valor) : (valor ? null : "Campo obrigatório");
+        if (erro) {
+          inp.style.borderColor = "#c0392b";
+          inp.placeholder = erro;
+          return;
+        }
+        aoEnviar(valor);
+      }
+      btn.onclick = envia;
+      inp.addEventListener("keydown", function(e){ if(e.key==="Enter") envia(); });
+      wrap.appendChild(inp); wrap.appendChild(btn);
+      acoes.appendChild(wrap);
+      inp.focus();
+    }
+
     function mostraEtapa() {
       limpaAcoes();
       if (etapa >= fluxo.length) { finaliza(); return; }
       var passo = fluxo[etapa];
       addMsg(passo.pergunta);
-      if (passo.input) {
-        var wrap = document.createElement("div");
-        wrap.className = "psfy-bot-input-wrap";
-        var inp = document.createElement("input");
-        inp.className = "psfy-bot-input";
-        inp.type = "text";
-        inp.placeholder = "Ex: Ana, 41 99999-0000";
-        var btn = document.createElement("button");
-        btn.className = "psfy-bot-enviar";
-        btn.textContent = "Enviar";
-        function envia() {
-          if (!inp.value.trim()) return;
-          respostas[passo.campo] = inp.value.trim();
-          addResposta(inp.value.trim());
+
+      // Campo de texto simples, obrigatório
+      if (passo.input === "texto") {
+        mostraInput(passo.placeholder, function(v){ return v ? null : "Campo obrigatório"; }, function(v){
+          respostas[passo.campo] = v;
+          addResposta(v);
           etapa++;
           mostraEtapa();
-        }
-        btn.onclick = envia;
-        inp.addEventListener("keydown", function(e){ if(e.key==="Enter") envia(); });
-        wrap.appendChild(inp); wrap.appendChild(btn);
-        acoes.appendChild(wrap);
-        inp.focus();
-      } else {
-        var box = document.createElement("div");
-        box.className = "psfy-bot-opcoes";
-        passo.opcoes.forEach(function(op) {
-          var b = document.createElement("button");
-          b.className = "psfy-bot-opcao";
-          b.textContent = op;
-          b.onclick = function() {
-            respostas[passo.campo] = op;
-            addResposta(op);
+        });
+        return;
+      }
+
+      // Campo de telefone, obrigatório, 10 ou 11 dígitos
+      if (passo.input === "telefone") {
+        mostraInput(passo.placeholder, function(v){
+          if (!v) return "Telefone obrigatório";
+          var d = contaDigitos(v);
+          if (d < 10 || d > 11) return "Digite um telefone válido com DDD";
+          return null;
+        }, function(v){
+          respostas[passo.campo] = v;
+          addResposta(v);
+          etapa++;
+          mostraEtapa();
+        });
+        return;
+      }
+
+      // Campo de opções (botões)
+      var box = document.createElement("div");
+      box.className = "psfy-bot-opcoes";
+      passo.opcoes.forEach(function(op) {
+        var b = document.createElement("button");
+        b.className = "psfy-bot-opcao";
+        b.textContent = op;
+        b.onclick = function() {
+          respostas[passo.campo] = op;
+          addResposta(op);
+          // Se essa opção dispara um campo condicional, mostra ele antes de avançar
+          if (passo.condicional && op === passo.condicional.gatilho) {
+            limpaAcoes();
+            mostraInput(passo.condicional.placeholder, function(v){ return v ? null : "Campo obrigatório"; }, function(v){
+              respostas[passo.condicional.campo] = v;
+              addResposta(v);
+              etapa++;
+              mostraEtapa();
+            });
+          } else {
             etapa++;
             mostraEtapa();
-          };
-          box.appendChild(b);
-        });
-        acoes.appendChild(box);
-      }
+          }
+        };
+        box.appendChild(b);
+      });
+      acoes.appendChild(box);
     }
 
     function finaliza() {
