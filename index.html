@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.psfy.com.br/">
 <meta property="og:title" content="PSFY: Orquestração e automação de processos">
-<meta property="og:description" content="Consultoria de orquestração e automação de processos para PMEs. Desenhamos, automatizamos e mantemos workflows com os sistemas certos e IA quando o processo pede. Podemos usar Pipefy, Google Workspace, Data Studio entre outras ferramentas.">
+<meta property="og:description" content="Somos especialistas em implementar e gerenciar processos no Pipefy. Desenhamos, automatizamos e mantemos a sua operação de backoffice, compras, financeiro, RH e comercial, com IA quando o processo pede. Não vendemos a licença, implementamos processos.">
 <meta property="og:image" content="https://www.psfy.com.br/logo.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -177,6 +177,27 @@
   .hero-badge strong {
     color: var(--azul);
     font-weight: 700;
+  }
+  .stack-badge-licenca {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px 8px 12px;
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 999px;
+    font-size: 14px;
+    color: var(--preto);
+    margin-bottom: 32px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  .stack-badge-licenca .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #8b1e3f;
+    box-shadow: 0 0 0 4px rgba(139, 30, 63, 0.2);
+    flex-shrink: 0;
   }
 
   .hero h1 {
@@ -455,6 +476,35 @@
   }
   .formato-card.destaque .formato-orcamento strong {
     color: var(--branco);
+  }
+  .agendar-bolinha {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-left: 8px;
+    border-radius: 50%;
+    background: var(--azul);
+    color: var(--branco);
+    vertical-align: middle;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .agendar-bolinha:hover {
+    transform: scale(1.12);
+    background: var(--azul-hover);
+  }
+  .agendar-bolinha svg {
+    width: 17px;
+    height: 17px;
+  }
+  .formato-card.destaque .agendar-bolinha {
+    background: var(--branco);
+    color: var(--azul);
+  }
+  .formato-card.destaque .agendar-bolinha:hover {
+    background: var(--azul-claro);
+    color: var(--azul);
   }
   .formato-divider {
     border-top: 1px solid var(--cinza-borda);
@@ -1146,6 +1196,7 @@
         <ul class="nav-links">
           <li><a href="#diferenciais">Diferenciais</a></li>
           <li><a href="#formatos">Formatos</a></li>
+          <li><a href="#treinamentos">Treinamentos</a></li>
           <li><a href="#stack">Stack</a></li>
           <li><a href="#projetos">Projetos</a></li>
           <li><a href="orcamento.html">Orçamento</a></li>
@@ -1162,7 +1213,7 @@
     <div class="hero-inner">
       <div class="hero-badge">
         <span class="dot"></span>
-        Consultoria de <strong>orquestração de processos</strong>
+        <strong>Implementamos Pipefy na sua empresa</strong>
       </div>
 
       <h1>
@@ -1170,7 +1221,7 @@
       </h1>
 
       <p class="hero-description">
-        Consultoria de <strong>orquestração e automação de processos para PMEs</strong>. Desenhamos, automatizamos e mantemos workflows de backoffice, RH, compras, financeiro e comercial, usando os sistemas certos para cada operação e IA quando o processo pede.
+        Somos especialistas em <strong>implementar e gerenciar processos no Pipefy</strong>. Desenhamos, automatizamos e mantemos a sua operação de backoffice, compras, financeiro, RH e comercial, com IA quando o processo pede. Não vendemos a licença do Pipefy, a contratação é direto com eles. O nosso trabalho é fazer a ferramenta virar operação de verdade.
       </p>
 
       <div class="hero-cta">
@@ -1182,7 +1233,7 @@
         <a href="https://calendly.com/contato-psfy/30min"
            target="_blank"
            class="btn btn-primary">
-          Escolha um horário na agenda →
+          Escolha um horário em minha agenda →
         </a>
         <a href="#projetos" class="btn btn-secondary">
           Ver projetos
@@ -1324,7 +1375,7 @@
           <h3 class="formato-titulo">Pacote de Horas</h3>
           <p class="formato-desc">Para quem já tem uma operação rodando e precisa de ajustes, correções ou pequenas implementações.</p>
           <div class="formato-preco">4 a 20 horas mensais</div>
-          <div class="formato-orcamento">Promoção 4h: <strong>R$ 850,00</strong></div>
+          <div class="formato-orcamento">Promoção 4h: <strong>R$ 850,00</strong><a href="https://calendly.com/contato-psfy/30min" target="_blank" class="agendar-bolinha" aria-label="Agendar uma conversa" title="Agendar uma conversa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></a></div>
           <div class="formato-divider"></div>
           <ul class="formato-items">
             <li class="formato-item"><span class="arrow">→</span>Execução por demanda</li>
@@ -1341,7 +1392,7 @@
           <h3 class="formato-titulo">Consultoria Mensal</h3>
           <p class="formato-desc">Analista dedicado para evoluir processos continuamente, com reuniões e roadmap recorrente.</p>
           <div class="formato-preco">Compromisso mensal</div>
-          <div class="formato-orcamento">Orçamento inicial: <strong>a partir de R$ 3.500,00/mês</strong></div>
+          <div class="formato-orcamento">Orçamento inicial: <strong>a partir de R$ 3.500,00/mês</strong><a href="https://calendly.com/contato-psfy/30min" target="_blank" class="agendar-bolinha" aria-label="Agendar uma conversa" title="Agendar uma conversa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></a></div>
           <div class="formato-divider"></div>
           <ul class="formato-items">
             <li class="formato-item"><span class="arrow">→</span>Analista dedicado ao cliente</li>
@@ -1357,7 +1408,7 @@
           <h3 class="formato-titulo">Projeto Fechado</h3>
           <p class="formato-desc">Para estruturar uma área específica do zero, com escopo e prazo definidos, podendo incluir AI Agents.</p>
           <div class="formato-preco">Escopo e prazo fechados</div>
-          <div class="formato-orcamento">Orçamento inicial: <strong>a partir de R$ 5.000,00</strong></div>
+          <div class="formato-orcamento">Orçamento inicial: <strong>a partir de R$ 5.000,00</strong><a href="https://calendly.com/contato-psfy/30min" target="_blank" class="agendar-bolinha" aria-label="Agendar uma conversa" title="Agendar uma conversa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></a></div>
           <div class="formato-divider"></div>
           <ul class="formato-items">
             <li class="formato-item"><span class="arrow">→</span>Levantamento detalhado</li>
@@ -1371,16 +1422,58 @@
     </div>
   </section>
 
+  <!-- =========== TREINAMENTOS PIPEFY =========== -->
+  <section class="section" id="treinamentos" style="background: var(--cinza);">
+    <div class="section-inner">
+      <div class="section-label">Novo</div>
+      <h2 class="section-title">Treinamentos em <span class="italic">Pipefy</span></h2>
+      <p class="section-subtitle">
+        Sua equipe usando o Pipefy de verdade, não só clicando em botão. Você escolhe o formato e a carga horária que encaixa na sua operação.
+      </p>
+
+      <div class="formatos-grid">
+        <div class="formato-card destaque" style="grid-column: 1 / -1; max-width: 760px; margin: 0 auto;">
+          <div class="formato-badge">A partir de R$ 2.000 online</div>
+          <div class="formato-numero">Treinamento sob medida</div>
+          <h3 class="formato-titulo">4, 8, 12 horas ou mais</h3>
+          <p class="formato-desc">
+            Presencial ou online, do jeito que faz sentido pra você. Antes de treinar a gente senta com a sua equipe de processos, entende o que você já tem montado e aponta onde dá pra melhorar, porque quem treina aqui é consultor de processo, não instrutor de manual. No fim o seu time sai rodando sozinho.
+          </p>
+          <div class="formato-preco">Presencial ou online</div>
+          <div class="formato-orcamento">A partir de <strong>R$ 2.000,00 no formato online</strong><a href="https://calendly.com/contato-psfy/30min" target="_blank" class="agendar-bolinha" aria-label="Agendar uma conversa" title="Agendar uma conversa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></a></div>
+          <div class="formato-divider"></div>
+          <ul class="formato-items">
+            <li class="formato-item"><span class="arrow">→</span>Você escolhe presencial ou online</li>
+            <li class="formato-item"><span class="arrow">→</span>Carga horária de 4, 8, 12 horas ou mais</li>
+            <li class="formato-item"><span class="arrow">→</span>Diagnóstico do que você já tem antes de treinar</li>
+            <li class="formato-item"><span class="arrow">→</span>Sugestão de melhorias no caminho, se quiser</li>
+            <li class="formato-item"><span class="arrow">→</span>Treinamento para clientes internos e externos</li>
+          </ul>
+          <a href="orcamento.html?formato=treinamento" class="formato-btn">Quero um treinamento</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- =========== STACK =========== -->
   <section class="section" id="stack">
     <div class="section-inner">
       <div class="section-label">Stack técnica</div>
       <h2 class="section-title">As ferramentas que <span class="italic">usamos</span> todo dia.</h2>
       <p class="section-subtitle">
-        Combinamos orquestração de workflows, integrações via iPaaS e IA aplicada. Cada sistema entra quando o problema pede.
+        O Pipefy é onde a gente monta e mantém o seu processo. Em volta dele combinamos orquestração de workflows, integrações via iPaaS e IA aplicada.
       </p>
 
+      <div class="stack-badge-licenca">
+        <span class="dot"></span>
+        Implementamos a ferramenta, a licença você contrata direto com o Pipefy.
+      </div>
+
       <div class="stack-grid">
+        <div class="stack-item highlight">
+          <div class="stack-nome">Pipefy</div>
+          <div class="stack-categoria">Implementação de processos</div>
+        </div>
         <div class="stack-item highlight">
           <div class="stack-nome">Orquestração de workflows</div>
           <div class="stack-categoria">Core</div>
@@ -1680,6 +1773,231 @@
     });
   });
 </script>
+
+  <!-- =========== BOT DE QUALIFICAÇÃO PSFY =========== -->
+  <style>
+    .psfy-bot-bolha {
+      position: fixed; bottom: 24px; right: 24px; z-index: 9998;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: var(--azul); color: var(--branco);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 20px rgba(10,82,204,0.35);
+      cursor: pointer; transition: transform 0.15s ease;
+    }
+    .psfy-bot-bolha:hover { transform: scale(1.08); }
+    .psfy-bot-bolha svg { width: 28px; height: 28px; }
+    .psfy-bot-janela {
+      position: fixed; bottom: 96px; right: 24px; z-index: 9999;
+      width: 360px; max-width: calc(100vw - 48px);
+      height: 520px; max-height: calc(100vh - 140px);
+      background: var(--branco); border-radius: 16px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.22);
+      display: none; flex-direction: column; overflow: hidden;
+    }
+    .psfy-bot-janela.aberta { display: flex; }
+    .psfy-bot-header {
+      background: var(--azul); color: var(--branco);
+      padding: 16px 18px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .psfy-bot-header-titulo { font-size: 15px; font-weight: 700; }
+    .psfy-bot-header-sub { font-size: 12px; opacity: 0.85; margin-top: 2px; }
+    .psfy-bot-fechar { cursor: pointer; font-size: 22px; line-height: 1; background: none; border: none; color: var(--branco); opacity: 0.85; }
+    .psfy-bot-fechar:hover { opacity: 1; }
+    .psfy-bot-corpo {
+      flex: 1; overflow-y: auto; padding: 18px;
+      display: flex; flex-direction: column; gap: 12px;
+      background: var(--cinza, #f5f5f7);
+    }
+    .psfy-bot-msg {
+      background: var(--branco); color: var(--preto, #1a1a1a);
+      padding: 12px 14px; border-radius: 14px 14px 14px 4px;
+      font-size: 14px; line-height: 1.5; max-width: 90%; align-self: flex-start;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .psfy-bot-resposta {
+      background: var(--azul); color: var(--branco);
+      padding: 10px 14px; border-radius: 14px 14px 4px 14px;
+      font-size: 14px; max-width: 85%; align-self: flex-end;
+    }
+    .psfy-bot-opcoes { display: flex; flex-direction: column; gap: 8px; padding: 0 18px 14px; background: var(--cinza, #f5f5f7); }
+    .psfy-bot-opcao {
+      background: var(--branco); border: 1px solid var(--azul);
+      color: var(--azul); padding: 11px 14px; border-radius: 10px;
+      font-size: 14px; font-weight: 500; cursor: pointer; text-align: left;
+      transition: background 0.12s ease, color 0.12s ease; font-family: inherit;
+    }
+    .psfy-bot-opcao:hover { background: var(--azul); color: var(--branco); }
+    .psfy-bot-input-wrap { display: flex; gap: 8px; padding: 0 18px 16px; background: var(--cinza, #f5f5f7); }
+    .psfy-bot-input {
+      flex: 1; padding: 11px 12px; border: 1px solid #d0d0d5; border-radius: 10px;
+      font-size: 14px; font-family: inherit; outline: none;
+    }
+    .psfy-bot-input:focus { border-color: var(--azul); }
+    .psfy-bot-enviar {
+      background: var(--azul); color: var(--branco); border: none;
+      border-radius: 10px; padding: 0 16px; font-size: 14px; font-weight: 600;
+      cursor: pointer; font-family: inherit;
+    }
+    .psfy-bot-cta {
+      display: block; text-align: center; text-decoration: none;
+      background: var(--azul); color: var(--branco);
+      padding: 13px; border-radius: 10px; font-size: 15px; font-weight: 700;
+      margin: 4px 18px 18px;
+    }
+    .psfy-bot-cta:hover { background: var(--azul-hover, #0847b0); }
+  </style>
+
+  <div class="psfy-bot-bolha" id="psfyBotBolha" aria-label="Abrir assistente">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+  </div>
+
+  <div class="psfy-bot-janela" id="psfyBotJanela">
+    <div class="psfy-bot-header">
+      <div>
+        <div class="psfy-bot-header-titulo">Assistente PSFY</div>
+        <div class="psfy-bot-header-sub">Responda rápido e agende uma conversa</div>
+      </div>
+      <button class="psfy-bot-fechar" id="psfyBotFechar" aria-label="Fechar">&times;</button>
+    </div>
+    <div class="psfy-bot-corpo" id="psfyBotCorpo"></div>
+    <div id="psfyBotAcoes"></div>
+  </div>
+
+  <script>
+  (function() {
+    var CALENDLY = "https://calendly.com/contato-psfy/30min";
+    // ============================================================
+    // WEBHOOK DO MAKE. Quando quiser receber os leads, cole aqui a
+    // URL do webhook que o Make gera e tire as duas barras do var abaixo.
+    // var WEBHOOK = "https://hook.us1.make.com/xxxxxxxx";
+    var WEBHOOK = null;
+    // ============================================================
+
+    var bolha = document.getElementById("psfyBotBolha");
+    var janela = document.getElementById("psfyBotJanela");
+    var fechar = document.getElementById("psfyBotFechar");
+    var corpo = document.getElementById("psfyBotCorpo");
+    var acoes = document.getElementById("psfyBotAcoes");
+
+    var respostas = {};
+    var etapa = 0;
+
+    var fluxo = [
+      {
+        pergunta: "Oi! Sou o assistente da PSFY. Pra te ajudar melhor, qual o porte da sua empresa?",
+        campo: "porte",
+        opcoes: ["Até 10 pessoas", "De 10 a 50", "De 50 a 200", "Mais de 200"]
+      },
+      {
+        pergunta: "Qual área está mais bagunçada ou manual hoje?",
+        campo: "area",
+        opcoes: ["Financeiro", "Compras", "RH", "Comercial", "Backoffice", "Ainda não sei"]
+      },
+      {
+        pergunta: "Você já usa alguma ferramenta pra organizar processos?",
+        campo: "ferramenta",
+        opcoes: ["Uso Pipefy", "Uso outra ferramenta", "Só planilha e email", "Não uso nada"]
+      },
+      {
+        pergunta: "Perfeito. Por último, me diz seu nome e um contato, WhatsApp ou email.",
+        campo: "contato",
+        input: true
+      }
+    ];
+
+    function addMsg(texto) {
+      var d = document.createElement("div");
+      d.className = "psfy-bot-msg";
+      d.textContent = texto;
+      corpo.appendChild(d);
+      corpo.scrollTop = corpo.scrollHeight;
+    }
+    function addResposta(texto) {
+      var d = document.createElement("div");
+      d.className = "psfy-bot-resposta";
+      d.textContent = texto;
+      corpo.appendChild(d);
+      corpo.scrollTop = corpo.scrollHeight;
+    }
+    function limpaAcoes() { acoes.innerHTML = ""; }
+
+    function mostraEtapa() {
+      limpaAcoes();
+      if (etapa >= fluxo.length) { finaliza(); return; }
+      var passo = fluxo[etapa];
+      addMsg(passo.pergunta);
+      if (passo.input) {
+        var wrap = document.createElement("div");
+        wrap.className = "psfy-bot-input-wrap";
+        var inp = document.createElement("input");
+        inp.className = "psfy-bot-input";
+        inp.type = "text";
+        inp.placeholder = "Ex: Ana, 41 99999-0000";
+        var btn = document.createElement("button");
+        btn.className = "psfy-bot-enviar";
+        btn.textContent = "Enviar";
+        function envia() {
+          if (!inp.value.trim()) return;
+          respostas[passo.campo] = inp.value.trim();
+          addResposta(inp.value.trim());
+          etapa++;
+          mostraEtapa();
+        }
+        btn.onclick = envia;
+        inp.addEventListener("keydown", function(e){ if(e.key==="Enter") envia(); });
+        wrap.appendChild(inp); wrap.appendChild(btn);
+        acoes.appendChild(wrap);
+        inp.focus();
+      } else {
+        var box = document.createElement("div");
+        box.className = "psfy-bot-opcoes";
+        passo.opcoes.forEach(function(op) {
+          var b = document.createElement("button");
+          b.className = "psfy-bot-opcao";
+          b.textContent = op;
+          b.onclick = function() {
+            respostas[passo.campo] = op;
+            addResposta(op);
+            etapa++;
+            mostraEtapa();
+          };
+          box.appendChild(b);
+        });
+        acoes.appendChild(box);
+      }
+    }
+
+    function finaliza() {
+      addMsg("Obrigado! Já entendi seu cenário. Escolha um horário na minha agenda que a gente conversa com calma.");
+      if (WEBHOOK) {
+        try {
+          fetch(WEBHOOK, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(respostas)
+          });
+        } catch (e) {}
+      }
+      var cta = document.createElement("a");
+      cta.className = "psfy-bot-cta";
+      cta.href = CALENDLY;
+      cta.target = "_blank";
+      cta.textContent = "Escolher horário na agenda";
+      acoes.appendChild(cta);
+    }
+
+    var iniciado = false;
+    function abre() {
+      janela.classList.add("aberta");
+      if (!iniciado) { iniciado = true; mostraEtapa(); }
+    }
+    bolha.onclick = function() {
+      if (janela.classList.contains("aberta")) janela.classList.remove("aberta");
+      else abre();
+    };
+    fechar.onclick = function() { janela.classList.remove("aberta"); };
+  })();
+  </script>
 
 </body>
 </html>
