@@ -10,10 +10,11 @@
 <style>
   :root {
     --preto: #000000;
-    --azul: #0a52cc;
-    --azul-hover: #0847b0;
+    --azul: #336140;
+    --azul-hover: #274d33;
     --branco: #ffffff;
-    --azul-claro: #e1e9f9;
+    --azul-claro: #e4efe7;
+    --verde-claro: #74B872;
     --cinza: #f2f2f2;
     --cinza-texto: #6b6b6b;
     --cinza-borda: #e5e5e5;
@@ -216,8 +217,8 @@
   /* ===== SLIDE 1: CAPA ===== */
   .slide-capa {
     background:
-      radial-gradient(ellipse 60% 50% at 70% 30%, rgba(10, 82, 204, 0.15) 0%, transparent 60%),
-      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(10, 82, 204, 0.1) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 70% 30%, rgba(116, 184, 114, 0.14) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(116, 184, 114, 0.08) 0%, transparent 60%),
       var(--preto);
     color: var(--branco);
   }
@@ -265,8 +266,8 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #22c55e;
-    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    background: #74B872;
+    box-shadow: 0 0 0 4px rgba(116, 184, 114, 0.25);
     flex-shrink: 0;
   }
   .capa-titulo {
@@ -314,7 +315,7 @@
     color: var(--branco);
   }
   .slide-blue {
-    background: linear-gradient(135deg, #0847b0 0%, #06255c 55%, #041634 100%);
+    background: linear-gradient(135deg, #274d33 0%, #16301f 55%, #0c1d12 100%);
     color: var(--branco);
     position: relative;
     overflow: hidden;
@@ -355,8 +356,8 @@
     height: 1px;
     background: var(--azul);
   }
-  .slide-dark .section-label { color: var(--azul-claro); }
-  .slide-dark .section-label::before { background: var(--azul-claro); }
+  .slide-dark .section-label { color: var(--verde-claro); }
+  .slide-dark .section-label::before { background: var(--verde-claro); }
   .slide-blue .section-label { color: var(--azul-claro); }
   .slide-blue .section-label::before { background: var(--azul-claro); }
 
@@ -463,7 +464,7 @@
     gap: 8px;
     padding: 8px 14px;
     background: var(--azul-claro);
-    border: 1px solid rgba(10, 82, 204, 0.2);
+    border: 1px solid rgba(51, 97, 64, 0.2);
     border-radius: 999px;
     font-size: 13px;
     font-weight: 500;
@@ -554,7 +555,7 @@
   }
   .porque-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(10, 82, 204, 0.08);
+    box-shadow: 0 20px 40px rgba(51, 97, 64, 0.08);
     border-color: var(--azul);
   }
   .porque-card-icon {
@@ -611,7 +612,7 @@
   }
   .porque-destaque:hover {
     border-color: transparent;
-    box-shadow: 0 20px 50px rgba(10, 82, 204, 0.35);
+    box-shadow: 0 20px 50px rgba(51, 97, 64, 0.35);
   }
 
   /* ===== SLIDE: RESULTADOS / CASES ===== */
@@ -634,7 +635,7 @@
   .resultado-card:hover {
     transform: translateY(-4px);
     border-color: var(--azul);
-    box-shadow: 0 20px 40px rgba(10, 82, 204, 0.08);
+    box-shadow: 0 20px 40px rgba(51, 97, 64, 0.08);
   }
   .resultado-card-cliente {
     font-size: 12px;
@@ -881,8 +882,8 @@
     position: absolute;
     top: 24px;
     right: 24px;
-    background: var(--azul);
-    color: var(--branco);
+    background: var(--verde-claro);
+    color: var(--preto);
     padding: 4px 12px;
     border-radius: 999px;
     font-size: 10px;
@@ -897,7 +898,7 @@
     color: var(--azul);
     margin-bottom: 24px;
   }
-  .formato-card-deck.destaque .formato-card-deck-numero { color: var(--azul-claro); }
+  .formato-card-deck.destaque .formato-card-deck-numero { color: var(--verde-claro); }
   .formato-card-deck-titulo {
     font-size: 22px;
     font-weight: 700;
@@ -942,7 +943,7 @@
   }
   .formato-card-deck.destaque .formato-card-deck-item { color: rgba(255,255,255,0.85); }
   .formato-card-deck-item .arrow { color: var(--azul); font-weight: 700; }
-  .formato-card-deck.destaque .formato-card-deck-item .arrow { color: var(--azul-claro); }
+  .formato-card-deck.destaque .formato-card-deck-item .arrow { color: var(--verde-claro); }
 
   /* ===== SLIDE TREINAMENTO ===== */
   .treino-content {
@@ -953,7 +954,7 @@
     margin-top: 24px;
   }
   .treino-visual {
-    background: linear-gradient(135deg, var(--preto) 0%, #0a1a3a 100%);
+    background: linear-gradient(135deg, var(--preto) 0%, #112a1b 100%);
     border-radius: 24px;
     padding: 44px 40px;
     color: var(--branco);
@@ -971,7 +972,7 @@
     right: -100px;
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba(10, 82, 204, 0.5) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(116, 184, 114, 0.35) 0%, transparent 60%);
   }
   .treino-cargas {
     display: flex;
@@ -992,7 +993,7 @@
   .treino-carga-num {
     font-size: 26px;
     font-weight: 700;
-    color: var(--azul-claro);
+    color: var(--verde-claro);
     letter-spacing: -0.03em;
     line-height: 1;
   }
@@ -1047,7 +1048,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #22c55e;
+    background: #74B872;
   }
   .treino-features {
     list-style: none;
@@ -1143,12 +1144,12 @@
     font-weight: 600;
     text-decoration: none;
     transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-    box-shadow: 0 8px 24px rgba(10, 82, 204, 0.3);
+    box-shadow: 0 8px 24px rgba(51, 97, 64, 0.3);
   }
   .formatos-cta-btn:hover {
     transform: translateY(-2px);
     background: var(--azul-hover);
-    box-shadow: 0 12px 32px rgba(10, 82, 204, 0.4);
+    box-shadow: 0 12px 32px rgba(51, 97, 64, 0.4);
   }
   .formatos-cta-btn svg {
     width: 18px;
@@ -1181,10 +1182,10 @@
     transition: all 0.3s;
   }
   .toggle-pacote:hover {
-    border-color: #22c55e;
-    color: #16a34a;
+    border-color: #74B872;
+    color: #336140;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.12);
+    box-shadow: 0 4px 12px rgba(116, 184, 114, 0.12);
   }
   .toggle-pacote-switch {
     position: relative;
@@ -1207,12 +1208,12 @@
     box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   }
   .toggle-pacote.ativo {
-    border-color: #22c55e;
+    border-color: #74B872;
     background: #f0fdf4;
-    color: #16a34a;
+    color: #336140;
   }
   .toggle-pacote.ativo .toggle-pacote-switch {
-    background: #22c55e;
+    background: #74B872;
   }
   .toggle-pacote.ativo .toggle-pacote-switch::after {
     transform: translateX(16px);
@@ -1229,17 +1230,17 @@
 
   /* ===== ESTADO ATIVO: ETAPAS COM PACOTE DE HORAS ===== */
   .timeline-horizontal.pacote-ativo .timeline-step-pacote .timeline-step-bolinha {
-    border-color: #22c55e;
-    color: #16a34a;
-    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.15), 0 4px 12px rgba(34, 197, 94, 0.25);
+    border-color: #74B872;
+    color: #336140;
+    box-shadow: 0 0 0 6px rgba(116, 184, 114, 0.15), 0 4px 12px rgba(116, 184, 114, 0.25);
     animation: pulse-verde 2s ease-in-out infinite;
   }
   .timeline-horizontal.pacote-ativo .timeline-step-pacote .timeline-step-num {
-    color: #16a34a;
+    color: #336140;
   }
   @keyframes pulse-verde {
-    0%, 100% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.15), 0 4px 12px rgba(34, 197, 94, 0.25); }
-    50% { box-shadow: 0 0 0 12px rgba(34, 197, 94, 0.05), 0 4px 16px rgba(34, 197, 94, 0.35); }
+    0%, 100% { box-shadow: 0 0 0 6px rgba(116, 184, 114, 0.15), 0 4px 12px rgba(116, 184, 114, 0.25); }
+    50% { box-shadow: 0 0 0 12px rgba(116, 184, 114, 0.05), 0 4px 16px rgba(116, 184, 114, 0.35); }
   }
 
   /* Tooltip que aparece quando toggle está ativo */
@@ -1247,11 +1248,11 @@
     margin-top: 14px;
     padding: 10px 12px;
     background: #f0fdf4;
-    border: 1px solid rgba(34, 197, 94, 0.3);
+    border: 1px solid rgba(116, 184, 114, 0.3);
     border-radius: 10px;
     font-size: 11px;
     line-height: 1.4;
-    color: #15803d;
+    color: #336140;
     max-width: 140px;
     opacity: 0;
     transform: translateY(-8px);
@@ -1261,7 +1262,7 @@
   }
   .timeline-step-tooltip strong {
     display: block;
-    color: #16a34a;
+    color: #336140;
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -1275,12 +1276,12 @@
   /* Card pós-projeto destacado quando toggle ativo */
   .timeline-horizontal.pacote-ativo .pos-projeto-card {
     transform: scale(1.03);
-    box-shadow: 0 16px 40px rgba(34, 197, 94, 0.2);
-    border-color: #22c55e;
+    box-shadow: 0 16px 40px rgba(116, 184, 114, 0.2);
+    border-color: #74B872;
     border-width: 2px;
   }
   .timeline-horizontal.pacote-ativo .timeline-conector {
-    color: #16a34a;
+    color: #336140;
     transform: scale(1.15);
     transition: transform 0.3s;
   }
@@ -1357,13 +1358,13 @@
     font-weight: 700;
     color: var(--azul);
     letter-spacing: -0.02em;
-    box-shadow: 0 4px 12px rgba(10, 82, 204, 0.12);
+    box-shadow: 0 4px 12px rgba(51, 97, 64, 0.12);
     transition: transform 0.3s, box-shadow 0.3s;
     flex-shrink: 0;
   }
   .timeline-step:hover .timeline-step-bolinha {
     transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 8px 20px rgba(10, 82, 204, 0.25);
+    box-shadow: 0 8px 20px rgba(51, 97, 64, 0.25);
   }
   .timeline-step-num {
     font-size: 10px;
@@ -1394,7 +1395,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #22c55e;
+    color: #74B872;
     align-self: center;
     margin-top: 18px;
   }
@@ -1406,7 +1407,7 @@
   /* Card pós-projeto (Pacote de Horas) */
   .pos-projeto-card {
     background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
-    border: 1.5px solid rgba(34, 197, 94, 0.3);
+    border: 1.5px solid rgba(116, 184, 114, 0.3);
     border-radius: 20px;
     padding: 28px 26px;
     width: 280px;
@@ -1417,15 +1418,15 @@
   }
   .pos-projeto-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 16px 32px rgba(34, 197, 94, 0.15);
+    box-shadow: 0 16px 32px rgba(116, 184, 114, 0.15);
   }
   .pos-projeto-tag {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     background: white;
-    border: 1px solid rgba(34, 197, 94, 0.3);
-    color: #16a34a;
+    border: 1px solid rgba(116, 184, 114, 0.3);
+    color: #336140;
     padding: 4px 12px;
     border-radius: 999px;
     font-size: 10px;
@@ -1439,7 +1440,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #22c55e;
+    background: #74B872;
   }
   .pos-projeto-titulo {
     font-size: 17px;
@@ -1450,7 +1451,7 @@
   }
   .pos-projeto-subtitulo {
     font-size: 12px;
-    color: #16a34a;
+    color: #336140;
     font-weight: 600;
     margin-bottom: 14px;
   }
@@ -1473,7 +1474,7 @@
   .pos-projeto-lista li svg {
     width: 16px;
     height: 16px;
-    color: #22c55e;
+    color: #74B872;
     flex-shrink: 0;
     margin-top: 1px;
   }
@@ -1486,7 +1487,7 @@
     align-items: center;
   }
   .pacote-horas-visual {
-    background: linear-gradient(135deg, var(--preto) 0%, #0a1a3a 100%);
+    background: linear-gradient(135deg, var(--preto) 0%, #112a1b 100%);
     border-radius: 24px;
     padding: 48px 40px;
     color: var(--branco);
@@ -1504,14 +1505,14 @@
     right: -100px;
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba(10, 82, 204, 0.5) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(116, 184, 114, 0.35) 0%, transparent 60%);
   }
   .pacote-horas-numero {
     font-size: 88px;
     font-weight: 700;
     letter-spacing: -0.05em;
     line-height: 1;
-    color: var(--azul-claro);
+    color: var(--verde-claro);
     margin-bottom: 16px;
     position: relative;
   }
@@ -1540,7 +1541,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #22c55e;
+    background: #74B872;
   }
 
   .pacote-features {
@@ -1811,7 +1812,7 @@
   .modal-input:focus {
     outline: none;
     border-color: var(--azul);
-    box-shadow: 0 0 0 3px rgba(10, 82, 204, 0.1);
+    box-shadow: 0 0 0 3px rgba(51, 97, 64, 0.1);
   }
   .modal-acoes {
     display: flex;
@@ -1929,7 +1930,7 @@
       <div class="anim-up">
         <div class="capa-badge">
           <span class="dot"></span>
-          Implementamos Pipefy na sua empresa
+          Consultoria de mapeamento e implementação de processos
         </div>
       </div>
       <div class="anim-up">
@@ -1967,7 +1968,7 @@
         <div>
           <div class="anim-up">
             <div class="section-label">Quem está por trás</div>
-            <h2 class="slide-titulo-md">5 anos de Pipefy.<br><span class="italic">Dois prêmios.</span> Uma consultoria.</h2>
+            <h2 class="slide-titulo-md">5 anos com processos.<br><span class="italic">Dois prêmios.</span> Uma consultoria.</h2>
           </div>
           <div class="anim-up-2">
             <p class="slide-texto">
@@ -2010,11 +2011,11 @@
         <div>
           <div class="anim-up">
             <div class="section-label">Nossa especialidade</div>
-            <h2 class="slide-titulo-md">Especialistas em implementar processos no <span class="italic">Pipefy</span>.</h2>
+            <h2 class="slide-titulo-md">Consultoria de mapeamento e <span class="italic">implementação</span> de processos.</h2>
           </div>
           <div class="anim-up-2">
             <p class="slide-texto">
-              Implementamos e gerenciamos o Pipefy e potencializamos a operação com integrações, automações e agentes de IA para tornar tudo <strong>mais eficiente, escalável e inteligente</strong>.
+              Mapeamos como a sua operação funciona hoje, desenhamos o fluxo certo e implementamos. O Pipefy é a plataforma que mais implementamos nos clientes, potencializada com integrações, automações e agentes de IA para tornar tudo <strong>mais eficiente, escalável e inteligente</strong>.
             </p>
             <div class="licenca-badge">
               <span class="dot"></span>
@@ -2129,9 +2130,9 @@
               <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
             </svg>
           </div>
-          <div class="porque-card-titulo">Consultor com todos os treinamentos da Pipefy.</div>
+          <div class="porque-card-titulo">Conhecimento de dentro da ferramenta.</div>
           <div class="porque-card-desc">
-            Todos os treinamentos oficiais concluídos, além de dois prêmios internos: <strong>Agile Finance Team</strong> e <strong>Best Internal Pipe 2024</strong>. Conhecimento que vira método aplicado em cada cliente.
+            Anos trabalhando dentro da própria Pipefy, com todos os treinamentos concluídos e dois prêmios internos de quando fazia parte do time: <strong>Agile Finance Team</strong> e <strong>Best Internal Pipe 2024</strong>. Conhecimento que vira método aplicado em cada cliente.
           </div>
         </div>
 
@@ -2215,7 +2216,6 @@
             <img src="logos/wrental.png" alt="W Rental">
             <img src="logos/grs.png" alt="GRS">
             <img src="logos/labhoro.png" alt="Labhoro">
-            <img src="logos/pipefy.png" alt="Pipefy">
             <img src="logos/forton.png" alt="Forton">
             <img src="logos/playrec.png" alt="Playrec">
             <img src="logos/okiar.png" alt="Okiar">
@@ -2225,7 +2225,6 @@
             <img src="logos/wrental.png" alt="">
             <img src="logos/grs.png" alt="">
             <img src="logos/labhoro.png" alt="">
-            <img src="logos/pipefy.png" alt="">
             <img src="logos/forton.png" alt="">
             <img src="logos/playrec.png" alt="">
             <img src="logos/okiar.png" alt="">
@@ -2475,7 +2474,7 @@
         <div class="formato-card-deck">
           <div class="formato-card-deck-numero">Formato 01</div>
           <h3 class="formato-card-deck-titulo">Pacote de Horas</h3>
-          <p class="formato-card-deck-desc">Para quem já tem Pipefy rodando e precisa de ajustes, correções ou pequenas implementações.</p>
+          <p class="formato-card-deck-desc">Para quem já tem uma operação rodando e precisa de ajustes, correções ou pequenas implementações.</p>
           <div class="formato-card-deck-preco">4 a 20 horas mensais</div>
           <div class="formato-card-deck-orcamento">Orçamento inicial: <strong>a partir de R$ 1.200,00</strong></div>
           <div class="formato-card-deck-divider"></div>
@@ -2493,7 +2492,7 @@
           <h3 class="formato-card-deck-titulo">Consultoria Mensal</h3>
           <p class="formato-card-deck-desc">Analista dedicado para evoluir processos continuamente, com reuniões e roadmap recorrente.</p>
           <div class="formato-card-deck-preco">Compromisso mensal</div>
-          <div class="formato-card-deck-orcamento">Orçamento inicial: <strong>sob consulta</strong></div>
+          <div class="formato-card-deck-orcamento">Investimento <strong>sob orçamento</strong></div>
           <div class="formato-card-deck-divider"></div>
           <ul class="formato-card-deck-items">
             <li class="formato-card-deck-item"><span class="arrow">→</span>Analista dedicado ao cliente</li>
@@ -2508,7 +2507,7 @@
           <h3 class="formato-card-deck-titulo">Projeto Fechado</h3>
           <p class="formato-card-deck-desc">Para estruturar uma área específica do zero, com escopo e prazo definidos, podendo incluir AI Agents.</p>
           <div class="formato-card-deck-preco">Escopo e prazo fechados</div>
-          <div class="formato-card-deck-orcamento">Orçamento inicial: <strong>sob consulta</strong></div>
+          <div class="formato-card-deck-orcamento">Investimento <strong>sob orçamento</strong></div>
           <div class="formato-card-deck-divider"></div>
           <ul class="formato-card-deck-items">
             <li class="formato-card-deck-item"><span class="arrow">→</span>Levantamento detalhado</li>
@@ -2644,7 +2643,7 @@
     <div class="slide-inner">
       <div class="cta-deck">
         <div class="anim-up">
-          <h2 class="slide-titulo">Vamos <span style="color: var(--azul-claro); font-style: italic; font-weight: 400;">orquestrar</span> seu próximo processo?</h2>
+          <h2 class="slide-titulo">Vamos <span style="color: var(--verde-claro); font-style: italic; font-weight: 400;">orquestrar</span> seu próximo processo?</h2>
         </div>
         <div class="anim-up-2">
           <p class="slide-texto" style="color: rgba(255,255,255,0.85); margin: 0 auto; font-size: 20px;">
