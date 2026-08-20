@@ -3,31 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PSFY | Consultoria de mapeamento e implementação de processos</title>
-<meta name="description" content="Consultoria de mapeamento e implementação de processos. Entendemos como a sua operação funciona hoje, desenhamos o fluxo certo e implementamos com automações e IA. Implementamos Pipefy e as demais ferramentas do seu stack.">
-<link rel="icon" type="image/png" href="/favicon.png">
-
-<!-- Open Graph (prévia de link no WhatsApp, LinkedIn, etc) -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.psfy.com.br/">
-<meta property="og:title" content="PSFY | Consultoria de mapeamento e implementação de processos">
-<meta property="og:description" content="Consultoria de mapeamento e implementação de processos. Desenhamos, automatizamos e mantemos a sua operação de backoffice, compras, financeiro, RH e comercial, com IA quando o processo pede. Implementamos Pipefy e as demais ferramentas do seu stack.">
-<meta property="og:image" content="https://www.psfy.com.br/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:site_name" content="PSFY">
-
-<!-- Twitter / X -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PSFY | Consultoria de mapeamento e implementação de processos">
-<meta name="twitter:description" content="Consultoria de mapeamento e implementação de processos, com automações e IA aplicada.">
-<meta name="twitter:image" content="https://www.psfy.com.br/og-image.png">
+<title>PSFY | Exemplo de reposicionamento</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+
 <style>
-  /* ============ VARIÁVEIS ============ */
   :root {
     --preto: #000000;
     --azul: #336140;
@@ -37,18 +19,13 @@
     --verde-claro: #74B872;
     --cinza: #f2f2f2;
     --cinza-texto: #6b6b6b;
-    --cinza-texto-escuro: #4a4a4a;
     --cinza-borda: #e5e5e5;
-    --cinza-escuro: #1a1a1a;
-
     --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-
-    --max-width: 1280px;
+    --max-width: 1120px;
     --radius: 12px;
     --radius-lg: 20px;
   }
 
-  /* ============ RESET ============ */
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
@@ -60,2070 +37,497 @@
   }
   a { text-decoration: none; color: inherit; }
   button { font-family: inherit; cursor: pointer; border: none; background: none; }
+  section[id] { scroll-margin-top: 90px; }
+  img, svg { display: block; }
 
-  .italic {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--azul);
+  .italic { font-style: italic; font-weight: 400; color: var(--azul); }
+  .wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+  .eyebrow {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--azul); margin-bottom: 14px;
   }
+
+  /* aviso de exemplo, não faz parte do site final */
+  .aviso-exemplo {
+    background: var(--preto); color: var(--branco); text-align: center;
+    font-size: 13px; padding: 10px 16px;
+  }
+  .aviso-exemplo strong { color: var(--verde-claro); }
 
   /* ============ HEADER ============ */
   .header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--cinza-borda);
   }
   .header-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 20px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    max-width: var(--max-width); margin: 0 auto; padding: 18px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
   }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .logo img {
-    height: 80px;
-    width: auto;
-    display: block;
-  }
-  .nav {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-  }
-  .nav-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
-  .nav-links a {
-    font-size: 15px;
-    color: var(--preto);
-    opacity: 0.7;
-    transition: opacity 0.2s;
-  }
+  .logo { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+  .nav-links a { font-size: 14px; opacity: 0.75; transition: opacity 0.2s; }
   .nav-links a:hover { opacity: 1; }
-
   .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 22px;
-    border-radius: 999px;
-    font-weight: 500;
-    font-size: 15px;
+    display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px;
+    border-radius: 999px; font-weight: 500; font-size: 14px; white-space: nowrap;
     transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-    white-space: nowrap;
   }
-  .btn-primary {
-    background: var(--azul);
-    color: var(--branco);
-  }
-  .btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(51, 97, 64, 0.25);
-    background: var(--azul-hover);
-  }
-  .btn-secondary {
-    background: var(--branco);
-    color: var(--preto);
-    border: 1px solid var(--cinza-borda);
-  }
-  .btn-secondary:hover {
-    background: var(--cinza);
+  .btn-primary { background: var(--azul); color: var(--branco); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(51,97,64,0.25); background: var(--azul-hover); }
+  .btn-secondary { background: var(--branco); color: var(--preto); border: 1px solid var(--cinza-borda); }
+  .btn-secondary:hover { background: var(--cinza); }
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
   }
 
-  /* Botão hamburguer, aparece só no celular */
-  .menu-mobile-btn {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    width: 44px;
-    height: 44px;
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid var(--cinza-borda);
-    background: var(--branco);
+  /* ============ TOGGLE (componente usado nos 3 blocos) ============ */
+  .toggle-wrap { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+  .toggle-group {
+    position: relative; display: inline-flex; background: var(--cinza);
+    border-radius: 999px; padding: 4px; gap: 2px; flex-wrap: wrap; justify-content: center;
   }
-  .menu-mobile-btn span {
-    display: block;
-    height: 2px;
-    width: 100%;
-    background: var(--preto);
-    border-radius: 2px;
-    transition: transform 0.2s, opacity 0.2s;
+  .toggle-highlight {
+    position: absolute; top: 4px; bottom: 4px; left: 4px;
+    border-radius: 999px; background: var(--azul);
+    transition: transform 0.3s ease, width 0.3s ease;
+    z-index: 0;
   }
-  .menu-mobile-btn.ativo span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .menu-mobile-btn.ativo span:nth-child(2) { opacity: 0; }
-  .menu-mobile-btn.ativo span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .toggle-btn {
+    position: relative; z-index: 1; padding: 10px 18px; border-radius: 999px;
+    font-size: 14px; font-weight: 500; color: var(--preto); white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+  .toggle-btn.active { color: var(--branco); }
+  .toggle-btn:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
 
-  /* Âncoras não ficam escondidas atrás do header fixo */
-  section[id] { scroll-margin-top: 90px; }
+  .toggle-panels { width: 100%; }
+  .toggle-panel[hidden] { display: none; }
+  .toggle-panel.fade { animation: fadeIn 0.25s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
   /* ============ HERO ============ */
-  .hero {
-    position: relative;
-    padding: 100px 32px 120px;
-    overflow: hidden;
+  .hero { position: relative; padding: 90px 24px 100px; overflow: hidden;
     background:
-      radial-gradient(ellipse 80% 50% at 80% 20%, var(--azul-claro) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(225, 237, 244, 0.6) 0%, transparent 50%),
+      radial-gradient(ellipse 80% 50% at 80% 15%, var(--azul-claro) 0%, transparent 60%),
       var(--branco);
   }
-  .hero-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    position: relative;
-  }
+  .hero-nodes { position: absolute; top: -40px; right: -60px; opacity: 0.35; pointer-events: none; }
+  .hero-inner { max-width: 780px; margin: 0 auto; text-align: center; position: relative; }
   .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 16px 8px 12px;
-    background: var(--branco);
-    border: 1px solid var(--cinza-borda);
-    border-radius: 999px;
-    font-size: 14px;
-    margin-bottom: 32px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px 8px 12px;
+    background: var(--branco); border: 1px solid var(--cinza-borda); border-radius: 999px;
+    font-size: 14px; margin-bottom: 28px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   }
-  .hero-badge .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #22c55e;
-    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
-  }
-  .hero-badge strong {
-    color: var(--azul);
-    font-weight: 700;
-  }
-  .stack-badge-licenca {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 16px 8px 12px;
-    background: var(--branco);
-    border: 1px solid var(--cinza-borda);
-    border-radius: 999px;
-    font-size: 14px;
-    color: var(--preto);
-    margin-bottom: 32px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  }
-  .stack-badge-licenca .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #8b1e3f;
-    box-shadow: 0 0 0 4px rgba(139, 30, 63, 0.2);
-    flex-shrink: 0;
-  }
-
+  .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,0.2); }
   .hero h1 {
-    font-size: clamp(40px, 6vw, 80px);
-    font-weight: 700;
-    line-height: 1.02;
-    letter-spacing: -0.035em;
-    max-width: 1100px;
-    margin-bottom: 32px;
+    font-size: clamp(34px, 5.2vw, 56px); font-weight: 700; line-height: 1.08;
+    letter-spacing: -0.03em; margin-bottom: 22px;
   }
-  .hero h1 .destaque-highlight {
-    color: var(--azul);
-  }
-
-  .hero-description {
-    font-size: 18px;
-    line-height: 1.6;
-    color: var(--cinza-texto);
-    max-width: 620px;
-    margin-bottom: 48px;
-  }
-  .hero-description strong {
-    color: var(--preto);
-    font-weight: 500;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 80px;
-  }
-
-  .hero-stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
-    padding-top: 48px;
-    border-top: 1px solid var(--cinza-borda);
-  }
-  .stat-number {
-    font-size: clamp(36px, 4vw, 56px);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-  .stat-number .plus,
-  .stat-number .unit {
-    color: var(--azul);
-  }
-  .stat-number .unit {
-    font-style: italic;
-    font-weight: 400;
-    margin-left: 4px;
-  }
-  .stat-label {
-    font-size: 14px;
-    color: var(--cinza-texto);
-  }
+  .hero-description { font-size: 17px; line-height: 1.6; color: var(--cinza-texto); margin-bottom: 36px; }
+  .hero-toggle-panel p { font-size: 15px; color: var(--cinza-texto); max-width: 460px; margin: 0 auto; }
+  .hero-nota { font-size: 13px; color: var(--cinza-texto); margin-top: -4px; }
+  .hero-ctas { display: flex; gap: 12px; justify-content: center; margin-top: 36px; flex-wrap: wrap; }
 
   /* ============ SEÇÃO GENÉRICA ============ */
-  .section {
-    padding: 120px 32px;
-  }
-  .section-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-  }
-  .section-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--azul);
-    margin-bottom: 24px;
-  }
-  .section-label::before {
-    content: '';
-    width: 32px;
-    height: 1px;
-    background: var(--azul);
-  }
-  .section-title {
-    font-size: clamp(32px, 4.5vw, 56px);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    margin-bottom: 24px;
-    max-width: 900px;
-  }
-  .section-subtitle {
-    font-size: 18px;
-    color: var(--cinza-texto);
-    line-height: 1.6;
-    max-width: 680px;
-    margin-bottom: 64px;
-  }
+  .section { padding: 90px 24px; }
+  .section-header { max-width: 620px; margin: 0 auto 56px; text-align: center; }
+  .section-title { font-size: clamp(26px, 3.4vw, 38px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+  .section-alt { background: var(--cinza); }
 
   /* ============ DIFERENCIAIS ============ */
-  .diferenciais {
-    background: var(--preto);
-    color: var(--branco);
-    position: relative;
-    overflow: hidden;
-  }
-  .diferenciais::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(116, 184, 114, 0.18) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  .diferenciais .section-label {
-    color: var(--verde-claro);
-  }
-  .diferenciais .section-label::before {
-    background: var(--verde-claro);
-  }
-  .diferenciais .section-subtitle { color: rgba(255, 255, 255, 0.6); }
-
-  .diferenciais-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    position: relative;
-  }
+  .diferenciais-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  @media (max-width: 900px) { .diferenciais-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .diferenciais-grid { grid-template-columns: 1fr; } }
   .diferencial-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-lg);
-    padding: 40px;
-    transition: border-color 0.3s, background 0.3s, transform 0.3s;
+    background: var(--branco); border: 1px solid var(--cinza-borda); border-radius: var(--radius-lg);
+    padding: 28px 24px; transition: transform 0.2s, box-shadow 0.2s;
   }
-  .diferencial-card:hover {
-    border-color: var(--verde-claro);
-    background: rgba(116, 184, 114, 0.08);
-    transform: translateY(-4px);
+  .diferencial-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.06); }
+  .diferencial-icone {
+    width: 44px; height: 44px; border-radius: 12px; background: var(--azul-claro);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 18px; color: var(--azul);
   }
-  .diferencial-numero {
-    font-size: 48px;
-    font-weight: 700;
-    color: var(--verde-claro);
-    margin-bottom: 32px;
-    letter-spacing: -0.03em;
-    line-height: 1;
-  }
-  .diferencial-titulo {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    letter-spacing: -0.01em;
-  }
-  .diferencial-desc {
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 15px;
-    line-height: 1.6;
-  }
+  .diferencial-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em; }
+  .diferencial-card p { font-size: 14.5px; line-height: 1.55; color: var(--cinza-texto); }
 
-  /* ============ SOMOS MOVIDOS POR ============ */
-  .powered-by {
-    padding: 80px 32px;
-    background: var(--cinza);
-    text-align: center;
-  }
-  .powered-by-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-  }
-  .powered-by-label {
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--cinza-texto);
-    margin-bottom: 24px;
-  }
-  .powered-by-frase {
-    font-family: var(--font-sans);
-    font-size: clamp(32px, 5vw, 64px);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    color: var(--preto);
-  }
-
-  /* ============ FORMATOS DE TRABALHO ============ */
-  .formatos-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  .formato-card {
-    background: var(--branco);
-    border: 1px solid var(--cinza-borda);
-    border-radius: var(--radius-lg);
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-  }
-  .formato-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
-  }
-  .formato-card.destaque {
-    background: var(--preto);
-    color: var(--branco);
-    border: none;
-  }
-  .formato-card.destaque .formato-preco,
-  .formato-card.destaque .formato-titulo { color: var(--branco); }
-  .formato-card.destaque .formato-desc { color: rgba(255, 255, 255, 0.6); }
-  .formato-card.destaque .formato-item { border-color: rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.85); }
-  .formato-card.destaque .formato-item .arrow { color: var(--verde-claro); }
-  .formato-card.destaque .formato-divider { border-color: rgba(255, 255, 255, 0.08); }
-  .formato-card.destaque .formato-orcamento { color: var(--verde-claro); }
-
-  .formato-badge {
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    background: var(--verde-claro);
-    color: var(--preto);
-    padding: 6px 14px;
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-  }
-  .formato-numero {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--azul);
-    margin-bottom: 40px;
-  }
-  .formato-card.destaque .formato-numero { color: var(--verde-claro); }
-
-  .formato-titulo {
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 16px;
-  }
-  .formato-desc {
-    font-size: 15px;
-    color: var(--cinza-texto);
-    line-height: 1.6;
-    margin-bottom: 24px;
-  }
-  .formato-preco {
-    font-size: 16px;
-    font-style: italic;
-    color: var(--azul);
-    font-weight: 500;
-    margin-bottom: 12px;
-  }
-  .formato-orcamento {
-    font-size: 14px;
-    color: var(--cinza-texto);
-    font-weight: 500;
-    margin-bottom: 24px;
-  }
-  .formato-orcamento strong {
-    color: var(--preto);
-    font-weight: 700;
-  }
-  .formato-card.destaque .formato-orcamento strong {
-    color: var(--branco);
-  }
-  .agendar-bolinha {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    margin-left: 8px;
-    border-radius: 50%;
-    background: var(--azul);
-    color: var(--branco);
-    vertical-align: middle;
-    transition: transform 0.15s ease, background 0.15s ease;
-  }
-  .agendar-bolinha:hover {
-    transform: scale(1.12);
-    background: var(--azul-hover);
-  }
-  .agendar-bolinha svg {
-    width: 17px;
-    height: 17px;
-  }
-  .formato-card.destaque .agendar-bolinha {
-    background: var(--branco);
-    color: var(--azul);
-  }
-  .formato-card.destaque .agendar-bolinha:hover {
-    background: var(--azul-claro);
-    color: var(--azul);
-  }
-  .formato-divider {
-    border-top: 1px solid var(--cinza-borda);
-    margin-bottom: 24px;
-  }
-  .formato-items {
-    list-style: none;
-    flex: 1;
-    margin-bottom: 32px;
-  }
-  .formato-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--cinza-borda);
-    font-size: 15px;
-  }
-  .formato-item:last-child { border-bottom: none; }
-  .formato-item .arrow {
-    color: var(--azul);
-    flex-shrink: 0;
-    font-weight: 700;
-  }
-
-  .formato-btn {
-    width: 100%;
-    padding: 16px;
-    background: var(--azul-claro);
-    color: var(--preto);
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 15px;
-    text-align: center;
-    transition: background 0.2s, transform 0.2s;
-  }
-  .formato-btn:hover {
-    background: var(--azul);
-    color: var(--branco);
-    transform: translateY(-1px);
-  }
-  .formato-card.destaque .formato-btn {
-    background: var(--verde-claro);
-    color: var(--preto);
-  }
-  .formato-card.destaque .formato-btn:hover {
-    background: var(--branco);
-    color: var(--preto);
-  }
-
-  /* ============ STACK TÉCNICA ============ */
-  .stack-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 12px;
-  }
-  .stack-item {
-    background: var(--branco);
-    border: 1px solid var(--cinza-borda);
-    border-radius: var(--radius);
-    padding: 32px 20px;
-    text-align: center;
-    transition: transform 0.3s, border-color 0.3s;
-  }
-  .stack-item:hover {
-    transform: translateY(-4px);
-    border-color: var(--azul);
-  }
-  .stack-item.highlight {
-    background: var(--azul);
-    color: var(--branco);
-    border-color: var(--azul);
-  }
-  .stack-nome {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    letter-spacing: -0.01em;
-  }
-  .stack-categoria {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--cinza-texto);
-  }
-  .stack-item.highlight .stack-categoria {
-    color: rgba(255, 255, 255, 0.8);
-  }
-
-  /* ============ PROJETOS / CASOS ============ */
-  .projetos {
-    background: var(--cinza);
-  }
-  .projetos-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
+  /* ============ PROVAS REAIS ============ */
   .projeto-card {
-    background: var(--branco);
-    border: 1px solid var(--cinza-borda);
-    border-radius: var(--radius-lg);
-    padding: 32px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    max-width: 620px; margin: 0 auto; background: var(--branco); border: 1px solid var(--cinza-borda);
+    border-radius: var(--radius-lg); padding: 36px 32px; text-align: left;
   }
-  .projeto-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
-  }
-  .projeto-card.projeto-hidden {
-    display: none;
-  }
-  .projeto-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-  }
-  .projeto-numero {
-    font-size: 16px;
-    font-style: italic;
-    color: var(--azul);
-    font-weight: 500;
-  }
-  .projeto-categoria {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--cinza-texto);
-  }
-  .projeto-titulo {
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    margin-bottom: 24px;
-    min-height: 56px;
-  }
-  .projeto-items {
-    list-style: none;
-  }
-  .projeto-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 8px 0;
-    font-size: 14px;
-    color: var(--cinza-texto-escuro);
-  }
-  .projeto-item::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--azul);
-    flex-shrink: 0;
-    margin-top: 7px;
-  }
-  .projeto-item.ia::before {
-    background: #f59e0b;
-  }
+  .projeto-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .projeto-numero { font-size: 16px; font-style: italic; color: var(--azul); font-weight: 500; }
+  .projeto-categoria { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cinza-texto); }
+  .projeto-titulo { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 24px; }
+  .projeto-items { list-style: none; }
+  .projeto-item { display: flex; align-items: flex-start; gap: 12px; padding: 8px 0; font-size: 15px; color: var(--cinza-texto-escuro, #333); }
+  .projeto-item::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--azul); flex-shrink: 0; margin-top: 7px; }
   .projeto-impacto {
-    margin-top: 20px;
-    padding-top: 16px;
-    border-top: 1px dashed var(--cinza-borda);
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--cinza-texto-escuro);
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
+    margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--cinza-borda);
+    font-size: 14px; line-height: 1.6; color: var(--cinza-texto-escuro, #333);
+    display: flex; align-items: flex-start; gap: 10px;
   }
-  .projeto-impacto::before {
-    content: '→';
-    color: var(--azul);
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-  .projeto-impacto strong {
-    color: var(--preto);
-    font-weight: 600;
-  }
-  .projetos-toggle-wrap {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-  }
-  .projetos-toggle-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 16px 28px;
-    background: var(--preto);
-    color: var(--branco);
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 15px;
-    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-  }
-  .projetos-toggle-btn:hover {
-    background: var(--azul);
-    transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(51, 97, 64, 0.25);
-  }
-  .projetos-toggle-btn span {
-    transition: transform 0.2s;
-  }
-  .projetos-toggle-btn.ativo span {
-    transform: rotate(180deg);
-  }
-
-  /* ============ GOVERNANÇA ============ */
-  .governanca {
-    background: var(--preto);
-    color: var(--branco);
-    position: relative;
-    overflow: hidden;
-  }
-  .governanca::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(116, 184, 114, 0.15) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  .governanca .section-label { color: var(--verde-claro); }
-  .governanca .section-label::before { background: var(--verde-claro); }
-  .governanca .section-subtitle { color: rgba(255, 255, 255, 0.6); }
-
-  .governanca-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-  .gov-items {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  .gov-item {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius);
-    padding: 24px;
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    transition: border-color 0.3s, background 0.3s;
-  }
-  .gov-item:hover {
-    border-color: var(--verde-claro);
-    background: rgba(116, 184, 114, 0.08);
-  }
-  .gov-icon {
-    width: 44px;
-    height: 44px;
-    background: rgba(116, 184, 114, 0.15);
-    border: 1px solid rgba(116, 184, 114, 0.3);
-    border-radius: 10px;
-    flex-shrink: 0;
-    display: grid;
-    place-items: center;
-  }
-  .gov-icon svg {
-    width: 20px;
-    height: 20px;
-    color: var(--verde-claro);
-  }
-  .gov-titulo {
-    font-size: 17px;
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
-  .gov-desc {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
-    line-height: 1.5;
-  }
-
-  /* ============ ECOSSISTEMA ============ */
-  .ecossistema {
-    background: var(--azul);
-    color: var(--branco);
-    position: relative;
-    overflow: hidden;
-  }
-  .ecossistema::before {
-    content: '';
-    position: absolute;
-    top: -200px;
-    right: -200px;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  .ecossistema-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--branco);
-    padding: 8px 16px;
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 500;
-    margin-bottom: 32px;
-  }
-  .ecossistema-badge::before {
-    content: '★';
-    color: var(--azul-claro);
-  }
-  .ecossistema .section-title { color: var(--branco); max-width: 720px; }
-  .ecossistema .section-title .italic { color: var(--azul-claro); }
-  .ecossistema-desc {
-    font-size: 17px;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.85);
-    max-width: 620px;
-    margin-bottom: 48px;
-  }
-  .ecossistema-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-  .eco-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-  .eco-card {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: var(--radius);
-    padding: 24px;
-    transition: background 0.3s, transform 0.3s;
-  }
-  .eco-card:hover {
-    background: rgba(255, 255, 255, 0.14);
-    transform: translateY(-2px);
-  }
-  .eco-titulo {
-    font-size: 17px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .eco-desc {
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.75);
-    line-height: 1.5;
-  }
-
-  /* ============ CTA FINAL ============ */
-  .cta-final {
-    padding: 60px 32px 100px;
-  }
-  .cta-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    background: linear-gradient(135deg, var(--preto) 0%, #112a1b 100%);
-    border-radius: 32px;
-    padding: 80px 60px;
-    text-align: center;
-    color: var(--branco);
-    position: relative;
-    overflow: hidden;
-  }
-  .cta-inner::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 120%;
-    height: 200%;
-    background: radial-gradient(ellipse at center, rgba(116, 184, 114, 0.18) 0%, transparent 50%);
-    pointer-events: none;
-  }
-  .cta-title {
-    font-size: clamp(32px, 5vw, 56px);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 20px;
-    position: relative;
-  }
-  .cta-title .italic { color: var(--verde-claro); }
-  .cta-desc {
-    font-size: 17px;
-    color: rgba(255, 255, 255, 0.7);
-    max-width: 560px;
-    margin: 0 auto 40px;
-    line-height: 1.6;
-    position: relative;
-  }
-  .cta-btn {
-    position: relative;
-    background: var(--azul);
-    color: var(--branco);
-    padding: 18px 32px;
-    font-size: 16px;
-    font-weight: 600;
-  }
-  .cta-btn:hover {
-    background: var(--azul-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(116, 184, 114, 0.35);
-  }
+  .projeto-impacto::before { content: '→'; color: var(--azul); font-weight: 700; flex-shrink: 0; }
+  .projeto-impacto strong { color: var(--preto); font-weight: 600; }
 
   /* ============ CLIENTES (CARROSSEL) ============ */
-  .clientes {
-    padding: 80px 0;
-    background: var(--branco);
-    border-top: 1px solid var(--cinza-borda);
-    overflow: hidden;
-  }
-  .clientes-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    text-align: center;
-    padding: 0 32px;
-  }
-  .clientes-titulo {
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--cinza-texto);
-    margin-bottom: 48px;
-  }
-
+  .clientes { padding: 56px 0; background: var(--branco); border-top: 1px solid var(--cinza-borda); border-bottom: 1px solid var(--cinza-borda); overflow: hidden; }
+  .clientes-inner { max-width: var(--max-width); margin: 0 auto; text-align: center; padding: 0 32px; }
+  .clientes-titulo { font-size: 13px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cinza-texto); margin-bottom: 40px; }
   .carrossel-wrapper {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
+    width: 100%; overflow: hidden; position: relative;
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
     mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
   }
-  .carrossel-track {
-    display: flex;
-    width: max-content;
-    animation: scroll-clientes 30s linear infinite;
+  .carrossel-track { display: flex; width: max-content; animation: scroll-clientes 30s linear infinite; }
+  .carrossel-track:hover { animation-play-state: paused; }
+  .cliente-logo { display: flex; align-items: center; justify-content: center; height: 50px; min-width: 170px; padding: 0 32px; flex-shrink: 0; }
+  .cliente-logo img { max-height: 100%; max-width: 140px; width: auto; height: auto; object-fit: contain; filter: grayscale(1) opacity(0.55); transition: filter 0.3s, transform 0.3s; }
+  .cliente-logo:hover img { filter: grayscale(0) opacity(1); transform: scale(1.05); }
+  @keyframes scroll-clientes { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ============ COMO COMEÇAR ============ */
+  .preco-card {
+    max-width: 480px; margin: 0 auto; background: var(--preto); color: var(--branco);
+    border-radius: var(--radius-lg); padding: 36px 32px; text-align: center;
   }
-  .carrossel-track:hover {
-    animation-play-state: paused;
+  .preco-valor { font-size: 15px; color: var(--verde-claro); font-weight: 700; margin-bottom: 8px; }
+  .preco-valor span { font-size: 34px; display: block; color: var(--branco); margin-top: 4px; }
+  .preco-valor span small { font-size: 15px; font-weight: 500; opacity: 0.65; }
+  .preco-desc { font-size: 14.5px; line-height: 1.6; color: rgba(255,255,255,0.75); margin: 16px 0 18px; }
+  .preco-inclui {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--verde-claro);
+    background: rgba(116,184,114,0.12); padding: 6px 12px; border-radius: 999px;
   }
-  .cliente-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 60px;
-    min-width: 200px;
-    padding: 0 40px;
-    flex-shrink: 0;
-  }
-  .cliente-logo img {
-    max-height: 100%;
-    max-width: 160px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    /* Filtro que deixa o logo cinza:
-       grayscale(1) tira a cor; opacity(0.55) deixa mais "apagado" */
-    filter: grayscale(1) opacity(0.55);
-    transition: filter 0.3s, transform 0.3s;
-  }
-  .cliente-logo:hover img {
-    /* No hover volta ao colorido original */
-    filter: grayscale(0) opacity(1);
-    transform: scale(1.05);
-  }
-  /* Logos com fundo escuro: usamos brightness(0) + invert(0.6) pra "transformar"
-     o logo num cinza médio bem visível no fundo branco do site.
-     No hover, removemos tudo e mostramos o logo original com fundo escuro. */
-  .cliente-logo.logo-fundo-escuro img {
-    filter: brightness(0) invert(0.55);
-  }
-  .cliente-logo.logo-fundo-escuro:hover img {
-    filter: none;
-    transform: scale(1.05);
-  }
-  @keyframes scroll-clientes {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
+  .preco-nota { text-align: center; font-size: 14px; color: var(--cinza-texto); max-width: 420px; margin: 28px auto 0; }
+
+  /* ============ CTA FINAL ============ */
+  .cta-final { padding: 90px 24px; text-align: center; }
+  .cta-final h2 { font-size: clamp(26px, 3.4vw, 38px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 28px; }
 
   /* ============ FOOTER ============ */
-  .footer {
-    background: var(--preto);
-    color: var(--branco);
-    padding: 80px 32px 40px;
-  }
-  .footer-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-  }
-  .footer-top {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 60px;
-    padding-bottom: 60px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 32px;
-  }
-  .footer .logo { margin-bottom: 20px; }
-  .footer .logo img {
-    height: 36px;
-  }
-  .footer-desc {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.55);
-    line-height: 1.6;
-    margin-bottom: 20px;
-    max-width: 340px;
-  }
-  .footer-desc a { color: var(--verde-claro); }
-  .footer-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 6px 14px;
-    border-radius: 999px;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.8);
-  }
-  .footer-badge::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #22c55e;
-  }
-  .footer-col-titulo {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 20px;
-  }
-  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-  .footer-col a {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.75);
-    transition: color 0.2s;
-  }
-  .footer-col a:hover { color: var(--branco); }
+  .footer { padding: 32px 24px; border-top: 1px solid var(--cinza-borda); text-align: center; font-size: 13px; color: var(--cinza-texto); }
 
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.4);
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-  .footer-bottom span:last-child { font-style: italic; }
-
-  /* ============ RESPONSIVO ============ */
-  @media (max-width: 1000px) {
-    .diferenciais-grid,
-    .formatos-grid,
-    .projetos-grid { grid-template-columns: 1fr; }
-    .stack-grid { grid-template-columns: repeat(3, 1fr); }
-    .governanca-content,
-    .ecossistema-content { grid-template-columns: 1fr; gap: 40px; }
-    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
-  }
-  @media (max-width: 900px) {
-    .menu-mobile-btn { display: flex; }
-    /* No celular a lista vira um dropdown abaixo do header */
-    .nav-links {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      flex-direction: column;
-      gap: 0;
-      background: var(--branco);
-      border-bottom: 1px solid var(--cinza-borda);
-      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
-      padding: 8px 0;
-    }
-    .nav-links.aberto { display: flex; }
-    .nav-links a {
-      display: block;
-      padding: 16px 24px;
-      font-size: 16px;
-      opacity: 1;
-    }
-    .nav-links a:active { background: var(--cinza); }
-    .header { position: sticky; }
-    .header-inner { padding: 12px 20px; position: relative; }
-    .logo img { height: 52px; }
-    .btn-header { padding: 10px 16px; font-size: 14px; }
-    .nav { gap: 12px; }
-    .hero { padding: 56px 20px 72px; }
-    .hero-badge { font-size: 13px; }
-    .hero-cta { margin-bottom: 56px; }
-    .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 24px; padding-top: 36px; }
-    .section { padding: 72px 20px; }
-    .section-subtitle { margin-bottom: 40px; }
-    .cta-inner { padding: 56px 28px; border-radius: 24px; }
-    .projeto-titulo { min-height: auto; }
-    section[id] { scroll-margin-top: 80px; }
-  }
-  @media (max-width: 600px) {
-    .hero-cta { flex-direction: column; align-items: stretch; gap: 10px; }
-    .btn { justify-content: center; padding: 14px 22px; }
-    .btn-header { padding: 10px 14px; }
-    .hero-description { font-size: 16px; margin-bottom: 36px; }
-    .stat-label { font-size: 13px; }
-    .stack-grid { grid-template-columns: repeat(2, 1fr); }
-    .stack-item { padding: 24px 14px; }
-    .footer-top { grid-template-columns: 1fr; }
-    .formato-card { padding: 32px 20px; }
-    .formato-orcamento { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
-    .diferencial-card { padding: 32px 20px; }
-    .eco-grid { grid-template-columns: 1fr; }
-    .cliente-logo { min-width: 150px; padding: 0 24px; height: 50px; }
-    .cliente-logo img { max-width: 120px; }
-    .powered-by-frase { font-size: clamp(26px, 8vw, 40px); }
-    .footer .logo img { height: 32px; }
-  }
-  /* ============ DEPOIMENTO ============ */
-  .depoimento {
-    background: var(--branco);
-    padding: 100px 24px;
-  }
-  .depoimento-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .depoimento .section-label {
-    justify-content: center;
-    display: inline-flex;
-  }
-  /* Aspas grandes ornamentais */
-  .depoimento-aspas {
-    font-family: Georgia, serif;
-    font-size: 120px;
-    line-height: 0.5;
-    color: var(--azul);
-    opacity: 0.25;
-    margin-bottom: 24px;
-    user-select: none;
-  }
-  .depoimento-texto {
-    font-size: 22px;
-    line-height: 1.6;
-    color: var(--preto);
-    font-weight: 400;
-    margin-bottom: 48px;
-    letter-spacing: -0.01em;
-  }
-  .depoimento-autor {
-    display: inline-flex;
-    align-items: center;
-    gap: 24px;
-    padding-top: 32px;
-    border-top: 1px solid var(--cinza-borda);
-  }
-  .depoimento-autor-logo {
-    height: 36px;
-    width: auto;
-    flex-shrink: 0;
-  }
-  .depoimento-autor-info {
-    text-align: left;
-  }
-  .depoimento-autor-nome {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--preto);
-    letter-spacing: -0.01em;
-    margin-bottom: 2px;
-  }
-  .depoimento-autor-cargo {
-    font-size: 13px;
-    color: var(--cinza-texto);
-  }
-
-  /* Mobile: ajustar tamanhos */
-  @media (max-width: 768px) {
-    .depoimento {
-      padding: 64px 24px;
-    }
-    .depoimento-texto {
-      font-size: 17px;
-    }
-    .depoimento-aspas {
-      font-size: 80px;
-    }
-    .depoimento-autor {
-      flex-direction: column;
-      gap: 12px;
-      text-align: center;
-    }
-    .depoimento-autor-info {
-      text-align: center;
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important; scroll-behavior: auto !important;
     }
   }
-
 </style>
 </head>
 <body>
 
-  <!-- =========== HEADER =========== -->
-  <header class="header">
-    <div class="header-inner">
-      <a href="#" class="logo">
-        <img src="/logo.png" alt="PSFY">
-      </a>
-      <nav class="nav">
-        <ul class="nav-links" id="navLinks">
-          <li><a href="#diferenciais">Diferenciais</a></li>
-          <li><a href="#formatos">Formatos</a></li>
-          <li><a href="#treinamentos">Treinamentos</a></li>
-          <li><a href="#stack">Stack</a></li>
-          <li><a href="#projetos">Projetos</a></li>
-          <li><a href="orcamento.html">Orçamento</a></li>
-        </ul>
-        <a href="orcamento.html" class="btn btn-primary btn-header">
-          Solicitar orçamento
-        </a>
-        <button class="menu-mobile-btn" id="menuMobileBtn" aria-label="Abrir menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </nav>
+<div class="aviso-exemplo">Isso é um <strong>exemplo de estrutura</strong>, ainda não é o site final.</div>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">PSFY</div>
+    <ul class="nav-links">
+      <li><a href="#diferenciais">Como funciona</a></li>
+      <li><a href="#provas">Provas reais</a></li>
+      <li><a href="#">Segurança e compliance</a></li>
+    </ul>
+    <a href="#comecar" class="btn btn-primary">Falar com a PSFY</a>
+  </div>
+</header>
+
+<!-- ============ BLOCO 1 — HERO ============ -->
+<section class="hero">
+  <svg class="hero-nodes" width="360" height="280" viewBox="0 0 360 280" fill="none">
+    <g stroke="#336140" stroke-width="1.2">
+      <line x1="60" y1="220" x2="160" y2="140"/>
+      <line x1="160" y1="140" x2="270" y2="60"/>
+      <line x1="160" y1="140" x2="230" y2="200"/>
+      <line x1="270" y1="60" x2="330" y2="110"/>
+    </g>
+    <g fill="#74B872">
+      <circle cx="60" cy="220" r="5"/>
+      <circle cx="160" cy="140" r="6"/>
+      <circle cx="270" cy="60" r="5"/>
+      <circle cx="230" cy="200" r="4"/>
+      <circle cx="330" cy="110" r="4"/>
+    </g>
+  </svg>
+
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="dot"></span> Consultoria de eficiência criativa</div>
+    <h1>A gente entra no seu processo e resolve do jeito que <span class="italic">funciona</span>, não do jeito do manual</h1>
+    <p class="hero-description">Entendemos o seu processo e conectamos as melhores ferramentas a ele pra criar eficiência.</p>
+
+    <div class="toggle-wrap" data-toggle>
+      <div class="toggle-group" role="tablist" aria-label="Como trabalhamos">
+        <span class="toggle-highlight" aria-hidden="true"></span>
+        <button class="toggle-btn active" data-target="pipefy" role="tab" aria-selected="true">Pipefy</button>
+        <button class="toggle-btn" data-target="integracoes" role="tab" aria-selected="false">Pipefy com integrações</button>
+        <button class="toggle-btn" data-target="outras" role="tab" aria-selected="false">Outras ferramentas</button>
+      </div>
+      <div class="toggle-panels hero-toggle-panel">
+        <div class="toggle-panel active" data-panel="pipefy"><p>Implementação e gestão completa dentro do Pipefy.</p></div>
+        <div class="toggle-panel" data-panel="integracoes" hidden><p>Pipefy conectado com seus sistemas, planilhas e bases de dados.</p></div>
+        <div class="toggle-panel" data-panel="outras" hidden><p>Quando o processo pede algo fora do Pipefy, a gente também resolve.</p></div>
+      </div>
+      <p class="hero-nota">Sem vínculo oficial com o Pipefy. A gente indica o que fizer mais sentido pro seu processo.</p>
     </div>
-  </header>
 
-  <!-- =========== HERO =========== -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-badge">
-        <span class="dot"></span>
-        <strong>Consultoria de mapeamento e implementação de processos</strong>
-      </div>
-
-      <h1>
-        Orquestramos a <span class="destaque-highlight">operação</span> de empresas em <span class="italic">crescimento</span>.
-      </h1>
-
-      <p class="hero-description">
-        Somos uma consultoria de <strong>mapeamento e implementação de processos</strong>. Entendemos como a sua operação de backoffice, compras, financeiro, RH e comercial funciona hoje, desenhamos o fluxo certo e implementamos com automações e IA quando o processo pede. Implementamos e gerenciamos o Pipefy nos clientes que usam a plataforma. A licença você contrata direto com o fornecedor, o nosso trabalho é fazer a ferramenta virar operação de verdade.
-      </p>
-
-      <div class="hero-cta">
-        <a href="https://wa.me/5541995041300?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20conversa."
-           target="_blank"
-           class="btn btn-primary">
-          Agendar uma conversa →
-        </a>
-        <a href="https://calendly.com/contato-psfy/30min"
-           target="_blank"
-           class="btn btn-secondary">
-          Escolher um horário na agenda
-        </a>
-        <a href="#projetos" class="btn btn-secondary">
-          Ver projetos
-        </a>
-      </div>
-
-      <div class="hero-stats">
-        <div>
-          <div class="stat-number">11<span class="plus">+</span></div>
-          <div class="stat-label">Setores atendidos</div>
-        </div>
-        <div>
-          <div class="stat-number">80<span class="plus">+</span></div>
-          <div class="stat-label">Processos implementados</div>
-        </div>
-        <div>
-          <div class="stat-number">25<span class="plus">+</span></div>
-          <div class="stat-label">Processos com IA</div>
-        </div>
-        <div>
-          <div class="stat-number">40<span class="plus">+</span></div>
-          <div class="stat-label">Integrações realizadas</div>
-        </div>
-      </div>
+    <div class="hero-ctas">
+      <a href="#comecar" class="btn btn-primary">Falar com a PSFY</a>
+      <a href="#provas" class="btn btn-secondary">Ver como resolvemos</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- =========== DIFERENCIAIS =========== -->
-  <section class="section diferenciais" id="diferenciais">
-    <div class="section-inner">
-      <div class="section-label">Por que a PSFY</div>
-      <h2 class="section-title">
-        Conhecimento de <span class="italic">dentro</span> das ferramentas.<br>
-        Execução de <span class="italic">fora</span>, pensando no seu negócio.
-      </h2>
-
-      <div class="diferenciais-grid">
-        <div class="diferencial-card">
-          <div class="diferencial-numero">01</div>
-          <h3 class="diferencial-titulo">5 anos com orquestração de processos</h3>
-          <p class="diferencial-desc">
-            Três anos atuando no desenvolvimento de áreas internas de uma plataforma de gestão de processos, incluindo operações de backoffice e diversos fluxos internos. Mais dois anos implementando para clientes. Conhecemos os sistemas por dentro, não só como usuários.
-          </p>
-        </div>
-        <div class="diferencial-card">
-          <div class="diferencial-numero">02</div>
-          <h3 class="diferencial-titulo">Especialistas em IA aplicada</h3>
-          <p class="diferencial-desc">
-            Mais de 25 processos inteligentes implementados com AI Agents, AI Assistants e workflows de IA embarcada. Automação com propósito, não automação por automação.
-          </p>
-        </div>
-        <div class="diferencial-card">
-          <div class="diferencial-numero">03</div>
-          <h3 class="diferencial-titulo">Entrega em etapas</h3>
-          <p class="diferencial-desc">
-            Levantamento, desenvolvimento e validação por etapas. Você testa e aprova cada parte antes da próxima. Transparência total no cronograma.
-          </p>
-        </div>
-        <div class="diferencial-card">
-          <div class="diferencial-numero">04</div>
-          <h3 class="diferencial-titulo">De startup a multinacional</h3>
-          <p class="diferencial-desc">
-            Atendemos empresas pequenas, médias e grandes. Iniciamos em setores a partir de 10 colaboradores, sem trocar uma dor por outra.
-          </p>
-        </div>
-      </div>
+<!-- ============ CLIENTES E PARCEIROS ============ -->
+<section class="clientes">
+  <div class="clientes-inner">
+    <div class="clientes-titulo">Clientes e parceiros</div>
+  </div>
+  <div class="carrossel-wrapper">
+    <div class="carrossel-track">
+      <div class="cliente-logo"><img src="logos/diageo.png" alt="Diageo"></div>
+      <div class="cliente-logo"><img src="logos/wrental.png" alt="W Rental"></div>
+      <div class="cliente-logo logo-fundo-escuro"><img src="logos/forton.png" alt="Forton"></div>
+      <div class="cliente-logo"><img src="logos/playrec.png" alt="Playrec"></div>
+      <div class="cliente-logo logo-fundo-escuro"><img src="logos/okiar.png" alt="Okiar"></div>
+      <div class="cliente-logo"><img src="logos/grs.png" alt="GRS Racing"></div>
+      <div class="cliente-logo"><img src="logos/labhoro.png" alt="Labhoro"></div>
+      <div class="cliente-logo"><img src="logos/amato.png" alt="Amato"></div>
+      <div class="cliente-logo"><img src="logos/diageo.png" alt="Diageo"></div>
+      <div class="cliente-logo"><img src="logos/wrental.png" alt="W Rental"></div>
+      <div class="cliente-logo logo-fundo-escuro"><img src="logos/forton.png" alt="Forton"></div>
+      <div class="cliente-logo"><img src="logos/playrec.png" alt="Playrec"></div>
+      <div class="cliente-logo logo-fundo-escuro"><img src="logos/okiar.png" alt="Okiar"></div>
+      <div class="cliente-logo"><img src="logos/grs.png" alt="GRS Racing"></div>
+      <div class="cliente-logo"><img src="logos/labhoro.png" alt="Labhoro"></div>
+      <div class="cliente-logo"><img src="logos/amato.png" alt="Amato"></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- =========== SOMOS MOVIDOS POR =========== -->
-  <section class="powered-by">
-    <div class="powered-by-inner">
-      <div class="powered-by-label">STACK OFICIAL</div>
-      <div class="powered-by-frase">
-          Somos movidos por API, automações e IA.
-      </div>
+<!-- ============ BLOCO 2 — O QUE A GENTE RESOLVE DIFERENTE ============ -->
+<section class="section" id="diferenciais">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="eyebrow">Como a gente pensa</div>
+      <h2 class="section-title">O que a gente resolve <span class="italic">diferente</span></h2>
     </div>
-  </section>
+    <div class="diferenciais-grid">
 
-  <!-- =========== DEPOIMENTO =========== -->
-  <section class="depoimento" id="depoimento">
-    <div class="depoimento-inner">
-      <div class="section-label">Feedback de cliente</div>
-      <div class="depoimento-aspas">&ldquo;</div>
-      <p class="depoimento-texto">
-        A PSFY tem sido uma parceira importante no apoio aos nossos processos na Diageo. Já tínhamos uma operação estruturada no dia a dia, mas havia a necessidade de evoluir alguns fluxos, principalmente os relacionados à frota, para ganhar mais eficiência e automação. A PSFY ajudou a melhorar processos que já existiam, apoiando a criação de automações mais robustas, uso de banco de dados e condicionais, sempre de forma prática e alinhada à nossa operação.
-      </p>
-      <div class="depoimento-autor">
-        <img class="depoimento-autor-logo" src="logos/diageo.png" alt="Diageo">
-        <div class="depoimento-autor-info">
-          <div class="depoimento-autor-nome">Hernani Rocha</div>
-          <div class="depoimento-autor-cargo">Especialista em Gestão de Frota LATAM, Diageo</div>
+      <div class="diferencial-card">
+        <div class="diferencial-icone">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 6h6M4 12h6M4 18h6"/><path d="M10 6l8 6-8 6"/></svg>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========== CLIENTES (CARROSSEL) =========== -->
-  <section class="clientes">
-    <div class="clientes-inner">
-      <div class="clientes-titulo">Clientes e parceiros</div>
-    </div>
-    <div class="carrossel-wrapper">
-      <div class="carrossel-track">
-        <!-- Primeira sequência -->
-        <div class="cliente-logo"><img src="logos/diageo.png" alt="Diageo"></div>
-        <div class="cliente-logo"><img src="logos/wrental.png" alt="W Rental"></div>
-        <div class="cliente-logo logo-fundo-escuro"><img src="logos/forton.png" alt="Forton"></div>
-        <div class="cliente-logo"><img src="logos/playrec.png" alt="Playrec"></div>
-        <div class="cliente-logo logo-fundo-escuro"><img src="logos/okiar.png" alt="Okiar"></div>
-        <div class="cliente-logo"><img src="logos/grs.png" alt="GRS Racing"></div>
-        <div class="cliente-logo"><img src="logos/labhoro.png" alt="Labhoro"></div>
-        <div class="cliente-logo"><img src="logos/amato.png" alt="Amato"></div>
-        <!-- Sequência duplicada (necessária para o efeito de scroll infinito) -->
-        <div class="cliente-logo"><img src="logos/diageo.png" alt="Diageo"></div>
-        <div class="cliente-logo"><img src="logos/wrental.png" alt="W Rental"></div>
-        <div class="cliente-logo logo-fundo-escuro"><img src="logos/forton.png" alt="Forton"></div>
-        <div class="cliente-logo"><img src="logos/playrec.png" alt="Playrec"></div>
-        <div class="cliente-logo logo-fundo-escuro"><img src="logos/okiar.png" alt="Okiar"></div>
-        <div class="cliente-logo"><img src="logos/grs.png" alt="GRS Racing"></div>
-        <div class="cliente-logo"><img src="logos/labhoro.png" alt="Labhoro"></div>
-        <div class="cliente-logo"><img src="logos/amato.png" alt="Amato"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========== FORMATOS =========== -->
-  <section class="section" id="formatos" style="background: var(--cinza);">
-    <div class="section-inner">
-      <div class="section-label">Como trabalhamos</div>
-      <h2 class="section-title">Três formatos. Você escolhe o que <span class="italic">encaixa</span> no seu momento.</h2>
-      <p class="section-subtitle">
-        Desde ajustes pontuais até consultoria mensal com analista dedicado. Todos os formatos começam com um diagnóstico.
-      </p>
-
-      <div class="formatos-grid">
-        <div class="formato-card">
-          <div class="formato-numero">Formato 01</div>
-          <h3 class="formato-titulo">Pacote de Horas</h3>
-          <p class="formato-desc">Para quem já tem uma operação rodando e precisa de ajustes, correções ou pequenas implementações.</p>
-          <div class="formato-preco">4 a 20 horas mensais</div>
-          <div class="formato-orcamento">Promoção 4h: <strong>R$ 850,00</strong><a href="https://calendly.com/contato-psfy/30min" target="_blank" class="agendar-bolinha" aria-label="Agendar uma conversa" title="Agendar uma conversa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></a></div>
-          <div class="formato-divider"></div>
-          <ul class="formato-items">
-            <li class="formato-item"><span class="arrow">→</span>Execução por demanda</li>
-            <li class="formato-item"><span class="arrow">→</span>Cronograma flexível</li>
-            <li class="formato-item"><span class="arrow">→</span>Ideal para manutenção evolutiva</li>
-            <li class="formato-item"><span class="arrow">→</span>Sem compromisso de longo prazo</li>
-          </ul>
-          <a href="orcamento.html?formato=horas" class="formato-btn">Quero saber mais</a>
-        </div>
-
-        <div class="formato-card destaque">
-          <div class="formato-badge">Mais pedido</div>
-          <div class="formato-numero">Formato 02</div>
-          <h3 class="formato-titulo">Consultoria Mensal</h3>
-          <p class="formato-desc">Analista dedicado para evoluir processos continuamente, com reuniões e roadmap recorrente.</p>
-          <div class="formato-preco">Compromisso mensal</div>
-          <div class="formato-orcamento">Investimento <strong>sob orçamento</strong><a href="https://calendly.com/contato-psfy/30min" target="_blank" class="agendar-bolinha" aria-label="Agendar uma conversa" title="Agendar uma conversa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></a></div>
-          <div class="formato-divider"></div>
-          <ul class="formato-items">
-            <li class="formato-item"><span class="arrow">→</span>Analista dedicado ao cliente</li>
-            <li class="formato-item"><span class="arrow">→</span>Reuniões semanais de evolução</li>
-            <li class="formato-item"><span class="arrow">→</span>Roadmap contínuo de melhorias</li>
-            <li class="formato-item"><span class="arrow">→</span>Suporte prioritário</li>
-          </ul>
-          <a href="orcamento.html?formato=consultoria" class="formato-btn">Conversar sobre</a>
-        </div>
-
-        <div class="formato-card">
-          <div class="formato-numero">Formato 03</div>
-          <h3 class="formato-titulo">Projeto Fechado</h3>
-          <p class="formato-desc">Para estruturar uma área específica do zero, com escopo e prazo definidos, podendo incluir AI Agents.</p>
-          <div class="formato-preco">Escopo e prazo fechados</div>
-          <div class="formato-orcamento">Investimento <strong>sob orçamento</strong><a href="https://calendly.com/contato-psfy/30min" target="_blank" class="agendar-bolinha" aria-label="Agendar uma conversa" title="Agendar uma conversa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></a></div>
-          <div class="formato-divider"></div>
-          <ul class="formato-items">
-            <li class="formato-item"><span class="arrow">→</span>Levantamento detalhado</li>
-            <li class="formato-item"><span class="arrow">→</span>Desenvolvimento em etapas</li>
-            <li class="formato-item"><span class="arrow">→</span>Implementação de AI Agents se aplicável</li>
-            <li class="formato-item"><span class="arrow">→</span>Treinamento e handoff da equipe</li>
-          </ul>
-          <a href="orcamento.html?formato=projeto" class="formato-btn">Começar um projeto</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========== TREINAMENTOS PIPEFY =========== -->
-  <section class="section" id="treinamentos">
-    <div class="section-inner">
-      <div class="section-label">Novo</div>
-      <h2 class="section-title">Treinamentos em <span class="italic">Pipefy</span></h2>
-      <p class="section-subtitle">
-        Sua equipe usando o Pipefy de verdade, não só clicando em botão. Você escolhe o formato e a carga horária que encaixa na sua operação.
-      </p>
-
-      <div class="formatos-grid">
-        <div class="formato-card destaque" style="grid-column: 1 / -1; max-width: 760px; margin: 0 auto;">
-          <div class="formato-badge">Presencial ou online</div>
-          <div class="formato-numero">Treinamento sob medida</div>
-          <h3 class="formato-titulo">4, 8, 12 horas ou mais</h3>
-          <p class="formato-desc">
-            Presencial ou online, do jeito que faz sentido pra você. Antes de treinar a gente senta com a sua equipe de processos, entende o que você já tem montado e aponta onde dá pra melhorar, porque quem treina aqui é consultor de processo, não instrutor de manual. No fim o seu time sai rodando sozinho.
-          </p>
-          <div class="formato-preco">Carga horária flexível</div>
-          <div class="formato-orcamento">A partir de <strong>R$ 2.000,00 no formato online</strong><a href="https://calendly.com/contato-psfy/30min" target="_blank" class="agendar-bolinha" aria-label="Agendar uma conversa" title="Agendar uma conversa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></a></div>
-          <div class="formato-divider"></div>
-          <ul class="formato-items">
-            <li class="formato-item"><span class="arrow">→</span>Você escolhe presencial ou online</li>
-            <li class="formato-item"><span class="arrow">→</span>Carga horária de 4, 8, 12 horas ou mais</li>
-            <li class="formato-item"><span class="arrow">→</span>Diagnóstico do que você já tem antes de treinar</li>
-            <li class="formato-item"><span class="arrow">→</span>Sugestão de melhorias no caminho, se quiser</li>
-            <li class="formato-item"><span class="arrow">→</span>Treinamento para clientes internos e externos</li>
-          </ul>
-          <a href="orcamento.html?formato=treinamento" class="formato-btn">Quero um treinamento</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========== STACK =========== -->
-  <section class="section" id="stack">
-    <div class="section-inner">
-      <div class="section-label">Stack técnica</div>
-      <h2 class="section-title">As ferramentas que <span class="italic">usamos</span> todo dia.</h2>
-      <p class="section-subtitle">
-        O processo vem primeiro, a ferramenta vem depois. O Pipefy é a plataforma que mais implementamos nos nossos clientes, e em volta dela combinamos orquestração de workflows, integrações via iPaaS e IA aplicada.
-      </p>
-
-      <div class="stack-badge-licenca">
-        <span class="dot"></span>
-        Implementamos a ferramenta, a licença você contrata direto com o Pipefy.
+        <h3>Consolidação de processos</h3>
+        <p>Às vezes três processos viram um só. Menos etapa, menos gente perdendo tempo passando bastão.</p>
       </div>
 
-      <div class="stack-grid">
-        <div class="stack-item highlight">
-          <div class="stack-nome">Pipefy</div>
-          <div class="stack-categoria">Implementação de processos</div>
+      <div class="diferencial-card">
+        <div class="diferencial-icone">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg>
         </div>
-        <div class="stack-item highlight">
-          <div class="stack-nome">Orquestração de workflows</div>
-          <div class="stack-categoria">Core</div>
-        </div>
-        <div class="stack-item highlight">
-          <div class="stack-nome">IA aplicada</div>
-          <div class="stack-categoria">Core</div>
-        </div>
-        <div class="stack-item">
-          <div class="stack-nome">MS Azure</div>
-          <div class="stack-categoria">Cloud</div>
-        </div>
-        <div class="stack-item">
-          <div class="stack-nome">Google Workspace</div>
-          <div class="stack-categoria">Produtividade</div>
-        </div>
-        <div class="stack-item">
-          <div class="stack-nome">Make</div>
-          <div class="stack-categoria">Integrações</div>
-        </div>
-        <div class="stack-item">
-          <div class="stack-nome">Claude</div>
-          <div class="stack-categoria">IA</div>
-        </div>
-        <div class="stack-item">
-          <div class="stack-nome">OpenAI</div>
-          <div class="stack-categoria">LLM</div>
-        </div>
-        <div class="stack-item">
-          <div class="stack-nome">Typebot</div>
-          <div class="stack-categoria">Chatbots</div>
-        </div>
-        <div class="stack-item">
-          <div class="stack-nome">ActivePieces</div>
-          <div class="stack-categoria">Automação</div>
-        </div>
-        <div class="stack-item">
-          <div class="stack-nome">Zapier</div>
-          <div class="stack-categoria">Integrações</div>
-        </div>
-        <div class="stack-item">
-          <div class="stack-nome">APIs REST</div>
-          <div class="stack-categoria">Integrações</div>
-        </div>
-        <div class="stack-item">
-          <div class="stack-nome">Webhooks</div>
-          <div class="stack-categoria">Eventos</div>
-        </div>
+        <h3>Dado vivo dentro do fluxo</h3>
+        <p>O banco de dados fica dentro do próprio processo. Sem planilha solta, sem sistema separado pra consultar.</p>
       </div>
-    </div>
-  </section>
 
-  <!-- =========== ECOSSISTEMA =========== -->
-  <section class="section ecossistema" id="ecossistema">
-    <div class="section-inner">
-      <div class="ecossistema-badge">Integrações com o ecossistema que você já usa</div>
-      <h2 class="section-title">Conectamos seus <span class="italic">processos</span> às ferramentas que sua empresa já usa.</h2>
-
-      <div class="ecossistema-content">
-        <p class="ecossistema-desc">
-          Desenvolvemos integrações com <strong>Microsoft Azure, Microsoft 365, Teams e SharePoint</strong>, permitindo que seus processos rodem exatamente onde seus times já estão.<br><br>
-          Também trabalhamos com Google Workspace completo, conectando Gmail, agendas, planilhas e documentos diretamente aos seus fluxos de trabalho.
-        </p>
-
-        <div class="eco-grid">
-          <div class="eco-card">
-            <div class="eco-titulo">Microsoft Azure</div>
-            <div class="eco-desc">Integração com serviços de nuvem e automações corporativas</div>
-          </div>
-          <div class="eco-card">
-            <div class="eco-titulo">Microsoft 365</div>
-            <div class="eco-desc">Teams, Outlook, SharePoint e Excel conectados aos seus fluxos</div>
-          </div>
-          <div class="eco-card">
-            <div class="eco-titulo">Google Workspace</div>
-            <div class="eco-desc">Gmail, Drive, Sheets e Calendar integrados aos workflows</div>
-          </div>
-          <div class="eco-card">
-            <div class="eco-titulo">IA embarcada</div>
-            <div class="eco-desc">IA avançada aplicada a triagens, análises e decisões</div>
-          </div>
+      <div class="diferencial-card">
+        <div class="diferencial-icone">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v6"/><path d="M12 9l-6 6"/><path d="M12 9l6 6"/><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="18" r="2.2"/></svg>
         </div>
+        <h3>Automação com critério</h3>
+        <p>Condicional que resolve algo real do seu negócio, não regra genérica que trava o fluxo depois.</p>
       </div>
-    </div>
-  </section>
 
-  <!-- =========== PROJETOS =========== -->
-  <section class="section projetos" id="projetos">
-    <div class="section-inner">
-      <div class="section-label">Projetos</div>
-      <h2 class="section-title">Processos reais, <span class="italic">entregues</span> para empresas reais.</h2>
-      <p class="section-subtitle">
-        Projetos que rodaram ou estão rodando de verdade, com número e resultado por trás de cada um.
-      </p>
-
-      <div class="projetos-grid">
-        <div class="projeto-card">
-          <div class="projeto-header">
-            <span class="projeto-numero">01</span>
-            <span class="projeto-categoria">Indústria pesada</span>
-          </div>
-          <h3 class="projeto-titulo">Empresa de plataformas aéreas · Compras integrado com cotações</h3>
-          <ul class="projeto-items">
-            <li class="projeto-item">Estoque e cotação automática</li>
-            <li class="projeto-item">Aprovação por interface</li>
-            <li class="projeto-item">Nota fiscal disparada automaticamente</li>
-            <li class="projeto-item">Banco de 4 mil itens e 2 mil clientes</li>
-          </ul>
-          <div class="projeto-impacto"><span><strong>Impacto:</strong> Mais de 5.500 pedidos concluídos em 18 meses, com cerca de 30 horas por semana economizadas no time de compras.</span></div>
+      <div class="diferencial-card">
+        <div class="diferencial-icone">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4z"/></svg>
         </div>
-
-        <div class="projeto-card">
-          <div class="projeto-header">
-            <span class="projeto-numero">02</span>
-            <span class="projeto-categoria">Bebidas multinacional</span>
-          </div>
-          <h3 class="projeto-titulo"> Empresa de grande porte de bebidas · Reserva de salas sem email</h3>
-          <ul class="projeto-items">
-            <li class="projeto-item">Formulário com validação do Outlook</li>
-            <li class="projeto-item">Roteamento automático por equipe</li>
-            <li class="projeto-item">Cotação de catering integrada</li>
-            <li class="projeto-item">Portal de acompanhamento do pedido</li>
-          </ul>
-          <div class="projeto-impacto"><span><strong>Impacto:</strong> Fim do email como canal de reserva, com autonomia total do solicitante sobre o próprio pedido.</span></div>
-        </div>
-
-        <div class="projeto-card">
-          <div class="projeto-header">
-            <span class="projeto-numero">03</span>
-            <span class="projeto-categoria">Corretora de commodities</span>
-          </div>
-          <h3 class="projeto-titulo">Consultoria de commodities · Diagnóstico e contratos</h3>
-          <ul class="projeto-items">
-            <li class="projeto-item">Anamnese completa com 15 pessoas</li>
-            <li class="projeto-item">Decisão por manter a ferramenta existente</li>
-            <li class="projeto-item">Integração com Google Workspace</li>
-            <li class="projeto-item">Rastreabilidade de aprovações e valores</li>
-          </ul>
-          <div class="projeto-impacto"><span><strong>Impacto:</strong> 12 horas de mapeamento confirmaram que a ferramenta já usada era a certa, sem custo de troca. Em desenvolvimento.</span></div>
-        </div>
+        <h3>IA aplicada com propósito</h3>
+        <p>Não é feature bonita. É IA encaixada onde ela realmente tira trabalho manual de alguém.</p>
       </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- =========== GOVERNANÇA =========== -->
-  <section class="section governanca">
-    <div class="section-inner">
-      <div class="governanca-content">
-        <div>
-          <div class="section-label">Governança de dados</div>
-          <h2 class="section-title">Segurança e compliance <span class="italic">não são opcionais</span>.</h2>
-          <p class="section-subtitle">
-            Construímos processos pensando em auditabilidade, controle de acesso e conformidade desde o primeiro desenho. Porque escalar sem governança é plantar dívida técnica pra colher depois.
-          </p>
-        </div>
+<!-- ============ BLOCO 3 — PROVAS REAIS ============ -->
+<section class="section section-alt" id="provas">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="eyebrow">Provas reais</div>
+      <h2 class="section-title">Processos reais, entregues para empresas <span class="italic">reais</span></h2>
+    </div>
 
-        <div class="gov-items">
-          <div class="gov-item">
-            <div class="gov-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
+    <div class="toggle-wrap" data-toggle>
+      <div class="toggle-group" role="tablist" aria-label="Escolha um projeto">
+        <span class="toggle-highlight" aria-hidden="true"></span>
+        <button class="toggle-btn active" data-target="wrental" role="tab" aria-selected="true">Wrental</button>
+        <button class="toggle-btn" data-target="diageo" role="tab" aria-selected="false">DIAGEO</button>
+        <button class="toggle-btn" data-target="labhoro" role="tab" aria-selected="false">Labhoro</button>
+      </div>
+      <div class="toggle-panels">
+
+        <div class="toggle-panel active" data-panel="wrental">
+          <div class="projeto-card">
+            <div class="projeto-header">
+              <span class="projeto-numero">01</span>
+              <span class="projeto-categoria">Indústria pesada</span>
             </div>
-            <div>
-              <div class="gov-titulo">Controle de acesso por papel</div>
-              <div class="gov-desc">Permissões granulares por fluxo, fase e campo</div>
-            </div>
+            <h3 class="projeto-titulo">Empresa de plataformas aéreas · Compras integrado com cotações</h3>
+            <ul class="projeto-items">
+              <li class="projeto-item">Estoque e cotação automática</li>
+              <li class="projeto-item">Aprovação por interface</li>
+              <li class="projeto-item">Nota fiscal disparada automaticamente</li>
+              <li class="projeto-item">Banco de 4 mil itens e 2 mil clientes</li>
+            </ul>
+            <div class="projeto-impacto"><span><strong>Impacto:</strong> Mais de 5.500 pedidos concluídos em 18 meses, com cerca de 30 horas por semana economizadas no time de compras.</span></div>
           </div>
+        </div>
 
-          <div class="gov-item">
-            <div class="gov-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
-              </svg>
+        <div class="toggle-panel" data-panel="diageo" hidden>
+          <div class="projeto-card">
+            <div class="projeto-header">
+              <span class="projeto-numero">02</span>
+              <span class="projeto-categoria">Bebidas multinacional</span>
             </div>
-            <div>
-              <div class="gov-titulo">Auditabilidade completa</div>
-              <div class="gov-desc">Histórico rastreável de todas as ações nos processos</div>
-            </div>
+            <h3 class="projeto-titulo">Empresa de grande porte de bebidas · Reserva de salas sem email</h3>
+            <ul class="projeto-items">
+              <li class="projeto-item">Formulário com validação do Outlook</li>
+              <li class="projeto-item">Roteamento automático por equipe</li>
+              <li class="projeto-item">Cotação de catering integrada</li>
+              <li class="projeto-item">Portal de acompanhamento do pedido</li>
+            </ul>
+            <div class="projeto-impacto"><span><strong>Impacto:</strong> Fim do email como canal de reserva, com autonomia total do solicitante sobre o próprio pedido.</span></div>
           </div>
+        </div>
 
-          <div class="gov-item">
-            <div class="gov-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                <polyline points="14 2 14 8 20 8"/>
-                <line x1="9" y1="15" x2="15" y2="15"/>
-              </svg>
+        <div class="toggle-panel" data-panel="labhoro" hidden>
+          <div class="projeto-card">
+            <div class="projeto-header">
+              <span class="projeto-numero">03</span>
+              <span class="projeto-categoria">Corretora de commodities</span>
             </div>
-            <div>
-              <div class="gov-titulo">LGPD e conformidade</div>
-              <div class="gov-desc">Tratamento de dados sensíveis com responsabilidade</div>
-            </div>
+            <h3 class="projeto-titulo">Corretora de commodities · Diagnóstico completo da operação</h3>
+            <ul class="projeto-items">
+              <li class="projeto-item">Nove entrevistas em todos os setores da empresa</li>
+              <li class="projeto-item">Causa raiz dos erros de faturamento identificada</li>
+              <li class="projeto-item">Arquitetura proposta com 5 pipes conectados</li>
+              <li class="projeto-item">Banco de clientes e camada de comissionamento mapeados</li>
+            </ul>
+            <div class="projeto-impacto"><span><strong>Impacto:</strong> Operação inteira mapeada em 6 horas de análise, direto na causa raiz dos erros de faturamento.</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOCO 4 — COMO COMEÇAR ============ -->
+<section class="section" id="comecar">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="eyebrow">Como começar</div>
+      <h2 class="section-title">Três formas de <span class="italic">começar</span></h2>
+    </div>
+
+    <div class="toggle-wrap" data-toggle>
+      <div class="toggle-group" role="tablist" aria-label="Escolha um pacote">
+        <span class="toggle-highlight" aria-hidden="true"></span>
+        <button class="toggle-btn active" data-target="pipefy" role="tab" aria-selected="true">Pipefy</button>
+        <button class="toggle-btn" data-target="integracoes" role="tab" aria-selected="false">Pipefy com integrações</button>
+        <button class="toggle-btn" data-target="outras" role="tab" aria-selected="false">Outras ferramentas</button>
+      </div>
+      <div class="toggle-panels">
+        <div class="toggle-panel active" data-panel="pipefy">
+          <div class="preco-card">
+            <div class="preco-valor">A partir de<span>R$ 150<small>/hora</small></span></div>
+            <div class="preco-desc">Implementação e gestão do processo dentro da ferramenta.</div>
+            <div class="preco-inclui">Treinamento incluso</div>
+          </div>
+        </div>
+        <div class="toggle-panel" data-panel="integracoes" hidden>
+          <div class="preco-card">
+            <div class="preco-valor">A partir de<span>R$ 190<small>/hora</small></span></div>
+            <div class="preco-desc">Conectando dados, sistemas e automações ao redor do fluxo.</div>
+            <div class="preco-inclui">Treinamento incluso</div>
+          </div>
+        </div>
+        <div class="toggle-panel" data-panel="outras" hidden>
+          <div class="preco-card">
+            <div class="preco-valor">Depende do<span>Escopo</span></div>
+            <div class="preco-desc">Quando o processo pede algo que o Pipefy sozinho não resolve. A gente entende o caso e define o investimento com você antes de começar.</div>
+            <div class="preco-inclui">Treinamento incluso</div>
           </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- =========== CTA FINAL =========== -->
-  <section class="cta-final">
-    <div class="cta-inner">
-      <h2 class="cta-title">Vamos <span class="italic">orquestrar</span> seu próximo processo?</h2>
-      <p class="cta-desc">
-        Agende uma conversa de 30 minutos. Entendemos seu cenário, mapeamos oportunidades e mostramos como ficaria na prática, sem compromisso.
-      </p>
-      <a href="orcamento.html" class="btn cta-btn">
-        Solicitar orçamento →
-      </a>
-    </div>
-  </section>
+    <p class="preco-nota">Cobramos por hora. Antes de fechar qualquer proposta, a gente entende o processo e dá uma previsão de horas.</p>
+  </div>
+</section>
 
-  <!-- =========== FOOTER =========== -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div>
-          <a href="#" class="logo">
-            <img src="/logo.png" alt="PSFY">
-          </a>
-          <p class="footer-desc">
-            Consultoria de mapeamento e implementação de processos, com automações, integrações e IA aplicada. Baseados no Brasil, atendendo nacionalmente.
-          </p>
-          <div class="footer-badge">Especialistas em processos e IA aplicada</div>
-        </div>
+<!-- ============ CTA FINAL ============ -->
+<section class="cta-final">
+  <div class="wrap">
+    <h2>Vamos <span class="italic">resolver</span> seu próximo processo?</h2>
+    <a href="#" class="btn btn-primary">Agendar conversa</a>
+  </div>
+</section>
 
-        <div class="footer-col">
-          <div class="footer-col-titulo">Contato</div>
-          <ul>
-            <li><a href="mailto:contato@psfy.com.br">contato@psfy.com.br</a></li>
-            <li><a href="https://wa.me/5541995041300" target="_blank">+55 41 99504-1300</a></li>
-            <li><a href="https://linkedin.com/company/psfy" target="_blank">LinkedIn</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <div class="footer-col-titulo">Navegação</div>
-          <ul>
-            <li><a href="#diferenciais">Diferenciais</a></li>
-            <li><a href="#formatos">Formatos</a></li>
-            <li><a href="#stack">Stack</a></li>
-            <li><a href="#projetos">Projetos</a></li>
-            <li><a href="apresentacao.html">Deck PSFY</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <div class="footer-col-titulo">Serviços</div>
-          <ul>
-            <li><a href="#formatos">Mapeamento e implementação de processos</a></li>
-            <li><a href="#stack">Implementação Pipefy</a></li>
-            <li><a href="#ecossistema">Integrações Microsoft e Google</a></li>
-            <li><a href="#treinamentos">Treinamentos Pipefy</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <span>© 2026 PSFY, Processos Simples. Todos os direitos reservados.</span>
-        <span>Orquestrado com método.</span>
-      </div>
-    </div>
-  </footer>
+<footer class="footer">PSFY — Processos Simples</footer>
 
 <script>
-  // Menu mobile (hamburguer). Abre e fecha a lista de links no celular.
-  document.addEventListener('DOMContentLoaded', function () {
-    var menuBtn = document.getElementById('menuMobileBtn');
-    var navLinks = document.getElementById('navLinks');
-    if (!menuBtn || !navLinks) return;
+(function () {
+  // Cada bloco com toggle tem um wrapper [data-toggle] contendo o grupo de botões e os painéis
+  document.querySelectorAll('[data-toggle]').forEach(function (wrap) {
+    var group = wrap.querySelector('.toggle-group');
+    var highlight = group.querySelector('.toggle-highlight');
+    var buttons = group.querySelectorAll('.toggle-btn');
+    var panels = wrap.querySelectorAll('.toggle-panel');
 
-    menuBtn.addEventListener('click', function () {
-      var aberto = navLinks.classList.toggle('aberto');
-      menuBtn.classList.toggle('ativo', aberto);
-      menuBtn.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+    function moveHighlight(btn) {
+      highlight.style.width = btn.offsetWidth + 'px';
+      highlight.style.transform = 'translateX(' + btn.offsetLeft + 'px)';
+    }
+
+    function activate(btn) {
+      buttons.forEach(function (b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      var alvo = btn.getAttribute('data-target');
+      panels.forEach(function (p) {
+        if (p.getAttribute('data-panel') === alvo) {
+          p.hidden = false;
+          p.classList.remove('fade');
+          void p.offsetWidth; // força reflow pra reiniciar a animação
+          p.classList.add('fade');
+        } else {
+          p.hidden = true;
+        }
+      });
+      moveHighlight(btn);
+    }
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () { activate(btn); });
     });
 
-    // Fecha o menu ao clicar em qualquer link
-    navLinks.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        navLinks.classList.remove('aberto');
-        menuBtn.classList.remove('ativo');
-        menuBtn.setAttribute('aria-expanded', 'false');
-      });
+    // posiciona o indicador embaixo do botão ativo ao carregar e ao redimensionar
+    requestAnimationFrame(function () {
+      moveHighlight(group.querySelector('.toggle-btn.active'));
+    });
+    window.addEventListener('resize', function () {
+      moveHighlight(group.querySelector('.toggle-btn.active'));
     });
   });
+})();
 </script>
-
-  <!-- =========== BOT DE QUALIFICAÇÃO PSFY =========== -->
-  <style>
-    .psfy-bot-bolha {
-      position: fixed; bottom: 24px; right: 24px; z-index: 9998;
-      width: 60px; height: 60px; border-radius: 50%;
-      background: var(--azul); color: var(--branco);
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 6px 20px rgba(51,97,64,0.35);
-      cursor: pointer; transition: transform 0.15s ease;
-    }
-    .psfy-bot-bolha:hover { transform: scale(1.08); }
-    .psfy-bot-bolha svg { width: 28px; height: 28px; }
-    .psfy-bot-janela {
-      position: fixed; bottom: 96px; right: 24px; z-index: 9999;
-      width: 360px; max-width: calc(100vw - 48px);
-      height: 520px; max-height: calc(100vh - 140px);
-      background: var(--branco); border-radius: 16px;
-      box-shadow: 0 12px 48px rgba(0,0,0,0.22);
-      display: none; flex-direction: column; overflow: hidden;
-    }
-    .psfy-bot-janela.aberta { display: flex; }
-    .psfy-bot-header {
-      background: var(--azul); color: var(--branco);
-      padding: 16px 18px; display: flex; align-items: center; justify-content: space-between;
-    }
-    .psfy-bot-header-titulo { font-size: 15px; font-weight: 700; }
-    .psfy-bot-header-sub { font-size: 12px; opacity: 0.85; margin-top: 2px; }
-    .psfy-bot-fechar { cursor: pointer; font-size: 22px; line-height: 1; background: none; border: none; color: var(--branco); opacity: 0.85; }
-    .psfy-bot-fechar:hover { opacity: 1; }
-    .psfy-bot-corpo {
-      flex: 1; overflow-y: auto; padding: 18px;
-      display: flex; flex-direction: column; gap: 12px;
-      background: var(--cinza, #f5f5f7);
-    }
-    .psfy-bot-msg {
-      background: var(--branco); color: var(--preto, #1a1a1a);
-      padding: 12px 14px; border-radius: 14px 14px 14px 4px;
-      font-size: 14px; line-height: 1.5; max-width: 90%; align-self: flex-start;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    }
-    .psfy-bot-resposta {
-      background: var(--azul); color: var(--branco);
-      padding: 10px 14px; border-radius: 14px 14px 4px 14px;
-      font-size: 14px; max-width: 85%; align-self: flex-end;
-    }
-    .psfy-bot-opcoes { display: flex; flex-direction: column; gap: 8px; padding: 0 18px 14px; background: var(--cinza, #f5f5f7); }
-    .psfy-bot-opcao {
-      background: var(--branco); border: 1px solid var(--azul);
-      color: var(--azul); padding: 11px 14px; border-radius: 10px;
-      font-size: 14px; font-weight: 500; cursor: pointer; text-align: left;
-      transition: background 0.12s ease, color 0.12s ease; font-family: inherit;
-    }
-    .psfy-bot-opcao:hover { background: var(--azul); color: var(--branco); }
-    .psfy-bot-input-wrap { display: flex; gap: 8px; padding: 0 18px 16px; background: var(--cinza, #f5f5f7); }
-    .psfy-bot-input {
-      flex: 1; padding: 11px 12px; border: 1px solid #d0d0d5; border-radius: 10px;
-      font-size: 14px; font-family: inherit; outline: none;
-    }
-    .psfy-bot-input:focus { border-color: var(--azul); }
-    .psfy-bot-enviar {
-      background: var(--azul); color: var(--branco); border: none;
-      border-radius: 10px; padding: 0 16px; font-size: 14px; font-weight: 600;
-      cursor: pointer; font-family: inherit;
-    }
-    .psfy-bot-cta {
-      display: block; text-align: center; text-decoration: none;
-      background: var(--azul); color: var(--branco);
-      padding: 13px; border-radius: 10px; font-size: 15px; font-weight: 700;
-      margin: 4px 18px 18px;
-    }
-    .psfy-bot-cta:hover { background: var(--azul-hover, #274d33); }
-    .psfy-bot-lgpd {
-      font-size: 11px; color: #8a8a8a; text-align: center;
-      padding: 0 18px 12px; background: var(--cinza, #f5f5f7);
-    }
-  </style>
-
-  <div class="psfy-bot-bolha" id="psfyBotBolha" aria-label="Abrir assistente">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-  </div>
-
-  <div class="psfy-bot-janela" id="psfyBotJanela">
-    <div class="psfy-bot-header">
-      <div>
-        <div class="psfy-bot-header-titulo">Assistente PSFY</div>
-        <div class="psfy-bot-header-sub">Responda rápido e agende uma conversa</div>
-      </div>
-      <button class="psfy-bot-fechar" id="psfyBotFechar" aria-label="Fechar">&times;</button>
-    </div>
-    <div class="psfy-bot-corpo" id="psfyBotCorpo"></div>
-    <div id="psfyBotAcoes"></div>
-    <div class="psfy-bot-lgpd">Ao enviar seus dados você concorda em ser contatado pela PSFY.</div>
-  </div>
-
-  <script>
-  (function() {
-    var CALENDLY = "https://calendly.com/contato-psfy/30min";
-    // ============================================================
-    // WEBHOOK DO MAKE. Quando quiser receber os leads, cole aqui a
-    // URL do webhook que o Make gera e tire as duas barras do var abaixo.
-    // var WEBHOOK = "https://hook.us1.make.com/xxxxxxxx";
-    var WEBHOOK = "https://hook.us2.make.com/ielxivwl581cl1ukeafwkianee8ytk8b";
-    // ============================================================
-
-    var bolha = document.getElementById("psfyBotBolha");
-    var janela = document.getElementById("psfyBotJanela");
-    var fechar = document.getElementById("psfyBotFechar");
-    var corpo = document.getElementById("psfyBotCorpo");
-    var acoes = document.getElementById("psfyBotAcoes");
-
-    var respostas = {};
-    var etapa = 0;
-
-    var fluxo = [
-      {
-        pergunta: "Oi! Sou o assistente da PSFY. Qual a sua área de trabalho?",
-        campo: "area",
-        opcoes: ["Financeiro", "Compras", "RH", "Comercial", "Backoffice", "Outra"]
-      },
-      {
-        pergunta: "Qual nível de automação você precisa?",
-        campo: "nivel_automacao",
-        opcoes: ["Baixo", "Médio", "Alto"]
-      },
-      {
-        pergunta: "Qual software você usa hoje?",
-        campo: "software",
-        opcoes: ["Pipefy", "Outro"],
-        condicional: {
-          gatilho: "Outro",
-          campo: "software_qual",
-          placeholder: "Qual software você usa?"
-        }
-      },
-      {
-        pergunta: "Qual o seu nome?",
-        campo: "nome",
-        input: "texto",
-        placeholder: "Seu nome"
-      },
-      {
-        pergunta: "Qual o seu telefone?",
-        campo: "telefone",
-        input: "telefone",
-        placeholder: "Ex: 41 99999-0000"
-      }
-    ];
-
-    function addMsg(texto) {
-      var d = document.createElement("div");
-      d.className = "psfy-bot-msg";
-      d.textContent = texto;
-      corpo.appendChild(d);
-      corpo.scrollTop = corpo.scrollHeight;
-    }
-    function addResposta(texto) {
-      var d = document.createElement("div");
-      d.className = "psfy-bot-resposta";
-      d.textContent = texto;
-      corpo.appendChild(d);
-      corpo.scrollTop = corpo.scrollHeight;
-    }
-    function limpaAcoes() { acoes.innerHTML = ""; }
-
-    // Conta os dígitos ignorando parênteses, traços, espaços e o +
-    function contaDigitos(txt) {
-      return (txt.match(/\d/g) || []).length;
-    }
-
-    // Mostra um campo de digitação genérico. Ao enviar, valida e chama o callback.
-    function mostraInput(placeholder, validador, aoEnviar) {
-      var wrap = document.createElement("div");
-      wrap.className = "psfy-bot-input-wrap";
-      var inp = document.createElement("input");
-      inp.className = "psfy-bot-input";
-      inp.type = "text";
-      inp.placeholder = placeholder || "";
-      var btn = document.createElement("button");
-      btn.className = "psfy-bot-enviar";
-      btn.textContent = "Enviar";
-      function envia() {
-        var valor = inp.value.trim();
-        var erro = validador ? validador(valor) : (valor ? null : "Campo obrigatório");
-        if (erro) {
-          inp.style.borderColor = "#c0392b";
-          inp.placeholder = erro;
-          return;
-        }
-        aoEnviar(valor);
-      }
-      btn.onclick = envia;
-      inp.addEventListener("keydown", function(e){ if(e.key==="Enter") envia(); });
-      wrap.appendChild(inp); wrap.appendChild(btn);
-      acoes.appendChild(wrap);
-      inp.focus();
-    }
-
-    function mostraEtapa() {
-      limpaAcoes();
-      if (etapa >= fluxo.length) { finaliza(); return; }
-      var passo = fluxo[etapa];
-      addMsg(passo.pergunta);
-
-      // Campo de texto simples, obrigatório
-      if (passo.input === "texto") {
-        mostraInput(passo.placeholder, function(v){ return v ? null : "Campo obrigatório"; }, function(v){
-          respostas[passo.campo] = v;
-          addResposta(v);
-          etapa++;
-          mostraEtapa();
-        });
-        return;
-      }
-
-      // Campo de telefone, obrigatório, 10 ou 11 dígitos
-      if (passo.input === "telefone") {
-        mostraInput(passo.placeholder, function(v){
-          if (!v) return "Telefone obrigatório";
-          var d = contaDigitos(v);
-          if (d < 10 || d > 11) return "Digite um telefone válido com DDD";
-          return null;
-        }, function(v){
-          respostas[passo.campo] = v;
-          addResposta(v);
-          etapa++;
-          mostraEtapa();
-        });
-        return;
-      }
-
-      // Campo de opções (botões)
-      var box = document.createElement("div");
-      box.className = "psfy-bot-opcoes";
-      passo.opcoes.forEach(function(op) {
-        var b = document.createElement("button");
-        b.className = "psfy-bot-opcao";
-        b.textContent = op;
-        b.onclick = function() {
-          respostas[passo.campo] = op;
-          addResposta(op);
-          // Se essa opção dispara um campo condicional, mostra ele antes de avançar
-          if (passo.condicional && op === passo.condicional.gatilho) {
-            limpaAcoes();
-            mostraInput(passo.condicional.placeholder, function(v){ return v ? null : "Campo obrigatório"; }, function(v){
-              respostas[passo.condicional.campo] = v;
-              addResposta(v);
-              etapa++;
-              mostraEtapa();
-            });
-          } else {
-            etapa++;
-            mostraEtapa();
-          }
-        };
-        box.appendChild(b);
-      });
-      acoes.appendChild(box);
-    }
-
-    function finaliza() {
-      addMsg("Obrigado! Já entendi seu cenário. Escolha um horário na minha agenda que a gente conversa com calma.");
-      if (WEBHOOK) {
-        try {
-          fetch(WEBHOOK, {
-            method: "POST",
-            body: JSON.stringify(respostas)
-          });
-        } catch (e) {}
-      }
-      var cta = document.createElement("a");
-      cta.className = "psfy-bot-cta";
-      cta.href = CALENDLY;
-      cta.target = "_blank";
-      cta.textContent = "Escolher horário na agenda";
-      acoes.appendChild(cta);
-    }
-
-    var iniciado = false;
-    function abre() {
-      janela.classList.add("aberta");
-      if (!iniciado) { iniciado = true; mostraEtapa(); }
-    }
-    bolha.onclick = function() {
-      if (janela.classList.contains("aberta")) janela.classList.remove("aberta");
-      else abre();
-    };
-    fechar.onclick = function() { janela.classList.remove("aberta"); };
-  })();
-  </script>
 
 </body>
 </html>
