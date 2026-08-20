@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSFY | Agendar alinhamento</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --preto: #000000;
+    --azul: #336140;
+    --azul-hover: #274d33;
+    --branco: #ffffff;
+    --azul-claro: #e4efe7;
+    --verde-claro: #74B872;
+    --cinza: #f2f2f2;
+    --cinza-texto: #6b6b6b;
+    --cinza-borda: #e5e5e5;
+    --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --max-width: 900px;
+    --radius-lg: 20px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font-sans); background: var(--branco); color: var(--preto);
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+  .header {
+    padding: 18px 24px; display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--max-width); margin: 0 auto;
+  }
+  .logo { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+  .voltar { font-size: 14px; color: var(--cinza-texto); display: inline-flex; align-items: center; gap: 6px; }
+  .voltar:hover { color: var(--preto); }
+
+  .wrap { max-width: var(--max-width); margin: 0 auto; padding: 12px 24px 90px; }
+  .intro { text-align: center; max-width: 560px; margin: 0 auto 44px; }
+  .eyebrow {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--azul); margin-bottom: 14px;
+  }
+  .italic { font-style: italic; font-weight: 400; color: var(--azul); }
+  h1 {
+    font-size: clamp(28px, 4vw, 40px); font-weight: 700; line-height: 1.15;
+    letter-spacing: -0.02em; margin-bottom: 16px;
+  }
+  .intro p { font-size: 16px; line-height: 1.6; color: var(--cinza-texto); }
+
+  /* ============ SELETOR DE PAUTA (múltipla escolha) ============ */
+  .pauta { margin-bottom: 40px; }
+  .pauta-titulo { font-size: 14px; font-weight: 700; text-align: center; margin-bottom: 16px; }
+  .pauta-sub { font-size: 13px; color: var(--cinza-texto); text-align: center; margin-bottom: 20px; margin-top: -10px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .chip {
+    padding: 10px 18px; border-radius: 999px; border: 1px solid var(--cinza-borda);
+    background: var(--branco); font-size: 14px; font-weight: 500; color: var(--preto);
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .chip:hover { border-color: var(--azul); }
+  .chip.active { background: var(--azul); border-color: var(--azul); color: var(--branco); }
+  .chip:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
+
+  /* ============ CALENDLY ============ */
+  .calendly-shell {
+    border: 1px solid var(--cinza-borda); border-radius: var(--radius-lg); overflow: hidden;
+    background: var(--cinza);
+  }
+  #calendly-embed { min-width: 320px; height: 700px; }
+  .calendly-fallback {
+    padding: 60px 24px; text-align: center; color: var(--cinza-texto); font-size: 14px;
+  }
+
+  .footer { padding: 32px 24px; text-align: center; font-size: 13px; color: var(--cinza-texto); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">PSFY</div>
+  <a href="index.html" class="voltar">← Voltar pro site</a>
+</div>
+
+<div class="wrap">
+  <div class="intro">
+    <div class="eyebrow">Agendar alinhamento</div>
+    <h1>Vamos entender seu <span class="italic">processo</span></h1>
+    <p>Marque 30 minutos com a gente. Sem compromisso, é uma conversa pra entender onde seu processo trava e se faz sentido seguir junto.</p>
+  </div>
+
+  <div class="pauta">
+    <div class="pauta-titulo">O que você quer colocar em pauta</div>
+    <div class="pauta-sub">Marque quantos fizerem sentido, isso ajuda a gente a chegar preparado</div>
+    <div class="chips" role="group" aria-label="Tópicos da conversa">
+      <button class="chip" data-topic="Pipefy" type="button">Pipefy</button>
+      <button class="chip" data-topic="Integrações" type="button">Integrações</button>
+      <button class="chip" data-topic="Outras ferramentas" type="button">Outras ferramentas</button>
+      <button class="chip" data-topic="IA aplicada" type="button">IA aplicada</button>
+      <button class="chip" data-topic="Preço e escopo" type="button">Preço e escopo</button>
+    </div>
+  </div>
+
+  <div class="calendly-shell">
+    <div id="calendly-embed">
+      <div class="calendly-fallback">Carregando a agenda...</div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">PSFY — Processos Simples</footer>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
+<script>
+(function () {
+  var CALENDLY_BASE_URL = 'https://calendly.com/psfy/30min';
+  var container = document.getElementById('calendly-embed');
+  var chips = document.querySelectorAll('.chip');
+
+  function temasSelecionados() {
+    return Array.prototype.slice.call(chips)
+      .filter(function (chip) { return chip.classList.contains('active'); })
+      .map(function (chip) { return chip.getAttribute('data-topic'); });
+  }
+
+  // Renderiza (ou re-renderiza) o widget do Calendly com os temas marcados
+  // indo como utm_content, isso aparece nos detalhes do agendamento no seu painel Calendly.
+  // Importante: isso NÃO preenche um campo de pergunta customizada dentro do Calendly,
+  // pra isso a pergunta precisa existir configurada no seu evento lá no Calendly.
+  function renderCalendly() {
+    if (typeof Calendly === 'undefined') {
+      // Script do Calendly ainda não carregou, tenta de novo em breve
+      setTimeout(renderCalendly, 300);
+      return;
+    }
+    container.innerHTML = '';
+    var temas = temasSelecionados();
+    var opcoesEmbed = {
+      url: CALENDLY_BASE_URL,
+      parentElement: container
+    };
+    if (temas.length > 0) {
+      opcoesEmbed.utm = { utmContent: temas.join(', ') };
+    }
+    Calendly.initInlineWidget(opcoesEmbed);
+  }
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      chip.classList.toggle('active');
+      renderCalendly();
+    });
+  });
+
+  window.addEventListener('load', renderCalendly);
+})();
+</script>
+
+</body>
+</html>
