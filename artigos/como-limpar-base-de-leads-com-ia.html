@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como limpar uma base de leads bagunçada usando IA | PSFY</title>
+<meta name="description" content="Como uma concessionária passou a receber contatos já padronizados, sem duplicados e validados por IA, sem aumentar trabalho manual.">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Como limpar uma base de leads bagunçada usando IA">
+<meta property="og:description" content="Como uma concessionária passou a receber contatos já padronizados, sem duplicados e validados por IA, sem aumentar trabalho manual.">
+<meta property="og:url" content="https://www.psfy.com.br/artigos/como-limpar-base-de-leads-com-ia.html">
+<meta property="og:image" content="https://www.psfy.com.br/logo.png">
+<meta property="og:site_name" content="PSFY">
+
+<link rel="canonical" href="https://www.psfy.com.br/artigos/como-limpar-base-de-leads-com-ia.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --preto: #000000;
+    --azul: #336140;
+    --azul-hover: #274d33;
+    --branco: #ffffff;
+    --azul-claro: #e4efe7;
+    --verde-claro: #74B872;
+    --cinza: #f2f2f2;
+    --cinza-texto: #6b6b6b;
+    --cinza-borda: #e5e5e5;
+    --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --max-width: 900px;
+    --texto-width: 700px;
+    --radius: 12px;
+    --radius-lg: 20px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font-sans); background: var(--branco); color: var(--preto);
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+  img, svg { display: block; }
+
+  .header {
+    padding: 18px 24px; display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--max-width); margin: 0 auto; gap: 20px;
+  }
+  .logo img { height: 90px; width: auto; display: block; }
+  .voltar { font-size: 14px; color: var(--cinza-texto); display: inline-flex; align-items: center; gap: 6px; }
+  .voltar:hover { color: var(--preto); }
+
+  .artigo { max-width: var(--texto-width); margin: 0 auto; padding: 20px 24px 40px; }
+
+  /* ============ TOPO DO ARTIGO ============ */
+  .eyebrow {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--azul); margin-bottom: 16px;
+  }
+  .italic { font-style: italic; font-weight: 400; color: var(--azul); }
+  h1 {
+    font-size: clamp(30px, 4.4vw, 44px); font-weight: 700; line-height: 1.12;
+    letter-spacing: -0.025em; margin-bottom: 24px;
+  }
+  .meta {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    font-size: 14px; color: var(--cinza-texto);
+    padding-bottom: 28px; border-bottom: 1px solid var(--cinza-borda); margin-bottom: 36px;
+  }
+  .meta .autor { font-weight: 500; color: var(--preto); }
+  .meta .sep { width: 3px; height: 3px; border-radius: 50%; background: var(--cinza-borda); }
+
+  /* ============ CORPO DO TEXTO ============ */
+  .corpo p { font-size: 17px; line-height: 1.75; color: #2a2a2a; margin-bottom: 22px; }
+  .corpo .lead { font-size: 19px; line-height: 1.7; color: var(--preto); }
+  .corpo h2 {
+    font-size: clamp(22px, 2.8vw, 27px); font-weight: 700; letter-spacing: -0.02em;
+    line-height: 1.25; margin: 46px 0 18px;
+  }
+  .corpo ul { margin: 0 0 24px; padding-left: 0; list-style: none; }
+  .corpo ul li {
+    font-size: 17px; line-height: 1.7; color: #2a2a2a; padding-left: 26px;
+    position: relative; margin-bottom: 12px;
+  }
+  .corpo ul li::before {
+    content: ''; position: absolute; left: 6px; top: 12px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--azul);
+  }
+  .corpo strong { font-weight: 700; }
+
+  /* ============ TAGS ============ */
+  .tags { margin-top: 52px; padding-top: 28px; border-top: 1px solid var(--cinza-borda); }
+  .tags-titulo { font-size: 13px; font-weight: 700; color: var(--cinza-texto); margin-bottom: 14px; }
+  .tags-lista { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    padding: 7px 14px; border-radius: 999px; border: 1px solid var(--cinza-borda);
+    background: var(--branco); font-size: 13px; font-weight: 500; color: var(--cinza-texto);
+  }
+
+  /* ============ CTA FINAL ============ */
+  .cta {
+    margin-top: 44px; background: var(--cinza); border: 1px solid var(--cinza-borda);
+    border-radius: var(--radius-lg); padding: 40px 32px; text-align: center;
+  }
+  .cta h2 { font-size: clamp(21px, 2.8vw, 27px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .cta p { font-size: 15px; line-height: 1.65; color: var(--cinza-texto); max-width: 420px; margin: 0 auto 24px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
+    border-radius: 999px; font-weight: 500; font-size: 14px; white-space: nowrap;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+  .btn-primary { background: var(--azul); color: var(--branco); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(51,97,64,0.25); background: var(--azul-hover); }
+
+  .voltar-blog { text-align: center; margin-top: 40px; }
+  .voltar-blog a { font-size: 14px; color: var(--cinza-texto); }
+  .voltar-blog a:hover { color: var(--preto); }
+
+  .footer { padding: 32px 24px; text-align: center; font-size: 13px; color: var(--cinza-texto); }
+
+  @media (max-width: 720px) {
+    .logo img { height: 60px; }
+    .corpo p, .corpo ul li { font-size: 16px; }
+    .corpo .lead { font-size: 17px; }
+    .cta { padding: 32px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="../index.html" class="logo"><img src="../logo.png" alt="PSFY"></a>
+  <a href="../blog.html" class="voltar">← Todos os artigos</a>
+</div>
+
+<article class="artigo">
+
+  <div class="eyebrow">Caso real</div>
+  <h1>Como limpar uma base de leads bagunçada usando <span class="italic">IA</span></h1>
+
+  <div class="meta">
+    <span class="autor">Henrique Sofiati</span>
+    <span class="sep"></span>
+    <span>18 de setembro de 2026</span>
+    <span class="sep"></span>
+    <span>3 min de leitura</span>
+  </div>
+
+  <div class="corpo">
+
+    <p class="lead">Toda loja de carros tem uma lista de contatos que cresceu sem regra. Cada vendedor cadastra do seu jeito, o telefone vem com parênteses ou sem, a cidade vem abreviada, o mesmo cliente aparece três vezes com emails diferentes. Na hora de disparar uma campanha ou medir carteira por vendedor, a base não responde.</p>
+
+    <p>Foi esse o problema que resolvemos em uma concessionária multimarcas. O objetivo não era só arrumar o que já existia, era garantir que todo contato novo já entrasse limpo.</p>
+
+    <h2>Como o cadastro passou a entrar já padronizado</h2>
+
+    <p>O contato entra por um formulário e passa por três etapas antes de virar cadastro válido. Primeiro um código padroniza os dados, colocando telefone, estado, CEP e site num formato único. Depois o sistema procura se aquela pessoa já existe na base, mesmo que o email seja diferente, comparando telefone, nome e endereço. Por último uma IA com acesso à internet confere se a empresa informada existe de verdade, encontra o site oficial e aponta divergências, como uma cidade que não bate com o CEP.</p>
+
+    <p>Quando está tudo certo, o contato é aprovado sozinho e cai na categoria correta. Quando existe dúvida, ele fica parado com uma etiqueta e um resumo do motivo, para alguém revisar em poucos segundos.</p>
+
+    <h2>As ferramentas usadas na automação</h2>
+
+    <ul>
+      <li>Pipefy para a base de contatos, as etapas e o cadastro de empresas</li>
+      <li>Zapier para orquestrar o fluxo entre as etapas</li>
+      <li>API do Claude com busca na web para a validação dos dados</li>
+      <li>Código em JavaScript rodando dentro do Zapier para padronização e detecção de duplicados</li>
+      <li>API GraphQL do Pipefy para leitura e gravação nos cadastros</li>
+    </ul>
+
+    <h2>O que ainda vamos melhorar</h2>
+
+    <p>O maior ponto de ajuste é a régua de confiança. Empresa pequena com pouca presença na internet acaba indo para revisão mesmo estando correta, e isso só calibra com volume real. Também queremos reduzir o custo por contato usando um modelo mais leve nas checagens simples, e evoluir a detecção de duplicados para sugerir a união dos cadastros, e não só apontar a suspeita.</p>
+
+    <h2>Por que base de leads duplicados custa venda</h2>
+
+    <p>Base suja não é problema de organização, é problema de venda. Campanha que não chega, vendedor ligando para cliente que já é de outro, relatório que ninguém confia. Automatizar a entrada custa muito menos do que limpar a base uma vez por ano.</p>
+
+  </div>
+
+  <div class="tags">
+    <div class="tags-titulo">Temas deste artigo</div>
+    <div class="tags-lista">
+      <span class="tag">Qualidade de dados</span>
+      <span class="tag">IA aplicada</span>
+      <span class="tag">Pipefy</span>
+      <span class="tag">Automação comercial</span>
+    </div>
+  </div>
+
+  <div class="cta">
+    <h2>Sua base também está <span class="italic">assim</span>?</h2>
+    <p>A gente entende como seu cadastro funciona hoje e mostra o que dá pra automatizar na entrada. Conversa de 30 minutos, sem compromisso.</p>
+    <a href="../alinhamentos.html" class="btn btn-primary">Agendar conversa</a>
+  </div>
+
+  <div class="voltar-blog">
+    <a href="../blog.html">← Ver todos os artigos</a>
+  </div>
+
+</article>
+
+<footer class="footer">PSFY — Processos Simples</footer>
+
+</body>
+</html>
