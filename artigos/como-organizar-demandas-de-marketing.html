@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como organizar as demandas do marketing em um fluxo só | PSFY</title>
+<meta name="description" content="Pedido de arte no WhatsApp, embalagem por email, urgente na mesa do designer. Como estruturar tudo num fluxo único, com aprovação e indicador.">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Como organizar as demandas do marketing em um fluxo só">
+<meta property="og:description" content="Pedido de arte no WhatsApp, embalagem por email, urgente na mesa do designer. Como estruturar tudo num fluxo único, com aprovação e indicador.">
+<meta property="og:url" content="https://www.psfy.com.br/artigos/como-organizar-demandas-de-marketing.html">
+<meta property="og:image" content="https://www.psfy.com.br/logo.png">
+<meta property="og:site_name" content="PSFY">
+
+<link rel="canonical" href="https://www.psfy.com.br/artigos/como-organizar-demandas-de-marketing.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --preto: #000000;
+    --azul: #336140;
+    --azul-hover: #274d33;
+    --branco: #ffffff;
+    --azul-claro: #e4efe7;
+    --verde-claro: #74B872;
+    --cinza: #f2f2f2;
+    --cinza-texto: #6b6b6b;
+    --cinza-borda: #e5e5e5;
+    --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --max-width: 900px;
+    --texto-width: 700px;
+    --radius: 12px;
+    --radius-lg: 20px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font-sans); background: var(--branco); color: var(--preto);
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+  img, svg { display: block; }
+
+  .header {
+    padding: 18px 24px; display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--max-width); margin: 0 auto; gap: 20px;
+  }
+  .logo img { height: 90px; width: auto; display: block; }
+  .voltar { font-size: 14px; color: var(--cinza-texto); display: inline-flex; align-items: center; gap: 6px; }
+  .voltar:hover { color: var(--preto); }
+
+  .artigo { max-width: var(--texto-width); margin: 0 auto; padding: 20px 24px 40px; }
+
+  /* ============ TOPO DO ARTIGO ============ */
+  .eyebrow {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--azul); margin-bottom: 16px;
+  }
+  .italic { font-style: italic; font-weight: 400; color: var(--azul); }
+  h1 {
+    font-size: clamp(30px, 4.4vw, 44px); font-weight: 700; line-height: 1.12;
+    letter-spacing: -0.025em; margin-bottom: 24px;
+  }
+  .meta {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    font-size: 14px; color: var(--cinza-texto);
+    padding-bottom: 28px; border-bottom: 1px solid var(--cinza-borda); margin-bottom: 36px;
+  }
+  .meta .autor { font-weight: 500; color: var(--preto); }
+  .meta .sep { width: 3px; height: 3px; border-radius: 50%; background: var(--cinza-borda); }
+
+  /* ============ CORPO DO TEXTO ============ */
+  .corpo p { font-size: 17px; line-height: 1.75; color: #2a2a2a; margin-bottom: 22px; }
+  .corpo .lead { font-size: 19px; line-height: 1.7; color: var(--preto); }
+  .corpo h2 {
+    font-size: clamp(22px, 2.8vw, 27px); font-weight: 700; letter-spacing: -0.02em;
+    line-height: 1.25; margin: 46px 0 18px;
+  }
+  .corpo ul { margin: 0 0 24px; padding-left: 0; list-style: none; }
+  .corpo ul li {
+    font-size: 17px; line-height: 1.7; color: #2a2a2a; padding-left: 26px;
+    position: relative; margin-bottom: 12px;
+  }
+  .corpo ul li::before {
+    content: ''; position: absolute; left: 6px; top: 12px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--azul);
+  }
+  .corpo strong { font-weight: 700; }
+
+  /* ============ TAGS ============ */
+  .tags { margin-top: 52px; padding-top: 28px; border-top: 1px solid var(--cinza-borda); }
+  .tags-titulo { font-size: 13px; font-weight: 700; color: var(--cinza-texto); margin-bottom: 14px; }
+  .tags-lista { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    padding: 7px 14px; border-radius: 999px; border: 1px solid var(--cinza-borda);
+    background: var(--branco); font-size: 13px; font-weight: 500; color: var(--cinza-texto);
+  }
+
+  /* ============ CTA FINAL ============ */
+  .cta {
+    margin-top: 44px; background: var(--cinza); border: 1px solid var(--cinza-borda);
+    border-radius: var(--radius-lg); padding: 40px 32px; text-align: center;
+  }
+  .cta h2 { font-size: clamp(21px, 2.8vw, 27px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .cta p { font-size: 15px; line-height: 1.65; color: var(--cinza-texto); max-width: 440px; margin: 0 auto 24px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
+    border-radius: 999px; font-weight: 500; font-size: 14px; white-space: nowrap;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+  .btn-primary { background: var(--azul); color: var(--branco); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(51,97,64,0.25); background: var(--azul-hover); }
+
+  .voltar-blog { text-align: center; margin-top: 40px; }
+  .voltar-blog a { font-size: 14px; color: var(--cinza-texto); }
+  .voltar-blog a:hover { color: var(--preto); }
+
+  .footer { padding: 32px 24px; text-align: center; font-size: 13px; color: var(--cinza-texto); }
+
+  @media (max-width: 720px) {
+    .logo img { height: 60px; }
+    .corpo p, .corpo ul li { font-size: 16px; }
+    .corpo .lead { font-size: 17px; }
+    .cta { padding: 32px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="../index.html" class="logo"><img src="../logo.png" alt="PSFY"></a>
+  <a href="../blog.html" class="voltar">← Todos os artigos</a>
+</div>
+
+<article class="artigo">
+
+  <div class="eyebrow">Processos</div>
+  <h1>Como organizar as demandas do marketing em um <span class="italic">fluxo só</span></h1>
+
+  <div class="meta">
+    <span class="autor">Henrique Sofiati</span>
+    <span class="sep"></span>
+    <span>18 de setembro de 2026</span>
+    <span class="sep"></span>
+    <span>4 min de leitura</span>
+  </div>
+
+  <div class="corpo">
+
+    <p class="lead">A cena é quase sempre a mesma. O pedido de arte chega no WhatsApp, o de embalagem chega por email, o de post chega numa conversa rápida de corredor e o urgente chega direto na mesa do designer. Ninguém sabe quantas demandas estão abertas ao mesmo tempo, quem está com cada uma e qual delas vence primeiro. O gestor normalmente descobre que algo atrasou quando o prazo já passou.</p>
+
+    <p>Isso não é falta de gente nem falta de esforço. É falta de estrutura.</p>
+
+    <h2>O problema começa na porta de entrada</h2>
+
+    <p>Quando cada pedido entra por um canal diferente, cada pedido chega com uma informação diferente. Um vem com o texto pronto e sem prazo. Outro vem com prazo e sem o tamanho da peça. Outro vem só com "preciso de uma arte pra sexta".</p>
+
+    <p>O designer gasta então a primeira parte do trabalho perguntando aquilo que deveria ter vindo escrito desde o começo. Esse vai e volta é o maior ladrão de tempo de um time de marketing e ele é invisível, porque ninguém cronometra conversa de WhatsApp.</p>
+
+    <h2>Uma porta só, com formulário que se adapta</h2>
+
+    <p>O primeiro passo é ter um canal único de entrada. Todo pedido vira um card a partir de um formulário, sem exceção, inclusive os pedidos do diretor.</p>
+
+    <p>E esse formulário precisa ser condicional, ou seja, ele muda conforme o tipo de demanda escolhido. Cada tipo pede as informações que só ele precisa, e ninguém responde pergunta que não tem nada a ver com o pedido dele.</p>
+
+    <p>Campo obrigatório aqui vale mais do que treinamento. Ninguém esquece de informar o prazo quando o sistema não deixa enviar sem prazo.</p>
+
+    <h2>Fases que refletem a vida real da demanda</h2>
+
+    <p>Depois da entrada vem a parte que a maioria erra. As fases do fluxo precisam representar o que realmente acontece com a demanda, e não um desenho bonito de processo ideal.</p>
+
+    <p>O número de fases varia bastante de empresa para empresa e isso não é problema nenhum. Fase demais só é ruim quando ela não muda nada na vida de ninguém.</p>
+
+    <p>O ganho é que qualquer pessoa olha o quadro e sabe, em três segundos, o que está parado esperando o solicitante, o que está na mão do time e o que já foi entregue.</p>
+
+    <h2>Aprovação registrada, não perdida no email</h2>
+
+    <p>Demanda de marketing quase nunca tem um aprovador só. Tem quem pediu, tem quem coordena a área e tem quem valida a peça final antes de ir para a rua.</p>
+
+    <p>Quando isso vive no email, a aprovação vira rastro solto e ninguém consegue provar quem liberou o quê. Dentro do fluxo, cada camada de aprovação tem responsável e registro. O card só anda quando alguém aprova, e fica gravado quem aprovou e quando.</p>
+
+    <p>Junto disso entram os avisos automáticos. Quem pediu é informado nas viradas importantes da demanda, sem precisar perguntar. E quem produz recebe o briefing pronto, sem ninguém copiar e colar nada.</p>
+
+    <h2>A IA entra para ler, não para inventar</h2>
+
+    <p>Esse é o ponto onde a maioria dos projetos exagera. A tentação é colocar a IA criando campanha, sugerindo conceito e escrevendo texto final. Na prática o que gera resultado é bem mais discreto.</p>
+
+    <p>Dentro de um fluxo de demandas, a IA funciona bem quando lê o que já está escrito e devolve isso organizado. Um briefing espalhado em vários campos vira um resumo curto. Um texto ganha uma revisão antes de seguir para aprovação.</p>
+
+    <p>A regra é simples. O agente só lê e relata o que existe. Ele não inventa informação que não estava no pedido e não cria etapa que ninguém pediu. IA dentro de processo serve para tirar trabalho chato do caminho, não para adivinhar a estratégia da empresa.</p>
+
+    <h2>O que não é medido volta a bagunçar</h2>
+
+    <p>Fluxo organizado sem indicador dura uns dois meses e depois volta tudo para o WhatsApp.</p>
+
+    <p>Por isso o fluxo precisa alimentar um painel. E o número que importa não é quantidade de card, é tempo. Tempo em cada fase, contado em horas úteis e não em dias corridos. Sem esse cuidado, uma demanda aberta na sexta à tarde aparece como três dias de atraso na segunda de manhã, o que não é verdade e destrói a confiança no painel.</p>
+
+    <p>Com isso na mesa dá para responder coisas que antes eram só sensação. Qual tipo de demanda mais atrasa. Qual etapa segura o fluxo, se é a produção ou a aprovação de quem pediu. Como está a carga de trabalho do time.</p>
+
+    <p>Na maioria das operações que a gente acompanha, o gargalo não está no time criativo. Está na espera por aprovação. Isso só fica visível quando alguém mede.</p>
+
+    <h2>As ferramentas que a gente usa nesse tipo de projeto</h2>
+
+    <ul>
+      <li>Um gerenciador de processo para as fases, os formulários e os cards</li>
+      <li>Make como camada de integração entre os sistemas envolvidos</li>
+      <li>Modelos de IA para leitura e organização do que já foi escrito</li>
+      <li>Um painel para acompanhar tempo por fase e carga de trabalho</li>
+    </ul>
+
+    <p>A escolha muda conforme o que a empresa já usa. O que não muda é a ordem, primeiro se entende o processo, depois se escolhe a ferramenta.</p>
+
+    <h2>O resultado</h2>
+
+    <p>Um fluxo de demandas de marketing bem montado não deixa o time mais rápido por mágica. Ele faz três coisas bem concretas. Tira o retrabalho de briefing incompleto, torna visível onde a demanda está parada e transforma discussão de opinião em discussão de dado.</p>
+
+    <p>O time para de responder "estou correndo atrás" e passa a responder "tenho onze demandas abertas, quatro esperando sua aprovação desde terça".</p>
+
+  </div>
+
+  <div class="tags">
+    <div class="tags-titulo">Temas deste artigo</div>
+    <div class="tags-lista">
+      <span class="tag">Processos</span>
+      <span class="tag">Gestão de demandas</span>
+      <span class="tag">IA aplicada</span>
+      <span class="tag">Indicadores</span>
+    </div>
+  </div>
+
+  <div class="cta">
+    <h2>Seu marketing recebe pedido por <span class="italic">cinco canais</span>?</h2>
+    <p>A gente entende como funciona hoje, desenha o fluxo com as ferramentas certas e automatiza o trabalho repetitivo que está na mão das pessoas. Conversa de 30 minutos, sem compromisso.</p>
+    <a href="../alinhamentos.html" class="btn btn-primary">Agendar conversa</a>
+  </div>
+
+  <div class="voltar-blog">
+    <a href="../blog.html">← Ver todos os artigos</a>
+  </div>
+
+</article>
+
+<footer class="footer">PSFY — Processos Simples</footer>
+
+</body>
+</html>
