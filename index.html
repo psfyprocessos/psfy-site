@@ -70,12 +70,15 @@
     backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--cinza-borda);
   }
+  /* Grade de 3 colunas iguais nas pontas: o menu fica no centro exato da página,
+     não importa a largura do logo ou dos botões da direita */
   .header-inner {
-    max-width: var(--max-width); margin: 0 auto; padding: 18px 24px;
-    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    max-width: var(--max-width); margin: 0 auto; padding: 16px 24px;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px;
   }
-  .logo img { height: 90px; width: auto; display: block; }
-  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+  .logo { justify-self: start; }
+  .logo img { height: 68px; width: auto; display: block; }
+  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; justify-self: center; }
   .nav-links a { font-size: 14px; opacity: 0.75; transition: opacity 0.2s; }
   .nav-links a:hover { opacity: 1; }
   .btn {
@@ -87,7 +90,12 @@
   .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(51,97,64,0.25); background: var(--azul-hover); }
   .btn-secondary { background: var(--branco); color: var(--preto); border: 1px solid var(--cinza-borda); }
   .btn-secondary:hover { background: var(--cinza); }
-  .header-acoes { display: flex; align-items: center; gap: 12px; }
+  .header-acoes { display: flex; align-items: center; gap: 12px; justify-self: end; }
+  /* Sem espaço pro menu centralizado, ele some (igual já acontecia no celular) */
+  @media (max-width: 1023px) {
+    .nav-links { display: none; }
+    .header-inner { grid-template-columns: 1fr auto; }
+  }
 
   /* ============ TROCA DE IDIOMA (bandeirinha) ============ */
   .lang-switch {
@@ -102,8 +110,8 @@
   .lang-switch svg { width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); flex-shrink: 0; }
 
   @media (max-width: 720px) {
-    .nav-links { display: none; }
-    .header-inner { gap: 12px; }
+    .header-inner { gap: 12px; padding: 14px 20px; }
+    .logo img { height: 48px; }
     .header-acoes { gap: 8px; }
     .lang-switch { padding: 8px 9px; }
     .lang-switch-texto { display: none; }
@@ -338,7 +346,7 @@
 
 <header class="header">
   <div class="header-inner">
-    <a href="index.html" class="logo"><img src="logo.png" alt="PSFY"></a>
+    <a href="index.html" class="logo"><img src="logo-site.png" alt="PSFY"></a>
     <ul class="nav-links">
       <li><a href="#diferenciais">Como funciona</a></li>
       <li><a href="#provas">Provas reais</a></li>
