@@ -4,6 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PSFY | Consultoria de eficiência criativa</title>
+<meta name="description" content="Consultoria de eficiência criativa. Entendemos o seu processo e conectamos as melhores ferramentas a ele pra criar eficiência.">
+<link rel="icon" type="image/png" href="favicon.png">
+
+<!-- Versões por idioma (ajuda o Google a mostrar a página certa pra cada público) -->
+<link rel="alternate" hreflang="pt-BR" href="https://www.psfy.com.br/">
+<link rel="alternate" hreflang="en" href="https://www.psfy.com.br/en/">
+<link rel="alternate" hreflang="x-default" href="https://www.psfy.com.br/">
+
+<!-- Prévia do link no WhatsApp e LinkedIn -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="PSFY | Consultoria de eficiência criativa">
+<meta property="og:description" content="Entendemos o seu processo e conectamos as melhores ferramentas a ele pra criar eficiência.">
+<meta property="og:url" content="https://www.psfy.com.br/">
+<meta property="og:image" content="https://www.psfy.com.br/logo.png">
+<meta property="og:site_name" content="PSFY">
+<meta property="og:locale" content="pt_BR">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,8 +87,26 @@
   .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(51,97,64,0.25); background: var(--azul-hover); }
   .btn-secondary { background: var(--branco); color: var(--preto); border: 1px solid var(--cinza-borda); }
   .btn-secondary:hover { background: var(--cinza); }
+  .header-acoes { display: flex; align-items: center; gap: 12px; }
+
+  /* ============ TROCA DE IDIOMA (bandeirinha) ============ */
+  .lang-switch {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 7px 12px 7px 9px; border-radius: 999px;
+    border: 1px solid var(--cinza-borda); background: var(--branco);
+    font-size: 13px; font-weight: 500; line-height: 1; color: var(--preto);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .lang-switch:hover { border-color: var(--azul); transform: translateY(-1px); }
+  .lang-switch:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
+  .lang-switch svg { width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); flex-shrink: 0; }
+
   @media (max-width: 720px) {
     .nav-links { display: none; }
+    .header-inner { gap: 12px; }
+    .header-acoes { gap: 8px; }
+    .lang-switch { padding: 8px 9px; }
+    .lang-switch-texto { display: none; }
   }
 
   /* ============ TOGGLE (componente usado nos 3 blocos) ============ */
@@ -222,7 +256,13 @@
       <li><a href="#">Segurança e compliance</a></li>
       <li><a href="blog.html">Blog</a></li>
     </ul>
-    <a href="#comecar" class="btn btn-primary">Falar com a PSFY</a>
+    <div class="header-acoes">
+      <a href="en/index.html" class="lang-switch" hreflang="en" lang="en" title="English version" aria-label="English version">
+        <svg viewBox="0 0 30 21" aria-hidden="true" focusable="false"><rect width="30" height="21" fill="#fff"/><path fill="#B22234" d="M0 0h30v1.62H0zM0 3.23h30v1.62H0zM0 6.46h30v1.62H0zM0 9.69h30v1.62H0zM0 12.92h30v1.62H0zM0 16.15h30v1.62H0zM0 19.38h30v1.62H0z"/><rect width="13" height="11.31" fill="#3C3B6E"/><g fill="#fff"><circle cx="2" cy="2" r=".55"/><circle cx="5" cy="2" r=".55"/><circle cx="8" cy="2" r=".55"/><circle cx="11" cy="2" r=".55"/><circle cx="3.5" cy="4.4" r=".55"/><circle cx="6.5" cy="4.4" r=".55"/><circle cx="9.5" cy="4.4" r=".55"/><circle cx="2" cy="6.8" r=".55"/><circle cx="5" cy="6.8" r=".55"/><circle cx="8" cy="6.8" r=".55"/><circle cx="11" cy="6.8" r=".55"/><circle cx="3.5" cy="9.2" r=".55"/><circle cx="6.5" cy="9.2" r=".55"/><circle cx="9.5" cy="9.2" r=".55"/></g></svg>
+        <span class="lang-switch-texto">EN</span>
+      </a>
+      <a href="#comecar" class="btn btn-primary">Falar com a PSFY</a>
+    </div>
   </div>
 </header>
 
@@ -278,23 +318,16 @@
   </div>
   <div class="carrossel-wrapper">
     <div class="carrossel-track">
+      <!-- Cada logo aparece UMA vez aqui. O script no fim da página repete a lista pro loop. -->
       <div class="cliente-logo"><img src="logos/diageo.png" alt="Diageo"></div>
       <div class="cliente-logo"><img src="logos/wrental.png" alt="W Rental"></div>
-      <div class="cliente-logo logo-fundo-escuro"><img src="logos/forton.png" alt="Forton"></div>
+      <div class="cliente-logo"><img src="logos/forton.png" alt="Forton"></div>
       <div class="cliente-logo"><img src="logos/playrec.png" alt="Playrec"></div>
-      <div class="cliente-logo logo-fundo-escuro"><img src="logos/okiar.png" alt="Okiar"></div>
+      <div class="cliente-logo"><img src="logos/okiar.png" alt="Okiar"></div>
       <div class="cliente-logo"><img src="logos/grs.png" alt="GRS Racing"></div>
       <div class="cliente-logo"><img src="logos/labhoro.png" alt="Labhoro"></div>
       <div class="cliente-logo"><img src="logos/amato.png" alt="Amato"></div>
-      <div class="cliente-logo"><img src="logos/diageo.png" alt="Diageo"></div>
-      <div class="cliente-logo"><img src="logos/wrental.png" alt="W Rental"></div>
-      <div class="cliente-logo logo-fundo-escuro"><img src="logos/forton.png" alt="Forton"></div>
-      <div class="cliente-logo"><img src="logos/playrec.png" alt="Playrec"></div>
-      <div class="cliente-logo logo-fundo-escuro"><img src="logos/okiar.png" alt="Okiar"></div>
-      <div class="cliente-logo"><img src="logos/grs.png" alt="GRS Racing"></div>
-      <div class="cliente-logo"><img src="logos/labhoro.png" alt="Labhoro"></div>
-      <div class="cliente-logo"><img src="logos/amato.png" alt="Amato"></div>
-      <div class="cliente-logo"><img src="logos/amato.png" alt="ornare"></div>
+      <div class="cliente-logo"><img src="logos/ornare.png" alt="Ornare"></div>
     </div>
   </div>
 </section>
@@ -523,6 +556,37 @@
       moveHighlight(group.querySelector('.toggle-btn.active'));
     });
   });
+})();
+
+// ===== CARROSSEL DE CLIENTES =====
+// A lista de logos fica uma vez só no HTML. Aqui ela é repetida até ficar mais larga
+// que telas grandes e depois duplicada inteira, porque a animação anda metade da faixa (-50%).
+// Assim o loop não dá pulo e não aparece buraco no fim em monitores largos.
+(function () {
+  var track = document.querySelector('.carrossel-track');
+  if (!track) return;
+  var originais = Array.prototype.slice.call(track.querySelectorAll('.cliente-logo'));
+  if (!originais.length) return;
+
+  function copiar(el) {
+    var copia = el.cloneNode(true);
+    copia.setAttribute('aria-hidden', 'true');
+    var img = copia.querySelector('img');
+    if (img) img.alt = '';
+    track.appendChild(copia);
+  }
+
+  var LARGURA_MINIMA = 2600; // cobre monitores de até 2560px
+  var voltas = 0;
+  while (track.scrollWidth < LARGURA_MINIMA && voltas < 10) {
+    originais.forEach(copiar);
+    voltas++;
+  }
+  var larguraMetade = track.scrollWidth;
+  Array.prototype.slice.call(track.querySelectorAll('.cliente-logo')).forEach(copiar);
+
+  // mantém a mesma velocidade de antes (cerca de 51px por segundo)
+  track.style.animationDuration = Math.round(larguraMetade / 51) + 's';
 })();
 </script>
 

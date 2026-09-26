@@ -12,6 +12,12 @@
 <meta property="og:url" content="https://www.psfy.com.br/blog.html">
 <meta property="og:image" content="https://www.psfy.com.br/logo.png">
 <meta property="og:site_name" content="PSFY">
+<meta property="og:locale" content="pt_BR">
+
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="alternate" hreflang="pt-BR" href="https://www.psfy.com.br/blog.html">
+<link rel="alternate" hreflang="en" href="https://www.psfy.com.br/en/blog.html">
+<link rel="alternate" hreflang="x-default" href="https://www.psfy.com.br/blog.html">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,6 +54,19 @@
   .logo img { height: 90px; width: auto; display: block; }
   .voltar { font-size: 14px; color: var(--cinza-texto); display: inline-flex; align-items: center; gap: 6px; }
   .voltar:hover { color: var(--preto); }
+  .header-acoes { display: flex; align-items: center; gap: 14px; }
+
+  /* ============ TROCA DE IDIOMA (bandeirinha) ============ */
+  .lang-switch {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 7px 12px 7px 9px; border-radius: 999px;
+    border: 1px solid var(--cinza-borda); background: var(--branco);
+    font-size: 13px; font-weight: 500; line-height: 1; color: var(--preto);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .lang-switch:hover { border-color: var(--azul); transform: translateY(-1px); }
+  .lang-switch:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
+  .lang-switch svg { width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); flex-shrink: 0; }
 
   .wrap { max-width: var(--max-width); margin: 0 auto; padding: 12px 24px 90px; }
 
@@ -131,7 +150,13 @@
 
 <div class="header">
   <a href="index.html" class="logo"><img src="logo.png" alt="PSFY"></a>
-  <a href="index.html" class="voltar">← Voltar pro site</a>
+  <div class="header-acoes">
+    <a href="index.html" class="voltar">← Voltar pro site</a>
+    <a href="en/blog.html" class="lang-switch" hreflang="en" lang="en" title="English version" aria-label="English version">
+      <svg viewBox="0 0 30 21" aria-hidden="true" focusable="false"><rect width="30" height="21" fill="#fff"/><path fill="#B22234" d="M0 0h30v1.62H0zM0 3.23h30v1.62H0zM0 6.46h30v1.62H0zM0 9.69h30v1.62H0zM0 12.92h30v1.62H0zM0 16.15h30v1.62H0zM0 19.38h30v1.62H0z"/><rect width="13" height="11.31" fill="#3C3B6E"/><g fill="#fff"><circle cx="2" cy="2" r=".55"/><circle cx="5" cy="2" r=".55"/><circle cx="8" cy="2" r=".55"/><circle cx="11" cy="2" r=".55"/><circle cx="3.5" cy="4.4" r=".55"/><circle cx="6.5" cy="4.4" r=".55"/><circle cx="9.5" cy="4.4" r=".55"/><circle cx="2" cy="6.8" r=".55"/><circle cx="5" cy="6.8" r=".55"/><circle cx="8" cy="6.8" r=".55"/><circle cx="11" cy="6.8" r=".55"/><circle cx="3.5" cy="9.2" r=".55"/><circle cx="6.5" cy="9.2" r=".55"/><circle cx="9.5" cy="9.2" r=".55"/></g></svg>
+      <span class="lang-switch-texto">EN</span>
+    </a>
+  </div>
 </div>
 
 <div class="wrap">
