@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PSFY | Book a call</title>
+<meta name="description" content="Book a 30-minute call with PSFY. Three quick steps and we confirm the time on WhatsApp.">
 <link rel="icon" type="image/png" href="../favicon.png">
 <link rel="alternate" hreflang="pt-BR" href="https://www.psfy.com.br/alinhamentos.html">
 <link rel="alternate" hreflang="en" href="https://www.psfy.com.br/en/alinhamentos.html">
@@ -24,8 +25,11 @@
     --cinza: #f2f2f2;
     --cinza-texto: #6b6b6b;
     --cinza-borda: #e5e5e5;
+    --vermelho: #c0392b;
     --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --max-width: 900px;
+    --max-width-form: 680px;
+    --radius: 12px;
     --radius-lg: 20px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,6 +39,7 @@
   }
   a { text-decoration: none; color: inherit; }
   button { font-family: inherit; cursor: pointer; border: none; background: none; }
+  [hidden] { display: none !important; }
 
   .header {
     padding: 18px 24px; display: flex; align-items: center; justify-content: space-between;
@@ -56,13 +61,8 @@
   .lang-switch:hover { border-color: var(--azul); transform: translateY(-1px); }
   .lang-switch:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
   .lang-switch svg { width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); flex-shrink: 0; display: block; }
-
-  @media (max-width: 720px) {
-    .logo img { height: 60px; }
-  }
-
   .wrap { max-width: var(--max-width); margin: 0 auto; padding: 12px 24px 90px; }
-  .intro { text-align: center; max-width: 560px; margin: 0 auto 44px; }
+  .intro { text-align: center; max-width: 580px; margin: 0 auto 36px; }
   .eyebrow {
     font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
     color: var(--azul); margin-bottom: 14px;
@@ -74,31 +74,105 @@
   }
   .intro p { font-size: 16px; line-height: 1.6; color: var(--cinza-texto); }
 
-  /* ============ SELETOR DE PAUTA (múltipla escolha) ============ */
-  .pauta { margin-bottom: 40px; }
-  .pauta-titulo { font-size: 14px; font-weight: 700; text-align: center; margin-bottom: 16px; }
-  .pauta-sub { font-size: 13px; color: var(--cinza-texto); text-align: center; margin-bottom: 20px; margin-top: -10px; }
-  .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  /* Atalho rápido pelo WhatsApp */
+  .atalho {
+    display: inline-flex; align-items: center; gap: 10px; margin-top: 22px;
+    padding: 10px 18px 10px 14px; border-radius: 999px;
+    border: 1px solid var(--azul); color: var(--azul); background: var(--branco);
+    font-size: 14px; font-weight: 500; transition: background 0.2s, color 0.2s;
+  }
+  .atalho:hover { background: var(--azul); color: var(--branco); }
+  .atalho svg { width: 18px; height: 18px; flex-shrink: 0; display: block; }
+  .atalho-rotulo { display: block; font-size: 13px; color: var(--cinza-texto); margin-top: 22px; }
+  .atalho-rotulo + .atalho { margin-top: 8px; }
+
+  /* ============ INDICADOR DE PASSOS ============ */
+  .steps { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0 auto 28px; flex-wrap: wrap; }
+  .step {
+    display: flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px;
+    background: var(--cinza); font-size: 14px; color: var(--cinza-texto); transition: background 0.3s, color 0.3s;
+  }
+  .step.ativo { background: var(--azul); color: var(--branco); }
+  .step.concluido { background: var(--azul-claro); color: var(--azul); }
+  .step-num {
+    display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px;
+    border-radius: 50%; background: rgba(0,0,0,0.06); font-weight: 700; font-size: 12px;
+  }
+  .step.ativo .step-num { background: rgba(255,255,255,0.25); }
+  .step-conector { width: 24px; height: 1px; background: var(--cinza-borda); }
+
+  /* ============ PASSOS DO FORMULÁRIO ============ */
+  .form { max-width: var(--max-width-form); margin: 0 auto; }
+  .passo {
+    border: 1px solid var(--cinza-borda); border-radius: var(--radius-lg); padding: 36px;
+    background: var(--branco); animation: aparecer 0.35s ease;
+  }
+  @keyframes aparecer { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .passo-titulo { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; outline: none; }
+  .passo-sub { font-size: 15px; color: var(--cinza-texto); margin-bottom: 26px; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
   .chip {
     padding: 10px 18px; border-radius: 999px; border: 1px solid var(--cinza-borda);
     background: var(--branco); font-size: 14px; font-weight: 500; color: var(--preto);
     transition: background 0.2s, border-color 0.2s, color 0.2s;
   }
   .chip:hover { border-color: var(--azul); }
-  .chip.active { background: var(--azul); border-color: var(--azul); color: var(--branco); }
+  .chip[aria-pressed="true"] { background: var(--azul); border-color: var(--azul); color: var(--branco); }
   .chip:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
 
-  /* ============ CALENDLY ============ */
-  .calendly-shell {
-    border: 1px solid var(--cinza-borda); border-radius: var(--radius-lg); overflow: hidden;
-    background: var(--cinza);
+  .form-grupo { margin-bottom: 24px; }
+  .form-label { display: block; font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+  .opcional { font-weight: 400; color: var(--cinza-texto); font-size: 13px; }
+  .obrigatorio { color: var(--azul); font-weight: 700; margin-left: 2px; }
+  .form-input, .form-textarea {
+    width: 100%; padding: 12px 16px; border: 1px solid var(--cinza-borda); border-radius: var(--radius);
+    font-family: inherit; font-size: 15px; color: var(--preto); background: var(--branco);
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
-  #calendly-embed { min-width: 320px; height: 700px; }
-  .calendly-fallback {
-    padding: 60px 24px; text-align: center; color: var(--cinza-texto); font-size: 14px;
+  .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--azul); box-shadow: 0 0 0 3px rgba(51,97,64,0.12); }
+  .form-textarea { resize: vertical; min-height: 96px; }
+
+  .opcoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+  .opcao { position: relative; }
+  .opcao input { position: absolute; opacity: 0; pointer-events: none; }
+  .opcao label {
+    display: block; padding: 13px 16px; border: 1.5px solid var(--cinza-borda); border-radius: var(--radius);
+    cursor: pointer; font-size: 14px; background: var(--branco); transition: border-color 0.2s, background 0.2s, color 0.2s;
   }
+  .opcao label:hover { border-color: var(--azul); }
+  .opcao input:checked + label { border-color: var(--azul); background: var(--azul-claro); color: var(--azul); font-weight: 500; }
+  .opcao input:focus-visible + label { outline: 2px solid var(--azul); outline-offset: 2px; }
+
+  .fuso { font-size: 13px; color: var(--cinza-texto); margin-top: -6px; margin-bottom: 8px; }
+  .erro-msg { color: var(--vermelho); font-size: 13px; margin-top: 8px; }
+
+  .passo-acoes { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+  .passo-acoes .btn { margin-left: auto; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 24px;
+    border-radius: 999px; font-weight: 500; font-size: 15px;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+  .btn-primary { background: var(--azul); color: var(--branco); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(51,97,64,0.25); background: var(--azul-hover); }
+  .btn-voltar { font-size: 14px; color: var(--cinza-texto); padding: 10px 4px; }
+  .btn-voltar:hover { color: var(--preto); }
+  .aviso { font-size: 13px; color: var(--cinza-texto); margin-top: 18px; }
+  .enviado { margin-top: 18px; padding: 14px 16px; border-radius: var(--radius); background: var(--azul-claro); font-size: 14px; color: var(--azul); }
+  .enviado a { text-decoration: underline; font-weight: 500; }
 
   .footer { padding: 32px 24px; text-align: center; font-size: 13px; color: var(--cinza-texto); }
+
+  @media (max-width: 720px) {
+    .logo img { height: 60px; }
+  }
+  @media (max-width: 560px) {
+    .passo { padding: 26px 20px; }
+    .step { font-size: 13px; padding: 6px 11px; }
+    .step-conector { width: 12px; }
+    .passo-acoes .btn { width: 100%; }
+  }
 </style>
 </head>
 <body>
@@ -118,77 +192,207 @@
   <div class="intro">
     <div class="eyebrow">Book a call</div>
     <h1>Let's get to know your <span class="italic">process</span></h1>
-    <p>Book 30 minutes with us. No commitment, just a conversation to understand where your process gets stuck and whether it makes sense to move forward together.</p>
+    <p>A 30-minute call, no commitment, to understand where your process gets stuck and whether it makes sense to work together. It takes three quick steps and we confirm the time on WhatsApp.</p>
+    <span class="atalho-rotulo">In a hurry?</span>
+    <a href="https://wa.me/5541995041300?text=Hi!%20I%27m%20reaching%20out%20through%20your%20website%20and%20would%20like%20to%20talk%20to%20an%20agent." class="atalho" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Talk to one of our agents within 2 hours</a>
   </div>
 
-  <div class="pauta">
-    <div class="pauta-titulo">What would you like to discuss?</div>
-    <div class="pauta-sub">Pick all that apply. It helps us come prepared.</div>
-    <div class="chips" role="group" aria-label="Conversation topics">
-      <button class="chip" data-topic="Pipefy" type="button">Pipefy</button>
-      <button class="chip" data-topic="Integrations" type="button">Integrations</button>
-      <button class="chip" data-topic="Other tools" type="button">Other tools</button>
-      <button class="chip" data-topic="Applied AI" type="button">Applied AI</button>
-      <button class="chip" data-topic="Pricing and scope" type="button">Pricing and scope</button>
-    </div>
+  <div class="steps" aria-hidden="true">
+    <div class="step ativo" data-step="1"><span class="step-num">1</span><span>Topics</span></div>
+    <div class="step-conector"></div>
+    <div class="step" data-step="2"><span class="step-num">2</span><span>Time</span></div>
+    <div class="step-conector"></div>
+    <div class="step" data-step="3"><span class="step-num">3</span><span>Contact</span></div>
   </div>
 
-  <div class="calendly-shell">
-    <div id="calendly-embed">
-      <div class="calendly-fallback">Loading the calendar...</div>
-    </div>
-  </div>
+  <form class="form" id="form-agenda" novalidate>
+
+    <!-- PASSO 1: PAUTA -->
+    <section class="passo" data-passo="1">
+      <h2 class="passo-titulo" tabindex="-1">What would you like to discuss?</h2>
+      <p class="passo-sub">Pick all that apply. It helps us come prepared.</p>
+      <div class="chips" role="group" aria-label="Conversation topics">
+        <button class="chip" type="button" aria-pressed="false" data-topic="Pipefy">Pipefy</button>
+        <button class="chip" type="button" aria-pressed="false" data-topic="Integrations">Integrations</button>
+        <button class="chip" type="button" aria-pressed="false" data-topic="Other tools">Other tools</button>
+        <button class="chip" type="button" aria-pressed="false" data-topic="Applied AI">Applied AI</button>
+        <button class="chip" type="button" aria-pressed="false" data-topic="Pricing and scope">Pricing and scope</button>
+        <button class="chip" type="button" aria-pressed="false" data-topic="Security and compliance">Security and compliance</button>
+      </div>
+      <div class="form-grupo">
+        <label class="form-label" for="contexto">Want to share some context? <span class="opcional">(optional)</span></label>
+        <textarea class="form-textarea" id="contexto" placeholder="E.g. today orders come in through WhatsApp and we copy everything into a spreadsheet..."></textarea>
+      </div>
+      <div class="passo-acoes">
+        <button type="button" class="btn btn-primary" data-ir="2">Continue →</button>
+      </div>
+    </section>
+
+    <!-- PASSO 2: HORÁRIO -->
+    <section class="passo" data-passo="2" hidden>
+      <h2 class="passo-titulo" tabindex="-1">When works best for you?</h2>
+      <p class="passo-sub">The call takes 30 minutes. This is just your preference. We'll confirm the time on WhatsApp.</p>
+      <div class="form-grupo">
+        <label class="form-label" for="dia">Preferred day <span class="opcional">(optional)</span></label>
+        <input type="date" class="form-input" id="dia">
+      </div>
+      <div class="form-grupo">
+        <span class="form-label" id="rotulo-periodo">Best time of day</span>
+        <div class="opcoes" role="radiogroup" aria-labelledby="rotulo-periodo">
+          <div class="opcao"><input type="radio" name="periodo" id="p-manha" value="Morning"><label for="p-manha">Morning</label></div>
+          <div class="opcao"><input type="radio" name="periodo" id="p-tarde" value="Afternoon"><label for="p-tarde">Afternoon</label></div>
+          <div class="opcao"><input type="radio" name="periodo" id="p-qualquer" value="Any time"><label for="p-qualquer">Any time</label></div>
+        </div>
+      </div>
+      <div class="form-grupo">
+        <span class="form-label" id="rotulo-onde">Where would you like to talk?</span>
+        <div class="opcoes" role="radiogroup" aria-labelledby="rotulo-onde">
+          <div class="opcao"><input type="radio" name="onde" id="o-meet" value="Google Meet"><label for="o-meet">Google Meet</label></div>
+          <div class="opcao"><input type="radio" name="onde" id="o-teams" value="Microsoft Teams"><label for="o-teams">Microsoft Teams</label></div>
+          <div class="opcao"><input type="radio" name="onde" id="o-whats" value="WhatsApp call"><label for="o-whats">WhatsApp call</label></div>
+        </div>
+      </div>
+      <p class="fuso">Times in your time zone, <strong id="fuso-nome">America/Sao_Paulo</strong></p>
+      <div class="passo-acoes">
+        <button type="button" class="btn-voltar" data-ir="1">← Back</button>
+        <button type="button" class="btn btn-primary" data-ir="3">Continue →</button>
+      </div>
+    </section>
+
+    <!-- PASSO 3: CONTATO -->
+    <section class="passo" data-passo="3" hidden>
+      <h2 class="passo-titulo" tabindex="-1">Last step, your contact info</h2>
+      <p class="passo-sub">So we can reach you on WhatsApp and confirm the time.</p>
+      <div class="form-grupo">
+        <label class="form-label" for="nome">Your name <span class="obrigatorio">*</span></label>
+        <input type="text" class="form-input" id="nome" autocomplete="name" placeholder="What should we call you?">
+        <div class="erro-msg" id="erro-nome" hidden>Please fill in your name.</div>
+      </div>
+      <div class="form-grupo">
+        <label class="form-label" for="empresa">Company <span class="opcional">(optional)</span></label>
+        <input type="text" class="form-input" id="empresa" autocomplete="organization" placeholder="Your company name">
+      </div>
+      <div class="form-grupo">
+        <label class="form-label" for="email">Email <span class="opcional">(optional)</span></label>
+        <input type="email" class="form-input" id="email" autocomplete="email" placeholder="you@email.com">
+      </div>
+      <div class="passo-acoes">
+        <button type="button" class="btn-voltar" data-ir="2">← Back</button>
+        <button type="submit" class="btn btn-primary">Send via WhatsApp →</button>
+      </div>
+      <p class="aviso">When you click, we open WhatsApp with your message ready. Just hit send.</p>
+      <p class="enviado" id="enviado" hidden>Done! If WhatsApp didn't open, <a id="link-reenvio" href="#" target="_blank" rel="noopener">click here</a>.</p>
+    </section>
+
+  </form>
 </div>
 
 <footer class="footer">PSFY — Simple Processes</footer>
 
-<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
 <script>
 (function () {
-  // O idioma da agenda é definido no próprio evento, lá no Calendly (não muda sozinho pelo idioma do visitante).
-  // Se o evento de 30min estiver em português, crie um evento igual em inglês e cole o link dele aqui.
-  var CALENDLY_BASE_URL = 'https://calendly.com/psfy/30min';
-  var container = document.getElementById('calendly-embed');
-  var chips = document.querySelectorAll('.chip');
+  // Número que recebe os agendamentos (formato internacional, sem + e sem espaços)
+  var WHATSAPP_NUMERO = '5541995041300';
 
-  function temasSelecionados() {
-    return Array.prototype.slice.call(chips)
-      .filter(function (chip) { return chip.classList.contains('active'); })
-      .map(function (chip) { return chip.getAttribute('data-topic'); });
-  }
+  var form = document.getElementById('form-agenda');
+  var passos = form.querySelectorAll('.passo');
+  var indicadores = document.querySelectorAll('.step[data-step]');
+  var chips = form.querySelectorAll('.chip');
+  var campoDia = document.getElementById('dia');
+  var passoAtual = 1;
 
-  // Renderiza (ou re-renderiza) o widget do Calendly com os temas marcados
-  // indo como utm_content, isso aparece nos detalhes do agendamento no seu painel Calendly.
-  // Importante: isso NÃO preenche um campo de pergunta customizada dentro do Calendly,
-  // pra isso a pergunta precisa existir configurada no seu evento lá no Calendly.
-  function renderCalendly() {
-    if (typeof Calendly === 'undefined') {
-      // Script do Calendly ainda não carregou, tenta de novo em breve
-      setTimeout(renderCalendly, 300);
-      return;
-    }
-    container.innerHTML = '';
-    var temas = temasSelecionados();
-    var opcoesEmbed = {
-      url: CALENDLY_BASE_URL,
-      parentElement: container,
-      // utm_source marca no Calendly que o agendamento veio do site em inglês
-      utm: { utmSource: 'site-en' }
-    };
-    if (temas.length > 0) {
-      opcoesEmbed.utm.utmContent = temas.join(', ');
-    }
-    Calendly.initInlineWidget(opcoesEmbed);
-  }
+  // Fuso horário de quem está agendando, vai junto na mensagem
+  var fuso = '';
+  try { fuso = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+  if (fuso) document.getElementById('fuso-nome').textContent = fuso;
+
+  // Não deixa escolher dia que já passou
+  var hoje = new Date();
+  campoDia.min = hoje.getFullYear() + '-' + String(hoje.getMonth() + 1).padStart(2, '0') + '-' + String(hoje.getDate()).padStart(2, '0');
 
   chips.forEach(function (chip) {
     chip.addEventListener('click', function () {
-      chip.classList.toggle('active');
-      renderCalendly();
+      chip.setAttribute('aria-pressed', chip.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
     });
   });
 
-  window.addEventListener('load', renderCalendly);
+  function irPara(numero) {
+    passoAtual = numero;
+    passos.forEach(function (p) { p.hidden = Number(p.getAttribute('data-passo')) !== numero; });
+    indicadores.forEach(function (ind) {
+      var n = Number(ind.getAttribute('data-step'));
+      ind.classList.toggle('ativo', n === numero);
+      ind.classList.toggle('concluido', n < numero);
+    });
+    var passo = form.querySelector('.passo[data-passo="' + numero + '"]');
+    document.querySelector('.steps').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    passo.querySelector('.passo-titulo').focus({ preventScroll: true });
+  }
+
+  form.querySelectorAll('[data-ir]').forEach(function (botao) {
+    botao.addEventListener('click', function () { irPara(Number(botao.getAttribute('data-ir'))); });
+  });
+
+  function valor(id) {
+    var v = document.getElementById(id).value.trim();
+    return v.length ? v : null;
+  }
+  function radio(nome) {
+    var el = form.querySelector('input[name="' + nome + '"]:checked');
+    return el ? el.value : null;
+  }
+  function linha(rotulo, v) {
+    if (!v || (Array.isArray(v) && !v.length)) return '';
+    if (Array.isArray(v)) return '*' + rotulo + ':*\n' + v.map(function (x) { return '• ' + x; }).join('\n') + '\n';
+    return '*' + rotulo + ':* ' + v + '\n';
+  }
+  function diaFormatado() {
+    if (!campoDia.value) return null;
+    var p = campoDia.value.split('-');
+    var data = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+    return data.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    // Enter num campo antes do último passo só avança
+    if (passoAtual < 3) { irPara(passoAtual + 1); return; }
+
+    var nome = valor('nome');
+    var erroNome = document.getElementById('erro-nome');
+    if (!nome) {
+      erroNome.hidden = false;
+      document.getElementById('nome').focus();
+      return;
+    }
+    erroNome.hidden = true;
+
+    var temas = Array.prototype.slice.call(chips)
+      .filter(function (c) { return c.getAttribute('aria-pressed') === 'true'; })
+      .map(function (c) { return c.getAttribute('data-topic'); });
+
+    var SEP = '\n━━━━━━━━━━━━━━━━━━\n\n';
+    var msg = 'Hi! I\'m reaching out through your website to book a 30-minute call.\n' + SEP;
+    msg += '*👤 CONTACT*\n';
+    msg += linha('Name', nome);
+    msg += linha('Company', valor('empresa'));
+    msg += linha('Email', valor('email'));
+    msg += SEP + '*📅 PREFERRED TIME*\n';
+    msg += linha('Day', diaFormatado() || 'As soon as possible');
+    msg += linha('Time of day', radio('periodo'));
+    msg += linha('Where', radio('onde'));
+    msg += linha('Time zone', fuso);
+    if (temas.length || valor('contexto')) {
+      msg += SEP + '*🗂️ TOPICS*\n';
+      msg += linha('Topics', temas);
+      msg += linha('Context', valor('contexto'));
+    }
+
+    var url = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(msg.trim());
+    document.getElementById('link-reenvio').href = url;
+    document.getElementById('enviado').hidden = false;
+    window.open(url, '_blank');
+  });
 })();
 </script>
 

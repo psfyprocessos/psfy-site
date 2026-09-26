@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSFY | Request a quote</title>
+<meta name="description" content="Tell us about your situation in a few steps and get a proposal from PSFY on WhatsApp.">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="alternate" hreflang="pt-BR" href="https://www.psfy.com.br/orcamento.html">
+<link rel="alternate" hreflang="en" href="https://www.psfy.com.br/en/orcamento.html">
+<link rel="alternate" hreflang="x-default" href="https://www.psfy.com.br/orcamento.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet">
+<style>
+  /* ============ VARIÁVEIS (mesmas do site) ============ */
+  :root {
+    --preto: #000000;
+    --azul: #336140;
+    --azul-hover: #274d33;
+    --branco: #ffffff;
+    --azul-claro: #e4efe7;
+    --verde-claro: #74B872;
+    --cinza: #f2f2f2;
+    --cinza-texto: #6b6b6b;
+    --cinza-texto-escuro: #4a4a4a;
+    --cinza-borda: #e5e5e5;
+    --cinza-escuro: #1a1a1a;
+    --verde: #74B872;
+    --vermelho: #ef4444;
+
+    --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --max-width: 1280px;
+    --max-width-form: 880px;
+    --radius: 12px;
+    --radius-lg: 20px;
+  }
+
+  /* ============ RESET ============ */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--branco);
+    color: var(--preto);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+  .italic {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--azul);
+  }
+
+  /* ============ HEADER ============ */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--cinza-borda);
+  }
+  .header-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo img {
+    height: 80px;
+    width: auto;
+    display: block;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 15px;
+    color: var(--preto);
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.ativo {
+    opacity: 1;
+    color: var(--azul);
+    font-weight: 500;
+  }
+  .nav-back {
+    font-size: 15px;
+    color: var(--cinza-texto);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--azul); }
+
+  /* ============ TROCA DE IDIOMA (bandeirinha) ============ */
+  .lang-switch {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 7px 12px 7px 9px; border-radius: 999px;
+    border: 1px solid var(--cinza-borda); background: var(--branco);
+    font-size: 13px; font-weight: 500; line-height: 1; color: var(--preto);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .lang-switch:hover { border-color: var(--azul); transform: translateY(-1px); }
+  .lang-switch:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
+  .lang-switch svg { width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); flex-shrink: 0; display: block; }
+
+  /* Atalho rápido pelo WhatsApp */
+  .atalho-rotulo { display: block; font-size: 13px; color: var(--cinza-texto); margin-top: 22px; }
+  .atalho {
+    display: inline-flex; align-items: center; gap: 10px; margin-top: 8px;
+    padding: 10px 18px 10px 14px; border-radius: 999px;
+    border: 1px solid var(--azul); color: var(--azul); background: var(--branco);
+    font-size: 14px; font-weight: 500; transition: background 0.2s, color 0.2s;
+  }
+  .atalho:hover { background: var(--azul); color: var(--branco); }
+  .atalho svg { width: 18px; height: 18px; flex-shrink: 0; display: block; }
+
+  /* ============ HERO DO FORMULÁRIO ============ */
+  .form-hero {
+    padding: 80px 32px 40px;
+    background:
+      radial-gradient(ellipse 80% 50% at 80% 20%, var(--azul-claro) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(228, 239, 231, 0.6) 0%, transparent 50%),
+      var(--branco);
+    text-align: center;
+  }
+  .form-hero-inner {
+    max-width: var(--max-width-form);
+    margin: 0 auto;
+  }
+  .form-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px 8px 12px;
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 999px;
+    font-size: 14px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  .form-hero-badge .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--verde);
+    box-shadow: 0 0 0 4px rgba(116, 184, 114, 0.25);
+  }
+  .form-hero h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  .form-hero p {
+    font-size: 18px;
+    color: var(--cinza-texto);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* ============ CONTAINER DO FORMULÁRIO ============ */
+  .form-container {
+    max-width: var(--max-width-form);
+    margin: 0 auto;
+    padding: 40px 32px 120px;
+  }
+
+  /* ============ INDICADOR DE PASSOS ============ */
+  .steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--cinza);
+    font-size: 14px;
+    color: var(--cinza-texto);
+    transition: all 0.3s;
+  }
+  .step.ativo {
+    background: var(--azul);
+    color: var(--branco);
+  }
+  .step.concluido {
+    background: var(--azul-claro);
+    color: var(--azul);
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .step.ativo .step-num,
+  .step.concluido .step-num {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  .step-conector {
+    width: 30px;
+    height: 1px;
+    background: var(--cinza-borda);
+  }
+
+  /* ============ BLOCOS DO FORMULÁRIO ============ */
+  .form-bloco {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    margin-bottom: 24px;
+    transition: border-color 0.2s;
+  }
+  .form-bloco:focus-within {
+    border-color: var(--azul);
+  }
+  .form-bloco-titulo {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .form-bloco-subtitulo {
+    font-size: 15px;
+    color: var(--cinza-texto);
+    margin-bottom: 32px;
+  }
+
+  /* ============ ESCOLHA DE FORMATO (CARDS) ============ */
+  .formato-opcoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .formato-opcao {
+    border: 2px solid var(--cinza-borda);
+    border-radius: var(--radius);
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--branco);
+    text-align: left;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .formato-opcao:hover {
+    border-color: var(--azul);
+    transform: translateY(-2px);
+  }
+  .formato-opcao.selecionado {
+    border-color: var(--azul);
+    background: var(--azul-claro);
+    box-shadow: 0 8px 20px rgba(51, 97, 64, 0.15);
+  }
+  .formato-opcao-num {
+    font-size: 12px;
+    color: var(--cinza-texto);
+    font-weight: 500;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .formato-opcao-titulo {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .formato-opcao-desc {
+    font-size: 13px;
+    color: var(--cinza-texto);
+    line-height: 1.4;
+  }
+
+  /* ============ CAMPOS ============ */
+  .form-grupo {
+    margin-bottom: 24px;
+  }
+  .form-grupo:last-child { margin-bottom: 0; }
+
+  .form-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--preto);
+  }
+  .form-label .obrigatorio {
+    color: var(--azul);
+    font-weight: 700;
+    margin-left: 2px;
+  }
+  .form-help {
+    font-size: 13px;
+    color: var(--cinza-texto);
+    margin-top: 6px;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--preto);
+    background: var(--branco);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgba(51, 97, 64, 0.12);
+  }
+  .form-textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+  }
+
+  /* ============ OPÇÕES (RADIO E CHECKBOX EM CARDS) ============ */
+  .form-opcoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+  }
+  .form-opcoes.uma-coluna {
+    grid-template-columns: 1fr;
+  }
+  .form-opcao-item {
+    position: relative;
+  }
+  .form-opcao-item input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .form-opcao-item label {
+    display: block;
+    padding: 14px 18px;
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+    background: var(--branco);
+  }
+  .form-opcao-item label:hover {
+    border-color: var(--azul);
+  }
+  .form-opcao-item input:checked + label {
+    border-color: var(--azul);
+    background: var(--azul-claro);
+    color: var(--azul);
+    font-weight: 500;
+  }
+
+  /* ============ SEÇÕES CONDICIONAIS ============ */
+  .condicional {
+    display: none;
+  }
+  .condicional.ativo {
+    display: block;
+    animation: fadeIn 0.4s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============ BLOCO DE PERGUNTAS DENTRO DO FORMATO 3 ============ */
+  .sub-bloco {
+    padding-top: 24px;
+    margin-top: 24px;
+    border-top: 1px solid var(--cinza-borda);
+  }
+  .sub-bloco:first-child {
+    padding-top: 0;
+    margin-top: 0;
+    border-top: none;
+  }
+  .sub-bloco-titulo {
+    font-size: 14px;
+    color: var(--azul);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  /* ============ BOTÃO ENVIAR ============ */
+  .form-acoes {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .btn-enviar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--azul);
+    color: var(--branco);
+    padding: 18px 40px;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 16px;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    width: 100%;
+    max-width: 400px;
+  }
+  .btn-enviar:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(51, 97, 64, 0.3);
+    background: var(--azul-hover);
+  }
+  .btn-enviar:disabled {
+    background: var(--cinza-borda);
+    cursor: not-allowed;
+  }
+  .btn-aviso {
+    font-size: 13px;
+    color: var(--cinza-texto);
+    text-align: center;
+    max-width: 480px;
+  }
+
+  /* ============ MENSAGEM DE ERRO ============ */
+  .erro-msg {
+    color: var(--vermelho);
+    font-size: 13px;
+    margin-top: 8px;
+    display: none;
+  }
+  .erro-msg.visivel {
+    display: block;
+  }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    border-top: 1px solid var(--cinza-borda);
+    padding: 32px;
+  }
+  .footer-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    text-align: center;
+  }
+  .footer p {
+    color: var(--cinza-texto);
+    font-size: 13px;
+  }
+  .footer a {
+    color: var(--azul);
+    text-decoration: underline;
+  }
+
+  /* ============ RESPONSIVO ============ */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+  }
+  @media (max-width: 640px) {
+    .form-hero { padding: 50px 20px 30px; }
+    .form-container { padding: 30px 20px 80px; }
+    .form-bloco { padding: 28px 20px; }
+    .step { font-size: 13px; padding: 6px 12px; }
+    .step-conector { width: 16px; }
+    .logo img { height: 50px; }
+    .header-inner { padding: 16px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =========== HEADER =========== -->
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="/logo.png" alt="PSFY">
+    </a>
+    <nav class="nav">
+      <ul class="nav-links">
+        <li><a href="index.html#diferenciais">How it works</a></li>
+        <li><a href="index.html#provas">Real results</a></li>
+        <li><a href="seguranca.html">Security &amp; compliance</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="orcamento.html" class="ativo">Quote</a></li>
+      </ul>
+      <a href="../orcamento.html" class="lang-switch" hreflang="pt-BR" lang="pt-BR" title="Versão em português" aria-label="Versão em português">
+      <svg viewBox="0 0 30 21" aria-hidden="true" focusable="false"><rect width="30" height="21" fill="#009C3B"/><path fill="#FFDF00" d="M15 2.2 27.6 10.5 15 18.8 2.4 10.5z"/><circle cx="15" cy="10.5" r="5.2" fill="#002776"/><path fill="none" stroke="#fff" stroke-width="1.1" d="M9.9 9.4c3.6-.9 7.4-.1 10.1 2.3"/></svg>
+      <span class="lang-switch-texto">PT</span>
+    </a>
+    </nav>
+  </div>
+</header>
+
+<!-- =========== HERO =========== -->
+<section class="form-hero">
+  <div class="form-hero-inner">
+    <div class="form-hero-badge">
+      <span class="dot"></span>
+      <span>Reply within <strong>1 business day</strong></span>
+    </div>
+    <h1>Let's understand your <span class="italic">situation</span>.</h1>
+    <p>Answer only what you know. We'll talk through the rest. When you send it, we open a WhatsApp chat with everything organized.</p>
+    <span class="atalho-rotulo">In a hurry?</span>
+    <a href="https://wa.me/5541995041300?text=Hi!%20I%27m%20reaching%20out%20through%20your%20website%20and%20would%20like%20to%20talk%20to%20an%20agent." class="atalho" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Talk to one of our agents within 2 hours</a>
+  </div>
+</section>
+
+<!-- =========== FORMULÁRIO =========== -->
+<div class="form-container">
+
+  <!-- Indicador de passos -->
+  <div class="steps">
+    <div class="step ativo" id="step-1">
+      <span class="step-num">1</span>
+      <span>Format</span>
+    </div>
+    <div class="step-conector"></div>
+    <div class="step" id="step-2">
+      <span class="step-num">2</span>
+      <span>Details</span>
+    </div>
+    <div class="step-conector"></div>
+    <div class="step" id="step-3">
+      <span class="step-num">3</span>
+      <span>Contact</span>
+    </div>
+  </div>
+
+  <!-- ====== BLOCO 1: ESCOLHA DO FORMATO ====== -->
+  <div class="form-bloco">
+    <h2 class="form-bloco-titulo">Which format fits where you are now?</h2>
+    <p class="form-bloco-subtitulo">Pick one to start. You can change it at any time.</p>
+
+    <div class="formato-opcoes">
+      <button type="button" class="formato-opcao" data-formato="horas">
+        <div class="formato-opcao-num">Format 01</div>
+        <div class="formato-opcao-titulo">Hours Package</div>
+        <div class="formato-opcao-desc">10 hours for $300. For your first engagement.</div>
+      </button>
+
+      <button type="button" class="formato-opcao" data-formato="consultoria">
+        <div class="formato-opcao-num">Format 02</div>
+        <div class="formato-opcao-titulo">Monthly Consulting</div>
+        <div class="formato-opcao-desc">Dedicated analyst, continuous improvement.</div>
+      </button>
+
+      <button type="button" class="formato-opcao" data-formato="projeto">
+        <div class="formato-opcao-num">Format 03</div>
+        <div class="formato-opcao-titulo">Fixed-Scope Project</div>
+        <div class="formato-opcao-desc">Build an area from scratch.</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- ====== BLOCO 2A: FORMATO HORAS ====== -->
+  <div class="form-bloco condicional" id="bloco-horas">
+    <h2 class="form-bloco-titulo">Hours Package</h2>
+    <p class="form-bloco-subtitulo">10 hours for $300, for your first engagement. Ideal to start structuring or fine-tuning your process with us. After that, you pay $40/hour, or $65/hour with integrations.</p>
+
+    <div class="form-grupo">
+      <label class="form-label">Do you already use Pipefy?</label>
+      <div class="form-opcoes">
+        <div class="form-opcao-item">
+          <input type="radio" name="horas-pipefy" id="hp-sim" value="Yes, I already use it">
+          <label for="hp-sim">Yes, I already use it</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="horas-pipefy" id="hp-nao" value="Not yet">
+          <label for="hp-nao">Not yet</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="horas-pipefy" id="hp-avaliando" value="I'm evaluating it">
+          <label for="hp-avaliando">I'm evaluating it</label>
+        </div>
+      </div>
+      <div class="form-help">You get the Pipefy license directly at <a href="https://www.pipefy.com" target="_blank" rel="noopener" style="text-decoration: underline;">pipefy.com</a>. We implement it.</div>
+    </div>
+
+    <div class="form-grupo">
+      <label class="form-label" for="horas-uso">What do you plan to use these hours for?</label>
+      <textarea class="form-textarea" id="horas-uso" placeholder="E.g. tweaks to automations I already have, small integrations, questions about workflows..."></textarea>
+    </div>
+
+    <div class="form-grupo">
+      <label class="form-label">Do you have a deadline?</label>
+      <div class="form-opcoes">
+        <div class="form-opcao-item">
+          <input type="radio" name="horas-prazo" id="hp-sem" value="No rush">
+          <label for="hp-sem">No rush</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="horas-prazo" id="hp-sem-semana" value="This week">
+          <label for="hp-sem-semana">This week</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="horas-prazo" id="hp-mes" value="This month">
+          <label for="hp-mes">This month</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== BLOCO 2B: FORMATO CONSULTORIA ====== -->
+  <div class="form-bloco condicional" id="bloco-consultoria">
+    <h2 class="form-bloco-titulo">Monthly Consulting</h2>
+    <p class="form-bloco-subtitulo">For those who want to think it through together and improve processes with ongoing support.</p>
+
+    <div class="form-grupo">
+      <label class="form-label">What's your main goal for this engagement?</label>
+      <div class="form-opcoes uma-coluna">
+        <div class="form-opcao-item">
+          <input type="radio" name="cons-objetivo" id="co-mapear" value="Map processes to automate">
+          <label for="co-mapear">Map processes to automate</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="cons-objetivo" id="co-ferramentas" value="Choose the right tools">
+          <label for="co-ferramentas">Choose the right tools</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="cons-objetivo" id="co-revisar" value="Review existing automation">
+          <label for="co-revisar">Review existing automation</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="cons-objetivo" id="co-treinar" value="Train my team">
+          <label for="co-treinar">Train my team</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="cons-objetivo" id="co-outro" value="Other">
+          <label for="co-outro">Another goal</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-grupo">
+      <label class="form-label">What stage are you at?</label>
+      <div class="form-opcoes uma-coluna">
+        <div class="form-opcao-item">
+          <input type="radio" name="cons-etapa" id="ce-comeco" value="I don't know where to start">
+          <label for="ce-comeco">I don't know where to start</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="cons-etapa" id="ce-priorizar" value="I have ideas but don't know how to prioritize">
+          <label for="ce-priorizar">I have ideas but don't know how to prioritize</label>
+        </div>
+        <div class="form-opcao-item">
+          <input type="radio" name="cons-etapa" id="ce-tentei" value="I've tried and it didn't work">
+          <label for="ce-tentei">I've tried and it didn't work</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-grupo">
+      <label class="form-label" for="cons-equipe">How many people on the team would be involved?</label>
+      <input type="text" class="form-input" id="cons-equipe" placeholder="E.g. 3 people, me, finance and operations">
+    </div>
+  </div>
+
+  <!-- ====== BLOCO 2C: FORMATO PROJETO ====== -->
+  <div class="form-bloco condicional" id="bloco-projeto">
+    <h2 class="form-bloco-titulo">Fixed-Scope Project</h2>
+    <p class="form-bloco-subtitulo">To structure a specific area with a defined scope and timeline. We'll ask a few questions to understand it better. The more context, the more precise the proposal.</p>
+
+    <!-- BLOCO A: SOBRE A EMPRESA -->
+    <div class="sub-bloco">
+      <div class="sub-bloco-titulo">About your company</div>
+
+      <div class="form-grupo">
+        <label class="form-label" for="proj-empresa-faz">What does your company do?</label>
+        <textarea class="form-textarea" id="proj-empresa-faz" placeholder="In 1 or 2 sentences. E.g. we are a marketing agency focused on e-commerce..."></textarea>
+      </div>
+
+      <div class="form-grupo">
+        <label class="form-label">Team size</label>
+        <div class="form-opcoes">
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-equipe" id="pe-1" value="It's just me">
+            <label for="pe-1">It's just me</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-equipe" id="pe-2" value="2 to 5 people">
+            <label for="pe-2">2 to 5 people</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-equipe" id="pe-3" value="6 to 20 people">
+            <label for="pe-3">6 to 20 people</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-equipe" id="pe-4" value="More than 20 people">
+            <label for="pe-4">20+ people</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-grupo">
+        <label class="form-label">Which area needs automation?</label>
+        <div class="form-opcoes">
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-area" id="pa-vendas" value="Sales">
+            <label for="pa-vendas">Sales</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-area" id="pa-marketing" value="Marketing">
+            <label for="pa-marketing">Marketing</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-area" id="pa-financeiro" value="Finance">
+            <label for="pa-financeiro">Finance</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-area" id="pa-atendimento" value="Customer service">
+            <label for="pa-atendimento">Customer service</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-area" id="pa-operacoes" value="Operations">
+            <label for="pa-operacoes">Operations</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-area" id="pa-outro" value="Other">
+            <label for="pa-outro">Other area</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO B: A DOR -->
+    <div class="sub-bloco">
+      <div class="sub-bloco-titulo">The problem we want to solve</div>
+
+      <div class="form-grupo">
+        <label class="form-label" for="proj-processo">Which process do you want to automate? How does it work today?</label>
+        <textarea class="form-textarea" id="proj-processo" placeholder="Describe how the process happens today, even if it's messy. E.g. 'the customer sends an order on WhatsApp, I copy it to a spreadsheet, I email it to finance...'"></textarea>
+        <div class="form-help">The more detail, the better we understand it.</div>
+      </div>
+
+      <div class="form-grupo">
+        <label class="form-label">What bothers you most about this process today?</label>
+        <div class="form-help" style="margin-top: -4px; margin-bottom: 12px;">You can pick more than one.</div>
+        <div class="form-opcoes uma-coluna">
+          <div class="form-opcao-item">
+            <input type="checkbox" name="proj-dor" id="pd-tempo" value="It takes too much time">
+            <label for="pd-tempo">It takes too much time</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="checkbox" name="proj-dor" id="pd-erros" value="It has too many errors">
+            <label for="pd-erros">It has too many errors</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="checkbox" name="proj-dor" id="pd-pessoa" value="It depends on one specific person">
+            <label for="pd-pessoa">It depends on one specific person</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="checkbox" name="proj-dor" id="pd-cliente" value="Customers complain">
+            <label for="pd-cliente">Customers complain</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="checkbox" name="proj-dor" id="pd-visibilidade" value="I can't see what's going on">
+            <label for="pd-visibilidade">I can't see what's going on</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="checkbox" name="proj-dor" id="pd-escalar" value="I can't scale">
+            <label for="pd-escalar">I can't scale</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-grupo">
+        <label class="form-label" for="proj-mudaria">If this problem were solved, what would change?</label>
+        <textarea class="form-textarea" id="proj-mudaria" placeholder="E.g. 'my team would stop spending 10 hours a week on rework' or 'we could serve 3x more customers without hiring'..."></textarea>
+        <div class="form-help">This answer helps us design the solution around the result.</div>
+      </div>
+
+      <div class="form-grupo">
+        <label class="form-label">Have you tried to solve this before?</label>
+        <div class="form-opcoes">
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-tentou" id="pt-nao" value="No">
+            <label for="pt-nao">No</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-tentou" id="pt-ferr" value="Yes, with a tool">
+            <label for="pt-ferr">Yes, with a tool</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-tentou" id="pt-pessoa" value="Yes, by hiring someone">
+            <label for="pt-pessoa">Yes, by hiring someone</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-tentou" id="pt-interno" value="Yes, internally">
+            <label for="pt-interno">Yes, internally</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO C: CONTEXTO -->
+    <div class="sub-bloco">
+      <div class="sub-bloco-titulo">Context and expectations</div>
+
+      <div class="form-grupo">
+        <label class="form-label" for="proj-ferramentas">What tools does your company already use?</label>
+        <input type="text" class="form-input" id="proj-ferramentas" placeholder="E.g. spreadsheets, in-house CRM, WhatsApp Business, system X...">
+      </div>
+
+      <div class="form-grupo">
+        <label class="form-label">Desired timeline</label>
+        <div class="form-opcoes">
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-prazo" id="pp-1" value="Urgent">
+            <label for="pp-1">Urgent</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-prazo" id="pp-2" value="Within 1 month">
+            <label for="pp-2">Within 1 month</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-prazo" id="pp-3" value="2 to 3 months">
+            <label for="pp-3">2 to 3 months</label>
+          </div>
+          <div class="form-opcao-item">
+            <input type="radio" name="proj-prazo" id="pp-4" value="Flexible">
+            <label for="pp-4">Flexible</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== BLOCO 3: CONTATO (sempre aparece quando algum formato é escolhido) ====== -->
+  <div class="form-bloco condicional" id="bloco-contato">
+    <h2 class="form-bloco-titulo">Last step, your contact info</h2>
+    <p class="form-bloco-subtitulo">So we can reach you on WhatsApp and follow up.</p>
+
+    <div class="form-grupo">
+      <label class="form-label" for="contato-nome">Your name <span class="obrigatorio">*</span></label>
+      <input type="text" class="form-input" id="contato-nome" placeholder="What should we call you?" required>
+      <div class="erro-msg" id="erro-nome">Please fill in your name.</div>
+    </div>
+
+    <div class="form-grupo">
+      <label class="form-label" for="contato-empresa">Company</label>
+      <input type="text" class="form-input" id="contato-empresa" placeholder="Your company name">
+    </div>
+
+    <div class="form-grupo">
+      <label class="form-label" for="contato-email">Email</label>
+      <input type="email" class="form-input" id="contato-email" placeholder="you@email.com">
+    </div>
+
+    <div class="form-acoes">
+      <button type="button" class="btn-enviar" id="btn-enviar">
+        Send via WhatsApp →
+      </button>
+      <p class="btn-aviso">When you click, we'll open WhatsApp with your message already formatted. You just need to hit send.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- =========== FOOTER =========== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p>© 2026 PSFY, Simple Processes. <a href="index.html">Back to site</a></p>
+  </div>
+</footer>
+
+<script>
+  /* ============================================
+     LÓGICA DO FORMULÁRIO
+     - 1. Escolha de formato → mostra campos certos
+     - 2. Indicador de passos atualiza
+     - 3. Ao enviar → monta mensagem e abre WhatsApp
+     ============================================ */
+
+  // Número de WhatsApp (formato internacional, sem + ou espaços)
+  const WHATSAPP_NUMERO = '5541995041300';
+
+  // Pega elementos
+  const opcoesFormato = document.querySelectorAll('.formato-opcao');
+  const blocoHoras = document.getElementById('bloco-horas');
+  const blocoConsultoria = document.getElementById('bloco-consultoria');
+  const blocoProjeto = document.getElementById('bloco-projeto');
+  const blocoContato = document.getElementById('bloco-contato');
+  const step1 = document.getElementById('step-1');
+  const step2 = document.getElementById('step-2');
+  const step3 = document.getElementById('step-3');
+  const btnEnviar = document.getElementById('btn-enviar');
+
+  let formatoEscolhido = null;
+
+  // ===== 0. PRÉ-SELEÇÃO VIA URL =====
+  // Se o cliente vier de "orcamento.html?formato=horas" (ou consultoria/projeto),
+  // já marcamos o card automaticamente. Melhora a UX — não precisa escolher de novo.
+  const urlParams = new URLSearchParams(window.location.search);
+  const formatoUrl = urlParams.get('formato');
+  if (formatoUrl && ['horas', 'consultoria', 'projeto'].includes(formatoUrl)) {
+    // Espera um instante pro DOM estar 100% pronto e simula o clique no card certo
+    setTimeout(() => {
+      const cardAlvo = document.querySelector(`.formato-opcao[data-formato="${formatoUrl}"]`);
+      if (cardAlvo) cardAlvo.click();
+    }, 100);
+  }
+
+  // ===== 1. CLIQUE NOS CARDS DE FORMATO =====
+  opcoesFormato.forEach(card => {
+    card.addEventListener('click', () => {
+      // Remove seleção de todos
+      opcoesFormato.forEach(c => c.classList.remove('selecionado'));
+      // Marca o clicado
+      card.classList.add('selecionado');
+
+      formatoEscolhido = card.dataset.formato;
+
+      // Esconde todos os blocos condicionais primeiro
+      blocoHoras.classList.remove('ativo');
+      blocoConsultoria.classList.remove('ativo');
+      blocoProjeto.classList.remove('ativo');
+
+      // Mostra o bloco do formato escolhido
+      if (formatoEscolhido === 'horas') blocoHoras.classList.add('ativo');
+      if (formatoEscolhido === 'consultoria') blocoConsultoria.classList.add('ativo');
+      if (formatoEscolhido === 'projeto') blocoProjeto.classList.add('ativo');
+
+      // Sempre mostra o bloco de contato
+      blocoContato.classList.add('ativo');
+
+      // Atualiza indicador de passos
+      step1.classList.remove('ativo');
+      step1.classList.add('concluido');
+      step2.classList.add('ativo');
+
+      // Faz scroll suave até o próximo bloco
+      setTimeout(() => {
+        const proximoBloco = document.querySelector('.condicional.ativo');
+        if (proximoBloco) {
+          proximoBloco.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    });
+  });
+
+  // ===== 2. ATUALIZA PASSO 3 QUANDO PREENCHE NOME =====
+  document.getElementById('contato-nome').addEventListener('input', (e) => {
+    if (e.target.value.trim().length > 0) {
+      step2.classList.remove('ativo');
+      step2.classList.add('concluido');
+      step3.classList.add('ativo');
+    } else {
+      step3.classList.remove('ativo');
+      step2.classList.add('ativo');
+      step2.classList.remove('concluido');
+    }
+  });
+
+  // ===== 3. FUNÇÕES AUXILIARES =====
+
+  // Pega valor de radio (retorna string ou "Não informado")
+  function getRadio(nome) {
+    const el = document.querySelector(`input[name="${nome}"]:checked`);
+    return el ? el.value : null;
+  }
+
+  // Pega valores de checkbox (retorna array de strings)
+  function getCheckboxes(nome) {
+    const els = document.querySelectorAll(`input[name="${nome}"]:checked`);
+    return Array.from(els).map(el => el.value);
+  }
+
+  // Pega valor de input/textarea (retorna string ou null)
+  function getInput(id) {
+    const valor = document.getElementById(id).value.trim();
+    return valor.length > 0 ? valor : null;
+  }
+
+  // Adiciona linha na mensagem só se tiver valor
+  function linha(label, valor) {
+    if (!valor || (Array.isArray(valor) && valor.length === 0)) return '';
+    if (Array.isArray(valor)) {
+      return `*${label}:*\n${valor.map(v => `• ${v}`).join('\n')}\n\n`;
+    }
+    return `*${label}:* ${valor}\n\n`;
+  }
+
+  // ===== 4. ENVIO DO FORMULÁRIO =====
+  btnEnviar.addEventListener('click', () => {
+    // Validação simples: precisa ter formato escolhido e nome preenchido
+    const nome = getInput('contato-nome');
+    const erroNome = document.getElementById('erro-nome');
+
+    if (!formatoEscolhido) {
+      alert('Please choose a format at the top of the form.');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (!nome) {
+      erroNome.classList.add('visivel');
+      document.getElementById('contato-nome').focus();
+      return;
+    }
+    erroNome.classList.remove('visivel');
+
+    // Monta mensagem
+    let msg = `Hi! I'm reaching out through your website to request a quote.\n\n`;
+    msg += `━━━━━━━━━━━━━━━━━━\n\n`;
+
+    // Dados de contato
+    msg += `*👤 CONTACT*\n\n`;
+    msg += linha('Name', nome);
+    msg += linha('Company', getInput('contato-empresa'));
+    msg += linha('Email', getInput('contato-email'));
+
+    msg += `━━━━━━━━━━━━━━━━━━\n\n`;
+
+    // Dados do formato
+    if (formatoEscolhido === 'horas') {
+      msg += `*📦 FORMAT: HOURS PACKAGE (FIRST ENGAGEMENT)*\n\n`;
+      msg += linha('Already uses Pipefy', getRadio('horas-pipefy'));
+      msg += linha('Planned use', getInput('horas-uso'));
+      msg += linha('Deadline', getRadio('horas-prazo'));
+    }
+
+    if (formatoEscolhido === 'consultoria') {
+      msg += `*🎯 FORMAT: MONTHLY CONSULTING*\n\n`;
+      msg += linha('Main goal', getRadio('cons-objetivo'));
+      msg += linha('Current stage', getRadio('cons-etapa'));
+      msg += linha('People involved', getInput('cons-equipe'));
+    }
+
+    if (formatoEscolhido === 'projeto') {
+      msg += `*🚀 FORMAT: FIXED-SCOPE PROJECT*\n\n`;
+
+      msg += `*— About the company —*\n\n`;
+      msg += linha('What the company does', getInput('proj-empresa-faz'));
+      msg += linha('Team size', getRadio('proj-equipe'));
+      msg += linha('Area that needs automation', getRadio('proj-area'));
+
+      msg += `*— The problem —*\n\n`;
+      msg += linha('Process to automate', getInput('proj-processo'));
+      msg += linha('Main pain points', getCheckboxes('proj-dor'));
+      msg += linha('What would change if solved', getInput('proj-mudaria'));
+      msg += linha('Tried to solve it before', getRadio('proj-tentou'));
+
+      msg += `*— Context and expectations —*\n\n`;
+      msg += linha('Current tools', getInput('proj-ferramentas'));
+      msg += linha('Desired timeline', getRadio('proj-prazo'));
+    }
+
+    // Codifica para URL e abre WhatsApp
+    const msgCodificada = encodeURIComponent(msg);
+    const url = `https://wa.me/${WHATSAPP_NUMERO}?text=${msgCodificada}`;
+    window.open(url, '_blank');
+  });
+</script>
+
+</body>
+</html>

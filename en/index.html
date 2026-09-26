@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PSFY | Creative efficiency consulting</title>
-<meta name="description" content="Creative efficiency consulting. We understand your process and plug the best tools into it to create efficiency.">
+<meta name="description" content="Creative efficiency consulting. We get to know how your operation really works and connect the best tools to create efficiency.">
 <link rel="icon" type="image/png" href="../favicon.png">
 
 <!-- Versões por idioma (ajuda o Google a mostrar a página certa pra cada público) -->
@@ -15,7 +15,7 @@
 <!-- Prévia do link no WhatsApp e LinkedIn -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="PSFY | Creative efficiency consulting">
-<meta property="og:description" content="We understand your process and plug the best tools into it to create efficiency.">
+<meta property="og:description" content="Your process is unique. So is the way we solve it.">
 <meta property="og:url" content="https://www.psfy.com.br/en/">
 <meta property="og:image" content="https://www.psfy.com.br/logo.png">
 <meta property="og:site_name" content="PSFY">
@@ -154,8 +154,14 @@
   }
   .hero-description { font-size: 17px; line-height: 1.6; color: var(--cinza-texto); margin-bottom: 36px; font-weight: 400; letter-spacing: normal; }
   .hero-toggle-panel p { font-size: 15px; color: var(--cinza-texto); max-width: 460px; margin: 0 auto; font-weight: 400; letter-spacing: normal; }
-  .hero-nota { font-size: 13px; color: var(--cinza-texto); margin-top: -4px; font-weight: 400; letter-spacing: normal; }
+  .hero-nota { font-size: 13px; line-height: 1.55; color: var(--cinza-texto); margin-top: -4px; font-weight: 400; letter-spacing: normal; max-width: 540px; }
+  .hero-nota a, .preco-nota a { text-decoration: underline; text-underline-offset: 2px; }
   .hero-ctas { display: flex; gap: 12px; justify-content: center; margin-top: 36px; flex-wrap: wrap; }
+  .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .btn-whats { white-space: normal; text-align: center; justify-content: center; }
+  @media (max-width: 480px) {
+    .hero-ctas .btn { width: 100%; }
+  }
 
   /* ============ SEÇÃO GENÉRICA ============ */
   .section { padding: 90px 24px; }
@@ -228,7 +234,34 @@
     display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--verde-claro);
     background: rgba(116,184,114,0.12); padding: 6px 12px; border-radius: 999px;
   }
-  .preco-nota { text-align: center; font-size: 14px; color: var(--cinza-texto); max-width: 420px; margin: 28px auto 0; }
+  .preco-nota { text-align: center; font-size: 14px; line-height: 1.6; color: var(--cinza-texto); max-width: 460px; margin: 28px auto 0; }
+  .preco-nota + .preco-nota { margin-top: 10px; font-size: 13px; }
+
+  /* Pacote de Horas (primeira contratação) */
+  .pacote-inicial {
+    max-width: 620px; margin: 0 auto; border-radius: var(--radius-lg); padding: 32px;
+    background: linear-gradient(135deg, var(--azul) 0%, var(--azul-hover) 100%); color: var(--branco);
+    display: grid; grid-template-columns: 1fr auto; gap: 20px 28px; align-items: center;
+    box-shadow: 0 18px 40px rgba(51,97,64,0.22);
+  }
+  .pacote-inicial-tag {
+    grid-column: 1 / -1; justify-self: start;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--preto); background: var(--verde-claro); padding: 5px 12px; border-radius: 999px;
+  }
+  .pacote-inicial h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
+  .pacote-inicial p { font-size: 14.5px; line-height: 1.6; color: rgba(255,255,255,0.85); }
+  .pacote-inicial-preco { text-align: right; }
+  .pacote-inicial-valor { display: block; font-size: 38px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+  .pacote-inicial-horas { display: block; font-size: 14px; color: rgba(255,255,255,0.75); margin-top: 6px; }
+  .pacote-inicial .btn { grid-column: 1 / -1; justify-self: start; background: var(--branco); color: var(--azul); }
+  .pacote-inicial .btn:hover { background: var(--azul-claro); }
+  .depois-titulo { text-align: center; font-size: 15px; font-weight: 700; margin: 52px auto 20px; }
+  @media (max-width: 560px) {
+    .pacote-inicial { grid-template-columns: 1fr; padding: 28px 22px; }
+    .pacote-inicial-preco { text-align: left; }
+    .pacote-inicial .btn { justify-self: stretch; justify-content: center; }
+  }
 
   /* ============ CTA FINAL ============ */
   .cta-final { padding: 90px 24px; text-align: center; }
@@ -236,6 +269,27 @@
 
   /* ============ FOOTER ============ */
   .footer { padding: 32px 24px; border-top: 1px solid var(--cinza-borda); text-align: center; font-size: 13px; color: var(--cinza-texto); }
+
+  /* ============ BOTÃO RÁPIDO DO WHATSAPP (fixo no canto) ============ */
+  .whats-flutuante {
+    position: fixed; right: 20px; bottom: 20px; z-index: 150;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 20px 13px 16px; border-radius: 999px;
+    background: var(--azul); color: var(--branco);
+    font-size: 14px; font-weight: 500; line-height: 1.25;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+    transition: transform 0.25s, opacity 0.25s, background 0.2s;
+  }
+  .whats-flutuante:hover { background: var(--azul-hover); transform: translateY(-2px); }
+  .whats-flutuante.escondido { opacity: 0; transform: translateY(16px); pointer-events: none; }
+  .whats-flutuante svg { width: 20px; height: 20px; flex-shrink: 0; }
+  @media (max-width: 600px) {
+    .whats-flutuante { left: 12px; right: 12px; bottom: 12px; justify-content: center; text-align: center; font-size: 13px; gap: 8px; padding: 13px 12px; }
+  }
+  @media (max-width: 420px) {
+    .whats-flutuante { font-size: 12.5px; }
+    .footer { padding-bottom: 88px; }
+  }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -253,7 +307,7 @@
     <ul class="nav-links">
       <li><a href="#diferenciais">How it works</a></li>
       <li><a href="#provas">Real results</a></li>
-      <li><a href="#">Security &amp; compliance</a></li>
+      <li><a href="seguranca.html">Security &amp; compliance</a></li>
       <li><a href="blog.html">Blog</a></li>
     </ul>
     <div class="header-acoes">
@@ -261,7 +315,7 @@
         <svg viewBox="0 0 30 21" aria-hidden="true" focusable="false"><rect width="30" height="21" fill="#009C3B"/><path fill="#FFDF00" d="M15 2.2 27.6 10.5 15 18.8 2.4 10.5z"/><circle cx="15" cy="10.5" r="5.2" fill="#002776"/><path fill="none" stroke="#fff" stroke-width="1.1" d="M9.9 9.4c3.6-.9 7.4-.1 10.1 2.3"/></svg>
         <span class="lang-switch-texto">PT</span>
       </a>
-      <a href="#comecar" class="btn btn-primary">Talk to PSFY</a>
+      <a href="alinhamentos.html" class="btn btn-primary">Book a call</a>
     </div>
   </div>
 </header>
@@ -286,8 +340,8 @@
 
   <div class="hero-inner">
     <div class="hero-badge"><span class="dot"></span> Creative efficiency consulting</div>
-    <h1>No two processes are alike. We step into yours to <span class="italic">understand, design and solve</span> it on its own terms.</h1>
-    <p class="hero-description">We understand your process and plug the best tools into it to create efficiency.</p>
+    <h1>Your process is unique. <span class="italic">So is the way we solve it</span>.</h1>
+    <p class="hero-description">We get to know how your operation really works and connect the best tools to create efficiency. All at an hourly rate lower than that of many consultancies offering the same availability or less.</p>
 
     <div class="toggle-wrap" data-toggle>
       <div class="toggle-group" role="tablist" aria-label="How we work">
@@ -301,11 +355,11 @@
         <div class="toggle-panel" data-panel="integracoes" hidden><p>Pipefy connected to your systems, spreadsheets and databases.</p></div>
         <div class="toggle-panel" data-panel="outras" hidden><p>When the process calls for something outside Pipefy, we handle that too.</p></div>
       </div>
-      <p class="hero-nota">Not officially affiliated with Pipefy. We recommend whatever makes the most sense for your process.</p>
+      <p class="hero-nota">Pipefy is our main tool, but we don't sell Pipefy. We use it because we consider it the best on the market for building processes, and you get the license directly at <a href="https://www.pipefy.com" target="_blank" rel="noopener">pipefy.com</a>.</p>
     </div>
 
-    <div class="hero-ctas">
-      <a href="#comecar" class="btn btn-primary">Talk to PSFY</a>
+    <div class="hero-ctas" data-esconde-flutuante>
+      <a href="https://wa.me/5541995041300?text=Hi!%20I%27m%20reaching%20out%20through%20your%20website%20and%20would%20like%20to%20talk%20to%20an%20agent." class="btn btn-primary btn-whats" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Talk to one of our agents within 2 hours</a>
       <a href="#provas" class="btn btn-secondary">See how we do it</a>
     </div>
   </div>
@@ -441,7 +495,7 @@
               <li class="projeto-item">Proposed architecture with 5 connected pipes</li>
               <li class="projeto-item">Client database and commission layer mapped</li>
             </ul>
-            <div class="projeto-impacto"><span><strong>Impact:</strong> The entire operation mapped in 6 hours of analysis, going straight to the root cause of the billing errors.</span></div>
+            <div class="projeto-impacto"><span><strong>Impact:</strong> 12 hours of mapping and getting to know the company, going straight to the root cause of the billing errors.</span></div>
           </div>
         </div>
 
@@ -455,8 +509,23 @@
   <div class="wrap">
     <div class="section-header">
       <div class="eyebrow">Getting started</div>
-      <h2 class="section-title">Three ways to <span class="italic">get started</span></h2>
+      <h2 class="section-title">Start with the <span class="italic">Hours Package</span></h2>
     </div>
+
+    <div class="pacote-inicial">
+      <span class="pacote-inicial-tag">First engagement</span>
+      <div>
+        <h3>Hours Package</h3>
+        <p>10 hours to start structuring or fine-tuning your process with us. Training included.</p>
+      </div>
+      <div class="pacote-inicial-preco">
+        <span class="pacote-inicial-valor">$300</span>
+        <span class="pacote-inicial-horas">10 hours</span>
+      </div>
+      <a href="orcamento.html?formato=horas" class="btn">Get the Hours Package</a>
+    </div>
+
+    <p class="depois-titulo">After that, you only pay for the hours you use</p>
 
     <div class="toggle-wrap" data-toggle>
       <div class="toggle-group" role="tablist" aria-label="Choose a package">
@@ -468,14 +537,14 @@
       <div class="toggle-panels">
         <div class="toggle-panel active" data-panel="pipefy">
           <div class="preco-card">
-            <div class="preco-valor">Starting at<span>R$ 150<small>/hour</small></span></div>
+            <div class="preco-valor">Hourly rate<span>$40<small>/hour</small></span></div>
             <div class="preco-desc">Implementation and management of the process inside the tool.</div>
             <div class="preco-inclui">Training included</div>
           </div>
         </div>
         <div class="toggle-panel" data-panel="integracoes" hidden>
           <div class="preco-card">
-            <div class="preco-valor">Starting at<span>R$ 190<small>/hour</small></span></div>
+            <div class="preco-valor">Hourly rate<span>$65<small>/hour</small></span></div>
             <div class="preco-desc">Connecting data, systems and automations around the workflow.</div>
             <div class="preco-inclui">Training included</div>
           </div>
@@ -490,7 +559,8 @@
       </div>
     </div>
 
-    <p class="preco-nota">We charge by the hour. Before closing any proposal, we get to know your process and give you an estimate of the hours. Prices in Brazilian reais (BRL).</p>
+    <p class="preco-nota">Our hourly rate is lower than that of many consultancies offering the same availability or less. Before closing any proposal, we get to know your process and give you an estimate of the hours.</p>
+    <p class="preco-nota">The Pipefy license is not included. You get it directly at <a href="https://www.pipefy.com" target="_blank" rel="noopener">pipefy.com</a>.</p>
   </div>
 </section>
 
@@ -503,6 +573,11 @@
 </section>
 
 <footer class="footer">PSFY — Simple Processes</footer>
+
+<a href="https://wa.me/5541995041300?text=Hi!%20I%27m%20reaching%20out%20through%20your%20website%20and%20would%20like%20to%20talk%20to%20an%20agent." class="whats-flutuante escondido" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span>Talk to one of our agents within 2 hours</span>
+</a>
 
 <script>
 (function () {
@@ -587,6 +662,18 @@
 
   // mantém a mesma velocidade de antes (cerca de 51px por segundo)
   track.style.animationDuration = Math.round(larguraMetade / 51) + 's';
+})();
+
+// ===== BOTÃO RÁPIDO DO WHATSAPP =====
+// Some enquanto o botão igual do topo está na tela, pra não aparecer duas vezes.
+(function () {
+  var botao = document.querySelector('.whats-flutuante');
+  var alvo = document.querySelector('[data-esconde-flutuante]');
+  if (!botao) return;
+  if (!alvo || !('IntersectionObserver' in window)) { botao.classList.remove('escondido'); return; }
+  new IntersectionObserver(function (entradas) {
+    botao.classList.toggle('escondido', entradas[0].isIntersecting);
+  }).observe(alvo);
 })();
 </script>
 

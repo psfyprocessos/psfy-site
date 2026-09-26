@@ -1,0 +1,2919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSFY: Presentation</title>
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="alternate" hreflang="pt-BR" href="https://www.psfy.com.br/apresentacao.html">
+<link rel="alternate" hreflang="en" href="https://www.psfy.com.br/en/apresentacao.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --preto: #000000;
+    --azul: #336140;
+    --azul-hover: #274d33;
+    --branco: #ffffff;
+    --azul-claro: #e4efe7;
+    --verde-claro: #74B872;
+    --cinza: #f2f2f2;
+    --cinza-texto: #6b6b6b;
+    --cinza-borda: #e5e5e5;
+    --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--preto);
+    color: var(--preto);
+    -webkit-font-smoothing: antialiased;
+  }
+  .italic { font-style: italic; font-weight: 400; color: var(--azul); }
+
+  /* ===== CONTAINER PRINCIPAL ===== */
+  .deck {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .slide.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .slide-inner {
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 88px 80px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  /* Capa não tem logo no topo (justify-content: flex-end), volta ao padding original */
+  .slide-capa .slide-inner {
+    padding: 64px 80px;
+  }
+
+  /* ===== LOGO HEADER (interno aos slides, usado só na capa) ===== */
+  .deck-header {
+    position: absolute;
+    top: 32px;
+    left: 80px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .deck-header .dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--azul);
+    border: 2px solid currentColor;
+  }
+  .deck-header .brand {
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    border: 2px solid currentColor;
+    padding: 4px 14px;
+    border-radius: 999px;
+  }
+  /* No computador a faixa fixa (.deck-topbar) já mostra o logo, então o header interno fica escondido
+     em todos os slides (antes aparecia duplicado na capa e no slide final) */
+  .deck-header {
+    display: none;
+  }
+
+  /* ===== FAIXA FIXA NO TOPO (HEADER GLOBAL) ===== */
+  .deck-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    pointer-events: none; /* deixa cliques passarem para os slides. Só a logo e contador são clicáveis se precisar */
+  }
+  .deck-topbar .deck-topbar-left,
+  .deck-topbar .deck-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    pointer-events: auto;
+  }
+  .deck-topbar .dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--azul);
+    border: 2px solid var(--preto);
+  }
+  .deck-topbar .brand {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.02em;
+    border: 2px solid var(--preto);
+    color: var(--preto);
+    padding: 3px 12px;
+    border-radius: 999px;
+  }
+  .deck-topbar .topbar-counter {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--preto);
+    opacity: 0.6;
+  }
+  /* Quando o slide ativo é escuro (capa, CTA), inverte a faixa */
+  body.deck-dark .deck-topbar {
+    background: rgba(0, 0, 0, 0.4);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+  body.deck-dark .deck-topbar .dot { border-color: var(--branco); }
+  body.deck-dark .deck-topbar .brand { color: var(--branco); border-color: var(--branco); }
+  body.deck-dark .deck-topbar .topbar-counter { color: var(--branco); }
+
+  /* ===== INDICADOR DE SLIDES (laterais) ===== */
+  .slide-indicator {
+    position: absolute;
+    left: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 10;
+  }
+  .slide-indicator span {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.3;
+    transition: opacity 0.3s, height 0.3s;
+  }
+  .slide-indicator span.current {
+    opacity: 1;
+    height: 24px;
+  }
+
+  /* ===== NAVEGAÇÃO ===== */
+  .nav-controls {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+  }
+  .nav-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--branco);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: background 0.2s, transform 0.2s;
+    font-family: inherit;
+  }
+  .nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+  .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .nav-btn svg { width: 20px; height: 20px; }
+  /* Troca de idioma (bandeirinha) junto dos botões de navegação */
+  .nav-btn.nav-lang { width: auto; padding: 0 16px; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; text-decoration: none; }
+  .nav-btn.nav-lang svg { width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,0.12); }
+
+  .slide-counter {
+    display: none; /* substituído pelo contador dentro do .deck-topbar */
+  }
+
+  /* ===== SLIDE 1: CAPA ===== */
+  .slide-capa {
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 30%, rgba(116, 184, 114, 0.14) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(116, 184, 114, 0.08) 0%, transparent 60%),
+      var(--preto);
+    color: var(--branco);
+  }
+  .slide-capa .slide-inner {
+    justify-content: flex-end;
+  }
+  .capa-decoration {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--azul) 0%, var(--azul-hover) 100%);
+    border-radius: 0 0 0 60% / 0 0 0 50%;
+    overflow: hidden;
+  }
+  .capa-decoration::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+  }
+  /* Badge de posicionamento na capa */
+  .capa-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px 8px 12px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--branco);
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(6px);
+  }
+  .capa-badge .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #74B872;
+    box-shadow: 0 0 0 4px rgba(116, 184, 114, 0.25);
+    flex-shrink: 0;
+  }
+  .capa-titulo {
+    font-size: clamp(80px, 12vw, 180px);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .capa-subtitle {
+    font-size: 22px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 16px;
+    font-weight: 500;
+    position: relative;
+    z-index: 2;
+  }
+  .capa-desc {
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 2;
+  }
+  .capa-url {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ===== SLIDES GERAIS ===== */
+  .slide-light {
+    background: var(--branco);
+    color: var(--preto);
+  }
+  .slide-dark {
+    background: var(--preto);
+    color: var(--branco);
+  }
+  .slide-blue {
+    background: linear-gradient(135deg, #274d33 0%, #16301f 55%, #0c1d12 100%);
+    color: var(--branco);
+    position: relative;
+    overflow: hidden;
+  }
+  .slide-blue::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 60%);
+  }
+  .slide-blue::after {
+    content: '';
+    position: absolute;
+    bottom: -200px;
+    left: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--azul);
+    margin-bottom: 32px;
+  }
+  .section-label::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--azul);
+  }
+  .slide-dark .section-label { color: var(--verde-claro); }
+  .slide-dark .section-label::before { background: var(--verde-claro); }
+  .slide-blue .section-label { color: var(--azul-claro); }
+  .slide-blue .section-label::before { background: var(--azul-claro); }
+
+  .slide-titulo {
+    font-size: clamp(48px, 6vw, 88px);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 32px;
+  }
+  .slide-titulo-md {
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .slide-texto {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--cinza-texto);
+    max-width: 720px;
+    margin-bottom: 16px;
+  }
+  .slide-dark .slide-texto { color: rgba(255,255,255,0.7); }
+  .slide-blue .slide-texto { color: rgba(255,255,255,0.85); }
+
+  /* Badge de licença (ressalva) reutilizável em slides claros */
+  .licenca-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px 8px 12px;
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--preto);
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  .licenca-badge .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #8b1e3f;
+    box-shadow: 0 0 0 4px rgba(139, 30, 63, 0.2);
+    flex-shrink: 0;
+  }
+
+  /* ===== SLIDE 2: QUEM SOMOS ===== */
+  .quem-somos-content {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 56px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  .quem-somos-img {
+    aspect-ratio: 4/5;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    max-height: 340px;
+  }
+  .quem-somos-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .quem-somos-img-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px 18px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+    color: white;
+  }
+  .quem-somos-img-nome {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .quem-somos-img-cargo {
+    font-size: 12px;
+    opacity: 0.85;
+    margin-top: 2px;
+  }
+
+  /* Selos de prêmio */
+  .premios-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .premio-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--azul-claro);
+    border: 1px solid rgba(51, 97, 64, 0.2);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--azul);
+  }
+  .premio-badge svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  /* ===== SLIDE 3: CORE OPERAÇÃO + STATS ===== */
+  .core-content {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .stack-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 32px;
+  }
+  .stack-mini {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+  }
+  .stack-mini.highlight {
+    background: var(--azul);
+    color: var(--branco);
+    border-color: var(--azul);
+  }
+  .stack-mini-nome {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .stack-mini-cat {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cinza-texto);
+  }
+  .stack-mini.highlight .stack-mini-cat { color: rgba(255,255,255,0.8); }
+
+  .stats-side {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .stat-block {
+    border-left: 3px solid var(--azul);
+    padding-left: 24px;
+  }
+  .stat-block-numero {
+    font-size: clamp(56px, 6vw, 80px);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 8px;
+    color: var(--azul);
+  }
+  .stat-block-label {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--preto);
+  }
+
+  /* ===== SLIDE: POR QUE A PSFY ===== */
+  .porque-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .porque-card {
+    background: white;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 20px;
+    padding: 22px 26px;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    position: relative;
+  }
+  .porque-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(51, 97, 64, 0.08);
+    border-color: var(--azul);
+  }
+  .porque-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--azul-claro);
+    color: var(--azul);
+    display: grid;
+    place-items: center;
+    margin-bottom: 14px;
+  }
+  .porque-card-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  .porque-card-titulo {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+  .porque-card-desc {
+    font-size: 13.5px;
+    color: var(--cinza-texto);
+    line-height: 1.5;
+  }
+  .porque-card-desc strong {
+    color: var(--preto);
+    font-weight: 500;
+  }
+  .porque-destaque {
+    grid-column: span 2;
+    background: linear-gradient(135deg, var(--azul) 0%, var(--azul-hover) 100%);
+    color: white;
+    border: none;
+  }
+  .porque-destaque .porque-card-icon {
+    background: rgba(255,255,255,0.15);
+    color: white;
+  }
+  .porque-destaque .porque-card-titulo {
+    color: white;
+    font-size: 20px;
+  }
+  .porque-destaque .porque-card-desc {
+    color: rgba(255,255,255,0.9);
+    font-size: 14px;
+  }
+  .porque-destaque .porque-card-desc strong {
+    color: white;
+    font-weight: 600;
+  }
+  .porque-destaque:hover {
+    border-color: transparent;
+    box-shadow: 0 20px 50px rgba(51, 97, 64, 0.35);
+  }
+
+  /* ===== SLIDE: RESULTADOS / CASES ===== */
+  .resultados-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .resultado-card {
+    background: white;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 20px;
+    padding: 36px 32px;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .resultado-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--azul);
+    box-shadow: 0 20px 40px rgba(51, 97, 64, 0.08);
+  }
+  .resultado-card-cliente {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--azul);
+    margin-bottom: 16px;
+  }
+  .resultado-card-numero {
+    font-size: clamp(48px, 5vw, 64px);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--preto);
+    margin-bottom: 12px;
+  }
+  .resultado-card-numero .unidade {
+    font-size: 0.5em;
+    color: var(--azul);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .resultado-card-metrica {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--preto);
+  }
+  .resultado-card-divider {
+    height: 1px;
+    background: var(--cinza-borda);
+    margin-bottom: 20px;
+  }
+  .resultado-card-desc {
+    font-size: 14px;
+    color: var(--cinza-texto);
+    line-height: 1.55;
+  }
+  .resultado-card-em-breve {
+    background: var(--cinza);
+    border: 1px dashed var(--cinza-borda);
+  }
+  .resultado-card-em-breve .resultado-card-numero {
+    color: var(--cinza-texto);
+    font-size: 32px;
+  }
+
+  /* ===== SLIDE GRS: PROCESSOS EM SEQUÊNCIA ===== */
+  .grs-fluxo {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 20px;
+    align-items: stretch;
+    margin-top: 40px;
+  }
+  .grs-fluxo .resultado-card {
+    margin: 0;
+  }
+  .grs-conector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--azul);
+  }
+  .grs-conector svg {
+    width: 44px;
+    height: 44px;
+  }
+  @media (max-width: 900px) {
+    .grs-fluxo {
+      grid-template-columns: 1fr;
+    }
+    .grs-conector svg { transform: rotate(90deg); }
+  }
+
+  /* ===== SLIDE CLIENTES (MARQUEE DE LOGOS) ===== */
+  .logos-marquee {
+    overflow: hidden;
+    margin-top: 56px;
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  }
+  .logos-track {
+    display: flex;
+    width: max-content;
+    animation: logos-scroll 30s linear infinite;
+  }
+  .logos-marquee:hover .logos-track {
+    animation-play-state: paused;
+  }
+  .logos-set {
+    display: flex;
+    align-items: center;
+    gap: 96px;
+    padding-right: 96px;
+    flex-shrink: 0;
+  }
+  .logos-set img {
+    height: 60px;
+    width: auto;
+    max-width: 180px;
+    object-fit: contain;
+    filter: grayscale(1) opacity(0.55);
+    transition: filter 0.3s, transform 0.3s;
+  }
+  .logos-set img:hover {
+    filter: grayscale(0) opacity(1);
+    transform: scale(1.06);
+  }
+  @keyframes logos-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Responsivo: telas verticais ou estreitas */
+  @media (max-aspect-ratio: 4/3), (max-width: 900px) {
+    .logos-set { gap: 48px; padding-right: 48px; }
+    .logos-set img { height: 40px; max-width: 120px; }
+
+    /* Em mobile: padding menor nos slides + esconde a faixa fixa
+       (mobile usa o deck-header interno de cada slide, mais compacto) */
+    .slide-inner {
+      padding: 90px 24px 48px;
+    }
+    .deck-topbar {
+      display: none;
+    }
+    .deck-header {
+      display: flex;
+    }
+  }
+
+  /* ===== SLIDE DEPOIMENTO ===== */
+  .slide-depoimento .slide-inner {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .depoimento-content {
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .depoimento-content .section-label {
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+  /* Aspas grandes ornamentais */
+  .depoimento-aspas {
+    font-family: Georgia, serif;
+    font-size: 140px;
+    line-height: 0.5;
+    color: var(--azul);
+    opacity: 0.25;
+    margin-bottom: 24px;
+    user-select: none;
+  }
+  .depoimento-texto {
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.55;
+    color: var(--preto);
+    font-weight: 400;
+    margin-bottom: 48px;
+    letter-spacing: -0.01em;
+  }
+  .depoimento-autor {
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+    padding-top: 32px;
+    border-top: 1px solid var(--cinza-borda);
+  }
+  .depoimento-autor-logo {
+    height: 40px;
+    width: auto;
+    flex-shrink: 0;
+  }
+  .depoimento-autor-info {
+    text-align: left;
+  }
+  .depoimento-autor-nome {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--preto);
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+  }
+  .depoimento-autor-cargo {
+    font-size: 14px;
+    color: var(--cinza-texto);
+  }
+  /* Mobile */
+  @media (max-aspect-ratio: 4/3), (max-width: 900px) {
+    .depoimento-aspas {
+      font-size: 90px;
+    }
+    .depoimento-autor {
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+    .depoimento-autor-info {
+      text-align: center;
+    }
+  }
+
+  /* ===== SLIDE PERGUNTA (transição) ===== */
+  .slide-pergunta .slide-inner {
+    justify-content: center;
+  }
+  .pergunta-titulo {
+    font-size: clamp(80px, 11vw, 160px);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 0.95;
+    max-width: 900px;
+  }
+  .pergunta-titulo .italic { color: var(--azul); }
+
+  /* ===== SLIDE FORMATOS ===== */
+  .formatos-grid-deck {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .formato-card-deck {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 20px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .formato-card-deck.destaque {
+    background: var(--preto);
+    color: var(--branco);
+    border: none;
+  }
+  .formato-card-deck-badge {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: var(--verde-claro);
+    color: var(--preto);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+  .formato-card-deck-numero {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--azul);
+    margin-bottom: 24px;
+  }
+  .formato-card-deck.destaque .formato-card-deck-numero { color: var(--verde-claro); }
+  .formato-card-deck-titulo {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .formato-card-deck-desc {
+    font-size: 13px;
+    color: var(--cinza-texto);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .formato-card-deck.destaque .formato-card-deck-desc { color: rgba(255,255,255,0.6); }
+  .formato-card-deck-preco {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--azul);
+    margin-bottom: 8px;
+  }
+  .formato-card-deck-orcamento {
+    font-size: 12px;
+    color: var(--cinza-texto);
+    margin-bottom: 20px;
+  }
+  .formato-card-deck-orcamento strong { color: var(--preto); font-weight: 700; }
+  .formato-card-deck.destaque .formato-card-deck-orcamento strong { color: var(--branco); }
+  .formato-card-deck-divider {
+    border-top: 1px solid var(--cinza-borda);
+    margin-bottom: 16px;
+  }
+  .formato-card-deck.destaque .formato-card-deck-divider { border-color: rgba(255,255,255,0.1); }
+  .formato-card-deck-items {
+    list-style: none;
+    flex: 1;
+  }
+  .formato-card-deck-item {
+    display: flex;
+    gap: 8px;
+    padding: 6px 0;
+    font-size: 13px;
+    color: var(--preto);
+  }
+  .formato-card-deck.destaque .formato-card-deck-item { color: rgba(255,255,255,0.85); }
+  .formato-card-deck-item .arrow { color: var(--azul); font-weight: 700; }
+  .formato-card-deck.destaque .formato-card-deck-item .arrow { color: var(--verde-claro); }
+
+  /* ===== SLIDE TREINAMENTO ===== */
+  .treino-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    margin-top: 24px;
+  }
+  .treino-visual {
+    background: linear-gradient(135deg, var(--preto) 0%, #112a1b 100%);
+    border-radius: 24px;
+    padding: 44px 40px;
+    color: var(--branco);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 340px;
+  }
+  .treino-visual::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(116, 184, 114, 0.35) 0%, transparent 60%);
+  }
+  .treino-cargas {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    position: relative;
+    flex-wrap: wrap;
+  }
+  .treino-carga {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 14px 18px;
+    text-align: center;
+    flex: 1;
+    min-width: 60px;
+  }
+  .treino-carga-num {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--verde-claro);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .treino-carga-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-top: 4px;
+  }
+  .treino-preco-grande {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--branco);
+    line-height: 1;
+    margin-bottom: 6px;
+    position: relative;
+  }
+  .treino-preco-grande .prefixo {
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    display: block;
+    margin-bottom: 6px;
+    letter-spacing: 0;
+  }
+  .treino-preco-obs {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    position: relative;
+  }
+  .treino-modalidades {
+    display: flex;
+    gap: 8px;
+    margin-top: 24px;
+    position: relative;
+  }
+  .treino-modalidade {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--branco);
+  }
+  .treino-modalidade::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #74B872;
+  }
+  .treino-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .treino-feature {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .treino-feature-icon {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--azul-claro);
+    color: var(--azul);
+    display: grid;
+    place-items: center;
+  }
+  .treino-feature-icon svg { width: 18px; height: 18px; }
+  .treino-feature-titulo {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 2px;
+  }
+  .treino-feature-desc {
+    font-size: 13px;
+    color: var(--cinza-texto);
+    line-height: 1.5;
+  }
+  @media (max-aspect-ratio: 4/3), (max-width: 900px) {
+    .treino-content { grid-template-columns: 1fr; gap: 32px; }
+    .treino-visual { min-height: 260px; }
+  }
+
+  /* ===== SLIDE PROCESSO (TIMELINE) ===== */
+  .processo-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    height: 100%;
+    justify-content: center;
+  }
+  .processo-header h2 {
+    margin-bottom: 12px;
+  }
+  .processo-header .slide-texto {
+    margin-bottom: 16px;
+    max-width: 800px;
+  }
+  .processo-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--azul-claro);
+    color: var(--azul);
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .processo-tag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--azul);
+  }
+
+  /* ===== BOTÃO CENTRAL ABAIXO DOS FORMATOS ===== */
+  .formatos-cta-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-top: 48px;
+  }
+  .formatos-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--azul);
+    color: white;
+    padding: 18px 36px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    box-shadow: 0 8px 24px rgba(51, 97, 64, 0.3);
+  }
+  .formatos-cta-btn:hover {
+    transform: translateY(-2px);
+    background: var(--azul-hover);
+    box-shadow: 0 12px 32px rgba(51, 97, 64, 0.4);
+  }
+  .formatos-cta-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+  .formatos-cta-aviso {
+    font-size: 13px;
+    color: var(--cinza-texto);
+  }
+
+  /* ===== TOGGLE PACOTE DE HORAS ===== */
+  .toggle-pacote-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .toggle-pacote {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 20px 10px 16px;
+    background: white;
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cinza-texto);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .toggle-pacote:hover {
+    border-color: #74B872;
+    color: #336140;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(116, 184, 114, 0.12);
+  }
+  .toggle-pacote-switch {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    background: var(--cinza-borda);
+    border-radius: 999px;
+    transition: background 0.3s;
+  }
+  .toggle-pacote-switch::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .toggle-pacote.ativo {
+    border-color: #74B872;
+    background: #f0fdf4;
+    color: #336140;
+  }
+  .toggle-pacote.ativo .toggle-pacote-switch {
+    background: #74B872;
+  }
+  .toggle-pacote.ativo .toggle-pacote-switch::after {
+    transform: translateX(16px);
+  }
+  .toggle-pacote-icone {
+    color: currentColor;
+    display: grid;
+    place-items: center;
+  }
+  .toggle-pacote-icone svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* ===== ESTADO ATIVO: ETAPAS COM PACOTE DE HORAS ===== */
+  .timeline-horizontal.pacote-ativo .timeline-step-pacote .timeline-step-bolinha {
+    border-color: #74B872;
+    color: #336140;
+    box-shadow: 0 0 0 6px rgba(116, 184, 114, 0.15), 0 4px 12px rgba(116, 184, 114, 0.25);
+    animation: pulse-verde 2s ease-in-out infinite;
+  }
+  .timeline-horizontal.pacote-ativo .timeline-step-pacote .timeline-step-num {
+    color: #336140;
+  }
+  @keyframes pulse-verde {
+    0%, 100% { box-shadow: 0 0 0 6px rgba(116, 184, 114, 0.15), 0 4px 12px rgba(116, 184, 114, 0.25); }
+    50% { box-shadow: 0 0 0 12px rgba(116, 184, 114, 0.05), 0 4px 16px rgba(116, 184, 114, 0.35); }
+  }
+
+  /* Tooltip que aparece quando toggle está ativo */
+  .timeline-step-tooltip {
+    margin-top: 14px;
+    padding: 10px 12px;
+    background: #f0fdf4;
+    border: 1px solid rgba(116, 184, 114, 0.3);
+    border-radius: 10px;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #336140;
+    max-width: 140px;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.4s, transform 0.4s;
+    pointer-events: none;
+    text-align: left;
+  }
+  .timeline-step-tooltip strong {
+    display: block;
+    color: #336140;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+  .timeline-horizontal.pacote-ativo .timeline-step-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Card pós-projeto destacado quando toggle ativo */
+  .timeline-horizontal.pacote-ativo .pos-projeto-card {
+    transform: scale(1.03);
+    box-shadow: 0 16px 40px rgba(116, 184, 114, 0.2);
+    border-color: #74B872;
+    border-width: 2px;
+  }
+  .timeline-horizontal.pacote-ativo .timeline-conector {
+    color: #336140;
+    transform: scale(1.15);
+    transition: transform 0.3s;
+  }
+
+  /* ===== TIMELINE HORIZONTAL MODERNA ===== */
+  .timeline-horizontal {
+    position: relative;
+    padding: 40px 0 20px;
+  }
+
+  /* Container principal: timeline ocupa toda a largura */
+  .timeline-fluxo {
+    display: block;
+  }
+
+  /* Bloco da timeline */
+  .timeline-track-wrapper {
+    position: relative;
+  }
+  .timeline-track-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--azul);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .timeline-track-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--azul-claro), transparent);
+  }
+  .timeline-track {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+  }
+  /* Linha conectora atrás dos cards */
+  .timeline-track::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 7%;
+    right: 7%;
+    height: 2px;
+    background: linear-gradient(to right, var(--azul) 0%, var(--azul-claro) 100%);
+    z-index: 0;
+  }
+
+  .timeline-step {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 0 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .timeline-step-bolinha {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: white;
+    border: 2.5px solid var(--azul);
+    display: grid;
+    place-items: center;
+    margin-bottom: 18px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--azul);
+    letter-spacing: -0.02em;
+    box-shadow: 0 4px 12px rgba(51, 97, 64, 0.12);
+    transition: transform 0.3s, box-shadow 0.3s;
+    flex-shrink: 0;
+  }
+  .timeline-step:hover .timeline-step-bolinha {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(51, 97, 64, 0.25);
+  }
+  .timeline-step-num {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--azul);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .timeline-step-titulo {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    min-height: 36px;
+  }
+  .timeline-step-desc {
+    font-size: 11.5px;
+    color: var(--cinza-texto);
+    line-height: 1.5;
+    max-width: 130px;
+  }
+
+  /* Conector entre timeline e card pós-projeto */
+  .timeline-conector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #74B872;
+    align-self: center;
+    margin-top: 18px;
+  }
+  .timeline-conector svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Card pós-projeto (Pacote de Horas) */
+  .pos-projeto-card {
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+    border: 1.5px solid rgba(116, 184, 114, 0.3);
+    border-radius: 20px;
+    padding: 28px 26px;
+    width: 280px;
+    align-self: center;
+    margin-top: 18px;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .pos-projeto-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(116, 184, 114, 0.15);
+  }
+  .pos-projeto-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: white;
+    border: 1px solid rgba(116, 184, 114, 0.3);
+    color: #336140;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .pos-projeto-tag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #74B872;
+  }
+  .pos-projeto-titulo {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .pos-projeto-subtitulo {
+    font-size: 12px;
+    color: #336140;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .pos-projeto-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .pos-projeto-lista li {
+    font-size: 12.5px;
+    color: var(--cinza-texto);
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .pos-projeto-lista li svg {
+    width: 16px;
+    height: 16px;
+    color: #74B872;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ===== SLIDE PACOTE DE HORAS ===== */
+  .pacote-horas-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .pacote-horas-visual {
+    background: linear-gradient(135deg, var(--preto) 0%, #112a1b 100%);
+    border-radius: 24px;
+    padding: 48px 40px;
+    color: var(--branco);
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .pacote-horas-visual::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(116, 184, 114, 0.35) 0%, transparent 60%);
+  }
+  .pacote-horas-numero {
+    font-size: 88px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    color: var(--verde-claro);
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .pacote-horas-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .pacote-horas-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--branco);
+    width: fit-content;
+    position: relative;
+  }
+  .pacote-horas-tag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #74B872;
+  }
+
+  .pacote-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 24px;
+  }
+  .pacote-feature {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .pacote-feature-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--azul-claro);
+    color: var(--azul);
+    display: grid;
+    place-items: center;
+  }
+  .pacote-feature-icon svg { width: 18px; height: 18px; }
+  .pacote-feature-content {
+    flex: 1;
+  }
+  .pacote-feature-titulo {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 2px;
+  }
+  .pacote-feature-desc {
+    font-size: 13px;
+    color: var(--cinza-texto);
+    line-height: 1.5;
+  }
+
+  /* ===== CTA FORMULÁRIO ===== */
+  .cta-form {
+    margin-top: 32px;
+    padding: 24px;
+    background: var(--azul-claro);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .cta-form-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--azul);
+    color: var(--branco);
+    display: grid;
+    place-items: center;
+  }
+  .cta-form-icon svg { width: 22px; height: 22px; }
+  .cta-form-content { flex: 1; }
+  .cta-form-titulo {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 2px;
+  }
+  .cta-form-link {
+    font-size: 13px;
+    color: var(--azul);
+    font-weight: 500;
+  }
+  .cta-deck {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .cta-deck .slide-titulo {
+    margin-bottom: 24px;
+  }
+  .cta-deck-info {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-top: 56px;
+    flex-wrap: wrap;
+  }
+  .cta-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .cta-info-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    font-weight: 500;
+  }
+  .cta-info-valor {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--branco);
+  }
+
+  /* ===== CTA FINAL: BOTÕES ===== */
+  .cta-deck-acoes {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+  .cta-deck-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 32px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    cursor: pointer;
+  }
+  .cta-deck-btn-primary {
+    background: white;
+    color: var(--azul);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+  .cta-deck-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+  }
+  .cta-deck-btn-secondary {
+    background: rgba(255,255,255,0.12);
+    color: white;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(10px);
+  }
+  .cta-deck-btn-secondary:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+  }
+  .cta-deck-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* ===== BOTÃO TERCIÁRIO: VOLTAR AO SITE ===== */
+  .cta-voltar-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    margin-top: 24px;
+    cursor: pointer;
+    transition: color 0.2s, gap 0.2s;
+    background: none;
+    border: none;
+    font-family: inherit;
+  }
+  .cta-voltar-link:hover {
+    color: white;
+    gap: 12px;
+  }
+  .cta-voltar-link svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* ===== MODAL DE CAPTURA ===== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: modalFadeIn 0.3s ease;
+  }
+  .modal-overlay.ativo {
+    display: flex;
+  }
+  @keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .modal-card {
+    background: white;
+    border-radius: 24px;
+    max-width: 460px;
+    width: 100%;
+    padding: 40px 36px 32px;
+    position: relative;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    animation: modalSlideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  @keyframes modalSlideUp {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .modal-fechar {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--cinza);
+    border: none;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    color: var(--cinza-texto);
+    transition: background 0.2s, color 0.2s;
+  }
+  .modal-fechar:hover {
+    background: var(--cinza-borda);
+    color: var(--preto);
+  }
+  .modal-fechar svg {
+    width: 18px;
+    height: 18px;
+  }
+  .modal-titulo {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--preto);
+    margin-bottom: 8px;
+    line-height: 1.2;
+    padding-right: 32px;
+  }
+  .modal-titulo .italic {
+    color: var(--azul);
+  }
+  .modal-subtitulo {
+    font-size: 14px;
+    color: var(--cinza-texto);
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  .modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .modal-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--preto);
+    background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .modal-input:focus {
+    outline: none;
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgba(51, 97, 64, 0.1);
+  }
+  .modal-acoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+    flex-direction: column;
+  }
+  .modal-btn-primary {
+    background: var(--azul);
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .modal-btn-primary:hover {
+    background: var(--azul-hover);
+    transform: translateY(-1px);
+  }
+  .modal-btn-secundario {
+    background: transparent;
+    color: var(--cinza-texto);
+    border: none;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.2s;
+  }
+  .modal-btn-secundario:hover {
+    color: var(--preto);
+  }
+  .modal-aviso {
+    font-size: 12px;
+    color: var(--cinza-texto);
+    text-align: center;
+    margin-top: 16px;
+    line-height: 1.5;
+  }
+
+  /* ===== HINT TECLADO ===== */
+  .keyboard-hint {
+    position: fixed;
+    top: 32px;
+    right: 32px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 50;
+    animation: fade-out 5s 3s forwards;
+  }
+  .slide-light ~ .keyboard-hint,
+  body:has(.slide.active.slide-light) .keyboard-hint { color: rgba(0,0,0,0.4); }
+
+  @keyframes fade-out {
+    to { opacity: 0; pointer-events: none; }
+  }
+
+  /* ===== ANIMAÇÕES ENTRADA ===== */
+  .slide.active .anim-up {
+    animation: slide-up 0.7s 0.2s both cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .slide.active .anim-up-2 {
+    animation: slide-up 0.7s 0.4s both cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .slide.active .anim-up-3 {
+    animation: slide-up 0.7s 0.6s both cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .slide.active .anim-fade {
+    animation: fade-in 0.8s 0.3s both;
+  }
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ===== USABILIDADE MOBILE ===== */
+  @media (max-aspect-ratio: 4/3), (max-width: 900px) {
+    /* Slides passam a rolar verticalmente. Antes o conteúdo que não
+       cabia na tela era cortado sem aviso (overflow hidden + 100vh) */
+    .slide {
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      align-items: flex-start;
+    }
+    .slide-inner {
+      height: auto;
+      min-height: 100%;
+      justify-content: flex-start;
+      padding: 84px 22px 110px; /* espaço embaixo pros botões de navegação */
+    }
+    .slide-capa .slide-inner {
+      justify-content: flex-end;
+      min-height: 100vh;
+      padding: 84px 22px 48px;
+    }
+    .deck-header { left: 22px; top: 20px; }
+
+    /* Decoração da capa menor pra não engolir a tela em pé */
+    .capa-decoration {
+      width: 75%;
+      height: 42%;
+    }
+
+    /* Grids viram coluna única */
+    .quem-somos-content { grid-template-columns: 1fr; gap: 28px; }
+    .quem-somos-img { max-width: 210px; }
+    .core-content { grid-template-columns: 1fr; gap: 36px; }
+    .porque-grid { grid-template-columns: 1fr; }
+    .porque-destaque { grid-column: span 1; }
+    .resultados-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 28px; }
+    .formatos-grid-deck { grid-template-columns: 1fr; }
+    .pacote-horas-content { grid-template-columns: 1fr; gap: 32px; }
+
+    /* Estatísticas lado a lado em duas colunas */
+    .stats-side {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .stats-side .stat-block {
+      flex: 1 1 40%;
+      min-width: 130px;
+    }
+
+    /* Timeline em duas colunas, sem a linha conectora horizontal */
+    .timeline-track {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px 12px;
+    }
+    .timeline-track::before { display: none; }
+    .timeline-step-desc { max-width: none; }
+    .timeline-step-titulo { min-height: auto; }
+    .timeline-horizontal { padding: 24px 0 12px; }
+
+    /* Navegação compacta e sem elementos de desktop */
+    .nav-controls { bottom: 16px; right: 16px; }
+    .nav-btn { width: 44px; height: 44px; }
+    .keyboard-hint { display: none; }
+    .slide-indicator { display: none; }
+
+    .cta-deck-info { gap: 24px; margin-top: 40px; }
+    .cta-deck-acoes { gap: 10px; }
+    .cta-deck-btn { width: 100%; justify-content: center; }
+    .formatos-cta-btn { width: 100%; justify-content: center; }
+    .modal-card { padding: 32px 24px 24px; }
+  }
+
+  /* Tipografia menor em telas estreitas */
+  @media (max-width: 600px) {
+    .capa-titulo { font-size: clamp(56px, 18vw, 90px); }
+    .pergunta-titulo { font-size: clamp(44px, 12vw, 80px); }
+    .slide-titulo { font-size: clamp(34px, 9vw, 48px); }
+    .slide-titulo-md { font-size: clamp(28px, 8vw, 40px); }
+    .slide-texto { font-size: 16px; }
+    .capa-subtitle { font-size: 18px; }
+    .capa-desc { font-size: 15px; margin-bottom: 32px; }
+    .depoimento-texto { font-size: 17px; }
+    .treino-preco-grande { font-size: 32px; }
+    .pacote-horas-numero { font-size: 64px; }
+    .stat-block-numero { font-size: clamp(40px, 10vw, 56px); }
+    .resultado-card-numero { font-size: clamp(36px, 9vw, 48px); }
+    .formato-card-deck { padding: 24px 20px; }
+    .porque-card { padding: 20px; }
+    .treino-visual { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== FAIXA FIXA NO TOPO ============== -->
+<header class="deck-topbar">
+  <div class="deck-topbar-left">
+    <span class="dot"></span>
+    <span class="brand">PSFY.</span>
+  </div>
+  <div class="deck-topbar-right">
+    <span class="topbar-counter"><span id="topbar-current">1</span> / <span id="topbar-total">13</span></span>
+  </div>
+</header>
+
+<div class="deck">
+
+  <!-- ============== SLIDE 1: CAPA ============== -->
+  <section class="slide slide-capa active">
+    <div class="capa-decoration"></div>
+    <div class="deck-header" style="color: white;">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="anim-up">
+        <div class="capa-badge">
+          <span class="dot"></span>
+          Creative efficiency consulting
+        </div>
+      </div>
+      <div class="anim-up">
+        <h1 class="capa-titulo">PSFY.</h1>
+      </div>
+      <div class="anim-up-2">
+        <p class="capa-subtitle">Simple Processes</p>
+      </div>
+      <div class="anim-up-3">
+        <p class="capa-desc">
+          <strong style="color:#fff">Your process is unique. So is the way we solve it.</strong><br>
+          We get to know how your operation really works and connect the best tools to create efficiency, at an hourly rate lower than that of many consultancies offering the same availability or less.
+        </p>
+        <p class="capa-url">www.PSFY.com.br</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 2: QUEM SOMOS ============== -->
+  <section class="slide slide-light">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="quem-somos-content">
+        <div class="anim-fade">
+          <div class="quem-somos-img">
+            <img src="../henrique-foto.jpeg" alt="Henrique Ribeiro, founder of PSFY">
+            <div class="quem-somos-img-overlay">
+              <div class="quem-somos-img-nome">Henrique Ribeiro</div>
+              <div class="quem-somos-img-cargo">Founder of PSFY</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="anim-up">
+            <div class="section-label">Who is behind it</div>
+            <h2 class="slide-titulo-md">5 years in processes.<br><span class="italic">Two awards.</span> One consultancy.</h2>
+          </div>
+          <div class="anim-up-2">
+            <p class="slide-texto">
+              Agronomist from <strong>UFPR</strong>, the Federal University of Paraná, but processes have always been my passion. In college I ran an organic food delivery business and found out I liked <strong>designing how things work</strong> more than the technical side of agriculture.
+            </p>
+            <p class="slide-texto" style="margin-top: 14px;">
+              At Pipefy I was responsible for <strong>continuous improvement of the back office</strong> and later joined the <strong>Partners</strong> team, helping other consultancies structure their processes. In 2024 I founded PSFY to bring this practical approach to companies in any industry.
+            </p>
+
+            <div class="premios-row">
+              <div class="premio-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="7"/>
+                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+                </svg>
+                Pipefy Agile Finance Team
+              </div>
+              <div class="premio-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="7"/>
+                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+                </svg>
+                Pipefy Best Internal Pipe 2024
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 3: CORE DA OPERAÇÃO ============== -->
+  <section class="slide slide-light">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="core-content">
+        <div>
+          <div class="anim-up">
+            <div class="section-label">Our specialty</div>
+            <h2 class="slide-titulo-md">Process mapping and <span class="italic">implementation</span> consulting.</h2>
+          </div>
+          <div class="anim-up-2">
+            <p class="slide-texto">
+              We map how your operation works today, design the right workflow and implement it. Pipefy is our main tool, because we consider it the best on the market for building processes. We power it up with integrations, automations and AI agents to make everything <strong>more efficient, scalable and intelligent</strong>.
+            </p>
+            <div class="licenca-badge">
+              <span class="dot"></span>
+              We don't sell Pipefy. You get the license directly at pipefy.com.
+            </div>
+            <div class="stack-mini-grid">
+              <div class="stack-mini highlight">
+                <div class="stack-mini-nome">Pipefy</div>
+                <div class="stack-mini-cat">Processes</div>
+              </div>
+              <div class="stack-mini">
+                <div class="stack-mini-nome">Pipefy AI</div>
+                <div class="stack-mini-cat">AI Studio</div>
+              </div>
+              <div class="stack-mini">
+                <div class="stack-mini-nome">MS Azure</div>
+                <div class="stack-mini-cat">Cloud</div>
+              </div>
+              <div class="stack-mini">
+                <div class="stack-mini-nome">Google W.</div>
+                <div class="stack-mini-cat">Productivity</div>
+              </div>
+              <div class="stack-mini">
+                <div class="stack-mini-nome">Make</div>
+                <div class="stack-mini-cat">Integrations</div>
+              </div>
+              <div class="stack-mini">
+                <div class="stack-mini-nome">Claude</div>
+                <div class="stack-mini-cat">AI</div>
+              </div>
+              <div class="stack-mini">
+                <div class="stack-mini-nome">OpenAI</div>
+                <div class="stack-mini-cat">LLM</div>
+              </div>
+              <div class="stack-mini">
+                <div class="stack-mini-nome">Typebot</div>
+                <div class="stack-mini-cat">Chatbots</div>
+              </div>
+              <div class="stack-mini">
+                <div class="stack-mini-nome">Zapier</div>
+                <div class="stack-mini-cat">Integrations</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="stats-side anim-up-3">
+          <div class="stat-block">
+            <div class="stat-block-numero">15+</div>
+            <div class="stat-block-label">Active clients</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-block-numero">80+</div>
+            <div class="stat-block-label">Processes implemented</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-block-numero">25+</div>
+            <div class="stat-block-label">Processes with AI</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-block-numero">40+</div>
+            <div class="stat-block-label">Integrations delivered</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE NOVO: POR QUE A PSFY ============== -->
+  <section class="slide slide-light">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="anim-up">
+        <div class="section-label">Why PSFY</div>
+        <h2 class="slide-titulo-md">Not like other <span class="italic">consultancies</span>.</h2>
+      </div>
+
+      <div class="porque-grid anim-up-2">
+        <!-- Destaque grande -->
+        <div class="porque-card porque-destaque">
+          <div class="porque-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <div class="porque-card-titulo">Processes are about people.</div>
+          <div class="porque-card-desc">
+            More important than delivering a new process is your team <strong>knowing how to use the tool to win back time</strong>: for a coffee break, to leave earlier, to be with family. Technology is the means, not the end.
+          </div>
+        </div>
+
+        <!-- Card 1 -->
+        <div class="porque-card">
+          <div class="porque-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <div class="porque-card-titulo">The skill to deliver with quality.</div>
+          <div class="porque-card-desc">
+            Structures that <strong>few consultants master</strong> (like running the solution and the database in a single workflow, with conditional automations), delivered on short timelines without sacrificing quality.
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="porque-card">
+          <div class="porque-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="7"/>
+              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+            </svg>
+          </div>
+          <div class="porque-card-titulo">Knowledge from inside the tool.</div>
+          <div class="porque-card-desc">
+            Years working inside Pipefy itself, having completed every training program and won two internal awards while on the team: <strong>Agile Finance Team</strong> and <strong>Best Internal Pipe 2024</strong>. Knowledge that becomes a method applied to every client.
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="porque-card">
+          <div class="porque-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18"/>
+              <path d="M5 21V7l8-4v18"/>
+              <path d="M19 21V11l-6-4"/>
+            </svg>
+          </div>
+          <div class="porque-card-titulo">From startups to multinationals.</div>
+          <div class="porque-card-desc">
+            We work with everyone from startups and supplement brands to <strong>Diageo (30,000 employees worldwide)</strong>, crane rental and distribution companies. Diverse experience that brings know-how to any industry.
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="porque-card">
+          <div class="porque-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div class="porque-card-titulo">Gets you off spreadsheets without breaking the bank.</div>
+          <div class="porque-card-desc">
+            Focused on small, mid-sized and large companies (teams of 2 or more) that want to <strong>stop doing manual work</strong>. And at an hourly rate lower than that of many consultancies offering the same availability or less.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE DEPOIMENTO ============== -->
+  <section class="slide slide-light slide-depoimento">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="depoimento-content">
+        <div class="anim-up">
+          <div class="section-label">Client feedback</div>
+        </div>
+        <div class="anim-up-2">
+          <div class="depoimento-aspas">&ldquo;</div>
+          <p class="depoimento-texto">
+            PSFY has been an important partner in supporting our processes at Diageo. We already used Pipefy day to day, but we needed to evolve some workflows, especially those related to our fleet, to gain more efficiency and automation. PSFY helped improve processes that already existed, supporting the creation of more robust automations and the use of databases and conditional logic, always in a practical way aligned with our operation.
+          </p>
+        </div>
+        <div class="anim-up-3">
+          <div class="depoimento-autor">
+            <img class="depoimento-autor-logo" src="../logos/diageo.png" alt="Diageo">
+            <div class="depoimento-autor-info">
+              <div class="depoimento-autor-nome">Hernani Rocha</div>
+              <div class="depoimento-autor-cargo">Fleet Management Specialist LATAM, Diageo · translated from Portuguese</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE: CLIENTES (LOGOS EM MOVIMENTO) ============== -->
+  <section class="slide slide-light">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="anim-up" style="text-align: center;">
+        <div class="section-label" style="justify-content: center;">Who trusts PSFY</div>
+        <h2 class="slide-titulo-md">Clients who <span class="italic">orchestrate</span> with us.</h2>
+      </div>
+      <div class="logos-marquee anim-up-2">
+        <div class="logos-track">
+          <div class="logos-set">
+            <img src="../logos/diageo.png" alt="Diageo">
+            <img src="../logos/wrental.png" alt="W Rental">
+            <img src="../logos/grs.png" alt="GRS">
+            <img src="../logos/labhoro.png" alt="Labhoro">
+            <img src="../logos/forton.png" alt="Forton">
+            <img src="../logos/playrec.png" alt="Playrec">
+            <img src="../logos/okiar.png" alt="Okiar">
+            <img src="../logos/ornare.png" alt="Ornare">
+          </div>
+          <div class="logos-set" aria-hidden="true">
+            <img src="../logos/diageo.png" alt="">
+            <img src="../logos/wrental.png" alt="">
+            <img src="../logos/grs.png" alt="">
+            <img src="../logos/labhoro.png" alt="">
+            <img src="../logos/forton.png" alt="">
+            <img src="../logos/playrec.png" alt="">
+            <img src="../logos/okiar.png" alt="">
+            <img src="../logos/ornare.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE: CASES 1 (WRENTAL / DIAGEO / LABHORO) ============== -->
+  <section class="slide slide-light">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="anim-up">
+        <div class="section-label">Success stories</div>
+        <h2 class="slide-titulo-md">Processes that <span class="italic">work</span> in practice.</h2>
+      </div>
+
+      <div class="resultados-grid anim-up-2">
+
+        <!-- Case: Wrental Compras -->
+        <div class="resultado-card">
+          <div class="resultado-card-cliente">Wrental · Purchasing</div>
+          <div class="resultado-card-numero">5,500<span class="unidade">+ orders</span></div>
+          <div class="resultado-card-metrica">Completed in 18 months</div>
+          <div class="resultado-card-divider"></div>
+          <div class="resultado-card-desc">
+            Purchasing from inventory to invoicing, with approval through an interface and automatic invoices. The team saves about 30 hours a week. Purchasing was the entry point, and today 20 processes run the operation.
+          </div>
+        </div>
+
+        <!-- Case: Diageo Salas -->
+        <div class="resultado-card">
+          <div class="resultado-card-cliente">Diageo · Room booking</div>
+          <div class="resultado-card-numero" style="font-size: 36px;">Goodbye, email</div>
+          <div class="resultado-card-metrica">Full autonomy for requesters</div>
+          <div class="resultado-card-divider"></div>
+          <div class="resultado-card-desc">
+            A form that only opens after Outlook validation and automatically brings in the right team for each request. Each requester tracks their own request in a portal, from booking to catering costs.
+          </div>
+        </div>
+
+        <!-- Case: Labhoro Contratos -->
+        <div class="resultado-card">
+          <div class="resultado-card-cliente">Labhoro · Diagnostic</div>
+          <div class="resultado-card-numero">12h<span class="unidade"> of mapping</span></div>
+          <div class="resultado-card-metrica">Nine interviews across every area</div>
+          <div class="resultado-card-divider"></div>
+          <div class="resultado-card-desc">
+            Mapping and understanding of the entire operation, going straight to the root cause of the billing errors. The proposal laid out an architecture with 5 connected pipes, a client database and a commission layer.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE: CASES 2 (GRS EM SEQUÊNCIA) ============== -->
+  <section class="slide slide-light">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="anim-up">
+        <div class="section-label">Success stories</div>
+        <h2 class="slide-titulo-md">GRS. From first contact to <span class="italic">repeat purchase</span>.</h2>
+        <p class="slide-texto">Two connected processes that cover the full customer cycle. Whoever closes in the first goes straight into the second.</p>
+      </div>
+
+      <div class="grs-fluxo">
+
+        <div class="resultado-card anim-up-2">
+          <div class="resultado-card-cliente">Process 1 · Sales and leads</div>
+          <div class="resultado-card-numero">11,000<span class="unidade">+ leads</span></div>
+          <div class="resultado-card-metrica">250 active customers on the platform</div>
+          <div class="resultado-card-divider"></div>
+          <div class="resultado-card-desc">
+            A funnel from prospecting to closing. An AI qualifies the lead before the SDR steps in, and everything is recorded with tags, so the operation keeps running even if someone leaves the team.
+          </div>
+        </div>
+
+        <div class="grs-conector anim-up-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </div>
+
+        <div class="resultado-card anim-up-3">
+          <div class="resultado-card-cliente">Process 2 · After-sales</div>
+          <div class="resultado-card-numero">7.5 <span class="unidade">→ 9.5 NPS</span></div>
+          <div class="resultado-card-metrica">Customer satisfaction</div>
+          <div class="resultado-card-divider"></div>
+          <div class="resultado-card-desc">
+            Follow-ups at 45, 90 and 120 days by email and WhatsApp via Typebot. The AI reads the replies and routes the next steps, from sending a gift to a dissatisfaction form.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE: COMO TRABALHAMOS (CONSULTORIA/PROJETOS + PACOTE DE HORAS) ============== -->
+  <section class="slide slide-light">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="processo-content">
+        <div class="processo-header">
+          <div class="anim-up">
+            <div class="section-label">How we work</div>
+            <h2 class="slide-titulo-md">A <span class="italic">6-step</span> method + ongoing improvements.</h2>
+            <p class="slide-texto">
+              Delivery in stages with full transparency: you follow, validate and approve each part. Once the project is ready and running, <strong>ongoing improvements</strong> are billed by the hour.
+            </p>
+            <div class="processo-tag anim-up-2">PSFY Method</div>
+          </div>
+        </div>
+
+        <div class="timeline-horizontal anim-up-2" id="timeline-horizontal">
+
+          <!-- Toggle: onde o Pacote de Horas faz sentido -->
+          <div class="toggle-pacote-wrapper">
+            <button type="button" class="toggle-pacote" id="toggle-pacote">
+              <span class="toggle-pacote-icone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="16" x2="12" y2="12"/>
+                  <line x1="12" y1="8" x2="12.01" y2="8"/>
+                </svg>
+              </span>
+              <span>Where does the Hours Package fit?</span>
+              <span class="toggle-pacote-switch"></span>
+            </button>
+          </div>
+
+          <div class="timeline-fluxo">
+
+            <!-- Bloco da timeline 1-6 -->
+            <div class="timeline-track-wrapper">
+              <div class="timeline-track-label">Project · Consulting</div>
+              <div class="timeline-track">
+                <div class="timeline-step">
+                  <div class="timeline-step-bolinha">01</div>
+                  <div class="timeline-step-num">Kickoff</div>
+                  <div class="timeline-step-titulo">Meeting and priorities</div>
+                  <div class="timeline-step-desc">We understand the context and align priorities.</div>
+                </div>
+
+                <div class="timeline-step">
+                  <div class="timeline-step-bolinha">02</div>
+                  <div class="timeline-step-num">Planning</div>
+                  <div class="timeline-step-titulo">Estimate and sequence</div>
+                  <div class="timeline-step-desc">We estimate time and organize the ideal sequence.</div>
+                </div>
+
+                <!-- Etapa 03: Pacote de Horas atua -->
+                <div class="timeline-step timeline-step-pacote">
+                  <div class="timeline-step-bolinha">03</div>
+                  <div class="timeline-step-num">Design</div>
+                  <div class="timeline-step-titulo">Mapping in Miro</div>
+                  <div class="timeline-step-desc">We structure the project before any code.</div>
+                  <div class="timeline-step-tooltip">
+                    <strong>Hours Package</strong>
+                    Support with mapping and with the options Pipefy offers from the design stage.
+                  </div>
+                </div>
+
+                <div class="timeline-step">
+                  <div class="timeline-step-bolinha">04</div>
+                  <div class="timeline-step-num">Execution</div>
+                  <div class="timeline-step-titulo">Weekly meetings</div>
+                  <div class="timeline-step-desc">Continuous alignment and validation.</div>
+                </div>
+
+                <!-- Etapa 05: Pacote de Horas atua -->
+                <div class="timeline-step timeline-step-pacote">
+                  <div class="timeline-step-bolinha">05</div>
+                  <div class="timeline-step-num">Adjustments</div>
+                  <div class="timeline-step-titulo">Dedicated pipe</div>
+                  <div class="timeline-step-desc">Adjustments through a dedicated pipe, solved fast.</div>
+                  <div class="timeline-step-tooltip">
+                    <strong>Hours Package</strong>
+                    Specific tweaks to the pipe, automations, emails and integrations.
+                  </div>
+                </div>
+
+                <!-- Etapa 06: Pacote de Horas atua -->
+                <div class="timeline-step timeline-step-pacote">
+                  <div class="timeline-step-bolinha">06</div>
+                  <div class="timeline-step-num">Project ON</div>
+                  <div class="timeline-step-titulo">Training and handoff</div>
+                  <div class="timeline-step-desc">Team trained, product delivered and running.</div>
+                  <div class="timeline-step-tooltip">
+                    <strong>Hours Package</strong>
+                    Platform training and how to get the most out of Pipefy.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 5: PERGUNTA ============== -->
+  <section class="slide slide-pergunta slide-light">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-indicator">
+      <span></span>
+      <span class="current"></span>
+      <span></span>
+    </div>
+    <div class="slide-inner">
+      <div class="anim-up">
+        <h2 class="pergunta-titulo">
+          What's the <span class="italic">right format</span><br>
+          for your<br>
+          company?
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 6: FORMATOS ============== -->
+  <section class="slide slide-light" style="background: linear-gradient(135deg, #e8f5e9 0%, var(--azul-claro) 100%);">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="anim-up">
+        <h2 class="slide-titulo-md" style="margin-bottom: 16px;">FORMATS</h2>
+      </div>
+      <div class="formatos-grid-deck anim-up-2">
+        <div class="formato-card-deck">
+          <div class="formato-card-deck-numero">Format 01</div>
+          <h3 class="formato-card-deck-titulo">Hours Package</h3>
+          <p class="formato-card-deck-desc">For your first engagement. Use it to start from scratch or for adjustments, fixes and small implementations.</p>
+          <div class="formato-card-deck-preco">10 hours on your first engagement</div>
+          <div class="formato-card-deck-orcamento">Investment <strong>$300</strong></div>
+          <div class="formato-card-deck-divider"></div>
+          <ul class="formato-card-deck-items">
+            <li class="formato-card-deck-item"><span class="arrow">→</span>On-demand execution</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Flexible schedule</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Then $40/hour, or $65/hour with integrations</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>No long-term commitment</li>
+          </ul>
+        </div>
+
+        <div class="formato-card-deck destaque">
+          <div class="formato-card-deck-badge">Most requested</div>
+          <div class="formato-card-deck-numero">Format 02</div>
+          <h3 class="formato-card-deck-titulo">Monthly Consulting</h3>
+          <p class="formato-card-deck-desc">A dedicated analyst to keep improving your processes, with recurring meetings and a roadmap.</p>
+          <div class="formato-card-deck-preco">Monthly commitment</div>
+          <div class="formato-card-deck-orcamento">Investment <strong>on request</strong></div>
+          <div class="formato-card-deck-divider"></div>
+          <ul class="formato-card-deck-items">
+            <li class="formato-card-deck-item"><span class="arrow">→</span>An analyst dedicated to you</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Weekly progress meetings</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Ongoing improvement roadmap</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Priority support</li>
+          </ul>
+        </div>
+
+        <div class="formato-card-deck">
+          <div class="formato-card-deck-numero">Format 03</div>
+          <h3 class="formato-card-deck-titulo">Fixed-Scope Project</h3>
+          <p class="formato-card-deck-desc">To build a specific area from scratch, with a defined scope and timeline, which can include AI agents.</p>
+          <div class="formato-card-deck-preco">Fixed scope and timeline</div>
+          <div class="formato-card-deck-orcamento">Investment <strong>on request</strong></div>
+          <div class="formato-card-deck-divider"></div>
+          <ul class="formato-card-deck-items">
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Detailed discovery</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Development in stages</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>AI agents implementation</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Team training and handoff</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="formatos-cta-wrapper anim-up-3">
+        <a href="orcamento.html" target="_blank" class="formatos-cta-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+          Request a detailed quote
+        </a>
+        <p class="formatos-cta-aviso">Within 1 business day you get a tailored proposal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE NOVO: TREINAMENTOS EM PIPEFY ============== -->
+  <section class="slide slide-light">
+    <div class="deck-header">
+      <span class="dot"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="anim-up">
+        <div class="section-label">Product · Training</div>
+        <h2 class="slide-titulo-md"><span class="italic">Pipefy</span> training.</h2>
+        <p class="slide-texto">
+          Your team really using Pipefy, not just clicking buttons. You choose the format and number of hours that fit your operation.
+        </p>
+      </div>
+
+      <div class="treino-content anim-up-2">
+        <div class="treino-visual">
+          <div class="treino-cargas">
+            <div class="treino-carga">
+              <div class="treino-carga-num">4h</div>
+              <div class="treino-carga-label">Basic</div>
+            </div>
+            <div class="treino-carga">
+              <div class="treino-carga-num">8h</div>
+              <div class="treino-carga-label">Medium</div>
+            </div>
+            <div class="treino-carga">
+              <div class="treino-carga-num">12h</div>
+              <div class="treino-carga-label">Advanced</div>
+            </div>
+            <div class="treino-carga">
+              <div class="treino-carga-num">+</div>
+              <div class="treino-carga-label">Custom</div>
+            </div>
+          </div>
+          <div class="treino-preco-grande">
+            <span class="prefixo">Investment</span>
+            Custom quote
+          </div>
+          <div class="treino-preco-obs">based on format and hours</div>
+          <div class="treino-modalidades">
+            <span class="treino-modalidade">On-site</span>
+            <span class="treino-modalidade">Online</span>
+          </div>
+        </div>
+
+        <ul class="treino-features">
+          <li class="treino-feature">
+            <div class="treino-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+              </svg>
+            </div>
+            <div class="treino-feature-content">
+              <div class="treino-feature-titulo">Diagnostic before training</div>
+              <div class="treino-feature-desc">We sit down with your process team and understand what you already have in place.</div>
+            </div>
+          </li>
+          <li class="treino-feature">
+            <div class="treino-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"/>
+                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+              </svg>
+            </div>
+            <div class="treino-feature-content">
+              <div class="treino-feature-titulo">Improvement suggestions along the way</div>
+              <div class="treino-feature-desc">Our trainers are process consultants, not by-the-book instructors, so we point out where things can improve.</div>
+            </div>
+          </li>
+          <li class="treino-feature">
+            <div class="treino-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="treino-feature-content">
+              <div class="treino-feature-titulo">Internal and external clients</div>
+              <div class="treino-feature-desc">We train your internal team and also the external clients of your operation.</div>
+            </div>
+          </li>
+          <li class="treino-feature">
+            <div class="treino-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div class="treino-feature-content">
+              <div class="treino-feature-titulo">A self-sufficient team at the end</div>
+              <div class="treino-feature-desc">The goal is autonomy. Your team leaves knowing how to use Pipefy without depending on anyone.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 9: CTA FINAL ============== -->
+  <section class="slide slide-blue">
+    <div class="deck-header" style="color: white;">
+      <span class="dot" style="background: white;"></span>
+      <span class="brand">PSFY.</span>
+    </div>
+    <div class="slide-inner">
+      <div class="cta-deck">
+        <div class="anim-up">
+          <h2 class="slide-titulo">Ready to <span style="color: var(--verde-claro); font-style: italic; font-weight: 400;">orchestrate</span> your next process?</h2>
+        </div>
+        <div class="anim-up-2">
+          <p class="slide-texto" style="color: rgba(255,255,255,0.85); margin: 0 auto; font-size: 20px;">
+            Request a detailed quote or talk to one of our agents. We map opportunities, understand your situation and show you how it would work in practice.
+          </p>
+        </div>
+
+        <div class="cta-deck-acoes anim-up-3">
+          <a href="orcamento.html" target="_blank" class="cta-deck-btn cta-deck-btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+            Request a quote
+          </a>
+          <a href="https://wa.me/5541995041300?text=Hi!%20I%20just%20saw%20the%20PSFY%20presentation%20and%20would%20like%20to%20talk%20to%20an%20agent." target="_blank" rel="noopener" class="cta-deck-btn cta-deck-btn-secondary">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Talk to one of our agents within 2 hours
+          </a>
+        </div>
+
+        <div class="cta-deck-info anim-up-3" style="margin-top: 40px;">
+          <div class="cta-info-item">
+            <div class="cta-info-label">WhatsApp</div>
+            <div class="cta-info-valor">+55 41 99504-1300</div>
+          </div>
+          <div class="cta-info-item">
+            <div class="cta-info-label">Email</div>
+            <div class="cta-info-valor">contato@psfy.com.br</div>
+          </div>
+          <div class="cta-info-item">
+            <div class="cta-info-label">Website</div>
+            <div class="cta-info-valor">www.psfy.com.br</div>
+          </div>
+        </div>
+
+        <a href="index.html" class="cta-voltar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"/>
+            <polyline points="12 19 5 12 12 5"/>
+          </svg>
+          Back to site
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ============== CONTROLES ============== -->
+<div class="keyboard-hint">← → Navigate  ·  F Full screen</div>
+<div class="slide-counter"><span id="current">1</span> / <span id="total">13</span></div>
+<div class="nav-controls">
+  <a href="../apresentacao.html" class="nav-btn nav-lang" id="lang-link" hreflang="pt-BR" lang="pt-BR" title="Versão em português" aria-label="Versão em português">
+    <svg viewBox="0 0 30 21" aria-hidden="true" focusable="false"><rect width="30" height="21" fill="#009C3B"/><path fill="#FFDF00" d="M15 2.2 27.6 10.5 15 18.8 2.4 10.5z"/><circle cx="15" cy="10.5" r="5.2" fill="#002776"/><path fill="none" stroke="#fff" stroke-width="1.1" d="M9.9 9.4c3.6-.9 7.4-.1 10.1 2.3"/></svg>
+    <span>PT</span>
+  </a>
+  <button class="nav-btn" id="prev" aria-label="Previous">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+  </button>
+  <button class="nav-btn" id="next" aria-label="Next">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"/>
+    </svg>
+  </button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  const counterCurrent = document.getElementById('current');
+  const counterTotal = document.getElementById('total');
+  const topbarCurrent = document.getElementById('topbar-current');
+  const topbarTotal = document.getElementById('topbar-total');
+  const btnPrev = document.getElementById('prev');
+  const btnNext = document.getElementById('next');
+  let current = 0;
+
+  counterTotal.textContent = total;
+  if (topbarTotal) topbarTotal.textContent = total;
+
+  function showSlide(idx) {
+    slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+    counterCurrent.textContent = idx + 1;
+    if (topbarCurrent) topbarCurrent.textContent = idx + 1;
+    btnPrev.disabled = idx === 0;
+    btnNext.disabled = idx === total - 1;
+
+    // A bandeirinha leva pro mesmo slide na outra língua
+    const langLink = document.getElementById('lang-link');
+    if (langLink) langLink.href = langLink.getAttribute('href').split('#')[0] + '#' + (idx + 1);
+
+    // Atualiza cor dos controles baseado no slide ativo
+    const activeSlide = slides[idx];
+    const isLight = activeSlide.classList.contains('slide-light');
+
+    // Alterna tema da faixa fixa do topo (escuro nos slides escuros)
+    document.body.classList.toggle('deck-dark', !isLight);
+
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.style.background = isLight ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.1)';
+      btn.style.borderColor = isLight ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)';
+      btn.style.color = isLight ? '#000' : '#fff';
+    });
+  }
+
+  function next() { if (current < total - 1) { current++; showSlide(current); } }
+  function prev() { if (current > 0) { current--; showSlide(current); } }
+
+  btnPrev.addEventListener('click', prev);
+  btnNext.addEventListener('click', next);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+    if (e.key === 'Home') { current = 0; showSlide(current); }
+    if (e.key === 'End') { current = total - 1; showSlide(current); }
+    if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  });
+
+  // Inicializa. Se o link trouxer o número do slide (ex.: #5), abre direto nele
+  function abrirSlideDoLink() {
+    const n = parseInt(location.hash.replace('#', ''), 10);
+    if (n >= 1 && n <= total) {
+      current = n - 1;
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+    showSlide(current);
+  }
+  abrirSlideDoLink();
+  window.addEventListener('hashchange', abrirSlideDoLink);
+
+  // ===== TOGGLE PACOTE DE HORAS =====
+  const togglePacote = document.getElementById('toggle-pacote');
+  const timelineContainer = document.getElementById('timeline-horizontal');
+  if (togglePacote && timelineContainer) {
+    togglePacote.addEventListener('click', () => {
+      togglePacote.classList.toggle('ativo');
+      timelineContainer.classList.toggle('pacote-ativo');
+    });
+  }
+
+  // ===== NAVEGAÇÃO POR GESTO (MOBILE) =====
+  // Arrastar pro lado troca de slide. Só dispara quando o movimento
+  // horizontal é claramente maior que o vertical, pra não brigar com o scroll.
+  let toqueX = 0;
+  let toqueY = 0;
+  document.addEventListener('touchstart', (e) => {
+    toqueX = e.changedTouches[0].clientX;
+    toqueY = e.changedTouches[0].clientY;
+  }, { passive: true });
+  document.addEventListener('touchend', (e) => {
+    const deltaX = e.changedTouches[0].clientX - toqueX;
+    const deltaY = e.changedTouches[0].clientY - toqueY;
+    if (Math.abs(deltaX) > 60 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
+      if (deltaX < 0) next();
+      else prev();
+    }
+  }, { passive: true });
+</script>
+
+</body>
+</html>
