@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6.016 pedidos em 18 meses, o processo de compras da Wrental | PSFY</title>
+<meta name="description" content="A Wrental comprava por email e WhatsApp em 5 sedes. Hoje são 9 sedes num processo só, com 6.016 pedidos concluídos e 12 dias de lead time mediano.">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="6.016 pedidos em 18 meses, o processo de compras da Wrental">
+<meta property="og:description" content="A Wrental comprava por email e WhatsApp em 5 sedes. Hoje são 9 sedes num processo só, com 6.016 pedidos concluídos e 12 dias de lead time mediano.">
+<meta property="og:url" content="https://www.psfy.com.br/artigos/processo-de-compras-wrental.html">
+<meta property="og:image" content="https://www.psfy.com.br/logo.png">
+<meta property="og:site_name" content="PSFY">
+
+<link rel="canonical" href="https://www.psfy.com.br/artigos/processo-de-compras-wrental.html">
+<link rel="icon" type="image/png" href="../favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --preto: #000000;
+    --azul: #336140;
+    --azul-hover: #274d33;
+    --branco: #ffffff;
+    --azul-claro: #e4efe7;
+    --verde-claro: #74B872;
+    --cinza: #f2f2f2;
+    --cinza-texto: #6b6b6b;
+    --cinza-borda: #e5e5e5;
+    --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --max-width: 900px;
+    --texto-width: 700px;
+    --radius: 12px;
+    --radius-lg: 20px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font-sans); background: var(--branco); color: var(--preto);
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+  img, svg { display: block; }
+
+  .header {
+    padding: 18px 24px; display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--max-width); margin: 0 auto; gap: 20px;
+  }
+  .logo img { height: 90px; width: auto; display: block; }
+  .voltar { font-size: 14px; color: var(--cinza-texto); display: inline-flex; align-items: center; gap: 6px; }
+  .voltar:hover { color: var(--preto); }
+
+  .artigo { max-width: var(--texto-width); margin: 0 auto; padding: 20px 24px 40px; }
+
+  /* ============ TOPO DO ARTIGO ============ */
+  .eyebrow {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--azul); margin-bottom: 16px;
+  }
+  .italic { font-style: italic; font-weight: 400; color: var(--azul); }
+  h1 {
+    font-size: clamp(30px, 4.4vw, 44px); font-weight: 700; line-height: 1.12;
+    letter-spacing: -0.025em; margin-bottom: 24px;
+  }
+  .meta {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    font-size: 14px; color: var(--cinza-texto);
+    padding-bottom: 28px; border-bottom: 1px solid var(--cinza-borda); margin-bottom: 36px;
+  }
+  .meta .autor { font-weight: 500; color: var(--preto); }
+  .meta .sep { width: 3px; height: 3px; border-radius: 50%; background: var(--cinza-borda); }
+
+  /* ============ CORPO DO TEXTO ============ */
+  .corpo p { font-size: 17px; line-height: 1.75; color: #2a2a2a; margin-bottom: 22px; }
+  .corpo .lead { font-size: 19px; line-height: 1.7; color: var(--preto); }
+  .corpo h2 {
+    font-size: clamp(22px, 2.8vw, 27px); font-weight: 700; letter-spacing: -0.02em;
+    line-height: 1.25; margin: 46px 0 18px;
+  }
+  .corpo ul { margin: 0 0 24px; padding-left: 0; list-style: none; }
+  .corpo ul li {
+    font-size: 17px; line-height: 1.7; color: #2a2a2a; padding-left: 26px;
+    position: relative; margin-bottom: 12px;
+  }
+  .corpo ul li::before {
+    content: ''; position: absolute; left: 6px; top: 12px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--azul);
+  }
+  .corpo strong { font-weight: 700; }
+
+  /* ============ BLOCO DE NÚMEROS ============ */
+  .numeros {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    margin: 36px 0 30px;
+  }
+  .num {
+    background: var(--azul-claro); border-radius: var(--radius);
+    padding: 22px 14px; text-align: center;
+  }
+  .num .valor {
+    font-size: clamp(24px, 3.4vw, 32px); font-weight: 700; letter-spacing: -0.03em;
+    color: var(--azul); line-height: 1.05; margin-bottom: 8px;
+  }
+  .num .rotulo { font-size: 12px; line-height: 1.35; color: #3d5c47; font-weight: 500; }
+
+  /* ============ ANTES E DEPOIS ============ */
+  .antes-depois { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0 30px; }
+  .coluna { border-radius: var(--radius); padding: 24px 22px; }
+  .coluna.antes { background: var(--cinza); }
+  .coluna.depois { background: var(--azul-claro); }
+  .coluna h3 {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .coluna.antes h3 { color: var(--cinza-texto); }
+  .coluna.depois h3 { color: var(--azul); }
+  .coluna ul { margin: 0; padding: 0; list-style: none; }
+  .coluna ul li {
+    font-size: 15px; line-height: 1.5; padding: 0 0 12px 0; margin: 0 0 12px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+  }
+  .coluna ul li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .coluna ul li::before { content: none; } /* tira a bolinha da lista do texto, que ficava em cima da primeira letra */
+  .coluna.antes ul li { color: var(--cinza-texto); }
+  .coluna.depois ul li { color: #1f3d29; font-weight: 500; }
+
+  /* ============ TABELA ============ */
+  .tabela-wrap { overflow-x: auto; margin: 28px 0 14px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 420px; }
+  thead th {
+    text-align: left; font-weight: 700; font-size: 13px; color: var(--cinza-texto);
+    padding: 12px 14px; border-bottom: 2px solid var(--cinza-borda);
+  }
+  thead th.num-col, tbody td.num-col { text-align: right; }
+  tbody td { padding: 12px 14px; border-bottom: 1px solid var(--cinza-borda); color: #2a2a2a; }
+  tbody tr:last-child td { border-bottom: none; }
+  .nota-tabela { font-size: 13px; color: var(--cinza-texto); line-height: 1.6; margin-bottom: 24px; }
+
+  /* ============ TAGS ============ */
+  .tags { margin-top: 52px; padding-top: 28px; border-top: 1px solid var(--cinza-borda); }
+  .tags-titulo { font-size: 13px; font-weight: 700; color: var(--cinza-texto); margin-bottom: 14px; }
+  .tags-lista { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    padding: 7px 14px; border-radius: 999px; border: 1px solid var(--cinza-borda);
+    background: var(--branco); font-size: 13px; font-weight: 500; color: var(--cinza-texto);
+  }
+
+  /* ============ CTA FINAL ============ */
+  .cta {
+    margin-top: 44px; background: var(--cinza); border: 1px solid var(--cinza-borda);
+    border-radius: var(--radius-lg); padding: 40px 32px; text-align: center;
+  }
+  .cta h2 { font-size: clamp(21px, 2.8vw, 27px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .cta p { font-size: 15px; line-height: 1.65; color: var(--cinza-texto); max-width: 440px; margin: 0 auto 24px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
+    border-radius: 999px; font-weight: 500; font-size: 14px; white-space: nowrap;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+  .btn-primary { background: var(--azul); color: var(--branco); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(51,97,64,0.25); background: var(--azul-hover); }
+
+  .voltar-blog { text-align: center; margin-top: 40px; }
+  .voltar-blog a { font-size: 14px; color: var(--cinza-texto); }
+  .voltar-blog a:hover { color: var(--preto); }
+
+  .footer { padding: 32px 24px; text-align: center; font-size: 13px; color: var(--cinza-texto); }
+
+  @media (max-width: 720px) {
+    .logo img { height: 60px; }
+    .corpo p, .corpo ul li { font-size: 16px; }
+    .corpo .lead { font-size: 17px; }
+    .numeros { grid-template-columns: repeat(2, 1fr); }
+    .antes-depois { grid-template-columns: 1fr; }
+    .cta { padding: 32px 22px; }
+  }
+
+  /* ============ BOTÃO RÁPIDO DO WHATSAPP (fixo no canto) ============ */
+  .whats-flutuante {
+    position: fixed; right: 20px; bottom: 20px; z-index: 150;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 20px 13px 16px; border-radius: 999px;
+    background: var(--azul); color: var(--branco);
+    font-size: 14px; font-weight: 500; line-height: 1.25;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+    transition: transform 0.25s, opacity 0.25s, background 0.2s;
+  }
+  .whats-flutuante:hover { background: var(--azul-hover); transform: translateY(-2px); }
+  .whats-flutuante svg { width: 20px; height: 20px; flex-shrink: 0; display: block; }
+  @media (max-width: 600px) {
+    .whats-flutuante { left: 12px; right: 12px; bottom: 12px; justify-content: center; text-align: center; font-size: 13px; gap: 8px; padding: 13px 12px; }
+  }
+  @media (max-width: 420px) {
+    .whats-flutuante { font-size: 12.5px; }
+    .footer { padding-bottom: 88px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="../index.html" class="logo"><img src="../logo.png" alt="PSFY"></a>
+  <a href="../blog.html" class="voltar">← Todos os artigos</a>
+</div>
+
+<article class="artigo">
+
+  <div class="eyebrow">Caso real</div>
+  <h1>6.016 pedidos em 18 meses, o processo de compras da <span class="italic">Wrental</span></h1>
+
+  <div class="meta">
+    <span class="autor">Henrique Sofiati</span>
+    <span class="sep"></span>
+    <span>25 de setembro de 2026</span>
+    <span class="sep"></span>
+    <span>6 min de leitura</span>
+  </div>
+
+  <div class="corpo">
+
+    <p class="lead">A Wrental aluga plataformas de trabalho aéreo e atua em quatro estados. Quando o processo de compras começou a travar, ela tinha cinco sedes comprando ao mesmo tempo, cada uma do seu jeito, por email e por grupo de WhatsApp.</p>
+
+    <p>Isso funcionou no começo e parou de funcionar com o volume. É o caminho normal de quase toda empresa que cresce.</p>
+
+    <h2>O que travava antes</h2>
+
+    <ul>
+      <li>Cada sede pedia de um jeito diferente, sem padrão nenhum</li>
+      <li>Solicitação se perdia no meio das outras conversas de email e WhatsApp</li>
+      <li>Aprovação acontecia fora de qualquer sistema, sem histórico consultável de quem liberou o quê e com base em qual valor</li>
+      <li>Sem processo escrito, o conhecimento ficava com as pessoas. Cada contratação nova exigia explicar tudo de novo, e o processo mudava um pouco a cada troca de time</li>
+    </ul>
+
+    <h2>A decisão que definiu todo o resto</h2>
+
+    <p>Toda estrutura boa começa com uma decisão difícil, e nesse projeto ela apareceu logo nas primeiras reuniões semanais. Criar um processo separado para cada sede, ou um processo único com separação por etiqueta.</p>
+
+    <p>Escolhemos o processo único, em conjunto com a empresa. O motivo é simples. Um processo por sede multiplica o trabalho de manutenção e impede qualquer visão de conjunto. Com um processo só e etiqueta por sede, cada sede continua enxergando o que é dela e o gestor passa a enxergar tudo.</p>
+
+    <p>Essa é a decisão que a maioria dos projetos erra, porque separar parece mais organizado. Na prática separar é o que engessa.</p>
+
+    <h2>O que o processo virou</h2>
+
+    <p>Com a base certa, o resto virou construção. Todo pedido passou a entrar por um canal único, organizado por sede, e nenhuma solicitação depende mais de alguém lembrar de responder uma mensagem.</p>
+
+    <p>A compra passou a nascer com validação de estoque, porque não faz sentido comprar o que já existe. Entrou gestão de pendências. Novas etapas trouxeram mais controle, com permissão por fase e movimentação restrita a quem é responsável. A cotação também mudou de lugar, o gestor abre uma fase só, vê todas as opções na mesma tela e decide na hora.</p>
+
+    <p>O processo ainda deixou de viver sozinho. Ele conversa com o processo de equipamentos, então cada peça comprada fica amarrada à máquina que a recebeu. Somado ao controle de notas fiscais e ao registro de entrada e saída de peças, a empresa passou a ter histórico, e não apenas execução.</p>
+
+    <p>Nada disso saiu pronto de primeira. Saiu de ciclos de ajuste e automação até o processo ficar do jeito que roda hoje.</p>
+
+    <h2>O que o processo controla hoje</h2>
+
+    <p>No início ele atendia apenas itens de compra. Hoje cobre qualquer tipo de aquisição da empresa, incluindo TI, EPI, baterias, rodas, ferramentas, revisão de veículos e serviços.</p>
+
+    <div class="tabela-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tipo de solicitação</th>
+            <th class="num-col">Pedidos concluídos</th>
+            <th class="num-col">Lead time mediano</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Serviço</td><td class="num-col">2.104</td><td class="num-col">10 dias</td></tr>
+          <tr><td>Item</td><td class="num-col">1.677</td><td class="num-col">14 dias</td></tr>
+          <tr><td>Material de consumo</td><td class="num-col">1.223</td><td class="num-col">11 dias</td></tr>
+          <tr><td>Bateria</td><td class="num-col">314</td><td class="num-col">11 dias</td></tr>
+          <tr><td>EPI</td><td class="num-col">199</td><td class="num-col">9 dias</td></tr>
+          <tr><td>Ferramentas</td><td class="num-col">165</td><td class="num-col">15 dias</td></tr>
+          <tr><td>Revisão de veículos</td><td class="num-col">137</td><td class="num-col">14 dias</td></tr>
+          <tr><td>Roda</td><td class="num-col">80</td><td class="num-col">39 dias</td></tr>
+          <tr><td>Itens de TI</td><td class="num-col">43</td><td class="num-col">14 dias</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="nota-tabela">74 pedidos ficaram sem tipo classificado. Roda tem lead time maior porque envolve terceiros.</p>
+
+    <p>O dado que resume melhor a evolução está nessa tabela. Itens de compra, que eram o escopo original do projeto, são hoje apenas 27,9% do que passa pelo processo. Os outros 72,1% são demandas que antes viviam soltas em email e WhatsApp e hoje têm fase, responsável e prazo.</p>
+
+    <p>Quando um processo funciona, as pessoas levam para dentro dele coisas que ninguém pediu para colocar. Esse é o melhor indicador de adoção que existe, e ele não aparece em nenhum relatório padrão.</p>
+
+    <p>Junto disso, o processo passou a se apoiar em bancos de dados próprios de produtos, fornecedores, patrimônio, estoque, solicitações de garantia e solicitações de documentação. É isso que permite ligar uma peça comprada à máquina que a recebeu e manter histórico de fornecedor e de preço.</p>
+
+    <h2>Os números depois de 18 meses</h2>
+
+    <div class="numeros">
+      <div class="num">
+        <div class="valor">6.016</div>
+        <div class="rotulo">pedidos concluídos</div>
+      </div>
+      <div class="num">
+        <div class="valor">15</div>
+        <div class="rotulo">pedidos por dia útil</div>
+      </div>
+      <div class="num">
+        <div class="valor">12</div>
+        <div class="rotulo">dias de lead time mediano</div>
+      </div>
+      <div class="num">
+        <div class="valor">85,4%</div>
+        <div class="rotulo">concluídos em até 30 dias</div>
+      </div>
+    </div>
+
+    <p>A quebra por fase é o dado mais revelador. Toda a parte de decisão, que é onde o processo mais ganhou controle, hoje leva menos de 1 dia por etapa. O tempo que sobra está no faturamento, que depende de fornecedor e de nota fiscal, e mesmo essa etapa caiu de 10,3 para 3,2 dias medianos no último semestre.</p>
+
+    <p>Outros números que valem olhar. São 9 fases, todas com dono. 100% dos pedidos são validados contra o estoque antes de virar compra. 91,9% passam por aprovação formal de valores. E só 4,2% dos pedidos foram cancelados, sinal de que a solicitação chega certa desde a abertura.</p>
+
+    <h2>Antes e depois</h2>
+
+    <div class="antes-depois">
+      <div class="coluna antes">
+        <h3>Antes</h3>
+        <ul>
+          <li>5 sedes comprando por conta própria</li>
+          <li>Pedido por email e grupo de WhatsApp</li>
+          <li>Solicitação sem registro central</li>
+          <li>Aprovação sem histórico</li>
+          <li>Só compra de item</li>
+          <li>Compra sem vínculo com a máquina</li>
+          <li>Sem previsibilidade de prazo</li>
+          <li>Conhecimento não documentado</li>
+        </ul>
+      </div>
+      <div class="coluna depois">
+        <h3>Depois</h3>
+        <ul>
+          <li>9 sedes ativas no mesmo processo</li>
+          <li>Canal único com formulário padrão</li>
+          <li>6.016 pedidos concluídos e rastreáveis</li>
+          <li>Aprovação em fase própria</li>
+          <li>9 tipos de solicitação no mesmo fluxo</li>
+          <li>Peça conectada ao patrimônio e ao estoque</li>
+          <li>12 dias de mediana, 85,4% em até 30 dias</li>
+          <li>Processo desenhado, com onboarding em dias</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>O que esse projeto ensina</h2>
+
+    <p>A empresa cresceu de cinco para nove sedes durante o período, quase o dobro. Normalmente esse é o momento em que um processo informal desmorona. Aqui aconteceu o contrário, a operação absorveu 80% mais sedes com mais controle, e não com menos.</p>
+
+    <p>Processo bom não é o que parece organizado no desenho. É o que aguenta volume sem perder controle. Os números acima mostram os dois lados, o volume que passou e o controle que se manteve.</p>
+
+  </div>
+
+  <div class="tags">
+    <div class="tags-titulo">Temas deste artigo</div>
+    <div class="tags-lista">
+      <span class="tag">Compras</span>
+      <span class="tag">Processos</span>
+      <span class="tag">Pipefy</span>
+      <span class="tag">Indicadores</span>
+    </div>
+  </div>
+
+  <div class="cta">
+    <h2>Suas compras ainda vivem no <span class="italic">WhatsApp</span>?</h2>
+    <p>A gente entende como funciona hoje, desenha o fluxo com as ferramentas certas e automatiza o trabalho repetitivo que está na mão das pessoas. Conversa de 30 minutos, sem compromisso.</p>
+    <a href="../alinhamentos.html" class="btn btn-primary">Agendar conversa</a>
+  </div>
+
+  <div class="voltar-blog">
+    <a href="../blog.html">← Ver todos os artigos</a>
+  </div>
+
+</article>
+
+<footer class="footer">PSFY — Processos Simples</footer>
+
+<a href="https://wa.me/5541995041300?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20PSFY%20e%20quero%20falar%20com%20um%20agente." class="whats-flutuante" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span>Fale com um de nossos agentes em até 2 horas</span>
+</a>
+
+</body>
+</html>
