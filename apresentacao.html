@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PSFY: Apresentação</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="alternate" hreflang="pt-BR" href="https://www.psfy.com.br/apresentacao.html">
+<link rel="alternate" hreflang="en" href="https://www.psfy.com.br/en/apresentacao.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet">
@@ -95,8 +98,9 @@
     padding: 4px 14px;
     border-radius: 999px;
   }
-  /* Esconde o header interno em slides "light", usamos a faixa fixa (.deck-topbar) */
-  .slide-light .deck-header {
+  /* No computador a faixa fixa (.deck-topbar) já mostra o logo, então o header interno fica escondido
+     em todos os slides (antes aparecia duplicado na capa e no slide final) */
+  .deck-header {
     display: none;
   }
 
@@ -209,6 +213,9 @@
   }
   .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
   .nav-btn svg { width: 20px; height: 20px; }
+  /* Troca de idioma (bandeirinha) junto dos botões de navegação */
+  .nav-btn.nav-lang { width: auto; padding: 0 16px; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; text-decoration: none; }
+  .nav-btn.nav-lang svg { width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,0.12); }
 
   .slide-counter {
     display: none; /* substituído pelo contador dentro do .deck-topbar */
@@ -290,7 +297,7 @@
   .capa-desc {
     font-size: 17px;
     color: rgba(255, 255, 255, 0.6);
-    max-width: 540px;
+    max-width: 600px;
     line-height: 1.6;
     margin-bottom: 48px;
     position: relative;
@@ -765,7 +772,7 @@
     .deck-topbar {
       display: none;
     }
-    .slide-light .deck-header {
+    .deck-header {
       display: flex;
     }
   }
@@ -2021,7 +2028,7 @@
       <div class="anim-up">
         <div class="capa-badge">
           <span class="dot"></span>
-          Consultoria de mapeamento e implementação de processos
+          Consultoria de eficiência criativa
         </div>
       </div>
       <div class="anim-up">
@@ -2032,7 +2039,8 @@
       </div>
       <div class="anim-up-3">
         <p class="capa-desc">
-          Orquestramos processos com <strong style="color:#fff">automações</strong>, AI Agents e governança de dados.
+          <strong style="color:#fff">Seu processo é único. O nosso jeito de resolver também.</strong><br>
+          A gente entende como a sua operação funciona de verdade e conecta as melhores ferramentas pra criar eficiência, com um valor por hora mais baixo que o de muitas consultorias que oferecem a mesma disponibilidade, ou menos.
         </p>
         <p class="capa-url">www.PSFY.com.br</p>
       </div>
@@ -2106,11 +2114,11 @@
           </div>
           <div class="anim-up-2">
             <p class="slide-texto">
-              Mapeamos como a sua operação funciona hoje, desenhamos o fluxo certo e implementamos. O Pipefy é a plataforma que mais implementamos nos clientes, potencializada com integrações, automações e agentes de IA para tornar tudo <strong>mais eficiente, escalável e inteligente</strong>.
+              Mapeamos como a sua operação funciona hoje, desenhamos o fluxo certo e implementamos. O Pipefy é a nossa principal ferramenta, porque consideramos a melhor do mercado pra montar processos, potencializada com integrações, automações e agentes de IA para tornar tudo <strong>mais eficiente, escalável e inteligente</strong>.
             </p>
             <div class="licenca-badge">
               <span class="dot"></span>
-              Implementamos a ferramenta, a licença você contrata direto com o Pipefy.
+              A gente não vende o Pipefy. A licença você contrata direto em pipefy.com.
             </div>
             <div class="stack-mini-grid">
               <div class="stack-mini highlight">
@@ -2250,9 +2258,9 @@
               <polyline points="12 6 12 12 16 14"/>
             </svg>
           </div>
-          <div class="porque-card-titulo">Tira você das planilhas e softwares caros.</div>
+          <div class="porque-card-titulo">Tira você das planilhas, sem pesar no bolso.</div>
           <div class="porque-card-desc">
-            Foco em empresas pequenas, médias e grandes que querem <strong>parar com trabalho manual</strong>. Iniciamos em setores a partir de 2 colaboradores, sem trocar uma dor por outra.
+            Foco em empresas pequenas, médias e grandes, a partir de 2 colaboradores, que querem <strong>parar com o trabalho manual</strong>. E com um valor por hora mais baixo que o de muitas consultorias que oferecem a mesma disponibilidade, ou menos.
           </div>
         </div>
       </div>
@@ -2310,6 +2318,7 @@
             <img src="logos/forton.png" alt="Forton">
             <img src="logos/playrec.png" alt="Playrec">
             <img src="logos/okiar.png" alt="Okiar">
+            <img src="logos/ornare.png" alt="Ornare">
           </div>
           <div class="logos-set" aria-hidden="true">
             <img src="logos/diageo.png" alt="">
@@ -2319,6 +2328,7 @@
             <img src="logos/forton.png" alt="">
             <img src="logos/playrec.png" alt="">
             <img src="logos/okiar.png" alt="">
+            <img src="logos/ornare.png" alt="">
           </div>
         </div>
       </div>
@@ -2363,12 +2373,12 @@
 
         <!-- Case: Labhoro Contratos -->
         <div class="resultado-card">
-          <div class="resultado-card-cliente">Labhoro · Contratos</div>
+          <div class="resultado-card-cliente">Labhoro · Diagnóstico</div>
           <div class="resultado-card-numero">12h<span class="unidade"> de mapeamento</span></div>
-          <div class="resultado-card-metrica">15 pessoas ouvidas na empresa</div>
+          <div class="resultado-card-metrica">Nove entrevistas em todos os setores</div>
           <div class="resultado-card-divider"></div>
           <div class="resultado-card-desc">
-            O diagnóstico mostrou que a ferramenta da empresa era boa e não precisava ser trocada. A saída foi integrar o que já existe ao Google Workspace, com aprovações e rastreabilidade de contratos. Em desenvolvimento.
+            Mapeamento e entendimento da operação inteira, direto na causa raiz dos erros de faturamento. A proposta trouxe uma arquitetura com 5 pipes conectados, banco de clientes e camada de comissionamento.
           </div>
         </div>
 
@@ -2435,7 +2445,7 @@
             <div class="section-label">Como trabalhamos</div>
             <h2 class="slide-titulo-md">Método em <span class="italic">6 etapas</span> + manutenção evolutiva.</h2>
             <p class="slide-texto">
-              Entrega em etapas com transparência total: você acompanha, valida e aprova cada parte. Quando o projeto está pronto e rodando, o <strong>Pacote de Horas</strong> entra como manutenção evolutiva.
+              Entrega em etapas com transparência total: você acompanha, valida e aprova cada parte. Quando o projeto está pronto e rodando, a <strong>manutenção evolutiva</strong> segue por hora.
             </p>
             <div class="processo-tag anim-up-2">Método PSFY</div>
           </div>
@@ -2565,14 +2575,14 @@
         <div class="formato-card-deck">
           <div class="formato-card-deck-numero">Formato 01</div>
           <h3 class="formato-card-deck-titulo">Pacote de Horas</h3>
-          <p class="formato-card-deck-desc">Para quem já tem uma operação rodando e precisa de ajustes, correções ou pequenas implementações.</p>
-          <div class="formato-card-deck-preco">4 a 20 horas mensais</div>
-          <div class="formato-card-deck-orcamento">Orçamento inicial: <strong>a partir de R$ 1.200,00</strong></div>
+          <p class="formato-card-deck-desc">Pra primeira contratação. Serve pra começar do zero ou pra ajustes, correções e pequenas implementações.</p>
+          <div class="formato-card-deck-preco">10 horas na primeira contratação</div>
+          <div class="formato-card-deck-orcamento">Investimento <strong>R$ 1.200</strong></div>
           <div class="formato-card-deck-divider"></div>
           <ul class="formato-card-deck-items">
             <li class="formato-card-deck-item"><span class="arrow">→</span>Execução por demanda</li>
             <li class="formato-card-deck-item"><span class="arrow">→</span>Cronograma flexível</li>
-            <li class="formato-card-deck-item"><span class="arrow">→</span>Ideal para manutenção evolutiva</li>
+            <li class="formato-card-deck-item"><span class="arrow">→</span>Depois, R$ 150/hora ou R$ 190/hora com integrações</li>
             <li class="formato-card-deck-item"><span class="arrow">→</span>Sem compromisso de longo prazo</li>
           </ul>
         </div>
@@ -2738,7 +2748,7 @@
         </div>
         <div class="anim-up-2">
           <p class="slide-texto" style="color: rgba(255,255,255,0.85); margin: 0 auto; font-size: 20px;">
-            Solicite um orçamento detalhado ou agende uma conversa de 30 minutos. Mapeamos oportunidades, entendemos seu cenário e mostramos como ficaria na prática.
+            Solicite um orçamento detalhado ou fale com um de nossos agentes. Mapeamos oportunidades, entendemos seu cenário e mostramos como ficaria na prática.
           </p>
         </div>
 
@@ -2752,11 +2762,11 @@
             </svg>
             Solicitar orçamento
           </a>
-          <a href="https://wa.me/5541995041300?text=Ol%C3%A1!%20Vim%20pela%20apresenta%C3%A7%C3%A3o%20e%20gostaria%20de%20agendar%20uma%20conversa." target="_blank" class="cta-deck-btn cta-deck-btn-secondary">
+          <a href="https://wa.me/5541995041300?text=Ol%C3%A1!%20Vim%20pela%20apresenta%C3%A7%C3%A3o%20da%20PSFY%20e%20quero%20falar%20com%20um%20agente." target="_blank" rel="noopener" class="cta-deck-btn cta-deck-btn-secondary">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
-            Agendar conversa
+            Fale com um de nossos agentes em até 2 horas
           </a>
         </div>
 
@@ -2792,6 +2802,10 @@
 <div class="keyboard-hint">← → Navegar  ·  F Tela cheia</div>
 <div class="slide-counter"><span id="current">1</span> / <span id="total">13</span></div>
 <div class="nav-controls">
+  <a href="en/apresentacao.html" class="nav-btn nav-lang" id="lang-link" hreflang="en" lang="en" title="English version" aria-label="English version">
+    <svg viewBox="0 0 30 21" aria-hidden="true" focusable="false"><rect width="30" height="21" fill="#fff"/><path fill="#B22234" d="M0 0h30v1.62H0zM0 3.23h30v1.62H0zM0 6.46h30v1.62H0zM0 9.69h30v1.62H0zM0 12.92h30v1.62H0zM0 16.15h30v1.62H0zM0 19.38h30v1.62H0z"/><rect width="13" height="11.31" fill="#3C3B6E"/><g fill="#fff"><circle cx="2" cy="2" r=".55"/><circle cx="5" cy="2" r=".55"/><circle cx="8" cy="2" r=".55"/><circle cx="11" cy="2" r=".55"/><circle cx="3.5" cy="4.4" r=".55"/><circle cx="6.5" cy="4.4" r=".55"/><circle cx="9.5" cy="4.4" r=".55"/><circle cx="2" cy="6.8" r=".55"/><circle cx="5" cy="6.8" r=".55"/><circle cx="8" cy="6.8" r=".55"/><circle cx="11" cy="6.8" r=".55"/><circle cx="3.5" cy="9.2" r=".55"/><circle cx="6.5" cy="9.2" r=".55"/><circle cx="9.5" cy="9.2" r=".55"/></g></svg>
+    <span>EN</span>
+  </a>
   <button class="nav-btn" id="prev" aria-label="Anterior">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="15 18 9 12 15 6"/>
@@ -2825,6 +2839,10 @@
     btnPrev.disabled = idx === 0;
     btnNext.disabled = idx === total - 1;
 
+    // A bandeirinha leva pro mesmo slide na outra língua
+    const langLink = document.getElementById('lang-link');
+    if (langLink) langLink.href = langLink.getAttribute('href').split('#')[0] + '#' + (idx + 1);
+
     // Atualiza cor dos controles baseado no slide ativo
     const activeSlide = slides[idx];
     const isLight = activeSlide.classList.contains('slide-light');
@@ -2856,8 +2874,17 @@
     }
   });
 
-  // Inicializa
-  showSlide(0);
+  // Inicializa. Se o link trouxer o número do slide (ex.: #5), abre direto nele
+  function abrirSlideDoLink() {
+    const n = parseInt(location.hash.replace('#', ''), 10);
+    if (n >= 1 && n <= total) {
+      current = n - 1;
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+    showSlide(current);
+  }
+  abrirSlideDoLink();
+  window.addEventListener('hashchange', abrirSlideDoLink);
 
   // ===== TOGGLE PACOTE DE HORAS =====
   const togglePacote = document.getElementById('toggle-pacote');

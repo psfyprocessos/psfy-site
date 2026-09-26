@@ -3,8 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PSFY — Solicitar Orçamento</title>
+<title>PSFY | Solicitar orçamento</title>
+<meta name="description" content="Conte o seu cenário em poucos passos e receba uma proposta da PSFY pelo WhatsApp.">
 <link rel="icon" type="image/png" href="/favicon.png">
+<link rel="alternate" hreflang="pt-BR" href="https://www.psfy.com.br/orcamento.html">
+<link rel="alternate" hreflang="en" href="https://www.psfy.com.br/en/orcamento.html">
+<link rel="alternate" hreflang="x-default" href="https://www.psfy.com.br/orcamento.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet">
@@ -12,16 +16,17 @@
   /* ============ VARIÁVEIS (mesmas do site) ============ */
   :root {
     --preto: #000000;
-    --azul: #0a52cc;
-    --azul-hover: #0847b0;
+    --azul: #336140;
+    --azul-hover: #274d33;
     --branco: #ffffff;
-    --azul-claro: #e1e9f9;
+    --azul-claro: #e4efe7;
+    --verde-claro: #74B872;
     --cinza: #f2f2f2;
     --cinza-texto: #6b6b6b;
     --cinza-texto-escuro: #4a4a4a;
     --cinza-borda: #e5e5e5;
     --cinza-escuro: #1a1a1a;
-    --verde: #22c55e;
+    --verde: #74B872;
     --vermelho: #ef4444;
 
     --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -111,12 +116,35 @@
   }
   .nav-back:hover { color: var(--azul); }
 
+  /* ============ TROCA DE IDIOMA (bandeirinha) ============ */
+  .lang-switch {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 7px 12px 7px 9px; border-radius: 999px;
+    border: 1px solid var(--cinza-borda); background: var(--branco);
+    font-size: 13px; font-weight: 500; line-height: 1; color: var(--preto);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .lang-switch:hover { border-color: var(--azul); transform: translateY(-1px); }
+  .lang-switch:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
+  .lang-switch svg { width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); flex-shrink: 0; display: block; }
+
+  /* Atalho rápido pelo WhatsApp */
+  .atalho-rotulo { display: block; font-size: 13px; color: var(--cinza-texto); margin-top: 22px; }
+  .atalho {
+    display: inline-flex; align-items: center; gap: 10px; margin-top: 8px;
+    padding: 10px 18px 10px 14px; border-radius: 999px;
+    border: 1px solid var(--azul); color: var(--azul); background: var(--branco);
+    font-size: 14px; font-weight: 500; transition: background 0.2s, color 0.2s;
+  }
+  .atalho:hover { background: var(--azul); color: var(--branco); }
+  .atalho svg { width: 18px; height: 18px; flex-shrink: 0; display: block; }
+
   /* ============ HERO DO FORMULÁRIO ============ */
   .form-hero {
     padding: 80px 32px 40px;
     background:
       radial-gradient(ellipse 80% 50% at 80% 20%, var(--azul-claro) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(225, 233, 249, 0.6) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(228, 239, 231, 0.6) 0%, transparent 50%),
       var(--branco);
     text-align: center;
   }
@@ -141,7 +169,7 @@
     height: 8px;
     border-radius: 50%;
     background: var(--verde);
-    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+    box-shadow: 0 0 0 4px rgba(116, 184, 114, 0.25);
   }
   .form-hero h1 {
     font-size: clamp(36px, 5vw, 56px);
@@ -189,8 +217,8 @@
     color: var(--branco);
   }
   .step.concluido {
-    background: var(--verde);
-    color: var(--branco);
+    background: var(--azul-claro);
+    color: var(--azul);
   }
   .step-num {
     display: inline-flex;
@@ -252,7 +280,9 @@
     background: var(--branco);
     text-align: left;
     width: 100%;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
   .formato-opcao:hover {
     border-color: var(--azul);
@@ -261,7 +291,7 @@
   .formato-opcao.selecionado {
     border-color: var(--azul);
     background: var(--azul-claro);
-    box-shadow: 0 8px 20px rgba(10, 82, 204, 0.15);
+    box-shadow: 0 8px 20px rgba(51, 97, 64, 0.15);
   }
   .formato-opcao-num {
     font-size: 12px;
@@ -324,7 +354,7 @@
   .form-textarea:focus {
     outline: none;
     border-color: var(--azul);
-    box-shadow: 0 0 0 3px rgba(10, 82, 204, 0.1);
+    box-shadow: 0 0 0 3px rgba(51, 97, 64, 0.12);
   }
   .form-textarea {
     resize: vertical;
@@ -427,7 +457,7 @@
   }
   .btn-enviar:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(10, 82, 204, 0.3);
+    box-shadow: 0 12px 28px rgba(51, 97, 64, 0.3);
     background: var(--azul-hover);
   }
   .btn-enviar:disabled {
@@ -454,9 +484,8 @@
 
   /* ============ FOOTER ============ */
   .footer {
-    background: var(--cinza-escuro);
-    color: var(--branco);
-    padding: 60px 32px 30px;
+    border-top: 1px solid var(--cinza-borda);
+    padding: 32px;
   }
   .footer-inner {
     max-width: var(--max-width);
@@ -464,11 +493,12 @@
     text-align: center;
   }
   .footer p {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 14px;
+    color: var(--cinza-texto);
+    font-size: 13px;
   }
   .footer a {
-    color: var(--azul-claro);
+    color: var(--azul);
+    text-decoration: underline;
   }
 
   /* ============ RESPONSIVO ============ */
@@ -496,12 +526,16 @@
     </a>
     <nav class="nav">
       <ul class="nav-links">
-        <li><a href="index.html#diferenciais">Diferenciais</a></li>
-        <li><a href="index.html#stack">Stack</a></li>
-        <li><a href="index.html#projetos">Projetos</a></li>
-        <li><a href="index.html#formatos">Formatos</a></li>
+        <li><a href="index.html#diferenciais">Como funciona</a></li>
+        <li><a href="index.html#provas">Provas reais</a></li>
+        <li><a href="seguranca.html">Segurança e compliance</a></li>
+        <li><a href="blog.html">Blog</a></li>
         <li><a href="orcamento.html" class="ativo">Orçamento</a></li>
       </ul>
+      <a href="en/orcamento.html" class="lang-switch" hreflang="en" lang="en" title="English version" aria-label="English version">
+      <svg viewBox="0 0 30 21" aria-hidden="true" focusable="false"><rect width="30" height="21" fill="#fff"/><path fill="#B22234" d="M0 0h30v1.62H0zM0 3.23h30v1.62H0zM0 6.46h30v1.62H0zM0 9.69h30v1.62H0zM0 12.92h30v1.62H0zM0 16.15h30v1.62H0zM0 19.38h30v1.62H0z"/><rect width="13" height="11.31" fill="#3C3B6E"/><g fill="#fff"><circle cx="2" cy="2" r=".55"/><circle cx="5" cy="2" r=".55"/><circle cx="8" cy="2" r=".55"/><circle cx="11" cy="2" r=".55"/><circle cx="3.5" cy="4.4" r=".55"/><circle cx="6.5" cy="4.4" r=".55"/><circle cx="9.5" cy="4.4" r=".55"/><circle cx="2" cy="6.8" r=".55"/><circle cx="5" cy="6.8" r=".55"/><circle cx="8" cy="6.8" r=".55"/><circle cx="11" cy="6.8" r=".55"/><circle cx="3.5" cy="9.2" r=".55"/><circle cx="6.5" cy="9.2" r=".55"/><circle cx="9.5" cy="9.2" r=".55"/></g></svg>
+      <span class="lang-switch-texto">EN</span>
+    </a>
     </nav>
   </div>
 </header>
@@ -514,7 +548,9 @@
       <span>Resposta em até <strong>1 dia útil</strong></span>
     </div>
     <h1>Vamos entender seu <span class="italic">cenário</span>.</h1>
-    <p>Responda só o que souber — o resto a gente conversa. Ao enviar, abrimos uma conversa no WhatsApp com tudo organizado.</p>
+    <p>Responda só o que souber, o resto a gente conversa. Ao enviar, abrimos uma conversa no WhatsApp com tudo organizado.</p>
+    <span class="atalho-rotulo">Com pressa?</span>
+    <a href="https://wa.me/5541995041300?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20PSFY%20e%20quero%20falar%20com%20um%20agente." class="atalho" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Fale com um de nossos agentes em até 2 horas</a>
   </div>
 </section>
 
@@ -548,7 +584,7 @@
       <button type="button" class="formato-opcao" data-formato="horas">
         <div class="formato-opcao-num">Formato 01</div>
         <div class="formato-opcao-titulo">Pacote de Horas</div>
-        <div class="formato-opcao-desc">Ajustes pontuais. De 4 a 20 horas.</div>
+        <div class="formato-opcao-desc">10 horas por R$ 1.200. Pra primeira contratação.</div>
       </button>
 
       <button type="button" class="formato-opcao" data-formato="consultoria">
@@ -568,32 +604,25 @@
   <!-- ====== BLOCO 2A: FORMATO HORAS ====== -->
   <div class="form-bloco condicional" id="bloco-horas">
     <h2 class="form-bloco-titulo">Pacote de Horas</h2>
-    <p class="form-bloco-subtitulo">Ideal pra quem já tem Pipefy rodando e precisa de ajustes ou pequenas implementações.</p>
+    <p class="form-bloco-subtitulo">10 horas por R$ 1.200, pra primeira contratação. Ideal pra começar a estruturar ou ajustar o seu processo com a gente. Depois, você paga R$ 150/hora, ou R$ 190/hora com integrações.</p>
 
     <div class="form-grupo">
-      <label class="form-label">Quantas horas você imagina precisar?</label>
+      <label class="form-label">Você já usa o Pipefy?</label>
       <div class="form-opcoes">
         <div class="form-opcao-item">
-          <input type="radio" name="horas-qtd" id="h-4" value="4 horas">
-          <label for="h-4">4 horas</label>
+          <input type="radio" name="horas-pipefy" id="hp-sim" value="Sim, já uso">
+          <label for="hp-sim">Sim, já uso</label>
         </div>
         <div class="form-opcao-item">
-          <input type="radio" name="horas-qtd" id="h-8" value="8 horas">
-          <label for="h-8">8 horas</label>
+          <input type="radio" name="horas-pipefy" id="hp-nao" value="Ainda não">
+          <label for="hp-nao">Ainda não</label>
         </div>
         <div class="form-opcao-item">
-          <input type="radio" name="horas-qtd" id="h-12" value="12 horas">
-          <label for="h-12">12 horas</label>
-        </div>
-        <div class="form-opcao-item">
-          <input type="radio" name="horas-qtd" id="h-20" value="20 horas">
-          <label for="h-20">20 horas</label>
-        </div>
-        <div class="form-opcao-item">
-          <input type="radio" name="horas-qtd" id="h-naosei" value="Não sei ainda">
-          <label for="h-naosei">Não sei ainda</label>
+          <input type="radio" name="horas-pipefy" id="hp-avaliando" value="Estou avaliando">
+          <label for="hp-avaliando">Estou avaliando</label>
         </div>
       </div>
+      <div class="form-help">A licença do Pipefy você contrata direto em <a href="https://www.pipefy.com" target="_blank" rel="noopener" style="text-decoration: underline;">pipefy.com</a>. A gente implementa.</div>
     </div>
 
     <div class="form-grupo">
@@ -671,14 +700,14 @@
 
     <div class="form-grupo">
       <label class="form-label" for="cons-equipe">Quantas pessoas da equipe estariam envolvidas?</label>
-      <input type="text" class="form-input" id="cons-equipe" placeholder="Ex: 3 pessoas — eu, financeiro e operações">
+      <input type="text" class="form-input" id="cons-equipe" placeholder="Ex: 3 pessoas, eu, o financeiro e operações">
     </div>
   </div>
 
   <!-- ====== BLOCO 2C: FORMATO PROJETO ====== -->
   <div class="form-bloco condicional" id="bloco-projeto">
     <h2 class="form-bloco-titulo">Projeto Fechado</h2>
-    <p class="form-bloco-subtitulo">Pra estruturar uma área específica com escopo e prazo definidos. Vou te fazer algumas perguntas pra entender melhor — quanto mais contexto, mais precisa fica a proposta.</p>
+    <p class="form-bloco-subtitulo">Pra estruturar uma área específica com escopo e prazo definidos. Vou te fazer algumas perguntas pra entender melhor. Quanto mais contexto, mais precisa fica a proposta.</p>
 
     <!-- BLOCO A: SOBRE A EMPRESA -->
     <div class="sub-bloco">
@@ -1033,8 +1062,8 @@
 
     // Dados do formato
     if (formatoEscolhido === 'horas') {
-      msg += `*📦 FORMATO: PACOTE DE HORAS*\n\n`;
-      msg += linha('Quantidade desejada', getRadio('horas-qtd'));
+      msg += `*📦 FORMATO: PACOTE DE HORAS (PRIMEIRA CONTRATAÇÃO)*\n\n`;
+      msg += linha('Já usa o Pipefy', getRadio('horas-pipefy'));
       msg += linha('Uso pretendido', getInput('horas-uso'));
       msg += linha('Prazo', getRadio('horas-prazo'));
     }
