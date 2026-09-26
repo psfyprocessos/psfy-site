@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSFY | Creative efficiency consulting</title>
+<meta name="description" content="Creative efficiency consulting. We understand your process and plug the best tools into it to create efficiency.">
+<link rel="icon" type="image/png" href="../favicon.png">
+
+<!-- Versões por idioma (ajuda o Google a mostrar a página certa pra cada público) -->
+<link rel="alternate" hreflang="pt-BR" href="https://www.psfy.com.br/">
+<link rel="alternate" hreflang="en" href="https://www.psfy.com.br/en/">
+<link rel="alternate" hreflang="x-default" href="https://www.psfy.com.br/">
+
+<!-- Prévia do link no WhatsApp e LinkedIn -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="PSFY | Creative efficiency consulting">
+<meta property="og:description" content="We understand your process and plug the best tools into it to create efficiency.">
+<meta property="og:url" content="https://www.psfy.com.br/en/">
+<meta property="og:image" content="https://www.psfy.com.br/logo.png">
+<meta property="og:site_name" content="PSFY">
+<meta property="og:locale" content="en_US">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --preto: #000000;
+    --azul: #336140;
+    --azul-hover: #274d33;
+    --branco: #ffffff;
+    --azul-claro: #e4efe7;
+    --verde-claro: #74B872;
+    --cinza: #f2f2f2;
+    --cinza-texto: #6b6b6b;
+    --cinza-borda: #e5e5e5;
+    --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --max-width: 1120px;
+    --radius: 12px;
+    --radius-lg: 20px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--branco);
+    color: var(--preto);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+  section[id] { scroll-margin-top: 90px; }
+  img, svg { display: block; }
+
+  .italic { font-style: italic; font-weight: 400; color: var(--azul); }
+  .wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+  .eyebrow {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--azul); margin-bottom: 14px;
+  }
+
+  /* ============ HEADER ============ */
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--cinza-borda);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 18px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .logo img { height: 90px; width: auto; display: block; }
+  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+  .nav-links a { font-size: 14px; opacity: 0.75; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 1; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px;
+    border-radius: 999px; font-weight: 500; font-size: 14px; white-space: nowrap;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+  .btn-primary { background: var(--azul); color: var(--branco); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(51,97,64,0.25); background: var(--azul-hover); }
+  .btn-secondary { background: var(--branco); color: var(--preto); border: 1px solid var(--cinza-borda); }
+  .btn-secondary:hover { background: var(--cinza); }
+  .header-acoes { display: flex; align-items: center; gap: 12px; }
+
+  /* ============ TROCA DE IDIOMA (bandeirinha) ============ */
+  .lang-switch {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 7px 12px 7px 9px; border-radius: 999px;
+    border: 1px solid var(--cinza-borda); background: var(--branco);
+    font-size: 13px; font-weight: 500; line-height: 1; color: var(--preto);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .lang-switch:hover { border-color: var(--azul); transform: translateY(-1px); }
+  .lang-switch:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
+  .lang-switch svg { width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); flex-shrink: 0; }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .header-inner { gap: 12px; }
+    .header-acoes { gap: 8px; }
+    .lang-switch { padding: 8px 9px; }
+    .lang-switch-texto { display: none; }
+  }
+
+  /* ============ TOGGLE (componente usado nos 3 blocos) ============ */
+  .toggle-wrap { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+  .toggle-group {
+    position: relative; display: inline-flex; background: var(--cinza);
+    border-radius: 999px; padding: 4px; gap: 2px; flex-wrap: wrap; justify-content: center;
+  }
+  .toggle-highlight {
+    position: absolute; top: 4px; bottom: 4px; left: 4px;
+    border-radius: 999px; background: var(--azul);
+    transition: transform 0.3s ease, width 0.3s ease;
+    z-index: 0;
+  }
+  .toggle-btn {
+    position: relative; z-index: 1; padding: 10px 18px; border-radius: 999px;
+    font-size: 14px; font-weight: 500; color: var(--preto); white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+  .toggle-btn.active { color: var(--branco); }
+  .toggle-btn:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
+
+  .toggle-panels { width: 100%; }
+  .toggle-panel[hidden] { display: none; }
+  .toggle-panel.fade { animation: fadeIn 0.25s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ============ HERO ============ */
+  .hero { position: relative; padding: 90px 24px 100px; overflow: hidden;
+    background:
+      radial-gradient(ellipse 80% 50% at 80% 15%, var(--azul-claro) 0%, transparent 60%),
+      var(--branco);
+  }
+  .hero-nodes { position: absolute; top: -40px; right: -60px; opacity: 0.35; pointer-events: none; }
+  .hero-inner { max-width: 780px; margin: 0 auto; text-align: center; position: relative; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px 8px 12px;
+    background: var(--branco); border: 1px solid var(--cinza-borda); border-radius: 999px;
+    font-size: 14px; margin-bottom: 28px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,0.2); }
+  .hero h1 {
+    font-size: clamp(34px, 5.2vw, 56px); font-weight: 700; line-height: 1.08;
+    letter-spacing: -0.03em; margin-bottom: 22px;
+  }
+  .hero-description { font-size: 17px; line-height: 1.6; color: var(--cinza-texto); margin-bottom: 36px; font-weight: 400; letter-spacing: normal; }
+  .hero-toggle-panel p { font-size: 15px; color: var(--cinza-texto); max-width: 460px; margin: 0 auto; font-weight: 400; letter-spacing: normal; }
+  .hero-nota { font-size: 13px; color: var(--cinza-texto); margin-top: -4px; font-weight: 400; letter-spacing: normal; }
+  .hero-ctas { display: flex; gap: 12px; justify-content: center; margin-top: 36px; flex-wrap: wrap; }
+
+  /* ============ SEÇÃO GENÉRICA ============ */
+  .section { padding: 90px 24px; }
+  .section-header { max-width: 620px; margin: 0 auto 56px; text-align: center; }
+  .section-title { font-size: clamp(26px, 3.4vw, 38px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+  .section-alt { background: var(--cinza); }
+
+  /* ============ DIFERENCIAIS ============ */
+  .diferenciais-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  @media (max-width: 900px) { .diferenciais-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .diferenciais-grid { grid-template-columns: 1fr; } }
+  .diferencial-card {
+    background: var(--branco); border: 1px solid var(--cinza-borda); border-radius: var(--radius-lg);
+    padding: 28px 24px; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .diferencial-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.06); }
+  .diferencial-icone {
+    width: 44px; height: 44px; border-radius: 12px; background: var(--azul-claro);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 18px; color: var(--azul);
+  }
+  .diferencial-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em; }
+  .diferencial-card p { font-size: 14.5px; line-height: 1.55; color: var(--cinza-texto); }
+
+  /* ============ PROVAS REAIS ============ */
+  .projeto-card {
+    max-width: 620px; margin: 0 auto; background: var(--branco); border: 1px solid var(--cinza-borda);
+    border-radius: var(--radius-lg); padding: 36px 32px; text-align: left;
+  }
+  .projeto-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .projeto-numero { font-size: 16px; font-style: italic; color: var(--azul); font-weight: 500; }
+  .projeto-categoria { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cinza-texto); }
+  .projeto-titulo { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 24px; }
+  .projeto-items { list-style: none; }
+  .projeto-item { display: flex; align-items: flex-start; gap: 12px; padding: 8px 0; font-size: 15px; color: var(--cinza-texto-escuro, #333); }
+  .projeto-item::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--azul); flex-shrink: 0; margin-top: 7px; }
+  .projeto-impacto {
+    margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--cinza-borda);
+    font-size: 14px; line-height: 1.6; color: var(--cinza-texto-escuro, #333);
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .projeto-impacto::before { content: '→'; color: var(--azul); font-weight: 700; flex-shrink: 0; }
+  .projeto-impacto strong { color: var(--preto); font-weight: 600; }
+
+  /* ============ CLIENTES (CARROSSEL) ============ */
+  .clientes { padding: 56px 0; background: var(--branco); border-top: 1px solid var(--cinza-borda); border-bottom: 1px solid var(--cinza-borda); overflow: hidden; }
+  .clientes-inner { max-width: var(--max-width); margin: 0 auto; text-align: center; padding: 0 32px; }
+  .clientes-titulo { font-size: 13px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cinza-texto); margin-bottom: 40px; }
+  .carrossel-wrapper {
+    width: 100%; overflow: hidden; position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  }
+  .carrossel-track { display: flex; width: max-content; animation: scroll-clientes 30s linear infinite; }
+  .carrossel-track:hover { animation-play-state: paused; }
+  .cliente-logo { display: flex; align-items: center; justify-content: center; height: 50px; min-width: 170px; padding: 0 32px; flex-shrink: 0; }
+  .cliente-logo img { max-height: 100%; max-width: 140px; width: auto; height: auto; object-fit: contain; filter: grayscale(1) opacity(0.55); transition: filter 0.3s, transform 0.3s; }
+  .cliente-logo:hover img { filter: grayscale(0) opacity(1); transform: scale(1.05); }
+  @keyframes scroll-clientes { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ============ COMO COMEÇAR ============ */
+  .preco-card {
+    max-width: 480px; margin: 0 auto; background: var(--preto); color: var(--branco);
+    border-radius: var(--radius-lg); padding: 36px 32px; text-align: center;
+  }
+  .preco-valor { font-size: 15px; color: var(--verde-claro); font-weight: 700; margin-bottom: 8px; }
+  .preco-valor span { font-size: 34px; display: block; color: var(--branco); margin-top: 4px; }
+  .preco-valor span small { font-size: 15px; font-weight: 500; opacity: 0.65; }
+  .preco-desc { font-size: 14.5px; line-height: 1.6; color: rgba(255,255,255,0.75); margin: 16px 0 18px; }
+  .preco-inclui {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--verde-claro);
+    background: rgba(116,184,114,0.12); padding: 6px 12px; border-radius: 999px;
+  }
+  .preco-nota { text-align: center; font-size: 14px; color: var(--cinza-texto); max-width: 420px; margin: 28px auto 0; }
+
+  /* ============ CTA FINAL ============ */
+  .cta-final { padding: 90px 24px; text-align: center; }
+  .cta-final h2 { font-size: clamp(26px, 3.4vw, 38px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 28px; }
+
+  /* ============ FOOTER ============ */
+  .footer { padding: 32px 24px; border-top: 1px solid var(--cinza-borda); text-align: center; font-size: 13px; color: var(--cinza-texto); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important; scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><img src="../logo.png" alt="PSFY"></a>
+    <ul class="nav-links">
+      <li><a href="#diferenciais">How it works</a></li>
+      <li><a href="#provas">Real results</a></li>
+      <li><a href="#">Security &amp; compliance</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+    <div class="header-acoes">
+      <a href="../index.html" class="lang-switch" hreflang="pt-BR" lang="pt-BR" title="Versão em português" aria-label="Versão em português">
+        <svg viewBox="0 0 30 21" aria-hidden="true" focusable="false"><rect width="30" height="21" fill="#009C3B"/><path fill="#FFDF00" d="M15 2.2 27.6 10.5 15 18.8 2.4 10.5z"/><circle cx="15" cy="10.5" r="5.2" fill="#002776"/><path fill="none" stroke="#fff" stroke-width="1.1" d="M9.9 9.4c3.6-.9 7.4-.1 10.1 2.3"/></svg>
+        <span class="lang-switch-texto">PT</span>
+      </a>
+      <a href="#comecar" class="btn btn-primary">Talk to PSFY</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ BLOCO 1 — HERO ============ -->
+<section class="hero">
+  <svg class="hero-nodes" width="360" height="280" viewBox="0 0 360 280" fill="none">
+    <g stroke="#336140" stroke-width="1.2">
+      <line x1="60" y1="220" x2="160" y2="140"/>
+      <line x1="160" y1="140" x2="270" y2="60"/>
+      <line x1="160" y1="140" x2="230" y2="200"/>
+      <line x1="270" y1="60" x2="330" y2="110"/>
+    </g>
+    <g fill="#74B872">
+      <circle cx="60" cy="220" r="5"/>
+      <circle cx="160" cy="140" r="6"/>
+      <circle cx="270" cy="60" r="5"/>
+      <circle cx="230" cy="200" r="4"/>
+      <circle cx="330" cy="110" r="4"/>
+    </g>
+  </svg>
+
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="dot"></span> Creative efficiency consulting</div>
+    <h1>No two processes are alike. We step into yours to <span class="italic">understand, design and solve</span> it on its own terms.</h1>
+    <p class="hero-description">We understand your process and plug the best tools into it to create efficiency.</p>
+
+    <div class="toggle-wrap" data-toggle>
+      <div class="toggle-group" role="tablist" aria-label="How we work">
+        <span class="toggle-highlight" aria-hidden="true"></span>
+        <button class="toggle-btn active" data-target="pipefy" role="tab" aria-selected="true">Pipefy</button>
+        <button class="toggle-btn" data-target="integracoes" role="tab" aria-selected="false">Pipefy with integrations</button>
+        <button class="toggle-btn" data-target="outras" role="tab" aria-selected="false">Other tools</button>
+      </div>
+      <div class="toggle-panels hero-toggle-panel">
+        <div class="toggle-panel active" data-panel="pipefy"><p>Full implementation and management inside Pipefy.</p></div>
+        <div class="toggle-panel" data-panel="integracoes" hidden><p>Pipefy connected to your systems, spreadsheets and databases.</p></div>
+        <div class="toggle-panel" data-panel="outras" hidden><p>When the process calls for something outside Pipefy, we handle that too.</p></div>
+      </div>
+      <p class="hero-nota">Not officially affiliated with Pipefy. We recommend whatever makes the most sense for your process.</p>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="#comecar" class="btn btn-primary">Talk to PSFY</a>
+      <a href="#provas" class="btn btn-secondary">See how we do it</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLIENTES E PARCEIROS ============ -->
+<section class="clientes">
+  <div class="clientes-inner">
+    <div class="clientes-titulo">Clients and partners</div>
+  </div>
+  <div class="carrossel-wrapper">
+    <div class="carrossel-track">
+      <!-- Cada logo aparece UMA vez aqui. O script no fim da página repete a lista pro loop. -->
+      <div class="cliente-logo"><img src="../logos/diageo.png" alt="Diageo"></div>
+      <div class="cliente-logo"><img src="../logos/wrental.png" alt="W Rental"></div>
+      <div class="cliente-logo"><img src="../logos/forton.png" alt="Forton"></div>
+      <div class="cliente-logo"><img src="../logos/playrec.png" alt="Playrec"></div>
+      <div class="cliente-logo"><img src="../logos/okiar.png" alt="Okiar"></div>
+      <div class="cliente-logo"><img src="../logos/grs.png" alt="GRS Racing"></div>
+      <div class="cliente-logo"><img src="../logos/labhoro.png" alt="Labhoro"></div>
+      <div class="cliente-logo"><img src="../logos/amato.png" alt="Amato"></div>
+      <div class="cliente-logo"><img src="../logos/ornare.png" alt="Ornare"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOCO 2 — O QUE A GENTE RESOLVE DIFERENTE ============ -->
+<section class="section" id="diferenciais">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="eyebrow">How we think</div>
+      <h2 class="section-title">What we do <span class="italic">differently</span></h2>
+    </div>
+    <div class="diferenciais-grid">
+
+      <div class="diferencial-card">
+        <div class="diferencial-icone">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 6h6M4 12h6M4 18h6"/><path d="M10 6l8 6-8 6"/></svg>
+        </div>
+        <h3>Process consolidation</h3>
+        <p>Sometimes three processes become one. Fewer steps, fewer people wasting time passing the baton.</p>
+      </div>
+
+      <div class="diferencial-card">
+        <div class="diferencial-icone">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg>
+        </div>
+        <h3>Live data inside the workflow</h3>
+        <p>The database lives inside the process itself. No stray spreadsheets, no separate system to check.</p>
+      </div>
+
+      <div class="diferencial-card">
+        <div class="diferencial-icone">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v6"/><path d="M12 9l-6 6"/><path d="M12 9l6 6"/><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="18" r="2.2"/></svg>
+        </div>
+        <h3>Automation with judgment</h3>
+        <p>Conditional logic that solves a real problem in your business, not a generic rule that jams the workflow later.</p>
+      </div>
+
+      <div class="diferencial-card">
+        <div class="diferencial-icone">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4z"/></svg>
+        </div>
+        <h3>AI applied with purpose</h3>
+        <p>It's not a flashy feature. It's AI placed where it actually takes manual work off someone's plate.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOCO 3 — PROVAS REAIS ============ -->
+<section class="section section-alt" id="provas">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="eyebrow">Real results</div>
+      <h2 class="section-title">Real processes, delivered to <span class="italic">real</span> companies</h2>
+    </div>
+
+    <div class="toggle-wrap" data-toggle>
+      <div class="toggle-group" role="tablist" aria-label="Choose a project">
+        <span class="toggle-highlight" aria-hidden="true"></span>
+        <button class="toggle-btn active" data-target="wrental" role="tab" aria-selected="true">Wrental</button>
+        <button class="toggle-btn" data-target="diageo" role="tab" aria-selected="false">DIAGEO</button>
+        <button class="toggle-btn" data-target="labhoro" role="tab" aria-selected="false">Labhoro</button>
+      </div>
+      <div class="toggle-panels">
+
+        <div class="toggle-panel active" data-panel="wrental">
+          <div class="projeto-card">
+            <div class="projeto-header">
+              <span class="projeto-numero">01</span>
+              <span class="projeto-categoria">Heavy industry</span>
+            </div>
+            <h3 class="projeto-titulo">Aerial work platform company · Purchasing integrated with quotes</h3>
+            <ul class="projeto-items">
+              <li class="projeto-item">Inventory and automatic quoting</li>
+              <li class="projeto-item">Approval through an interface</li>
+              <li class="projeto-item">Invoices issued automatically</li>
+              <li class="projeto-item">Database of 4,000 items and 2,000 clients</li>
+            </ul>
+            <div class="projeto-impacto"><span><strong>Impact:</strong> Over 5,500 orders completed in 18 months, saving the purchasing team about 30 hours a week.</span></div>
+          </div>
+        </div>
+
+        <div class="toggle-panel" data-panel="diageo" hidden>
+          <div class="projeto-card">
+            <div class="projeto-header">
+              <span class="projeto-numero">02</span>
+              <span class="projeto-categoria">Multinational beverages</span>
+            </div>
+            <h3 class="projeto-titulo">Large beverage company · Room booking without email</h3>
+            <ul class="projeto-items">
+              <li class="projeto-item">Form with Outlook validation</li>
+              <li class="projeto-item">Automatic routing by team</li>
+              <li class="projeto-item">Built-in catering quotes</li>
+              <li class="projeto-item">Request tracking portal</li>
+            </ul>
+            <div class="projeto-impacto"><span><strong>Impact:</strong> Email is no longer the booking channel, and each requester has full autonomy over their own request.</span></div>
+          </div>
+        </div>
+
+        <div class="toggle-panel" data-panel="labhoro" hidden>
+          <div class="projeto-card">
+            <div class="projeto-header">
+              <span class="projeto-numero">03</span>
+              <span class="projeto-categoria">Commodities brokerage</span>
+            </div>
+            <h3 class="projeto-titulo">Commodities brokerage · Full operations diagnostic</h3>
+            <ul class="projeto-items">
+              <li class="projeto-item">Nine interviews across every area of the company</li>
+              <li class="projeto-item">Root cause of billing errors identified</li>
+              <li class="projeto-item">Proposed architecture with 5 connected pipes</li>
+              <li class="projeto-item">Client database and commission layer mapped</li>
+            </ul>
+            <div class="projeto-impacto"><span><strong>Impact:</strong> The entire operation mapped in 6 hours of analysis, going straight to the root cause of the billing errors.</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOCO 4 — COMO COMEÇAR ============ -->
+<section class="section" id="comecar">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="eyebrow">Getting started</div>
+      <h2 class="section-title">Three ways to <span class="italic">get started</span></h2>
+    </div>
+
+    <div class="toggle-wrap" data-toggle>
+      <div class="toggle-group" role="tablist" aria-label="Choose a package">
+        <span class="toggle-highlight" aria-hidden="true"></span>
+        <button class="toggle-btn active" data-target="pipefy" role="tab" aria-selected="true">Pipefy</button>
+        <button class="toggle-btn" data-target="integracoes" role="tab" aria-selected="false">Pipefy with integrations</button>
+        <button class="toggle-btn" data-target="outras" role="tab" aria-selected="false">Other tools</button>
+      </div>
+      <div class="toggle-panels">
+        <div class="toggle-panel active" data-panel="pipefy">
+          <div class="preco-card">
+            <div class="preco-valor">Starting at<span>R$ 150<small>/hour</small></span></div>
+            <div class="preco-desc">Implementation and management of the process inside the tool.</div>
+            <div class="preco-inclui">Training included</div>
+          </div>
+        </div>
+        <div class="toggle-panel" data-panel="integracoes" hidden>
+          <div class="preco-card">
+            <div class="preco-valor">Starting at<span>R$ 190<small>/hour</small></span></div>
+            <div class="preco-desc">Connecting data, systems and automations around the workflow.</div>
+            <div class="preco-inclui">Training included</div>
+          </div>
+        </div>
+        <div class="toggle-panel" data-panel="outras" hidden>
+          <div class="preco-card">
+            <div class="preco-valor">Depends on the<span>Scope</span></div>
+            <div class="preco-desc">For when the process needs something Pipefy alone can't solve. We look at your case and agree on the investment with you before we start.</div>
+            <div class="preco-inclui">Training included</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="preco-nota">We charge by the hour. Before closing any proposal, we get to know your process and give you an estimate of the hours. Prices in Brazilian reais (BRL).</p>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="cta-final">
+  <div class="wrap">
+    <h2>Ready to <span class="italic">fix</span> your next process?</h2>
+    <a href="alinhamentos.html" class="btn btn-primary">Book a call</a>
+  </div>
+</section>
+
+<footer class="footer">PSFY — Simple Processes</footer>
+
+<script>
+(function () {
+  // Cada bloco com toggle tem um wrapper [data-toggle] contendo o grupo de botões e os painéis
+  document.querySelectorAll('[data-toggle]').forEach(function (wrap) {
+    var group = wrap.querySelector('.toggle-group');
+    var highlight = group.querySelector('.toggle-highlight');
+    var buttons = group.querySelectorAll('.toggle-btn');
+    var panels = wrap.querySelectorAll('.toggle-panel');
+
+    function moveHighlight(btn) {
+      highlight.style.width = btn.offsetWidth + 'px';
+      highlight.style.transform = 'translateX(' + btn.offsetLeft + 'px)';
+      highlight.style.top = btn.offsetTop + 4 + 'px';
+      highlight.style.bottom = '';
+      highlight.style.height = (btn.offsetHeight - 8) + 'px';
+    }
+
+    function activate(btn) {
+      buttons.forEach(function (b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      var alvo = btn.getAttribute('data-target');
+      panels.forEach(function (p) {
+        if (p.getAttribute('data-panel') === alvo) {
+          p.hidden = false;
+          p.classList.remove('fade');
+          void p.offsetWidth; // força reflow pra reiniciar a animação
+          p.classList.add('fade');
+        } else {
+          p.hidden = true;
+        }
+      });
+      moveHighlight(btn);
+    }
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () { activate(btn); });
+    });
+
+    // posiciona o indicador embaixo do botão ativo ao carregar e ao redimensionar
+    // (recalcula top/height também, pra acompanhar corretamente quando os botões quebram linha no mobile)
+    requestAnimationFrame(function () {
+      moveHighlight(group.querySelector('.toggle-btn.active'));
+    });
+    window.addEventListener('resize', function () {
+      moveHighlight(group.querySelector('.toggle-btn.active'));
+    });
+  });
+})();
+
+// ===== CARROSSEL DE CLIENTES =====
+// A lista de logos fica uma vez só no HTML. Aqui ela é repetida até ficar mais larga
+// que telas grandes e depois duplicada inteira, porque a animação anda metade da faixa (-50%).
+// Assim o loop não dá pulo e não aparece buraco no fim em monitores largos.
+(function () {
+  var track = document.querySelector('.carrossel-track');
+  if (!track) return;
+  var originais = Array.prototype.slice.call(track.querySelectorAll('.cliente-logo'));
+  if (!originais.length) return;
+
+  function copiar(el) {
+    var copia = el.cloneNode(true);
+    copia.setAttribute('aria-hidden', 'true');
+    var img = copia.querySelector('img');
+    if (img) img.alt = '';
+    track.appendChild(copia);
+  }
+
+  var LARGURA_MINIMA = 2600; // cobre monitores de até 2560px
+  var voltas = 0;
+  while (track.scrollWidth < LARGURA_MINIMA && voltas < 10) {
+    originais.forEach(copiar);
+    voltas++;
+  }
+  var larguraMetade = track.scrollWidth;
+  Array.prototype.slice.call(track.querySelectorAll('.cliente-logo')).forEach(copiar);
+
+  // mantém a mesma velocidade de antes (cerca de 51px por segundo)
+  track.style.animationDuration = Math.round(larguraMetade / 51) + 's';
+})();
+</script>
+
+</body>
+</html>
