@@ -127,18 +127,6 @@
   .coluna.antes ul li { color: var(--cinza-texto); }
   .coluna.depois ul li { color: #1f3d29; font-weight: 500; }
 
-  /* ============ TABELA ============ */
-  .tabela-wrap { overflow-x: auto; margin: 28px 0 14px; }
-  table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 420px; }
-  thead th {
-    text-align: left; font-weight: 700; font-size: 13px; color: var(--cinza-texto);
-    padding: 12px 14px; border-bottom: 2px solid var(--cinza-borda);
-  }
-  thead th.num-col, tbody td.num-col { text-align: right; }
-  tbody td { padding: 12px 14px; border-bottom: 1px solid var(--cinza-borda); color: #2a2a2a; }
-  tbody tr:last-child td { border-bottom: none; }
-  .nota-tabela { font-size: 13px; color: var(--cinza-texto); line-height: 1.6; margin-bottom: 24px; }
-
   /* ============ TAGS ============ */
   .tags { margin-top: 52px; padding-top: 28px; border-top: 1px solid var(--cinza-borda); }
   .tags-titulo { font-size: 13px; font-weight: 700; color: var(--cinza-texto); margin-bottom: 14px; }
@@ -216,78 +204,45 @@
     <span class="sep"></span>
     <span>25 de setembro de 2026</span>
     <span class="sep"></span>
-    <span>6 min de leitura</span>
+    <span>3 min de leitura</span>
   </div>
 
   <div class="corpo">
 
-    <p class="lead">A Wrental aluga plataformas de trabalho aéreo e atua em quatro estados. Quando o processo de compras começou a travar, ela tinha cinco sedes comprando ao mesmo tempo, cada uma do seu jeito, por email e por grupo de WhatsApp.</p>
+    <p class="lead">A Wrental aluga plataformas de trabalho aéreo e atua em quatro estados. Quando o processo de compras começou a travar, eram cinco sedes comprando ao mesmo tempo, cada uma do seu jeito, por email e por grupo de WhatsApp.</p>
 
     <p>Isso funcionou no começo e parou de funcionar com o volume. É o caminho normal de quase toda empresa que cresce.</p>
 
     <h2>O que travava antes</h2>
 
     <ul>
-      <li>Cada sede pedia de um jeito diferente, sem padrão nenhum</li>
-      <li>Solicitação se perdia no meio das outras conversas de email e WhatsApp</li>
-      <li>Aprovação acontecia fora de qualquer sistema, sem histórico consultável de quem liberou o quê e com base em qual valor</li>
-      <li>Sem processo escrito, o conhecimento ficava com as pessoas. Cada contratação nova exigia explicar tudo de novo, e o processo mudava um pouco a cada troca de time</li>
+      <li>Cada sede pedia de um jeito diferente</li>
+      <li>Solicitação se perdia no meio das conversas</li>
+      <li>Aprovação sem histórico de quem liberou o quê</li>
+      <li>Conhecimento guardado nas pessoas, com o processo mudando a cada troca de time</li>
     </ul>
 
     <h2>A decisão que definiu todo o resto</h2>
 
-    <p>Toda estrutura boa começa com uma decisão difícil, e nesse projeto ela apareceu logo nas primeiras reuniões semanais. Criar um processo separado para cada sede, ou um processo único com separação por etiqueta.</p>
+    <p>Logo nas primeiras reuniões apareceu a escolha que ia determinar o projeto inteiro. Criar um processo para cada sede, ou um processo único para todas.</p>
 
-    <p>Escolhemos o processo único, em conjunto com a empresa. O motivo é simples. Um processo por sede multiplica o trabalho de manutenção e impede qualquer visão de conjunto. Com um processo só e etiqueta por sede, cada sede continua enxergando o que é dela e o gestor passa a enxergar tudo.</p>
+    <p>Escolhemos o processo único, em conjunto com a empresa. Um processo por sede multiplica o trabalho e dificulta a visão do todo. Com um processo só, cada sede continua enxergando o que é dela e a gestão passa a enxergar tudo.</p>
 
-    <p>Essa é a decisão que a maioria dos projetos erra, porque separar parece mais organizado. Na prática separar é o que engessa.</p>
+    <p>Separar parece mais organizado. Na prática, é o que engessa.</p>
 
-    <h2>O que o processo virou</h2>
+    <h2>O que mudou na operação</h2>
 
-    <p>Com a base certa, o resto virou construção. Todo pedido passou a entrar por um canal único, organizado por sede, e nenhuma solicitação depende mais de alguém lembrar de responder uma mensagem.</p>
-
-    <p>A compra passou a nascer com validação de estoque, porque não faz sentido comprar o que já existe. Entrou gestão de pendências. Novas etapas trouxeram mais controle, com permissão por fase e movimentação restrita a quem é responsável. A cotação também mudou de lugar, o gestor abre uma fase só, vê todas as opções na mesma tela e decide na hora.</p>
-
-    <p>O processo ainda deixou de viver sozinho. Ele conversa com o processo de equipamentos, então cada peça comprada fica amarrada à máquina que a recebeu. Somado ao controle de notas fiscais e ao registro de entrada e saída de peças, a empresa passou a ter histórico, e não apenas execução.</p>
+    <p>Todo pedido passou a entrar por um canal único, já com as informações certas desde a abertura. Cada etapa ganhou um responsável, a aprovação passou a ficar registrada e a empresa passou a ter histórico, e não apenas execução.</p>
 
     <p>Nada disso saiu pronto de primeira. Saiu de ciclos de ajuste e automação até o processo ficar do jeito que roda hoje.</p>
 
-    <h2>O que o processo controla hoje</h2>
+    <h2>O sinal de que funcionou</h2>
 
-    <p>No início ele atendia apenas itens de compra. Hoje cobre qualquer tipo de aquisição da empresa, incluindo TI, EPI, baterias, rodas, ferramentas, revisão de veículos e serviços.</p>
+    <p>O processo nasceu para cuidar só da compra de itens. Com o tempo, passou a receber outras aquisições da empresa, que antes viviam soltas em email e WhatsApp. Hoje a compra de itens, que era o escopo original, é menos de um terço de tudo que passa pelo fluxo.</p>
 
-    <div class="tabela-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Tipo de solicitação</th>
-            <th class="num-col">Pedidos concluídos</th>
-            <th class="num-col">Lead time mediano</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Serviço</td><td class="num-col">2.104</td><td class="num-col">10 dias</td></tr>
-          <tr><td>Item</td><td class="num-col">1.677</td><td class="num-col">14 dias</td></tr>
-          <tr><td>Material de consumo</td><td class="num-col">1.223</td><td class="num-col">11 dias</td></tr>
-          <tr><td>Bateria</td><td class="num-col">314</td><td class="num-col">11 dias</td></tr>
-          <tr><td>EPI</td><td class="num-col">199</td><td class="num-col">9 dias</td></tr>
-          <tr><td>Ferramentas</td><td class="num-col">165</td><td class="num-col">15 dias</td></tr>
-          <tr><td>Revisão de veículos</td><td class="num-col">137</td><td class="num-col">14 dias</td></tr>
-          <tr><td>Roda</td><td class="num-col">80</td><td class="num-col">39 dias</td></tr>
-          <tr><td>Itens de TI</td><td class="num-col">43</td><td class="num-col">14 dias</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <p>Quando um processo funciona, ele passa a receber demandas que nem estavam no plano original. Esse é o melhor indicador de adoção que existe.</p>
 
-    <p class="nota-tabela">74 pedidos ficaram sem tipo classificado. Roda tem lead time maior porque envolve terceiros.</p>
-
-    <p>O dado que resume melhor a evolução está nessa tabela. Itens de compra, que eram o escopo original do projeto, são hoje apenas 27,9% do que passa pelo processo. Os outros 72,1% são demandas que antes viviam soltas em email e WhatsApp e hoje têm fase, responsável e prazo.</p>
-
-    <p>Quando um processo funciona, as pessoas levam para dentro dele coisas que ninguém pediu para colocar. Esse é o melhor indicador de adoção que existe, e ele não aparece em nenhum relatório padrão.</p>
-
-    <p>Junto disso, o processo passou a se apoiar em bancos de dados próprios de produtos, fornecedores, patrimônio, estoque, solicitações de garantia e solicitações de documentação. É isso que permite ligar uma peça comprada à máquina que a recebeu e manter histórico de fornecedor e de preço.</p>
-
-    <h2>Os números depois de 18 meses</h2>
+    <h2>Os resultados</h2>
 
     <div class="numeros">
       <div class="num">
@@ -295,8 +250,8 @@
         <div class="rotulo">pedidos concluídos</div>
       </div>
       <div class="num">
-        <div class="valor">15</div>
-        <div class="rotulo">pedidos por dia útil</div>
+        <div class="valor">9</div>
+        <div class="rotulo">sedes no mesmo processo</div>
       </div>
       <div class="num">
         <div class="valor">12</div>
@@ -308,9 +263,7 @@
       </div>
     </div>
 
-    <p>A quebra por fase é o dado mais revelador. Toda a parte de decisão, que é onde o processo mais ganhou controle, hoje leva menos de 1 dia por etapa. O tempo que sobra está no faturamento, que depende de fornecedor e de nota fiscal, e mesmo essa etapa caiu de 10,3 para 3,2 dias medianos no último semestre.</p>
-
-    <p>Outros números que valem olhar. São 9 fases, todas com dono. 100% dos pedidos são validados contra o estoque antes de virar compra. 91,9% passam por aprovação formal de valores. E só 4,2% dos pedidos foram cancelados, sinal de que a solicitação chega certa desde a abertura.</p>
+    <p>Todos os pedidos são rastreáveis do início ao fim, e só 4,2% foram cancelados, sinal de que a solicitação já chega certa desde a abertura.</p>
 
     <h2>Antes e depois</h2>
 
@@ -320,10 +273,8 @@
         <ul>
           <li>5 sedes comprando por conta própria</li>
           <li>Pedido por email e grupo de WhatsApp</li>
-          <li>Solicitação sem registro central</li>
           <li>Aprovação sem histórico</li>
           <li>Só compra de item</li>
-          <li>Compra sem vínculo com a máquina</li>
           <li>Sem previsibilidade de prazo</li>
           <li>Conhecimento não documentado</li>
         </ul>
@@ -333,11 +284,9 @@
         <ul>
           <li>9 sedes ativas no mesmo processo</li>
           <li>Canal único com formulário padrão</li>
-          <li>6.016 pedidos concluídos e rastreáveis</li>
-          <li>Aprovação em fase própria</li>
-          <li>9 tipos de solicitação no mesmo fluxo</li>
-          <li>Peça conectada ao patrimônio e ao estoque</li>
-          <li>12 dias de mediana, 85,4% em até 30 dias</li>
+          <li>Aprovação registrada</li>
+          <li>Qualquer tipo de aquisição no mesmo fluxo</li>
+          <li>85,4% dos pedidos em até 30 dias</li>
           <li>Processo desenhado, com onboarding em dias</li>
         </ul>
       </div>
@@ -345,9 +294,9 @@
 
     <h2>O que esse projeto ensina</h2>
 
-    <p>A empresa cresceu de cinco para nove sedes durante o período, quase o dobro. Normalmente esse é o momento em que um processo informal desmorona. Aqui aconteceu o contrário, a operação absorveu 80% mais sedes com mais controle, e não com menos.</p>
+    <p>A empresa quase dobrou o número de sedes, de cinco para nove. Normalmente é nesse momento que um processo informal desmorona. Aqui aconteceu o contrário, a operação cresceu com mais controle, e não com menos.</p>
 
-    <p>Processo bom não é o que parece organizado no desenho. É o que aguenta volume sem perder controle. Os números acima mostram os dois lados, o volume que passou e o controle que se manteve.</p>
+    <p>Processo bom não é o que parece organizado no desenho. É o que aguenta volume sem perder controle.</p>
 
   </div>
 
