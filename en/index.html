@@ -11,6 +11,36 @@
   gtag('config', 'AW-18487343134');
 </script>
 
+<!-- Conversoes PSFY -->
+<script>
+(function () {
+  var CONTATO = 'AW-18487343134/lLvXCIm7-4wdEJ7wue9E';
+  var FORMULARIO = 'AW-18487343134/x3gOCIy7-4wdEJ7wue9E';
+
+  function registrar(destino) {
+    if (typeof gtag !== 'function') return;
+    gtag('event', 'conversion', { 'send_to': destino });
+  }
+
+  // Clique em qualquer link que abre o WhatsApp
+  document.addEventListener('click', function (evento) {
+    var alvo = evento.target;
+    if (!alvo || typeof alvo.closest !== 'function') return;
+    if (alvo.closest('a[href*="wa.me"]')) registrar(CONTATO);
+  }, true);
+
+  // Envio dos formularios, que abrem o WhatsApp por window.open
+  var abrirOriginal = window.open;
+  window.open = function (url) {
+    if (typeof url === 'string' && url.indexOf('wa.me') !== -1) {
+      registrar(CONTATO);
+      registrar(FORMULARIO);
+    }
+    return abrirOriginal.apply(window, arguments);
+  };
+})();
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PSFY | Creative efficiency consulting</title>
