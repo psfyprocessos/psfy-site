@@ -555,6 +555,54 @@
     .header-inner { padding: 16px 20px; }
   }
 </style>
+<script>
+/* Envia os dados do formulario pra Make antes de abrir o WhatsApp.
+   Assim o lead fica salvo mesmo que a pessoa nao aperte enviar la dentro. */
+window.psfyEnviaMake = function (dados) {
+  var gclid = '';
+  try { gclid = new URLSearchParams(location.search).get('gclid') || ''; } catch (e) {}
+  try {
+    if (gclid) sessionStorage.setItem('psfy_gclid', gclid);
+    gclid = sessionStorage.getItem('psfy_gclid') || gclid;
+  } catch (e) {}
+
+  var corpo = {
+    origem: dados.origem || '',
+    idioma: dados.idioma || '',
+    pagina: location.href,
+    nome: dados.nome || '',
+    empresa: dados.empresa || '',
+    email: dados.email || '',
+    telefone: dados.telefone || '',
+    mensagem: dados.mensagem || '',
+    gclid: gclid,
+    enviado_em: new Date().toISOString(),
+    armadilha: ''
+  };
+
+  try {
+    fetch('https://hook.us2.make.com/ugyvtpodyhrgkpiy0m2db3liut4yfrjm', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body: new URLSearchParams(corpo).toString(),
+      keepalive: true
+    }).catch(function () {});
+  } catch (e) {}
+};
+
+/* Mascara de telefone brasileira, so visual */
+window.psfyMascaraFone = function (campo) {
+  if (!campo) return;
+  campo.addEventListener('input', function () {
+    var n = campo.value.replace(/\D/g, '').slice(0, 11);
+    if (n.length > 10)      n = '(' + n.slice(0,2) + ') ' + n.slice(2,7) + '-' + n.slice(7);
+    else if (n.length > 6)  n = '(' + n.slice(0,2) + ') ' + n.slice(2,6) + '-' + n.slice(6);
+    else if (n.length > 2)  n = '(' + n.slice(0,2) + ') ' + n.slice(2);
+    else if (n.length > 0)  n = '(' + n;
+    campo.value = n;
+  });
+};
+</script>
 </head>
 <body>
 
@@ -926,6 +974,11 @@
     </div>
 
     <div class="form-grupo">
+      <label class="form-label" for="contato-fone">WhatsApp or phone <span class="obrigatorio">*</span></label>
+      <input type="tel" class="form-input" id="contato-fone" autocomplete="tel" inputmode="tel" placeholder="+1 555 000 0000">
+      <div class="erro-msg" id="erro-fone">Please fill in a phone number, that is how we reach you.</div>
+    </div>
+    <div class="form-grupo">
       <label class="form-label" for="contato-empresa">Company</label>
       <input type="text" class="form-input" id="contato-empresa" placeholder="Your company name">
     </div>
@@ -973,6 +1026,7 @@
   const step2 = document.getElementById('step-2');
   const step3 = document.getElementById('step-3');
   const btnEnviar = document.getElementById('btn-enviar');
+  const campoFone = document.getElementById('contato-fone');
 
   let formatoEscolhido = null;
 
@@ -1088,6 +1142,15 @@
     }
     erroNome.classList.remove('visivel');
 
+    const fone = (campoFone.value || '').trim();
+    const erroFone = document.getElementById('erro-fone');
+    if (fone.replace(/\D/g, '').length < 8) {
+      erroFone.classList.add('visivel');
+      campoFone.focus();
+      return;
+    }
+    erroFone.classList.remove('visivel');
+
     // Monta mensagem
     let msg = `Hi! I'm reaching out through your website to request a quote.\n\n`;
     msg += `━━━━━━━━━━━━━━━━━━\n\n`;
@@ -1095,6 +1158,7 @@
     // Dados de contato
     msg += `*👤 CONTACT*\n\n`;
     msg += linha('Name', nome);
+    msg += linha('WhatsApp', fone);
     msg += linha('Company', getInput('contato-empresa'));
     msg += linha('Email', getInput('contato-email'));
 
@@ -1135,6 +1199,12 @@
     }
 
     // Codifica para URL e abre WhatsApp
+    psfyEnviaMake({
+      origem: 'orcamento', idioma: 'en',
+      nome: nome, empresa: getInput('contato-empresa') || '', email: getInput('contato-email') || '',
+      telefone: fone, mensagem: msg
+    });
+
     const msgCodificada = encodeURIComponent(msg);
     const url = `https://wa.me/${WHATSAPP_NUMERO}?text=${msgCodificada}`;
     window.open(url, '_blank');

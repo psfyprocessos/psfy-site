@@ -214,6 +214,54 @@
     .passo-acoes .btn { width: 100%; }
   }
 </style>
+<script>
+/* Envia os dados do formulario pra Make antes de abrir o WhatsApp.
+   Assim o lead fica salvo mesmo que a pessoa nao aperte enviar la dentro. */
+window.psfyEnviaMake = function (dados) {
+  var gclid = '';
+  try { gclid = new URLSearchParams(location.search).get('gclid') || ''; } catch (e) {}
+  try {
+    if (gclid) sessionStorage.setItem('psfy_gclid', gclid);
+    gclid = sessionStorage.getItem('psfy_gclid') || gclid;
+  } catch (e) {}
+
+  var corpo = {
+    origem: dados.origem || '',
+    idioma: dados.idioma || '',
+    pagina: location.href,
+    nome: dados.nome || '',
+    empresa: dados.empresa || '',
+    email: dados.email || '',
+    telefone: dados.telefone || '',
+    mensagem: dados.mensagem || '',
+    gclid: gclid,
+    enviado_em: new Date().toISOString(),
+    armadilha: ''
+  };
+
+  try {
+    fetch('https://hook.us2.make.com/ugyvtpodyhrgkpiy0m2db3liut4yfrjm', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body: new URLSearchParams(corpo).toString(),
+      keepalive: true
+    }).catch(function () {});
+  } catch (e) {}
+};
+
+/* Mascara de telefone brasileira, so visual */
+window.psfyMascaraFone = function (campo) {
+  if (!campo) return;
+  campo.addEventListener('input', function () {
+    var n = campo.value.replace(/\D/g, '').slice(0, 11);
+    if (n.length > 10)      n = '(' + n.slice(0,2) + ') ' + n.slice(2,7) + '-' + n.slice(7);
+    else if (n.length > 6)  n = '(' + n.slice(0,2) + ') ' + n.slice(2,6) + '-' + n.slice(6);
+    else if (n.length > 2)  n = '(' + n.slice(0,2) + ') ' + n.slice(2);
+    else if (n.length > 0)  n = '(' + n;
+    campo.value = n;
+  });
+};
+</script>
 </head>
 <body>
 
@@ -309,6 +357,11 @@
         <div class="erro-msg" id="erro-nome" hidden>Por favor, preencha seu nome.</div>
       </div>
       <div class="form-grupo">
+        <label class="form-label" for="fone">WhatsApp <span class="obrigatorio">*</span></label>
+        <input type="tel" class="form-input" id="fone" autocomplete="tel" inputmode="tel" placeholder="(41) 99999-9999">
+        <div class="erro-msg" id="erro-fone" hidden>Preenche um WhatsApp com DDD, é por ele que a gente te responde.</div>
+      </div>
+      <div class="form-grupo">
         <label class="form-label" for="empresa">Empresa <span class="opcional">(opcional)</span></label>
         <input type="text" class="form-input" id="empresa" autocomplete="organization" placeholder="Nome da sua empresa">
       </div>
@@ -339,6 +392,8 @@
   var indicadores = document.querySelectorAll('.step[data-step]');
   var chips = form.querySelectorAll('.chip');
   var campoDia = document.getElementById('dia');
+  var campoFone = document.getElementById('fone');
+  psfyMascaraFone(campoFone);
   var passoAtual = 1;
 
   // Fuso horário de quem está agendando, vai junto na mensagem
@@ -407,6 +462,15 @@
     }
     erroNome.hidden = true;
 
+    var fone = (campoFone.value || '').trim();
+    var erroFone = document.getElementById('erro-fone');
+    if (fone.replace(/\D/g, '').length < 10) {
+      erroFone.hidden = false;
+      campoFone.focus();
+      return;
+    }
+    erroFone.hidden = true;
+
     var temas = Array.prototype.slice.call(chips)
       .filter(function (c) { return c.getAttribute('aria-pressed') === 'true'; })
       .map(function (c) { return c.getAttribute('data-topic'); });
@@ -415,6 +479,7 @@
     var msg = 'Olá! Vim pelo site e quero agendar uma conversa de 30 minutos.\n' + SEP;
     msg += '*👤 CONTATO*\n';
     msg += linha('Nome', nome);
+    msg += linha('WhatsApp', fone);
     msg += linha('Empresa', valor('empresa'));
     msg += linha('Email', valor('email'));
     msg += SEP + '*📅 PREFERÊNCIA DE HORÁRIO*\n';
@@ -427,6 +492,12 @@
       msg += linha('Temas', temas);
       msg += linha('Contexto', valor('contexto'));
     }
+
+    psfyEnviaMake({
+      origem: 'alinhamentos', idioma: 'pt',
+      nome: nome, empresa: valor('empresa') || '', email: valor('email') || '',
+      telefone: fone, mensagem: msg.trim()
+    });
 
     var url = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(msg.trim());
     document.getElementById('link-reenvio').href = url;
