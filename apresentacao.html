@@ -2802,12 +2802,10 @@
             </svg>
             Solicitar orçamento
           </a>
-          <a href="https://wa.me/5541995041300?text=Ol%C3%A1!%20Vim%20pela%20apresenta%C3%A7%C3%A3o%20da%20PSFY%20e%20quero%20falar%20com%20um%20agente." target="_blank" rel="noopener" class="cta-deck-btn cta-deck-btn-secondary">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-            </svg>
-            Fale com um de nossos agentes em até 2 horas
-          </a>
+          <button type="button" id="psfy-abrir-modal" class="cta-deck-btn cta-deck-btn-secondary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Deixar meu contato
+          </button>
         </div>
 
         <div class="cta-deck-info anim-up-3" style="margin-top: 40px;">
@@ -2954,6 +2952,178 @@
     }
   }, { passive: true });
 </script>
+
+
+<!-- ====== MODAL DE CAPTURA PSFY ====== -->
+<style>
+  .psfy-modal-erro { color: #ef4444; font-size: 12.5px; margin: -8px 0 0; display: none; text-align: left; }
+  .psfy-modal-erro.visivel { display: block; }
+  .psfy-modal-armadilha { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .psfy-modal-ok { text-align: center; }
+  .psfy-modal-ok-icone {
+    width: 56px; height: 56px; margin: 4px auto 18px; border-radius: 50%;
+    background: var(--azul-claro, #e4efe7); color: var(--azul, #336140);
+    display: grid; place-items: center;
+  }
+  .psfy-modal-ok-icone svg { width: 28px; height: 28px; display: block; }
+  .psfy-modal-ok .modal-titulo { padding-right: 0; }
+  .psfy-modal-ok-whats {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 4px;
+    padding: 12px 22px; border-radius: 999px;
+    border: 1px solid var(--azul, #336140); color: var(--azul, #336140);
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .psfy-modal-ok-whats:hover { background: var(--azul, #336140); color: #fff; }
+  .psfy-modal-ok-whats svg { width: 17px; height: 17px; flex-shrink: 0; }
+</style>
+
+<div class="modal-overlay" id="psfy-modal">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="psfy-modal-titulo">
+
+    <button class="modal-fechar" id="psfy-modal-fechar" type="button" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+
+    <div id="psfy-modal-conteudo">
+      <h2 class="modal-titulo" id="psfy-modal-titulo">Vamos <span class="italic">conversar</span></h2>
+      <p class="modal-subtitulo">Deixa seu nome e WhatsApp. Quem responde sou eu, o Henrique, em até 1 dia útil.</p>
+
+      <form class="modal-form" id="psfy-modal-form" novalidate>
+        <input type="text" class="modal-input" id="psfy-modal-nome" autocomplete="name" placeholder="Seu nome">
+        <p class="psfy-modal-erro" id="psfy-modal-erro-nome">Preenche seu nome.</p>
+
+        <input type="tel" class="modal-input" id="psfy-modal-fone" autocomplete="tel" inputmode="tel" placeholder="(41) 99999-9999">
+        <p class="psfy-modal-erro" id="psfy-modal-erro-fone">Preenche um WhatsApp com DDD.</p>
+
+        <input type="email" class="modal-input" id="psfy-modal-email" autocomplete="email" placeholder="Email (opcional)">
+
+        <div class="psfy-modal-armadilha" aria-hidden="true">
+          <label for="psfy-modal-site">Não preencha este campo</label>
+          <input type="text" id="psfy-modal-site" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="modal-acoes">
+          <button type="submit" class="modal-btn-primary" id="psfy-modal-botao">Quero conversar</button>
+          <button type="button" class="modal-btn-secundario" id="psfy-modal-pular">Agora não</button>
+        </div>
+        <p class="modal-aviso">Seus dados ficam só com a PSFY. Sem lista de email, sem disparo automático.</p>
+      </form>
+    </div>
+
+    <div class="psfy-modal-ok" id="psfy-modal-ok" hidden>
+      <div class="psfy-modal-ok-icone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h2 class="modal-titulo">Recebido</h2>
+      <p class="modal-subtitulo">Já chegou aqui. Te chamo em até <span class="italic">1 dia útil</span>.</p>
+      <a class="psfy-modal-ok-whats" href="https://wa.me/5541995041300?text=Ol%C3%A1!%20Vim%20pela%20apresenta%C3%A7%C3%A3o%20da%20PSFY." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Prefere falar agora</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  var WEBHOOK    = 'https://hook.us2.make.com/ugyvtpodyhrgkpiy0m2db3liut4yfrjm';
+  var CONTATO    = 'AW-18487343134/lLvXCIm7-4wdEJ7wue9E';
+  var FORMULARIO = 'AW-18487343134/x3gOCIy7-4wdEJ7wue9E';
+  var MIN = 10;
+
+  var overlay   = document.getElementById('psfy-modal');
+  var abridor   = document.getElementById('psfy-abrir-modal');
+  var fechar    = document.getElementById('psfy-modal-fechar');
+  var pular     = document.getElementById('psfy-modal-pular');
+  var form      = document.getElementById('psfy-modal-form');
+  var botao     = document.getElementById('psfy-modal-botao');
+  var conteudo  = document.getElementById('psfy-modal-conteudo');
+  var ok        = document.getElementById('psfy-modal-ok');
+  var campoNome = document.getElementById('psfy-modal-nome');
+  var campoFone = document.getElementById('psfy-modal-fone');
+  if (!overlay || !form) return;
+
+  function aberto() { return overlay.classList.contains('ativo'); }
+
+  function abrir() {
+    overlay.classList.add('ativo');
+    setTimeout(function () { campoNome.focus(); }, 60);
+  }
+  function fecharModal() {
+    overlay.classList.remove('ativo');
+    if (abridor) abridor.focus();
+  }
+
+  if (abridor) abridor.addEventListener('click', function (e) { e.preventDefault(); abrir(); });
+  if (fechar)  fechar.addEventListener('click', fecharModal);
+  if (pular)   pular.addEventListener('click', fecharModal);
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) fecharModal(); });
+
+  // O deck usa seta e barra de espaco pra trocar de slide, e escuta no document.
+  // Sem isso, digitar um nome com espaco passaria os slides por tras do modal.
+  document.addEventListener('keydown', function (e) {
+    if (!aberto()) return;
+    if (e.key === 'Escape') { fecharModal(); return; }
+    e.stopPropagation();
+  }, true);
+
+  campoFone.addEventListener('input', function () {
+    var n = campoFone.value.replace(/\D/g, '').slice(0, 11);
+    if (n.length > 10)      n = '(' + n.slice(0,2) + ') ' + n.slice(2,7) + '-' + n.slice(7);
+    else if (n.length > 6)  n = '(' + n.slice(0,2) + ') ' + n.slice(2,6) + '-' + n.slice(6);
+    else if (n.length > 2)  n = '(' + n.slice(0,2) + ') ' + n.slice(2);
+    else if (n.length > 0)  n = '(' + n;
+    campoFone.value = n;
+  });
+
+  function valor(el) { return (el.value || '').trim(); }
+  function erro(id, mostrar) { document.getElementById(id).classList.toggle('visivel', mostrar); }
+
+  function sucesso() {
+    conteudo.hidden = true;
+    ok.hidden = false;
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion', { 'send_to': CONTATO });
+      gtag('event', 'conversion', { 'send_to': FORMULARIO });
+    }
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    if (valor(document.getElementById('psfy-modal-site'))) { sucesso(); return; }
+
+    var nome = valor(campoNome);
+    var fone = valor(campoFone);
+    erro('psfy-modal-erro-nome', !nome);
+    erro('psfy-modal-erro-fone', fone.replace(/\D/g, '').length < MIN);
+    if (!nome) { campoNome.focus(); return; }
+    if (fone.replace(/\D/g, '').length < MIN) { campoFone.focus(); return; }
+
+    botao.disabled = true;
+    botao.textContent = 'Enviando...';
+
+    var gclid = '';
+    try { gclid = new URLSearchParams(location.search).get('gclid') || ''; } catch (err) {}
+    try {
+      if (gclid) sessionStorage.setItem('psfy_gclid', gclid);
+      gclid = sessionStorage.getItem('psfy_gclid') || gclid;
+    } catch (err) {}
+
+    fetch(WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body: new URLSearchParams({
+        origem: 'apresentacao', idioma: 'pt', pagina: location.href,
+        nome: nome, empresa: '', email: valor(document.getElementById('psfy-modal-email')),
+        telefone: fone, mensagem: '', gclid: gclid,
+        enviado_em: new Date().toISOString(), armadilha: ''
+      }).toString(),
+      keepalive: true
+    }).then(sucesso).catch(sucesso);
+  });
+})();
+</script>
+<!-- ====== FIM MODAL PSFY ====== -->
 
 </body>
 </html>
