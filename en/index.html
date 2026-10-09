@@ -43,8 +43,8 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PSFY | Creative efficiency consulting</title>
-<meta name="description" content="Creative efficiency consulting. We get to know how your operation really works and connect the best tools to create efficiency.">
+<title>PSFY | Business process automation consulting</title>
+<meta name="description" content="Business process automation consulting. We get to know how your operation really works and connect the best tools to create efficiency.">
 <link rel="icon" type="image/png" href="../favicon.png">
 
 <!-- Versões por idioma (ajuda o Google a mostrar a página certa pra cada público) -->
@@ -54,7 +54,7 @@
 
 <!-- Prévia do link no WhatsApp e LinkedIn -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="PSFY | Creative efficiency consulting">
+<meta property="og:title" content="PSFY | Business process automation consulting">
 <meta property="og:description" content="Your process is unique. So is the way we solve it.">
 <meta property="og:url" content="https://www.psfy.com.br/en/">
 <meta property="og:image" content="https://www.psfy.com.br/logo.png">
@@ -76,6 +76,7 @@
     --cinza: #f2f2f2;
     --cinza-texto: #6b6b6b;
     --cinza-borda: #e5e5e5;
+    --marrom: #4D2E26;
     --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --max-width: 1120px;
     --radius: 12px;
@@ -175,6 +176,9 @@
     transition: color 0.2s ease;
   }
   .toggle-btn.active { color: var(--branco); }
+  /* Client names in brown, so they read apart from the black body text.
+     Scoped to #provas, the only block with company names. */
+  #provas .toggle-btn:not(.active) { color: var(--marrom); }
   .toggle-btn:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
 
   .toggle-panels { width: 100%; }
@@ -239,6 +243,11 @@
     border-radius: var(--radius-lg); padding: 36px 32px; text-align: left;
   }
   .projeto-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  /* Client logo inside the proof card */
+  .projeto-logo { width: 140px; height: 40px; object-fit: contain; object-position: left center; display: block; }
+  @media (max-width: 560px) {
+    .projeto-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  }
   .projeto-numero { font-size: 16px; font-style: italic; color: var(--azul); font-weight: 500; }
   .projeto-categoria { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cinza-texto); }
   .projeto-titulo { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 24px; }
@@ -329,7 +338,7 @@
   }
   .depoimento-autor-logo { height: 56px; width: auto; flex-shrink: 0; }
   .depoimento-autor-info { text-align: left; }
-  .depoimento-autor-nome { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 2px; }
+  .depoimento-autor-nome { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 2px; color: var(--marrom); }
   .depoimento-autor-cargo { font-size: 13px; color: var(--cinza-texto); }
   @media (max-width: 720px) {
     .depoimento { padding: 64px 24px; }
@@ -422,7 +431,7 @@
   </svg>
 
   <div class="hero-inner">
-    <div class="hero-badge"><span class="dot"></span> Creative efficiency consulting</div>
+    <div class="hero-badge"><span class="dot"></span> Business process automation consulting</div>
     <h1>Your process is unique. <span class="italic">So is the way we solve it</span>.</h1>
     <p class="hero-description">We get to know how your operation really works and connect the best tools to create efficiency. All at an hourly rate lower than that of many consultancies offering the same availability or less.</p>
 
@@ -534,26 +543,27 @@
 <section class="section section-alt" id="provas">
   <div class="wrap">
     <div class="section-header">
-      <div class="eyebrow">Real results</div>
-      <h2 class="section-title">Real processes, delivered to <span class="italic">real</span> companies</h2>
+      <div class="eyebrow">Real proof</div>
+      <h2 class="section-title">Real processes, delivered to real <span class="italic">companies</span></h2>
     </div>
 
     <div class="toggle-wrap" data-toggle>
       <div class="toggle-group" role="tablist" aria-label="Choose a project">
         <span class="toggle-highlight" aria-hidden="true"></span>
-        <button class="toggle-btn active" data-target="wrental" role="tab" aria-selected="true">Wrental</button>
+        <button class="toggle-btn active" data-target="wrental" role="tab" aria-selected="true">WRENTAL</button>
         <button class="toggle-btn" data-target="diageo" role="tab" aria-selected="false">DIAGEO</button>
-        <button class="toggle-btn" data-target="labhoro" role="tab" aria-selected="false">Labhoro</button>
+        <button class="toggle-btn" data-target="ornare" role="tab" aria-selected="false">ORNARE</button>
+        <button class="toggle-btn" data-target="labhoro" role="tab" aria-selected="false">LABHORO</button>
       </div>
       <div class="toggle-panels">
 
         <div class="toggle-panel active" data-panel="wrental">
           <div class="projeto-card">
             <div class="projeto-header">
-              <span class="projeto-numero">01</span>
+              <img class="projeto-logo" src="../logos/card-wrental.png" alt="Wrental">
               <span class="projeto-categoria">Heavy industry</span>
             </div>
-            <h3 class="projeto-titulo">Aerial work platform company · Purchasing integrated with quotes</h3>
+            <h3 class="projeto-titulo">Aerial work platform company · Purchasing process automation</h3>
             <ul class="projeto-items">
               <li class="projeto-item">Inventory and automatic quoting</li>
               <li class="projeto-item">Approval through an interface</li>
@@ -567,10 +577,10 @@
         <div class="toggle-panel" data-panel="diageo" hidden>
           <div class="projeto-card">
             <div class="projeto-header">
-              <span class="projeto-numero">02</span>
+              <img class="projeto-logo" src="../logos/card-diageo.png" alt="DIAGEO">
               <span class="projeto-categoria">Multinational beverages</span>
             </div>
-            <h3 class="projeto-titulo">Large beverage company · Room booking without email</h3>
+            <h3 class="projeto-titulo">Large beverage company · Internal process automation</h3>
             <ul class="projeto-items">
               <li class="projeto-item">Form with Outlook validation</li>
               <li class="projeto-item">Automatic routing by team</li>
@@ -581,13 +591,30 @@
           </div>
         </div>
 
+        <div class="toggle-panel" data-panel="ornare" hidden>
+          <div class="projeto-card">
+            <div class="projeto-header">
+              <img class="projeto-logo" src="../logos/card-ornare.png" alt="Ornare">
+              <span class="projeto-categoria">Luxury furniture, Miami</span>
+            </div>
+            <h3 class="projeto-titulo">High-end furniture company · Systems integration between Pipefy and Zapier</h3>
+            <ul class="projeto-items">
+              <li class="projeto-item">Four Pipefy processes connected by four Zapier integrations</li>
+              <li class="projeto-item">Standardized contact intake, with duplicates caught on entry</li>
+              <li class="projeto-item">Company data filled in by AI, without overwriting what was typed</li>
+              <li class="projeto-item">A per-rep portfolio that updates itself when the card moves</li>
+            </ul>
+            <div class="projeto-impacto"><span><strong>Impact:</strong> Annual tool spend cut by 66% on the very first delivery. The MVP of the four integrations is validated in the test environment.</span></div>
+          </div>
+        </div>
+
         <div class="toggle-panel" data-panel="labhoro" hidden>
           <div class="projeto-card">
             <div class="projeto-header">
-              <span class="projeto-numero">03</span>
+              <img class="projeto-logo" src="../logos/card-labhoro.png" alt="Labhoro">
               <span class="projeto-categoria">Commodities brokerage</span>
             </div>
-            <h3 class="projeto-titulo">Commodities brokerage · Full operations diagnostic</h3>
+            <h3 class="projeto-titulo">Commodities brokerage · Process mapping and operations diagnostic</h3>
             <ul class="projeto-items">
               <li class="projeto-item">Nine interviews across every area of the company</li>
               <li class="projeto-item">Root cause of billing errors identified</li>
