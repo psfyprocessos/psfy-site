@@ -76,6 +76,7 @@
     --cinza: #f2f2f2;
     --cinza-texto: #6b6b6b;
     --cinza-borda: #e5e5e5;
+    --marrom: #4D2E26;
     --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --max-width: 1120px;
     --radius: 12px;
@@ -175,6 +176,9 @@
     transition: color 0.2s ease;
   }
   .toggle-btn.active { color: var(--branco); }
+  /* Nomes de cliente em marrom, pra separar do preto do resto do texto.
+     Vale so no bloco Provas reais, que e onde aparece nome de empresa. */
+  #provas .toggle-btn:not(.active) { color: var(--marrom); }
   .toggle-btn:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
 
   .toggle-panels { width: 100%; }
@@ -335,7 +339,7 @@
   }
   .depoimento-autor-logo { height: 56px; width: auto; flex-shrink: 0; }
   .depoimento-autor-info { text-align: left; }
-  .depoimento-autor-nome { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 2px; }
+  .depoimento-autor-nome { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 2px; color: var(--marrom); }
   .depoimento-autor-cargo { font-size: 13px; color: var(--cinza-texto); }
   @media (max-width: 720px) {
     .depoimento { padding: 64px 24px; }
