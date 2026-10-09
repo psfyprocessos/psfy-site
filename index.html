@@ -239,6 +239,12 @@
     border-radius: var(--radius-lg); padding: 36px 32px; text-align: left;
   }
   .projeto-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  /* Logo do cliente dentro do card de prova */
+  .projeto-logo { width: 140px; height: 40px; object-fit: contain; object-position: left center; display: block; }
+  @media (max-width: 560px) {
+    /* no celular o logo e a categoria nao cabem lado a lado, entao empilham */
+    .projeto-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  }
   .projeto-numero { font-size: 16px; font-style: italic; color: var(--azul); font-weight: 500; }
   .projeto-categoria { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cinza-texto); }
   .projeto-titulo { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 24px; }
@@ -541,19 +547,20 @@
     <div class="toggle-wrap" data-toggle>
       <div class="toggle-group" role="tablist" aria-label="Escolha um projeto">
         <span class="toggle-highlight" aria-hidden="true"></span>
-        <button class="toggle-btn active" data-target="wrental" role="tab" aria-selected="true">Wrental</button>
+        <button class="toggle-btn active" data-target="wrental" role="tab" aria-selected="true">WRENTAL</button>
         <button class="toggle-btn" data-target="diageo" role="tab" aria-selected="false">DIAGEO</button>
-        <button class="toggle-btn" data-target="labhoro" role="tab" aria-selected="false">Labhoro</button>
+        <button class="toggle-btn" data-target="ornare" role="tab" aria-selected="false">ORNARE</button>
+        <button class="toggle-btn" data-target="labhoro" role="tab" aria-selected="false">LABHORO</button>
       </div>
       <div class="toggle-panels">
 
         <div class="toggle-panel active" data-panel="wrental">
           <div class="projeto-card">
             <div class="projeto-header">
-              <span class="projeto-numero">01</span>
+              <img class="projeto-logo" src="logos/card-wrental.png" alt="Wrental">
               <span class="projeto-categoria">Indústria pesada</span>
             </div>
-            <h3 class="projeto-titulo">Empresa de plataformas aéreas · Compras integrado com cotações</h3>
+            <h3 class="projeto-titulo">Empresa de plataformas aéreas · Automação do processo de compras</h3>
             <ul class="projeto-items">
               <li class="projeto-item">Estoque e cotação automática</li>
               <li class="projeto-item">Aprovação por interface</li>
@@ -567,10 +574,10 @@
         <div class="toggle-panel" data-panel="diageo" hidden>
           <div class="projeto-card">
             <div class="projeto-header">
-              <span class="projeto-numero">02</span>
+              <img class="projeto-logo" src="logos/card-diageo.png" alt="DIAGEO">
               <span class="projeto-categoria">Bebidas multinacional</span>
             </div>
-            <h3 class="projeto-titulo">Empresa de grande porte de bebidas · Reserva de salas sem email</h3>
+            <h3 class="projeto-titulo">Empresa de grande porte de bebidas · Automação de processo interno</h3>
             <ul class="projeto-items">
               <li class="projeto-item">Formulário com validação do Outlook</li>
               <li class="projeto-item">Roteamento automático por equipe</li>
@@ -581,13 +588,30 @@
           </div>
         </div>
 
+        <div class="toggle-panel" data-panel="ornare" hidden>
+          <div class="projeto-card">
+            <div class="projeto-header">
+              <img class="projeto-logo" src="logos/card-ornare.png" alt="Ornare">
+              <span class="projeto-categoria">Marcenaria de luxo, Miami</span>
+            </div>
+            <h3 class="projeto-titulo">Franquias de marcenaria de luxo · Integração de sistemas entre Pipefy e Zapier</h3>
+            <ul class="projeto-items">
+              <li class="projeto-item">Quatro processos no Pipefy ligados por quatro integrações no Zapier</li>
+              <li class="projeto-item">Cadastro de contatos padronizado, com duplicados detectados na entrada</li>
+              <li class="projeto-item">Dados da empresa preenchidos por IA, sem sobrescrever o que é digitado</li>
+              <li class="projeto-item">Carteira por vendedor que se atualiza sozinha ao mover o card</li>
+            </ul>
+            <div class="projeto-impacto"><span><strong>Impacto:</strong> Redução de 66% no custo anual da operação. O MVP está validado em ambiente de teste, com a migração para produção planejada.</span></div>
+          </div>
+        </div>
+
         <div class="toggle-panel" data-panel="labhoro" hidden>
           <div class="projeto-card">
             <div class="projeto-header">
-              <span class="projeto-numero">03</span>
+              <img class="projeto-logo" src="logos/card-labhoro.png" alt="Labhoro">
               <span class="projeto-categoria">Corretora de commodities</span>
             </div>
-            <h3 class="projeto-titulo">Corretora de commodities · Diagnóstico completo da operação</h3>
+            <h3 class="projeto-titulo">Corretora de commodities · Mapeamento de processos e diagnóstico da operação</h3>
             <ul class="projeto-items">
               <li class="projeto-item">Nove entrevistas em todos os setores da empresa</li>
               <li class="projeto-item">Causa raiz dos erros de faturamento identificada</li>
