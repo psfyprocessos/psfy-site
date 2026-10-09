@@ -43,21 +43,21 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PSFY | Blog</title>
-<meta name="description" content="Conteúdo sobre processos, IA, Pipefy, Miro e integrações. Casos reais de como organizar e automatizar operações.">
+<title>O Google dizia 2 leads e o WhatsApp dizia 0 | PSFY</title>
+<meta name="description" content="Duas ferramentas mediam o mesmo evento e davam respostas diferentes. No meio estava um formulário que coletava os dados e jogava fora, sem dar erro em lugar nenhum.">
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Blog da PSFY">
-<meta property="og:description" content="Conteúdo sobre processos, IA, Pipefy, Miro e integrações. Casos reais de como organizar e automatizar operações.">
-<meta property="og:url" content="https://www.psfy.com.br/blog.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="O Google dizia 2 leads e o WhatsApp dizia 0">
+<meta property="og:description" content="Duas ferramentas mediam o mesmo evento e davam respostas diferentes. No meio estava um formulário que coletava os dados e jogava fora, sem dar erro em lugar nenhum.">
+<meta property="og:url" content="https://www.psfy.com.br/artigos/formulario-do-site-perdendo-leads.html">
 <meta property="og:image" content="https://www.psfy.com.br/logo.png">
 <meta property="og:site_name" content="PSFY">
-<meta property="og:locale" content="pt_BR">
 
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="alternate" hreflang="pt-BR" href="https://www.psfy.com.br/blog.html">
-<link rel="alternate" hreflang="en" href="https://www.psfy.com.br/en/blog.html">
-<link rel="alternate" hreflang="x-default" href="https://www.psfy.com.br/blog.html">
+<link rel="canonical" href="https://www.psfy.com.br/artigos/formulario-do-site-perdendo-leads.html">
+<link rel="alternate" hreflang="pt-BR" href="https://www.psfy.com.br/artigos/formulario-do-site-perdendo-leads.html">
+<link rel="alternate" hreflang="en" href="https://www.psfy.com.br/en/artigos/website-form-losing-leads.html">
+<link rel="alternate" hreflang="x-default" href="https://www.psfy.com.br/artigos/formulario-do-site-perdendo-leads.html">
+<link rel="icon" type="image/png" href="../favicon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,6 +76,7 @@
     --cinza-borda: #e5e5e5;
     --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --max-width: 900px;
+    --texto-width: 700px;
     --radius: 12px;
     --radius-lg: 20px;
   }
@@ -94,81 +95,108 @@
   .logo img { height: 68px; width: auto; display: block; }
   .voltar { font-size: 14px; color: var(--cinza-texto); display: inline-flex; align-items: center; gap: 6px; }
   .voltar:hover { color: var(--preto); }
-  .header-acoes { display: flex; align-items: center; gap: 14px; }
 
-  /* ============ TROCA DE IDIOMA (bandeirinha) ============ */
-  .lang-switch {
-    display: inline-flex; align-items: center; gap: 7px;
-    padding: 7px 12px 7px 9px; border-radius: 999px;
-    border: 1px solid var(--cinza-borda); background: var(--branco);
-    font-size: 13px; font-weight: 500; line-height: 1; color: var(--preto);
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .lang-switch:hover { border-color: var(--azul); transform: translateY(-1px); }
-  .lang-switch:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
-  .lang-switch svg { width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); flex-shrink: 0; }
+  .artigo { max-width: var(--texto-width); margin: 0 auto; padding: 20px 24px 40px; }
 
-  .wrap { max-width: var(--max-width); margin: 0 auto; padding: 12px 24px 90px; }
-
-  .intro { text-align: center; max-width: 620px; margin: 0 auto 52px; }
+  /* ============ TOPO DO ARTIGO ============ */
   .eyebrow {
     font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--azul); margin-bottom: 14px;
+    color: var(--azul); margin-bottom: 16px;
   }
   .italic { font-style: italic; font-weight: 400; color: var(--azul); }
   h1 {
-    font-size: clamp(28px, 4vw, 42px); font-weight: 700; line-height: 1.15;
-    letter-spacing: -0.02em; margin-bottom: 18px;
+    font-size: clamp(30px, 4.4vw, 44px); font-weight: 700; line-height: 1.12;
+    letter-spacing: -0.025em; margin-bottom: 24px;
   }
-  .intro p { font-size: 16px; line-height: 1.65; color: var(--cinza-texto); }
+  .meta {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    font-size: 14px; color: var(--cinza-texto);
+    padding-bottom: 28px; border-bottom: 1px solid var(--cinza-borda); margin-bottom: 36px;
+  }
+  .meta .autor { font-weight: 500; color: var(--preto); }
+  .meta .sep { width: 3px; height: 3px; border-radius: 50%; background: var(--cinza-borda); }
 
-  /* ============ LISTA DE ARTIGOS ============ */
-  .lista { display: flex; flex-direction: column; gap: 20px; margin-bottom: 56px; }
-  .card {
-    display: block; border: 1px solid var(--cinza-borda); border-radius: var(--radius-lg);
-    padding: 30px 32px; background: var(--branco);
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  /* ============ CORPO DO TEXTO ============ */
+  .corpo p { font-size: 17px; line-height: 1.75; color: #2a2a2a; margin-bottom: 22px; }
+  .corpo .lead { font-size: 19px; line-height: 1.7; color: var(--preto); }
+  .corpo h2 {
+    font-size: clamp(22px, 2.8vw, 27px); font-weight: 700; letter-spacing: -0.02em;
+    line-height: 1.25; margin: 46px 0 18px;
   }
-  .card:hover {
-    transform: translateY(-2px); border-color: var(--azul);
-    box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+  .corpo ul { margin: 0 0 24px; padding-left: 0; list-style: none; }
+  .corpo ul li {
+    font-size: 17px; line-height: 1.7; color: #2a2a2a; padding-left: 26px;
+    position: relative; margin-bottom: 12px;
   }
-  .card-meta {
-    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-    font-size: 13px; color: var(--cinza-texto); margin-bottom: 12px;
+  .corpo ul li::before {
+    content: ''; position: absolute; left: 6px; top: 12px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--azul);
   }
-  .card-categoria {
-    font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--azul); font-size: 12px;
+  .corpo ol { margin: 0 0 24px; padding-left: 0; list-style: none; counter-reset: passo; }
+  .corpo ol li {
+    font-size: 17px; line-height: 1.7; color: #2a2a2a; padding-left: 32px;
+    position: relative; margin-bottom: 12px; counter-increment: passo;
   }
-  .card-meta .sep { width: 3px; height: 3px; border-radius: 50%; background: var(--cinza-borda); }
-  .card h2 {
-    font-size: clamp(20px, 2.6vw, 25px); font-weight: 700; letter-spacing: -0.02em;
-    line-height: 1.25; margin-bottom: 12px;
+  .corpo ol li::before {
+    content: counter(passo); position: absolute; left: 0; top: 3px;
+    width: 21px; height: 21px; border-radius: 50%; background: var(--azul);
+    color: #fff; font-size: 11.5px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
   }
-  .card p { font-size: 15px; line-height: 1.65; color: var(--cinza-texto); margin-bottom: 16px; }
-  .card-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .corpo strong { font-weight: 700; }
+
+  /* ============ BLOCO DE NÚMEROS ============ */
+  .numeros {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    margin: 36px 0 30px;
+  }
+  .num {
+    background: var(--azul-claro); border-radius: var(--radius);
+    padding: 22px 14px; text-align: center;
+  }
+  .num .valor {
+    font-size: clamp(24px, 3.4vw, 32px); font-weight: 700; letter-spacing: -0.03em;
+    color: var(--azul); line-height: 1.05; margin-bottom: 8px;
+  }
+  .num .rotulo { font-size: 12px; line-height: 1.35; color: #3d5c47; font-weight: 500; }
+
+  /* ============ ANTES E DEPOIS ============ */
+  .antes-depois { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0 30px; }
+  .coluna { border-radius: var(--radius); padding: 24px 22px; }
+  .coluna.antes { background: var(--cinza); }
+  .coluna.depois { background: var(--azul-claro); }
+  .coluna h3 {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .coluna.antes h3 { color: var(--cinza-texto); }
+  .coluna.depois h3 { color: var(--azul); }
+  .coluna ul { margin: 0; padding: 0; list-style: none; }
+  .coluna ul li {
+    font-size: 15px; line-height: 1.5; padding: 0 0 12px 0; margin: 0 0 12px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+  }
+  .coluna ul li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .coluna ul li::before { content: none; } /* tira a bolinha da lista do texto, que ficava em cima da primeira letra */
+  .coluna.antes ul li { color: var(--cinza-texto); }
+  .coluna.depois ul li { color: #1f3d29; font-weight: 500; }
+
+  /* ============ TAGS ============ */
+  .tags { margin-top: 52px; padding-top: 28px; border-top: 1px solid var(--cinza-borda); }
+  .tags-titulo { font-size: 13px; font-weight: 700; color: var(--cinza-texto); margin-bottom: 14px; }
+  .tags-lista { display: flex; flex-wrap: wrap; gap: 8px; }
   .tag {
-    padding: 6px 13px; border-radius: 999px; border: 1px solid var(--cinza-borda);
-    background: var(--branco); font-size: 12px; font-weight: 500; color: var(--cinza-texto);
+    padding: 7px 14px; border-radius: 999px; border: 1px solid var(--cinza-borda);
+    background: var(--branco); font-size: 13px; font-weight: 500; color: var(--cinza-texto);
   }
 
-  /* ============ PRÓXIMOS TEMAS ============ */
-  .temas {
-    border: 1px solid var(--cinza-borda); border-radius: var(--radius-lg);
-    background: var(--cinza); padding: 36px 32px; text-align: center; margin-bottom: 52px;
+  /* ============ CTA FINAL ============ */
+  .cta {
+    margin-top: 44px; background: var(--cinza); border: 1px solid var(--cinza-borda);
+    border-radius: var(--radius-lg); padding: 40px 32px; text-align: center;
   }
-  .temas h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-  .temas p { font-size: 14px; color: var(--cinza-texto); margin-bottom: 20px; }
-  .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-  .chip {
-    padding: 9px 17px; border-radius: 999px; border: 1px solid var(--cinza-borda);
-    background: var(--branco); font-size: 14px; font-weight: 500; color: var(--preto);
-  }
-
-  /* ============ CTA ============ */
-  .cta { text-align: center; }
-  .cta h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .cta h2 { font-size: clamp(21px, 2.8vw, 27px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .cta p { font-size: 15px; line-height: 1.65; color: var(--cinza-texto); max-width: 440px; margin: 0 auto 24px; }
   .btn {
     display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
     border-radius: 999px; font-weight: 500; font-size: 14px; white-space: nowrap;
@@ -177,12 +205,19 @@
   .btn-primary { background: var(--azul); color: var(--branco); }
   .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(51,97,64,0.25); background: var(--azul-hover); }
 
+  .voltar-blog { text-align: center; margin-top: 40px; }
+  .voltar-blog a { font-size: 14px; color: var(--cinza-texto); }
+  .voltar-blog a:hover { color: var(--preto); }
+
   .footer { padding: 32px 24px; text-align: center; font-size: 13px; color: var(--cinza-texto); }
 
   @media (max-width: 720px) {
     .logo img { height: 48px; }
-    .card { padding: 24px 22px; }
-    .temas { padding: 30px 22px; }
+    .corpo p, .corpo ul li, .corpo ol li { font-size: 16px; }
+    .corpo .lead { font-size: 17px; }
+    .numeros { grid-template-columns: repeat(2, 1fr); }
+    .antes-depois { grid-template-columns: 1fr; }
+    .cta { padding: 32px 22px; }
   }
 
   /* ============ BOTÃO RÁPIDO DO WHATSAPP (fixo no canto) ============ */
@@ -209,119 +244,155 @@
 <body>
 
 <div class="header">
-  <a href="index.html" class="logo"><img src="logo-site.png" alt="PSFY"></a>
-  <div class="header-acoes">
-    <a href="index.html" class="voltar">← Voltar pro site</a>
-    <a href="en/blog.html" class="lang-switch" hreflang="en" lang="en" title="English version" aria-label="English version">
-      <svg viewBox="0 0 30 21" aria-hidden="true" focusable="false"><rect width="30" height="21" fill="#fff"/><path fill="#B22234" d="M0 0h30v1.62H0zM0 3.23h30v1.62H0zM0 6.46h30v1.62H0zM0 9.69h30v1.62H0zM0 12.92h30v1.62H0zM0 16.15h30v1.62H0zM0 19.38h30v1.62H0z"/><rect width="13" height="11.31" fill="#3C3B6E"/><g fill="#fff"><circle cx="2" cy="2" r=".55"/><circle cx="5" cy="2" r=".55"/><circle cx="8" cy="2" r=".55"/><circle cx="11" cy="2" r=".55"/><circle cx="3.5" cy="4.4" r=".55"/><circle cx="6.5" cy="4.4" r=".55"/><circle cx="9.5" cy="4.4" r=".55"/><circle cx="2" cy="6.8" r=".55"/><circle cx="5" cy="6.8" r=".55"/><circle cx="8" cy="6.8" r=".55"/><circle cx="11" cy="6.8" r=".55"/><circle cx="3.5" cy="9.2" r=".55"/><circle cx="6.5" cy="9.2" r=".55"/><circle cx="9.5" cy="9.2" r=".55"/></g></svg>
-      <span class="lang-switch-texto">EN</span>
-    </a>
-  </div>
+  <a href="../index.html" class="logo"><img src="../logo-site.png" alt="PSFY"></a>
+  <a href="../blog.html" class="voltar">← Todos os artigos</a>
 </div>
 
-<div class="wrap">
+<article class="artigo">
 
-  <div class="intro">
-    <div class="eyebrow">Blog</div>
-    <h1>Processos explicados de forma <span class="italic">simples</span></h1>
-    <p>Aqui a gente escreve sobre o que acontece de verdade dentro das operações, o que trava, o que dá pra automatizar e o que é melhor deixar como está.</p>
+  <div class="eyebrow">Processos</div>
+  <h1>O Google dizia 2 leads e o WhatsApp dizia <span class="italic">0</span></h1>
+
+  <div class="meta">
+    <span class="autor">Henrique Sofiati</span>
+    <span class="sep"></span>
+    <span>9 de outubro de 2026</span>
+    <span class="sep"></span>
+    <span>4 min de leitura</span>
   </div>
 
-  <div class="lista">
+  <div class="corpo">
 
-    <a href="artigos/formulario-do-site-perdendo-leads.html" class="card">
-      <div class="card-meta">
-        <span class="card-categoria">Processos</span>
-        <span class="sep"></span>
-        <span>9 de outubro de 2026</span>
-        <span class="sep"></span>
-        <span>4 min de leitura</span>
-      </div>
-      <h2>O Google dizia 2 leads e o WhatsApp dizia 0</h2>
-      <p>Duas ferramentas mediam o mesmo evento e davam respostas diferentes. No meio estava um formul&aacute;rio que coletava os dados e jogava fora, sem dar erro em lugar nenhum.</p>
-      <div class="card-tags">
-        <span class="tag">Processos</span>
-        <span class="tag">Capta&ccedil;&atilde;o de leads</span>
-        <span class="tag">Indicadores</span>
-        <span class="tag">Integra&ccedil;&otilde;es</span>
-      </div>
-    </a>
+    <p class="lead">Na semana passada eu subi um an&uacute;ncio no Google para a PSFY. Poucos dias depois o painel mostrou duas convers&otilde;es. Duas pessoas tinham preenchido o formul&aacute;rio do site pedindo contato.</p>
 
-    <a href="artigos/processo-de-compras-wrental.html" class="card">
-      <div class="card-meta">
-        <span class="card-categoria">Caso real</span>
-        <span class="sep"></span>
-        <span>25 de setembro de 2026</span>
-        <span class="sep"></span>
-        <span>3 min de leitura</span>
-      </div>
-      <h2>6.016 pedidos em 18 meses, o processo de compras da Wrental</h2>
-      <p>A Wrental comprava por email e WhatsApp em 5 sedes. Hoje são 9 sedes num processo só, com 6.016 pedidos concluídos e 12 dias de lead time mediano.</p>
-      <div class="card-tags">
-        <span class="tag">Compras</span>
-        <span class="tag">Processos</span>
-        <span class="tag">Pipefy</span>
-        <span class="tag">Indicadores</span>
-      </div>
-    </a>
+    <p>Abri o WhatsApp para responder e n&atilde;o tinha mensagem nenhuma.</p>
 
-    <a href="artigos/como-limpar-base-de-leads-com-ia.html" class="card">
-      <div class="card-meta">
-        <span class="card-categoria">Caso real</span>
-        <span class="sep"></span>
-        <span>18 de setembro de 2026</span>
-        <span class="sep"></span>
-        <span>3 min de leitura</span>
-      </div>
-      <h2>Como limpar uma base de leads bagunçada usando IA</h2>
-      <p>Numa concessionária multimarcas, cada vendedor cadastrava do seu jeito e o mesmo cliente aparecia três vezes. Em vez de limpar tudo à mão, a gente automatizou a entrada.</p>
-      <div class="card-tags">
-        <span class="tag">Qualidade de dados</span>
-        <span class="tag">IA aplicada</span>
-        <span class="tag">Pipefy</span>
-        <span class="tag">Automação comercial</span>
-      </div>
-    </a>
+    <p>Foi assim que eu descobri que o meu pr&oacute;prio site estava jogando lead no lixo.</p>
 
-    <a href="artigos/como-organizar-demandas-de-marketing.html" class="card">
-      <div class="card-meta">
-        <span class="card-categoria">Processos</span>
-        <span class="sep"></span>
-        <span>15 de setembro de 2026</span>
-        <span class="sep"></span>
-        <span>4 min de leitura</span>
+    <h2>Nada tinha dado erro</h2>
+
+    <p>Essa &eacute; a parte que incomoda. N&atilde;o teve tela vermelha, n&atilde;o teve aviso, n&atilde;o teve registro de falha em lugar nenhum.</p>
+
+    <p>A pessoa preenchia nome, empresa, email, telefone e a mensagem. Apertava enviar. O site agradecia. Do ponto de vista dela, o pedido estava feito.</p>
+
+    <p>Do meu lado n&atilde;o chegava nada.</p>
+
+    <h2>O furo estava na passagem</h2>
+
+    <p>O formul&aacute;rio n&atilde;o guardava os dados em lugar nenhum. Ele montava uma mensagem pronta e abria o WhatsApp com aquele texto j&aacute; escrito.</p>
+
+    <p>Quem apertava enviar dentro do WhatsApp virava conversa. Quem fechava a aba, perdia o sinal no meio, estava no computador sem WhatsApp Web logado ou simplesmente desistiu, virava nada. Os dados n&atilde;o existiam em lugar nenhum porque nunca tinham sido salvos.</p>
+
+    <p>O formul&aacute;rio funcionava. A entrega &eacute; que n&atilde;o acontecia.</p>
+
+    <p>E essa &eacute; a diferen&ccedil;a entre um processo com bug e um processo com furo. Bug d&aacute; erro e algu&eacute;m reclama. Furo n&atilde;o d&aacute; erro, ent&atilde;o ningu&eacute;m reclama, e voc&ecirc; passa meses achando que est&aacute; tudo certo.</p>
+
+    <h2>Por que ningu&eacute;m enxerga</h2>
+
+    <p>Para ver esse tipo de furo voc&ecirc; precisa de duas coisas ao mesmo tempo.</p>
+
+    <p>A primeira &eacute; algu&eacute;m olhando. Formul&aacute;rio de site &eacute; a coisa que a empresa monta uma vez e nunca mais testa.</p>
+
+    <p>A segunda &eacute; um segundo n&uacute;mero para comparar. Se eu s&oacute; tivesse o WhatsApp, eu veria zero mensagem e concluiria que ningu&eacute;m se interessou. Zero &eacute; um n&uacute;mero perfeitamente plaus&iacute;vel. Ele n&atilde;o acusa nada.</p>
+
+    <p>Foi o an&uacute;ncio que criou o segundo n&uacute;mero. O Google contava quem preenchia. O WhatsApp contava quem chegava. Dois sistemas medindo o mesmo evento e dando respostas diferentes.</p>
+
+    <p>Essa diferen&ccedil;a foi o alarme. E foi o &uacute;nico que existiu.</p>
+
+    <h2>O alarme mais barato que existe numa opera&ccedil;&atilde;o</h2>
+
+    <p>Isso n&atilde;o tem nada a ver com site. Tem a ver com qualquer processo.</p>
+
+    <p>Toda vez que um dado passa de um lugar para outro, ele pode se perder na passagem sem gerar erro. E a forma de descobrir &eacute; sempre a mesma, pegar duas fontes que deveriam contar a mesma coisa e comparar.</p>
+
+    <p>Alguns cruzamentos que valem na sua empresa.</p>
+
+    <ul>
+      <li>O sistema registrou 40 pedidos no m&ecirc;s e o financeiro faturou 37</li>
+      <li>O CRM tem 120 leads cadastrados e o comercial lembra de ter conversado com 80</li>
+      <li>O estoque diz que tem a pe&ccedil;a e a prateleira n&atilde;o tem</li>
+      <li>O RH aprovou 12 admiss&otilde;es e a folha tem 11 pessoas novas</li>
+    </ul>
+
+    <p>Nenhum desses casos gera erro em sistema nenhum. Todos s&atilde;o furo de passagem. E todos aparecem no momento em que voc&ecirc; coloca os dois n&uacute;meros na mesma tabela.</p>
+
+    <p>N&atilde;o precisa de ferramenta nova para isso. Precisa de algu&eacute;m fazendo a pergunta.</p>
+
+    <h2>Como testar o seu site em dois minutos</h2>
+
+    <p>Se o seu site tem formul&aacute;rio que abre o WhatsApp, faz esse teste agora.</p>
+
+    <ol>
+      <li>Preenche o formul&aacute;rio com dados de teste</li>
+      <li>Quando o WhatsApp abrir, fecha a aba sem apertar enviar</li>
+      <li>Vai onde os leads deveriam cair, seja email, planilha ou CRM</li>
+      <li>Procura o teste que voc&ecirc; acabou de fazer</li>
+    </ol>
+
+    <p>Se n&atilde;o achar, voc&ecirc; tem o mesmo furo. Todo mundo que desistiu no meio do caminho nunca existiu para voc&ecirc;.</p>
+
+    <p>Vale repetir no celular e no computador, porque o WhatsApp se comporta de forma diferente nos dois.</p>
+
+    <h2>O que a gente fez</h2>
+
+    <p>A corre&ccedil;&atilde;o &eacute; simples de entender. O site passou a salvar antes de passar.</p>
+
+    <p>Agora, no momento em que a pessoa aperta enviar, os dados v&atilde;o primeiro para um fluxo que registra o lead e me avisa por email. S&oacute; depois o WhatsApp abre. Se ela continuar a conversa, &oacute;timo. Se ela desistir, eu j&aacute; tenho o nome, a empresa, o telefone e o que ela escreveu, e chamo eu mesmo.</p>
+
+    <div class="antes-depois">
+      <div class="coluna antes">
+        <h3>Antes</h3>
+        <ul>
+          <li>Os dados do formul&aacute;rio n&atilde;o eram salvos</li>
+          <li>O lead s&oacute; existia se a pessoa enviasse dentro do WhatsApp</li>
+          <li>A tela de obrigado aparecia de qualquer forma</li>
+          <li>Zero registro de quem desistiu no meio</li>
+          <li>Imposs&iacute;vel saber de onde a pessoa veio</li>
+        </ul>
       </div>
-      <h2>Como organizar as demandas do marketing em um fluxo só</h2>
-      <p>Arte no WhatsApp, embalagem por email, urgente na mesa do designer. Ninguém sabe quantas demandas estão abertas. Isso não é falta de gente, é falta de estrutura.</p>
-      <div class="card-tags">
-        <span class="tag">Processos</span>
-        <span class="tag">Gestão de demandas</span>
-        <span class="tag">IA aplicada</span>
-        <span class="tag">Indicadores</span>
+      <div class="coluna depois">
+        <h3>Depois</h3>
+        <ul>
+          <li>Os dados s&atilde;o salvos no momento do envio</li>
+          <li>O lead existe mesmo se a conversa n&atilde;o come&ccedil;ar</li>
+          <li>Aviso por email com o contato completo</li>
+          <li>Quem desistiu no meio tamb&eacute;m fica registrado</li>
+          <li>Origem registrada, d&aacute; para saber se veio de an&uacute;ncio</li>
+        </ul>
       </div>
-    </a>
+    </div>
+
+    <p>&Eacute; a mesma l&oacute;gica de qualquer processo bem feito. Registra no ponto de entrada, n&atilde;o no ponto de sa&iacute;da. Quem s&oacute; registra quando o fluxo termina nunca fica sabendo de quem desistiu no meio, e &eacute; justamente essa informa&ccedil;&atilde;o que faz mais falta.</p>
+
+    <h2>O que isso ensina</h2>
+
+    <p>Eu trabalho com processo de empresa e tinha um furo de processo na minha pr&oacute;pria porta de entrada. N&atilde;o foi falta de aten&ccedil;&atilde;o. Foi o que sempre &eacute;, um processo que ningu&eacute;m testou depois de montar.</p>
+
+    <p>Processo n&atilde;o quebra no lugar onde voc&ecirc; est&aacute; olhando. Quebra na passagem entre duas coisas, onde ningu&eacute;m &eacute; dono.</p>
 
   </div>
 
-  <div class="temas">
-    <h3>O que vem por aí</h3>
-    <p>Conteúdo novo toda semana</p>
-    <div class="chips">
-      <span class="chip">Processos e diagnóstico</span>
-      <span class="chip">IA aplicada</span>
-      <span class="chip">Pipefy</span>
-      <span class="chip">Miro</span>
-      <span class="chip">Integrações</span>
-      <span class="chip">Automação</span>
+  <div class="tags">
+    <div class="tags-titulo">Temas deste artigo</div>
+    <div class="tags-lista">
+      <span class="tag">Processos</span>
+      <span class="tag">Capta&ccedil;&atilde;o de leads</span>
+      <span class="tag">Indicadores</span>
+      <span class="tag">Integra&ccedil;&otilde;es</span>
     </div>
   </div>
 
   <div class="cta">
-    <h2>Quer resolver o <span class="italic">seu</span> processo?</h2>
-    <a href="alinhamentos.html" class="btn btn-primary">Agendar conversa</a>
+    <h2>Quanto do seu processo est&aacute; <span class="italic">vazando</span> sem dar erro?</h2>
+    <p>A gente entende como funciona hoje, acha onde o dado se perde na passagem e automatiza o trabalho repetitivo que est&aacute; na m&atilde;o das pessoas. Conversa de 30 minutos, sem compromisso.</p>
+    <a href="../alinhamentos.html" class="btn btn-primary">Agendar conversa</a>
   </div>
 
-</div>
+  <div class="voltar-blog">
+    <a href="../blog.html">&larr; Ver todos os artigos</a>
+  </div>
+
+</article>
 
 <!-- ====== CAPTURA PSFY ====== -->
 <style>
