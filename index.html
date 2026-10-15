@@ -466,15 +466,15 @@
   <div class="carrossel-wrapper">
     <div class="carrossel-track">
       <!-- Cada logo aparece UMA vez aqui. O script no fim da página repete a lista pro loop. -->
-      <div class="cliente-logo"><img src="logos/diageo.png" alt="Diageo"></div>
-      <div class="cliente-logo"><img src="logos/wrental.png" alt="W Rental"></div>
-      <div class="cliente-logo"><img src="logos/forton.png" alt="Forton"></div>
-      <div class="cliente-logo"><img src="logos/playrec.png" alt="Playrec"></div>
-      <div class="cliente-logo"><img src="logos/okiar.png" alt="Okiar"></div>
-      <div class="cliente-logo"><img src="logos/grs.png" alt="GRS Racing"></div>
-      <div class="cliente-logo"><img src="logos/labhoro.png" alt="Labhoro"></div>
-      <div class="cliente-logo"><img src="logos/amato.png" alt="Amato"></div>
-      <div class="cliente-logo"><img src="logos/ornare.png" alt="Ornare"></div>
+      <div class="cliente-logo"><img decoding="async" src="logos/diageo.png" alt="Diageo"></div>
+      <div class="cliente-logo"><img decoding="async" src="logos/wrental.png" alt="W Rental"></div>
+      <div class="cliente-logo"><img decoding="async" src="logos/forton.png" alt="Forton"></div>
+      <div class="cliente-logo"><img decoding="async" src="logos/playrec.png" alt="Playrec"></div>
+      <div class="cliente-logo"><img decoding="async" src="logos/okiar.png" alt="Okiar"></div>
+      <div class="cliente-logo"><img decoding="async" src="logos/grs.png" alt="GRS Racing"></div>
+      <div class="cliente-logo"><img decoding="async" src="logos/labhoro.png" alt="Labhoro"></div>
+      <div class="cliente-logo"><img decoding="async" src="logos/amato.png" alt="Amato"></div>
+      <div class="cliente-logo"><img decoding="async" src="logos/ornare.png" alt="Ornare"></div>
     </div>
   </div>
 </section>
@@ -561,7 +561,7 @@
         <div class="toggle-panel active" data-panel="wrental">
           <div class="projeto-card">
             <div class="projeto-header">
-              <img class="projeto-logo" src="logos/card-wrental.png" alt="Wrental">
+              <img class="projeto-logo" loading="lazy" decoding="async" src="logos/card-wrental.png" alt="Wrental">
               <span class="projeto-categoria">Indústria pesada</span>
             </div>
             <h3 class="projeto-titulo">Empresa de plataformas aéreas · Automação do processo de compras</h3>
@@ -578,7 +578,7 @@
         <div class="toggle-panel" data-panel="diageo" hidden>
           <div class="projeto-card">
             <div class="projeto-header">
-              <img class="projeto-logo" src="logos/card-diageo.png" alt="DIAGEO">
+              <img class="projeto-logo" loading="lazy" decoding="async" src="logos/card-diageo.png" alt="DIAGEO">
               <span class="projeto-categoria">Bebidas multinacional</span>
             </div>
             <h3 class="projeto-titulo">Empresa de grande porte de bebidas · Automação de processo interno</h3>
@@ -595,7 +595,7 @@
         <div class="toggle-panel" data-panel="ornare" hidden>
           <div class="projeto-card">
             <div class="projeto-header">
-              <img class="projeto-logo" src="logos/card-ornare.png" alt="Ornare">
+              <img class="projeto-logo" loading="lazy" decoding="async" src="logos/card-ornare.png" alt="Ornare">
               <span class="projeto-categoria">Mobiliário de luxo, Miami</span>
             </div>
             <h3 class="projeto-titulo">Empresa de móveis de alto padrão · Integração de sistemas entre Pipefy e Zapier</h3>
@@ -612,7 +612,7 @@
         <div class="toggle-panel" data-panel="labhoro" hidden>
           <div class="projeto-card">
             <div class="projeto-header">
-              <img class="projeto-logo" src="logos/card-labhoro.png" alt="Labhoro">
+              <img class="projeto-logo" loading="lazy" decoding="async" src="logos/card-labhoro.png" alt="Labhoro">
               <span class="projeto-categoria">Corretora de commodities</span>
             </div>
             <h3 class="projeto-titulo">Corretora de commodities · Mapeamento de processos e diagnóstico da operação</h3>
@@ -1028,7 +1028,9 @@
     track.appendChild(copia);
   }
 
-  var LARGURA_MINIMA = 2600; // cobre monitores de até 2560px
+  // No celular nao faz sentido montar faixa de monitor de 2560px. A faixa so
+  // precisa ser mais larga que a tela para o loop nao dar buraco.
+  var LARGURA_MINIMA = Math.min(2600, Math.max(900, window.innerWidth * 1.5));
   var voltas = 0;
   while (track.scrollWidth < LARGURA_MINIMA && voltas < 10) {
     originais.forEach(copiar);
