@@ -45,354 +45,391 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PSFY | Blog</title>
 <meta name="description" content="Conteúdo sobre processos, IA, Pipefy, Miro e integrações. Casos reais de como organizar e automatizar operações.">
+<link rel="canonical" href="https://www.psfy.com.br/blog.html">
+<link rel="icon" type="image/png" href="favicon.png">
+<meta name="theme-color" content="#336140">
+<link rel="alternate" hreflang="pt-BR" href="https://www.psfy.com.br/blog.html">
+<link rel="alternate" hreflang="en" href="https://www.psfy.com.br/en/blog.html">
+<link rel="alternate" hreflang="x-default" href="https://www.psfy.com.br/blog.html">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Blog da PSFY">
 <meta property="og:description" content="Conteúdo sobre processos, IA, Pipefy, Miro e integrações. Casos reais de como organizar e automatizar operações.">
 <meta property="og:url" content="https://www.psfy.com.br/blog.html">
-<meta property="og:image" content="https://www.psfy.com.br/logo.png">
+<meta property="og:image" content="https://www.psfy.com.br/og-psfy.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:site_name" content="PSFY">
 <meta property="og:locale" content="pt_BR">
-
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="alternate" hreflang="pt-BR" href="https://www.psfy.com.br/blog.html">
-<link rel="alternate" hreflang="en" href="https://www.psfy.com.br/en/blog.html">
-<link rel="alternate" hreflang="x-default" href="https://www.psfy.com.br/blog.html">
+<meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --preto: #000000;
-    --azul: #336140;
-    --azul-hover: #274d33;
-    --branco: #ffffff;
-    --azul-claro: #e4efe7;
+    --verde: #336140;
+    --verde-esc: #274d33;
     --verde-claro: #74B872;
-    --cinza: #f2f2f2;
-    --cinza-texto: #6b6b6b;
-    --cinza-borda: #e5e5e5;
-    --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    --max-width: 900px;
-    --radius: 12px;
-    --radius-lg: 20px;
+    --nevoa: #e4efe7;
+    --nevoa-2: #f4f7f3;
+    --branco: #ffffff;
+    --preto: #000000;
+    --texto: #2c2c2c;
+    --suave: #5f655d;
+    --borda: #e1e6df;
+    --marrom: #4D2E26;
+    --fonte: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --max: 1160px;
+    --raio: 12px;
+    --raio-g: 20px;
   }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: var(--font-sans); background: var(--branco); color: var(--preto);
-    line-height: 1.5; -webkit-font-smoothing: antialiased;
-  }
-  a { text-decoration: none; color: inherit; }
-  img, svg { display: block; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--fonte); font-size: 17px; line-height: 1.6; background: var(--branco); color: var(--texto); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+  h1, h2, h3 { color: var(--preto); line-height: 1.12; letter-spacing: -0.02em; }
+  :focus-visible { outline: 2px solid var(--verde); outline-offset: 3px; border-radius: 6px; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  [id] { scroll-margin-top: 104px; }
+  .titulo-secao { font-size: clamp(26px, 3vw, 38px); font-weight: 700; letter-spacing: -0.024em; line-height: 1.1; }
 
-  .header {
-    padding: 18px 24px; display: flex; align-items: center; justify-content: space-between;
-    max-width: var(--max-width); margin: 0 auto; gap: 20px;
-  }
-  .logo img { height: 68px; width: auto; display: block; }
-  .voltar { font-size: 14px; color: var(--cinza-texto); display: inline-flex; align-items: center; gap: 6px; }
-  .voltar:hover { color: var(--preto); }
-  .header-acoes { display: flex; align-items: center; gap: 14px; }
-
-  /* ============ TROCA DE IDIOMA (bandeirinha) ============ */
-  .lang-switch {
-    display: inline-flex; align-items: center; gap: 7px;
-    padding: 7px 12px 7px 9px; border-radius: 999px;
-    border: 1px solid var(--cinza-borda); background: var(--branco);
-    font-size: 13px; font-weight: 500; line-height: 1; color: var(--preto);
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .lang-switch:hover { border-color: var(--azul); transform: translateY(-1px); }
-  .lang-switch:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
-  .lang-switch svg { width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); flex-shrink: 0; }
-
-  .wrap { max-width: var(--max-width); margin: 0 auto; padding: 12px 24px 90px; }
-
-  .intro { text-align: center; max-width: 620px; margin: 0 auto 52px; }
-  .eyebrow {
-    font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--azul); margin-bottom: 14px;
-  }
-  .italic { font-style: italic; font-weight: 400; color: var(--azul); }
-  h1 {
-    font-size: clamp(28px, 4vw, 42px); font-weight: 700; line-height: 1.15;
-    letter-spacing: -0.02em; margin-bottom: 18px;
-  }
-  .intro p { font-size: 16px; line-height: 1.65; color: var(--cinza-texto); }
-
-  /* ============ LISTA DE ARTIGOS ============ */
-  .lista { display: flex; flex-direction: column; gap: 20px; margin-bottom: 56px; }
-  .card {
-    display: block; border: 1px solid var(--cinza-borda); border-radius: var(--radius-lg);
-    padding: 30px 32px; background: var(--branco);
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-  }
-  .card:hover {
-    transform: translateY(-2px); border-color: var(--azul);
-    box-shadow: 0 10px 28px rgba(0,0,0,0.06);
-  }
-  .card-meta {
-    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-    font-size: 13px; color: var(--cinza-texto); margin-bottom: 12px;
-  }
-  .card-categoria {
-    font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--azul); font-size: 12px;
-  }
-  .card-meta .sep { width: 3px; height: 3px; border-radius: 50%; background: var(--cinza-borda); }
-  .card h2 {
-    font-size: clamp(20px, 2.6vw, 25px); font-weight: 700; letter-spacing: -0.02em;
-    line-height: 1.25; margin-bottom: 12px;
-  }
-  .card p { font-size: 15px; line-height: 1.65; color: var(--cinza-texto); margin-bottom: 16px; }
-  .card-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .tag {
-    padding: 6px 13px; border-radius: 999px; border: 1px solid var(--cinza-borda);
-    background: var(--branco); font-size: 12px; font-weight: 500; color: var(--cinza-texto);
-  }
-
-  /* ============ PRÓXIMOS TEMAS ============ */
-  .temas {
-    border: 1px solid var(--cinza-borda); border-radius: var(--radius-lg);
-    background: var(--cinza); padding: 36px 32px; text-align: center; margin-bottom: 52px;
-  }
-  .temas h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-  .temas p { font-size: 14px; color: var(--cinza-texto); margin-bottom: 20px; }
-  .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-  .chip {
-    padding: 9px 17px; border-radius: 999px; border: 1px solid var(--cinza-borda);
-    background: var(--branco); font-size: 14px; font-weight: 500; color: var(--preto);
-  }
-
-  /* ============ CTA ============ */
-  .cta { text-align: center; }
-  .cta h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 20px; }
   .btn {
-    display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
-    border-radius: 999px; font-weight: 500; font-size: 14px; white-space: nowrap;
-    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    padding: 14px 22px; border-radius: 999px; font-size: 15.5px; font-weight: 600; line-height: 1.2; text-align: center;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s, border-color 0.2s, color 0.2s;
   }
-  .btn-primary { background: var(--azul); color: var(--branco); }
-  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(51,97,64,0.25); background: var(--azul-hover); }
+  .btn svg { width: 19px; height: 19px; flex-shrink: 0; }
+  .btn-primario { background: var(--verde); color: var(--branco); }
+  .btn-primario:hover { background: var(--verde-esc); transform: translateY(-1px); box-shadow: 0 10px 22px rgba(51,97,64,0.25); }
+  .btn-secundario { background: var(--branco); color: var(--preto); border: 1px solid var(--borda); }
+  .btn-secundario:hover { border-color: var(--verde); color: var(--verde); }
 
-  .footer { padding: 32px 24px; text-align: center; font-size: 13px; color: var(--cinza-texto); }
+  /* Topo das páginas internas */
+  .pagina-topo { padding: 64px 0 56px; border-bottom: 1px solid var(--borda); }
+  .tag { display: inline-flex; align-items: center; gap: 9px; font-size: 14.5px; font-weight: 500; color: var(--verde); margin-bottom: 18px; }
+  .tag::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--verde-claro); box-shadow: 0 0 0 4px rgba(116,184,114,0.2); }
+  .pagina-topo h1 { font-size: clamp(34px, 4.2vw, 54px); font-weight: 700; letter-spacing: -0.028em; line-height: 1.05; max-width: 20ch; margin-bottom: 18px; }
+  .lead { font-size: 18.5px; line-height: 1.6; color: var(--suave); max-width: 60ch; }
+
+  /* Faixa de dúvida com os dois caminhos de contato */
+  .duvida { padding: 72px 0; background: var(--nevoa-2); border-top: 1px solid var(--borda); }
+  .duvida-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+  .duvida p { color: var(--suave); margin-top: 8px; max-width: 52ch; }
+  .duvida-acoes { display: flex; flex-wrap: wrap; gap: 12px; }
 
   @media (max-width: 720px) {
-    .logo img { height: 48px; }
-    .card { padding: 24px 22px; }
-    .temas { padding: 30px 22px; }
+    .pagina-topo { padding: 40px 0 40px; }
+    .lead { font-size: 17px; }
+    .duvida { padding: 56px 0; }
+    .duvida-acoes, .duvida-acoes .btn { width: 100%; }
   }
 
-  /* ============ BOTÃO RÁPIDO DO WHATSAPP (fixo no canto) ============ */
-  .whats-flutuante {
-    position: fixed; right: 20px; bottom: 20px; z-index: 150;
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 13px 20px 13px 16px; border-radius: 999px;
-    background: var(--azul); color: var(--branco);
-    font-size: 14px; font-weight: 500; line-height: 1.25;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
-    transition: transform 0.25s, opacity 0.25s, background 0.2s;
+  /* ============ CABEÇALHO PADRÃO ============ */
+  .topo {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--borda);
+    font-family: var(--fonte);
   }
-  .whats-flutuante:hover { background: var(--azul-hover); transform: translateY(-2px); }
+  .topo-inner {
+    max-width: var(--max); margin: 0 auto; padding: 12px 24px;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px;
+  }
+  .topo-logo { justify-self: start; display: block; }
+  .topo-logo img { height: 60px; width: auto; display: block; }
+  .topo-nav { display: flex; align-items: center; gap: 26px; justify-self: center; }
+  .topo-nav a { font-size: 14.5px; color: #3d3d3d; text-decoration: none; transition: color 0.2s; }
+  .topo-nav a:hover { color: var(--verde); }
+  .topo-nav a[aria-current="page"] { color: var(--verde); font-weight: 600; }
+  .topo-acoes { justify-self: end; display: flex; align-items: center; gap: 10px; }
+  .topo-lang {
+    display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px 7px 9px; border-radius: 999px;
+    border: 1px solid var(--borda); background: var(--branco); text-decoration: none;
+    font-size: 13px; font-weight: 500; line-height: 1; color: var(--preto);
+  }
+  .topo-lang:hover { border-color: var(--verde); }
+  .topo-lang svg { width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); flex-shrink: 0; display: block; }
+  .topo-cta {
+    display: inline-flex; align-items: center; justify-content: center; padding: 11px 20px; border-radius: 999px;
+    background: var(--verde); color: var(--branco); text-decoration: none; white-space: nowrap;
+    font-family: var(--fonte); font-size: 14px; font-weight: 600; line-height: 1.2;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .topo-cta:hover { background: var(--verde-esc); transform: translateY(-1px); }
+  .topo-menu-btn {
+    display: none; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px;
+    border: 1px solid var(--borda); background: var(--branco); color: var(--preto); cursor: pointer;
+  }
+  .topo-menu-btn svg { width: 22px; height: 22px; display: block; }
+  .topo-menu-btn .ic-fechar { display: none; }
+  .topo-menu-btn[aria-expanded="true"] .ic-abrir { display: none; }
+  .topo-menu-btn[aria-expanded="true"] .ic-fechar { display: block; }
+  .menu-movel { border-top: 1px solid var(--borda); background: var(--branco); padding: 4px 20px 20px; }
+  .menu-movel[hidden] { display: none; }
+  .menu-movel nav { display: grid; }
+  .menu-movel nav a {
+    display: block; padding: 14px 2px; border-bottom: 1px solid var(--borda); text-decoration: none;
+    font-size: 17px; font-weight: 500; color: var(--preto);
+  }
+  .menu-movel nav a[aria-current="page"] { color: var(--verde); }
+  .menu-movel .topo-cta { width: 100%; margin-top: 16px; padding: 14px 20px; font-size: 15.5px; }
+  body:has(#menu-movel:not([hidden])) .barra-contato { opacity: 0; pointer-events: none; }
+  .topo :focus-visible { outline: 2px solid var(--verde); outline-offset: 3px; border-radius: 8px; }
+  @media (min-width: 1024px) { .menu-movel { display: none !important; } }
+  @media (max-width: 1023px) {
+    .topo-nav { display: none; }
+    .topo-inner { grid-template-columns: 1fr auto; }
+    .topo-menu-btn { display: inline-flex; }
+  }
+  @media (max-width: 720px) {
+    .topo-inner { padding: 10px 16px; gap: 10px; }
+    .topo-logo img { height: 44px; }
+    .topo-acoes { gap: 8px; }
+    .topo-lang { display: none; }
+    .topo-acoes .topo-cta { padding: 10px 14px; font-size: 13.5px; }
+  }
+  @media (max-width: 340px) { .topo-acoes .topo-cta { display: none; } }
 
+  /* ============ RODAPÉ PADRÃO ============ */
+  .rodape { padding: 36px 0 40px; border-top: 1px solid var(--borda); font-family: var(--fonte); font-size: 14px; color: var(--suave); background: var(--branco); }
+  .rodape-grid { max-width: var(--max); margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 28px; }
+  .rodape p { margin: 0; }
+  .rodape nav { display: flex; flex-wrap: wrap; gap: 10px 22px; }
+  .rodape a { color: inherit; text-decoration: none; }
+  .rodape a:hover { color: var(--verde); }
+  .link-apresentacao {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 24px; height: 24px; margin-left: 6px; vertical-align: middle; border-radius: 50%;
+  }
+  .link-apresentacao::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--verde-claro); transition: transform 0.2s, background 0.2s; }
+  .link-apresentacao:hover::before { transform: scale(1.4); background: var(--verde); }
+  @media (max-width: 600px) { .rodape.com-barra { padding-bottom: 96px; } }
+
+  /* ============ LISTA DE ARTIGOS ============ */
+  .artigos-sec { padding: 24px 0 72px; }
+  .artigos { list-style: none; }
+  .artigo { border-bottom: 1px solid var(--borda); }
+  .artigo-link { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px; padding: 36px 0; }
+  .artigo-meta { font-size: 14px; color: var(--suave); line-height: 1.5; }
+  .artigo-tipo { display: block; font-weight: 600; color: var(--verde); margin-bottom: 2px; }
+  .artigo-meta time, .artigo-meta span { display: block; }
+  .artigo h2 { font-size: clamp(21px, 2.2vw, 27px); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 10px; transition: color 0.2s; }
+  .artigo-link:hover h2 { color: var(--verde); }
+  .artigo-resumo { color: var(--suave); max-width: 66ch; margin-bottom: 14px; }
+  .artigo-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .artigo-tags li { font-size: 13px; color: var(--texto); border: 1px solid var(--borda); border-radius: 999px; padding: 3px 11px; }
+  .artigo-ler { font-weight: 600; color: var(--verde); text-decoration: underline; text-underline-offset: 4px; }
+
+  .proximos { padding: 0 0 80px; }
+  .proximos-inner { border-top: 1px solid var(--borda); padding-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; }
+  .proximos h2 { font-size: 18px; letter-spacing: -0.01em; }
+  .proximos p { font-size: 15px; color: var(--suave); }
+  .proximos ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+  .proximos li { font-size: 14px; background: var(--nevoa); color: var(--verde-esc); padding: 6px 13px; border-radius: 999px; font-weight: 500; }
+
+  @media (max-width: 760px) {
+    .artigos-sec { padding: 8px 0 48px; }
+    .artigo-link { grid-template-columns: 1fr; gap: 10px; padding: 28px 0; }
+    .artigo-meta time, .artigo-meta span { display: inline; margin-right: 10px; }
+    .artigo-tipo { display: inline; }
+    .proximos { padding-bottom: 56px; }
+  }
   /* ====== BARRA DE CONTATO FIXA ====== */
-  /* No computador continua so a pilula do WhatsApp no canto. No celular
-     vira duas acoes lado a lado, porque o formulario fica no fim da pagina
-     e ninguem rola oito telas pra chegar nele. */
+  /* No computador fica so a pilula do WhatsApp no canto. No celular vira duas
+     acoes lado a lado, porque o formulario fica no fim da pagina. */
   .barra-contato {
     position: fixed; right: 20px; bottom: 20px; z-index: 150;
     display: flex; gap: 10px; align-items: stretch;
     transition: transform 0.25s, opacity 0.25s;
   }
   .barra-contato.escondido { opacity: 0; transform: translateY(16px); pointer-events: none; }
-  /* dentro da barra quem posiciona e a barra, nao o botao */
-  .barra-contato .whats-flutuante { position: static; right: auto; bottom: auto; }
-  .barra-texto-curto { display: none; }
-  .barra-form {
-    display: none; align-items: center; justify-content: center; gap: 8px;
-    padding: 13px 18px; border-radius: 999px;
-    background: var(--branco); color: var(--azul);
-    border: 1.5px solid var(--azul);
+  .whats-flutuante {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 20px 13px 16px; border-radius: 999px;
+    background: var(--verde); color: var(--branco);
     font-size: 14px; font-weight: 600; line-height: 1.25;
     box-shadow: 0 10px 28px rgba(0,0,0,0.18);
     transition: background 0.2s, transform 0.25s;
   }
-  .barra-form:hover { background: var(--azul-claro); transform: translateY(-2px); }
+  .whats-flutuante:hover { background: var(--verde-esc); transform: translateY(-2px); }
+  .whats-flutuante svg { width: 20px; height: 20px; flex-shrink: 0; }
+  .barra-texto-curto { display: none; }
+  .barra-form {
+    display: none; align-items: center; justify-content: center; gap: 8px;
+    padding: 13px 18px; border-radius: 999px;
+    background: var(--branco); color: var(--verde); border: 1.5px solid var(--verde);
+    font-size: 14px; font-weight: 600; line-height: 1.25;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+  }
   .barra-form svg { width: 17px; height: 17px; flex-shrink: 0; }
   @media (max-width: 600px) {
     .barra-contato { left: 12px; right: 12px; bottom: 12px; gap: 8px; }
-    .barra-contato .whats-flutuante { flex: 1 1 0; min-width: 0; }
+    .whats-flutuante { flex: 1 1 0; min-width: 0; justify-content: center; font-size: 13.5px; padding: 13px 10px; }
     .barra-form { display: flex; flex: 1 1 0; min-width: 0; font-size: 13.5px; padding: 13px 8px; }
     .barra-texto-longo { display: none; }
     .barra-texto-curto { display: inline; }
   }
-  @media (max-width: 360px) {
-    .barra-form { font-size: 12.5px; gap: 6px; }
-  }
-  .whats-flutuante svg { width: 20px; height: 20px; flex-shrink: 0; display: block; }
-  @media (max-width: 600px) {
-    .whats-flutuante { left: 12px; right: 12px; bottom: 12px; justify-content: center; text-align: center; font-size: 13px; gap: 8px; padding: 13px 12px; }
-  }
-  @media (max-width: 420px) {
-    .whats-flutuante { font-size: 12.5px; }
-    .footer { padding-bottom: 88px; }
+
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
   }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <a href="index.html" class="logo"><img src="logo-site.png" alt="PSFY"></a>
-  <div class="header-acoes">
-    <a href="index.html" class="voltar">← Voltar pro site</a>
-    <a href="en/blog.html" class="lang-switch" hreflang="en" lang="en" title="English version" aria-label="English version">
-      <svg viewBox="0 0 30 21" aria-hidden="true" focusable="false"><rect width="30" height="21" fill="#fff"/><path fill="#B22234" d="M0 0h30v1.62H0zM0 3.23h30v1.62H0zM0 6.46h30v1.62H0zM0 9.69h30v1.62H0zM0 12.92h30v1.62H0zM0 16.15h30v1.62H0zM0 19.38h30v1.62H0z"/><rect width="13" height="11.31" fill="#3C3B6E"/><g fill="#fff"><circle cx="2" cy="2" r=".55"/><circle cx="5" cy="2" r=".55"/><circle cx="8" cy="2" r=".55"/><circle cx="11" cy="2" r=".55"/><circle cx="3.5" cy="4.4" r=".55"/><circle cx="6.5" cy="4.4" r=".55"/><circle cx="9.5" cy="4.4" r=".55"/><circle cx="2" cy="6.8" r=".55"/><circle cx="5" cy="6.8" r=".55"/><circle cx="8" cy="6.8" r=".55"/><circle cx="11" cy="6.8" r=".55"/><circle cx="3.5" cy="9.2" r=".55"/><circle cx="6.5" cy="9.2" r=".55"/><circle cx="9.5" cy="9.2" r=".55"/></g></svg>
-      <span class="lang-switch-texto">EN</span>
-    </a>
-  </div>
-</div>
-
-<div class="wrap">
-
-  <div class="intro">
-    <div class="eyebrow">Blog</div>
-    <h1>Processos explicados de forma <span class="italic">simples</span></h1>
-    <p>Aqui a gente escreve sobre o que acontece de verdade dentro das operações, o que trava, o que dá pra automatizar e o que é melhor deixar como está.</p>
-  </div>
-
-  <div class="lista">
-
-    <a href="artigos/formulario-do-site-perdendo-leads.html" class="card">
-      <div class="card-meta">
-        <span class="card-categoria">Processos</span>
-        <span class="sep"></span>
-        <span>9 de outubro de 2026</span>
-        <span class="sep"></span>
-        <span>4 min de leitura</span>
-      </div>
-      <h2>O Google dizia 2 leads e o WhatsApp dizia 0</h2>
-      <p>Duas ferramentas mediam o mesmo evento e davam respostas diferentes. No meio estava um formul&aacute;rio que coletava os dados e jogava fora, sem dar erro em lugar nenhum.</p>
-      <div class="card-tags">
-        <span class="tag">Processos</span>
-        <span class="tag">Capta&ccedil;&atilde;o de leads</span>
-        <span class="tag">Indicadores</span>
-        <span class="tag">Integra&ccedil;&otilde;es</span>
-      </div>
-    </a>
-
-    <a href="artigos/processo-de-compras-wrental.html" class="card">
-      <div class="card-meta">
-        <span class="card-categoria">Caso real</span>
-        <span class="sep"></span>
-        <span>25 de setembro de 2026</span>
-        <span class="sep"></span>
-        <span>3 min de leitura</span>
-      </div>
-      <h2>6.016 pedidos em 18 meses, o processo de compras da Wrental</h2>
-      <p>A Wrental comprava por email e WhatsApp em 5 sedes. Hoje são 9 sedes num processo só, com 6.016 pedidos concluídos e 12 dias de lead time mediano.</p>
-      <div class="card-tags">
-        <span class="tag">Compras</span>
-        <span class="tag">Processos</span>
-        <span class="tag">Pipefy</span>
-        <span class="tag">Indicadores</span>
-      </div>
-    </a>
-
-    <a href="artigos/como-limpar-base-de-leads-com-ia.html" class="card">
-      <div class="card-meta">
-        <span class="card-categoria">Caso real</span>
-        <span class="sep"></span>
-        <span>18 de setembro de 2026</span>
-        <span class="sep"></span>
-        <span>3 min de leitura</span>
-      </div>
-      <h2>Como limpar uma base de leads bagunçada usando IA</h2>
-      <p>Numa concessionária multimarcas, cada vendedor cadastrava do seu jeito e o mesmo cliente aparecia três vezes. Em vez de limpar tudo à mão, a gente automatizou a entrada.</p>
-      <div class="card-tags">
-        <span class="tag">Qualidade de dados</span>
-        <span class="tag">IA aplicada</span>
-        <span class="tag">Pipefy</span>
-        <span class="tag">Automação comercial</span>
-      </div>
-    </a>
-
-    <a href="artigos/como-organizar-demandas-de-marketing.html" class="card">
-      <div class="card-meta">
-        <span class="card-categoria">Processos</span>
-        <span class="sep"></span>
-        <span>15 de setembro de 2026</span>
-        <span class="sep"></span>
-        <span>4 min de leitura</span>
-      </div>
-      <h2>Como organizar as demandas do marketing em um fluxo só</h2>
-      <p>Arte no WhatsApp, embalagem por email, urgente na mesa do designer. Ninguém sabe quantas demandas estão abertas. Isso não é falta de gente, é falta de estrutura.</p>
-      <div class="card-tags">
-        <span class="tag">Processos</span>
-        <span class="tag">Gestão de demandas</span>
-        <span class="tag">IA aplicada</span>
-        <span class="tag">Indicadores</span>
-      </div>
-    </a>
-
-  </div>
-
-  <div class="temas">
-    <h3>O que vem por aí</h3>
-    <p>Conteúdo novo toda semana</p>
-    <div class="chips">
-      <span class="chip">Processos e diagnóstico</span>
-      <span class="chip">IA aplicada</span>
-      <span class="chip">Pipefy</span>
-      <span class="chip">Miro</span>
-      <span class="chip">Integrações</span>
-      <span class="chip">Automação</span>
+<header class="topo">
+  <div class="topo-inner">
+    <a href="index.html" class="topo-logo"><img src="logo-site.png" alt="PSFY, página inicial" width="154" height="96"></a>
+    <nav class="topo-nav" aria-label="Menu principal">
+      <a href="index.html#casos">Casos</a>
+      <a href="index.html#como-funciona">Como funciona</a>
+      <a href="index.html#comecar">Como começar</a>
+      <a href="seguranca.html">Segurança</a>
+      <a href="blog.html" aria-current="page">Blog</a>
+    </nav>
+    <div class="topo-acoes">
+      <a href="en/blog.html" class="topo-lang" hreflang="en" lang="en" title="English version" aria-label="English version"><svg viewBox="0 0 30 21" aria-hidden="true" focusable="false"><rect width="30" height="21" fill="#fff"/><path fill="#B22234" d="M0 0h30v1.62H0zM0 3.23h30v1.62H0zM0 6.46h30v1.62H0zM0 9.69h30v1.62H0zM0 12.92h30v1.62H0zM0 16.15h30v1.62H0zM0 19.38h30v1.62H0z"/><rect width="13" height="11.31" fill="#3C3B6E"/><g fill="#fff"><circle cx="2" cy="2" r=".55"/><circle cx="5" cy="2" r=".55"/><circle cx="8" cy="2" r=".55"/><circle cx="11" cy="2" r=".55"/><circle cx="3.5" cy="4.4" r=".55"/><circle cx="6.5" cy="4.4" r=".55"/><circle cx="9.5" cy="4.4" r=".55"/><circle cx="2" cy="6.8" r=".55"/><circle cx="5" cy="6.8" r=".55"/><circle cx="8" cy="6.8" r=".55"/><circle cx="11" cy="6.8" r=".55"/><circle cx="3.5" cy="9.2" r=".55"/><circle cx="6.5" cy="9.2" r=".55"/><circle cx="9.5" cy="9.2" r=".55"/></g></svg><span>EN</span></a>
+      <a href="alinhamentos.html" class="topo-cta">Agendar conversa</a>
+      <button type="button" class="topo-menu-btn" aria-expanded="false" aria-controls="menu-movel" aria-label="Abrir menu">
+        <svg class="ic-abrir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="ic-fechar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
     </div>
   </div>
-
-  <div class="cta">
-    <h2>Quer resolver o <span class="italic">seu</span> processo?</h2>
-    <a href="alinhamentos.html" class="btn btn-primary">Agendar conversa</a>
+  <div class="menu-movel" id="menu-movel" hidden>
+    <nav aria-label="Menu principal no celular">
+      <a href="index.html#casos">Casos</a>
+      <a href="index.html#como-funciona">Como funciona</a>
+      <a href="index.html#comecar">Como começar</a>
+      <a href="seguranca.html">Segurança</a>
+      <a href="blog.html" aria-current="page">Blog</a>
+      <a href="en/blog.html" hreflang="en" lang="en">English version</a>
+    </nav>
+    <a href="alinhamentos.html" class="topo-cta">Agendar conversa</a>
   </div>
+</header>
 
-</div>
+<main>
+
+<section class="pagina-topo">
+  <div class="wrap">
+    <p class="tag">Blog</p>
+    <h1>Processos explicados de forma simples.</h1>
+    <p class="lead">Aqui a gente escreve sobre o que acontece de verdade dentro das operações, o que trava, o que dá pra automatizar e o que é melhor deixar como está.</p>
+  </div>
+</section>
+
+<section class="artigos-sec" aria-label="Artigos">
+  <div class="wrap">
+    <ol class="artigos">
+      <li class="artigo">
+        <a href="artigos/formulario-do-site-perdendo-leads.html" class="artigo-link">
+          <p class="artigo-meta"><span class="artigo-tipo">Processos</span><time datetime="2026-10-09">9 de outubro de 2026</time><span>4 min de leitura</span></p>
+          <div>
+            <h2>O Google dizia 2 leads e o WhatsApp dizia 0</h2>
+            <p class="artigo-resumo">Duas ferramentas mediam o mesmo evento e davam respostas diferentes. No meio estava um formulário que coletava os dados e jogava fora, sem dar erro em lugar nenhum.</p>
+            <ul class="artigo-tags"><li>Processos</li><li>Captação de leads</li><li>Indicadores</li><li>Integrações</li></ul>
+            <span class="artigo-ler">Ler o artigo</span>
+          </div>
+        </a>
+      </li>
+      <li class="artigo">
+        <a href="artigos/processo-de-compras-wrental.html" class="artigo-link">
+          <p class="artigo-meta"><span class="artigo-tipo">Caso real</span><time datetime="2026-09-25">25 de setembro de 2026</time><span>3 min de leitura</span></p>
+          <div>
+            <h2>6.016 pedidos em 18 meses, o processo de compras da Wrental</h2>
+            <p class="artigo-resumo">A Wrental comprava por email e WhatsApp em 5 sedes. Hoje são 9 sedes num processo só, com 6.016 pedidos concluídos e 12 dias de lead time mediano.</p>
+            <ul class="artigo-tags"><li>Compras</li><li>Processos</li><li>Pipefy</li><li>Indicadores</li></ul>
+            <span class="artigo-ler">Ler o artigo</span>
+          </div>
+        </a>
+      </li>
+      <li class="artigo">
+        <a href="artigos/como-limpar-base-de-leads-com-ia.html" class="artigo-link">
+          <p class="artigo-meta"><span class="artigo-tipo">Caso real</span><time datetime="2026-09-18">18 de setembro de 2026</time><span>3 min de leitura</span></p>
+          <div>
+            <h2>Como limpar uma base de leads bagunçada usando IA</h2>
+            <p class="artigo-resumo">Numa concessionária multimarcas, cada vendedor cadastrava do seu jeito e o mesmo cliente aparecia três vezes. Em vez de limpar tudo à mão, a gente automatizou a entrada.</p>
+            <ul class="artigo-tags"><li>Qualidade de dados</li><li>IA aplicada</li><li>Pipefy</li><li>Automação comercial</li></ul>
+            <span class="artigo-ler">Ler o artigo</span>
+          </div>
+        </a>
+      </li>
+      <li class="artigo">
+        <a href="artigos/como-organizar-demandas-de-marketing.html" class="artigo-link">
+          <p class="artigo-meta"><span class="artigo-tipo">Processos</span><time datetime="2026-09-15">15 de setembro de 2026</time><span>4 min de leitura</span></p>
+          <div>
+            <h2>Como organizar as demandas do marketing em um fluxo só</h2>
+            <p class="artigo-resumo">Arte no WhatsApp, embalagem por email, urgente na mesa do designer. Ninguém sabe quantas demandas estão abertas. Isso não é falta de gente, é falta de estrutura.</p>
+            <ul class="artigo-tags"><li>Processos</li><li>Gestão de demandas</li><li>IA aplicada</li><li>Indicadores</li></ul>
+            <span class="artigo-ler">Ler o artigo</span>
+          </div>
+        </a>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="proximos" aria-label="Próximos temas">
+  <div class="wrap proximos-inner">
+    <div><h2>O que vem por aí</h2><p>Conteúdo novo toda semana</p></div>
+    <ul><li>Processos e diagnóstico</li><li>IA aplicada</li><li>Pipefy</li><li>Miro</li><li>Integrações</li><li>Automação</li></ul>
+  </div>
+</section>
+
+<section class="duvida">
+  <div class="wrap duvida-inner">
+    <div>
+      <h2 class="titulo-secao">Quer resolver o seu processo?</h2>
+      <p>A primeira conversa leva 30 minutos e é sem compromisso.</p>
+    </div>
+    <div class="duvida-acoes" data-esconde-flutuante>
+      <a href="https://wa.me/5541995041300?text=Ol%C3%A1%2C%20Henrique!%20Vim%20pelo%20site%20da%20PSFY%20e%20quero%20organizar%20um%20processo%20aqui%20da%20empresa." class="btn btn-primario" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Chamar no WhatsApp</a>
+      <a href="alinhamentos.html" class="btn btn-secundario">Agendar conversa</a>
+    </div>
+  </div>
+</section>
 
 <!-- ====== CAPTURA PSFY ====== -->
 <style>
   .psfy-cap {
-    padding: 72px 24px;
-    background: var(--azul-claro, #e4efe7);
-    font-family: var(--font-sans, 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif);
+    padding: 88px 0;
+    background: var(--nevoa, #e4efe7);
+    font-family: var(--fonte, 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif);
     color: var(--preto, #000);
   }
   .psfy-cap * { box-sizing: border-box; }
   .psfy-cap-inner {
-    max-width: 920px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1.15fr; gap: 48px; align-items: start;
+    max-width: var(--max, 1160px); margin: 0 auto; padding: 0 24px;
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: start;
   }
-  .psfy-cap-eyebrow {
-    font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--azul, #336140); margin-bottom: 14px;
-  }
+  .psfy-cap-quem { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .psfy-cap-quem img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid var(--branco, #fff); }
+  .psfy-cap-quem span { font-size: 14px; line-height: 1.35; color: var(--suave, #5f655d); }
+  .psfy-cap-quem strong { display: block; color: var(--preto, #000); font-size: 15px; }
   .psfy-cap h2 {
-    font-size: clamp(24px, 3vw, 32px); font-weight: 700; line-height: 1.15;
-    letter-spacing: -0.02em; margin: 0 0 14px; color: var(--preto, #000);
+    font-size: clamp(26px, 3vw, 36px); font-weight: 700; line-height: 1.1;
+    letter-spacing: -0.03em; margin: 0 0 14px; color: var(--preto, #000);
   }
-  .psfy-cap h2 em { font-style: italic; font-weight: 400; color: var(--azul, #336140); }
-  .psfy-cap-texto p { font-size: 15px; line-height: 1.65; color: var(--cinza-texto, #6b6b6b); margin: 0 0 20px; }
+  .psfy-cap-texto p { font-size: 16px; line-height: 1.65; color: var(--suave, #5f655d); margin: 0 0 20px; }
   .psfy-cap-bullets { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
   .psfy-cap-bullets li {
     display: flex; align-items: flex-start; gap: 10px;
-    font-size: 14px; line-height: 1.5; color: var(--cinza-texto, #6b6b6b);
+    font-size: 15px; line-height: 1.5; color: var(--texto, #2c2c2c);
   }
   .psfy-cap-bullets li::before {
     content: ''; width: 7px; height: 7px; border-radius: 50%;
-    background: var(--verde-claro, #74B872); flex-shrink: 0; margin-top: 7px;
+    background: var(--verde, #336140); flex-shrink: 0; margin-top: 8px;
   }
   .psfy-cap-card {
-    background: var(--branco, #fff); border: 1px solid var(--cinza-borda, #e5e5e5);
-    border-radius: var(--radius-lg, 20px); padding: 32px 30px;
+    background: var(--branco, #fff); border: 1px solid var(--borda, #e1e6df);
+    border-radius: var(--raio-g, 20px); padding: 32px 30px;
     box-shadow: 0 12px 32px rgba(0,0,0,0.05);
   }
   .psfy-cap-grupo { margin-bottom: 16px; }
@@ -400,55 +437,55 @@
   .psfy-cap-label {
     display: block; font-size: 14px; font-weight: 500; margin-bottom: 7px; color: var(--preto, #000);
   }
-  .psfy-cap-label span { font-weight: 400; color: var(--cinza-texto, #6b6b6b); font-size: 13px; }
-  .psfy-cap-label b { color: var(--azul, #336140); font-weight: 700; }
+  .psfy-cap-label span { font-weight: 400; color: var(--suave, #5f655d); font-size: 13px; }
+  .psfy-cap-label b { color: var(--verde, #336140); font-weight: 700; }
   .psfy-cap input, .psfy-cap textarea {
     width: 100%; padding: 12px 15px;
-    border: 1px solid var(--cinza-borda, #e5e5e5); border-radius: var(--radius, 12px);
-    font-family: inherit; font-size: 15px; color: var(--preto, #000);
+    border: 1px solid var(--borda, #e1e6df); border-radius: var(--raio, 12px);
+    font-family: inherit; font-size: 16px; color: var(--preto, #000);
     background: var(--branco, #fff);
     transition: border-color 0.2s, box-shadow 0.2s;
   }
   .psfy-cap input:focus, .psfy-cap textarea:focus {
-    outline: none; border-color: var(--azul, #336140);
-    box-shadow: 0 0 0 3px rgba(51,97,64,0.12);
+    outline: none; border-color: var(--verde, #336140);
+    box-shadow: 0 0 0 3px rgba(51,97,64,0.14);
   }
   .psfy-cap textarea { resize: vertical; min-height: 84px; }
-  .psfy-cap-erro { color: #c0392b; font-size: 13px; margin-top: 6px; display: none; }
+  .psfy-cap-erro { color: #b3392b; font-size: 13px; margin-top: 6px; display: none; }
   .psfy-cap-erro.visivel { display: block; }
   .psfy-cap-botao {
     width: 100%; padding: 15px 24px; border: 0; border-radius: 999px;
-    background: var(--azul, #336140); color: var(--branco, #fff);
-    font-family: inherit; font-size: 15px; font-weight: 500; cursor: pointer;
+    background: var(--verde, #336140); color: var(--branco, #fff);
+    font-family: inherit; font-size: 15.5px; font-weight: 600; cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
   }
   .psfy-cap-botao:hover:not(:disabled) {
-    background: var(--azul-hover, #274d33); transform: translateY(-1px);
+    background: var(--verde-esc, #274d33); transform: translateY(-1px);
     box-shadow: 0 8px 20px rgba(51,97,64,0.25);
   }
   .psfy-cap-botao:disabled { opacity: 0.6; cursor: default; transform: none; box-shadow: none; }
-  .psfy-cap-aviso { font-size: 12.5px; color: var(--cinza-texto, #6b6b6b); text-align: center; margin: 14px 0 0; line-height: 1.5; }
+  .psfy-cap-aviso { font-size: 12.5px; color: var(--suave, #5f655d); text-align: center; margin: 14px 0 0; line-height: 1.5; }
   .psfy-cap-armadilha { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
   .psfy-cap-ok { display: none; text-align: center; padding: 8px 0; }
   .psfy-cap-ok.visivel { display: block; }
   .psfy-cap-ok-icone {
     width: 54px; height: 54px; margin: 0 auto 16px; border-radius: 50%;
-    background: var(--azul-claro, #e4efe7); color: var(--azul, #336140);
+    background: var(--nevoa, #e4efe7); color: var(--verde, #336140);
     display: grid; place-items: center;
   }
   .psfy-cap-ok-icone svg { width: 26px; height: 26px; display: block; }
   .psfy-cap-ok h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 8px; color: var(--preto, #000); }
-  .psfy-cap-ok p { font-size: 14.5px; line-height: 1.6; color: var(--cinza-texto, #6b6b6b); margin: 0 0 20px; }
+  .psfy-cap-ok p { font-size: 14.5px; line-height: 1.6; color: var(--suave, #5f655d); margin: 0 0 20px; }
   .psfy-cap-ok a {
     display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px;
-    border-radius: 999px; border: 1px solid var(--azul, #336140);
-    color: var(--azul, #336140); font-size: 14px; font-weight: 500; text-decoration: none;
+    border-radius: 999px; border: 1px solid var(--verde, #336140);
+    color: var(--verde, #336140); font-size: 14px; font-weight: 500; text-decoration: none;
     transition: background 0.2s, color 0.2s;
   }
-  .psfy-cap-ok a:hover { background: var(--azul, #336140); color: var(--branco, #fff); }
+  .psfy-cap-ok a:hover { background: var(--verde, #336140); color: var(--branco, #fff); }
   .psfy-cap-ok a svg { width: 17px; height: 17px; flex-shrink: 0; display: block; }
   @media (max-width: 820px) {
-    .psfy-cap { padding: 56px 20px; }
+    .psfy-cap { padding: 64px 0; }
     .psfy-cap-inner { grid-template-columns: 1fr; gap: 30px; }
     .psfy-cap-card { padding: 26px 22px; }
   }
@@ -458,8 +495,11 @@
   <div class="psfy-cap-inner">
 
     <div class="psfy-cap-texto">
-      <div class="psfy-cap-eyebrow">Fale com a gente</div>
-      <h2>Conta o que está <em>travando</em> hoje</h2>
+      <div class="psfy-cap-quem">
+        <img src="henrique-perfil.jpg" alt="" width="52" height="52" loading="lazy" decoding="async">
+        <span><strong>Henrique Sofiati</strong>Fundador da PSFY</span>
+      </div>
+      <h2>Conta o que está travando hoje</h2>
       <p>Deixa seu contato que eu te chamo. Quem responde sou eu, o Henrique, fundador da PSFY.</p>
       <ul class="psfy-cap-bullets">
         <li>Resposta no mesmo dia</li>
@@ -536,6 +576,7 @@
       return sessionStorage.getItem('psfy_gclid') || daUrl;
     } catch (e) { return daUrl; }
   }
+  gclid();
 
   // Formata o telefone enquanto digita, so visual
   campoFone.addEventListener('input', function () {
@@ -607,21 +648,33 @@
 })();
 </script>
 <!-- ====== FIM CAPTURA PSFY ====== -->
+</main>
 
-<footer class="footer">PSFY — Processos Simples</footer>
+<footer class="rodape com-barra">
+  <div class="rodape-grid">
+    <p>PSFY. Processos Simples<a href="apresentacao.html" class="link-apresentacao" aria-label="Abrir a apresentação" title="Apresentação"></a></p>
+    <nav aria-label="Links do rodapé">
+      <a href="seguranca.html">Segurança e compliance</a>
+      <a href="blog.html">Blog</a>
+      <a href="alinhamentos.html">Agendar conversa</a>
+      <a href="en/blog.html" hreflang="en" lang="en">English</a>
+      <a href="mailto:contato@psfy.com.br">contato@psfy.com.br</a>
+    </nav>
+  </div>
+</footer>
 
-<div class="barra-contato">
-<a href="https://wa.me/5541995041300?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20PSFY%20e%20quero%20falar%20com%20um%20especialista." class="whats-flutuante" target="_blank" rel="noopener">
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  <span class="barra-texto-longo">Fale com um especialista no mesmo dia</span><span class="barra-texto-curto">WhatsApp</span>
-</a>
+<div class="barra-contato escondido">
+  <a href="https://wa.me/5541995041300?text=Ol%C3%A1%2C%20Henrique!%20Vim%20pelo%20site%20da%20PSFY%20e%20quero%20organizar%20um%20processo%20aqui%20da%20empresa." class="whats-flutuante" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span class="barra-texto-longo">Falar com o Henrique no WhatsApp</span><span class="barra-texto-curto">WhatsApp</span>
+  </a>
   <a href="#contato" class="barra-form"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg><span>Deixar contato</span></a>
 </div>
 
 <script>
 // ===== BARRA DE CONTATO =====
-// O formulario fica no fim da pagina. No celular ninguem rola ate la,
-// entao a barra fixa leva nele num toque.
+// Aparece depois que os botões do topo saem da tela e some quando o formulário
+// está visível, pra não cobrir o botão de enviar no celular.
 (function () {
   var barra = document.querySelector('.barra-contato');
   if (!barra) return;
@@ -631,19 +684,40 @@
   if (irForm && destino) {
     irForm.addEventListener('click', function (e) {
       e.preventDefault();
-      // quem pediu menos animacao no sistema recebe salto seco
-      var suave = !(window.matchMedia &&
-                    window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+      var suave = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
       destino.scrollIntoView({ behavior: suave ? 'smooth' : 'auto', block: 'start' });
     });
   }
 
-  // some enquanto o bloco de CTA do topo esta na tela, pra nao repetir o botao
-  var alvo = document.querySelector('[data-esconde-flutuante]');
-  if (!alvo || !('IntersectionObserver' in window)) { barra.classList.remove('escondido'); return; }
-  new IntersectionObserver(function (entradas) {
-    barra.classList.toggle('escondido', entradas[0].isIntersecting);
-  }).observe(alvo);
+  var topo = document.querySelector('[data-esconde-flutuante]');
+  if (!topo || !destino || !('IntersectionObserver' in window)) { barra.classList.remove('escondido'); return; }
+  var visivel = { topo: true, form: false };
+  function aplicar() { barra.classList.toggle('escondido', visivel.topo || visivel.form); }
+  new IntersectionObserver(function (e) { visivel.topo = e[0].isIntersecting; aplicar(); }).observe(topo);
+  new IntersectionObserver(function (e) { visivel.form = e[0].isIntersecting; aplicar(); }, { threshold: 0.25 }).observe(destino);
+})();
+</script>
+<script>
+// ===== MENU DO CELULAR =====
+(function () {
+  var botao = document.querySelector('.topo-menu-btn');
+  var menu = document.getElementById('menu-movel');
+  if (!botao || !menu) return;
+  function fechar() {
+    menu.hidden = true;
+    botao.setAttribute('aria-expanded', 'false');
+    botao.setAttribute('aria-label', 'Abrir menu');
+  }
+  botao.addEventListener('click', function () {
+    var abrir = menu.hidden;
+    menu.hidden = !abrir;
+    botao.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+    botao.setAttribute('aria-label', abrir ? 'Fechar menu' : 'Abrir menu');
+  });
+  menu.addEventListener('click', function (e) { if (e.target.closest('a')) fechar(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !menu.hidden) { fechar(); botao.focus(); }
+  });
 })();
 </script>
 

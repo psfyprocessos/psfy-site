@@ -43,16 +43,28 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PSFY | Agendar alinhamento</title>
+<title>PSFY | Agendar conversa</title>
 <meta name="description" content="Agende uma conversa de 30 minutos com a PSFY. Três passos rápidos e a gente confirma o horário pelo WhatsApp.">
 <link rel="icon" type="image/png" href="favicon.png">
+<link rel="canonical" href="https://www.psfy.com.br/alinhamentos.html">
+<meta name="theme-color" content="#336140">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PSFY | Agendar conversa">
+<meta property="og:description" content="Agende uma conversa de 30 minutos com a PSFY. Três passos rápidos e a gente confirma o horário pelo WhatsApp.">
+<meta property="og:url" content="https://www.psfy.com.br/alinhamentos.html">
+<meta property="og:image" content="https://www.psfy.com.br/og-psfy.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="PSFY">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="alternate" hreflang="pt-BR" href="https://www.psfy.com.br/alinhamentos.html">
 <link rel="alternate" hreflang="en" href="https://www.psfy.com.br/en/alinhamentos.html">
 <link rel="alternate" hreflang="x-default" href="https://www.psfy.com.br/alinhamentos.html">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 
 <style>
   :root {
@@ -214,6 +226,141 @@
     .passo-acoes .btn { width: 100%; }
   }
 </style>
+<style>
+  :root {
+    --verde: #336140;
+    --verde-esc: #274d33;
+    --verde-claro: #74B872;
+    --nevoa: #e4efe7;
+    --nevoa-2: #f4f7f3;
+    --branco: #ffffff;
+    --preto: #000000;
+    --texto: #2c2c2c;
+    --suave: #5f655d;
+    --borda: #e1e6df;
+    --marrom: #4D2E26;
+    --fonte: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --max: 1160px;
+    --raio: 12px;
+    --raio-g: 20px;
+  }
+
+  /* ============ CABEÇALHO PADRÃO ============ */
+  .topo {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--borda);
+    font-family: var(--fonte);
+  }
+  .topo-inner {
+    max-width: var(--max); margin: 0 auto; padding: 12px 24px;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px;
+  }
+  .topo-logo { justify-self: start; display: block; }
+  .topo-logo img { height: 60px; width: auto; display: block; }
+  .topo-nav { display: flex; align-items: center; gap: 26px; justify-self: center; }
+  .topo-nav a { font-size: 14.5px; color: #3d3d3d; text-decoration: none; transition: color 0.2s; }
+  .topo-nav a:hover { color: var(--verde); }
+  .topo-nav a[aria-current="page"] { color: var(--verde); font-weight: 600; }
+  .topo-acoes { justify-self: end; display: flex; align-items: center; gap: 10px; }
+  .topo-lang {
+    display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px 7px 9px; border-radius: 999px;
+    border: 1px solid var(--borda); background: var(--branco); text-decoration: none;
+    font-size: 13px; font-weight: 500; line-height: 1; color: var(--preto);
+  }
+  .topo-lang:hover { border-color: var(--verde); }
+  .topo-lang svg { width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); flex-shrink: 0; display: block; }
+  .topo-cta {
+    display: inline-flex; align-items: center; justify-content: center; padding: 11px 20px; border-radius: 999px;
+    background: var(--verde); color: var(--branco); text-decoration: none; white-space: nowrap;
+    font-family: var(--fonte); font-size: 14px; font-weight: 600; line-height: 1.2;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .topo-cta:hover { background: var(--verde-esc); transform: translateY(-1px); }
+  .topo-menu-btn {
+    display: none; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px;
+    border: 1px solid var(--borda); background: var(--branco); color: var(--preto); cursor: pointer;
+  }
+  .topo-menu-btn svg { width: 22px; height: 22px; display: block; }
+  .topo-menu-btn .ic-fechar { display: none; }
+  .topo-menu-btn[aria-expanded="true"] .ic-abrir { display: none; }
+  .topo-menu-btn[aria-expanded="true"] .ic-fechar { display: block; }
+  .menu-movel { border-top: 1px solid var(--borda); background: var(--branco); padding: 4px 20px 20px; }
+  .menu-movel[hidden] { display: none; }
+  .menu-movel nav { display: grid; }
+  .menu-movel nav a {
+    display: block; padding: 14px 2px; border-bottom: 1px solid var(--borda); text-decoration: none;
+    font-size: 17px; font-weight: 500; color: var(--preto);
+  }
+  .menu-movel nav a[aria-current="page"] { color: var(--verde); }
+  .menu-movel .topo-cta { width: 100%; margin-top: 16px; padding: 14px 20px; font-size: 15.5px; }
+  body:has(#menu-movel:not([hidden])) .barra-contato { opacity: 0; pointer-events: none; }
+  .topo :focus-visible { outline: 2px solid var(--verde); outline-offset: 3px; border-radius: 8px; }
+  @media (min-width: 1024px) { .menu-movel { display: none !important; } }
+  @media (max-width: 1023px) {
+    .topo-nav { display: none; }
+    .topo-inner { grid-template-columns: 1fr auto; }
+    .topo-menu-btn { display: inline-flex; }
+  }
+  @media (max-width: 720px) {
+    .topo-inner { padding: 10px 16px; gap: 10px; }
+    .topo-logo img { height: 44px; }
+    .topo-acoes { gap: 8px; }
+    .topo-lang { display: none; }
+    .topo-acoes .topo-cta { padding: 10px 14px; font-size: 13.5px; }
+  }
+  @media (max-width: 340px) { .topo-acoes .topo-cta { display: none; } }
+
+  /* ============ RODAPÉ PADRÃO ============ */
+  .rodape { padding: 36px 0 40px; border-top: 1px solid var(--borda); font-family: var(--fonte); font-size: 14px; color: var(--suave); background: var(--branco); }
+  .rodape-grid { max-width: var(--max); margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 28px; }
+  .rodape p { margin: 0; }
+  .rodape nav { display: flex; flex-wrap: wrap; gap: 10px 22px; }
+  .rodape a { color: inherit; text-decoration: none; }
+  .rodape a:hover { color: var(--verde); }
+  .link-apresentacao {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 24px; height: 24px; margin-left: 6px; vertical-align: middle; border-radius: 50%;
+  }
+  .link-apresentacao::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--verde-claro); transition: transform 0.2s, background 0.2s; }
+  .link-apresentacao:hover::before { transform: scale(1.4); background: var(--verde); }
+  @media (max-width: 600px) { .rodape.com-barra { padding-bottom: 96px; } }
+
+  /* ===== Padrão novo do site (vem depois do CSS antigo, então prevalece) ===== */
+  body { font-family: var(--fonte); color: var(--texto); }
+  h1, h2, h3 { color: var(--preto); }
+  .italic { font-style: normal; font-weight: inherit; color: inherit; }
+  .quem-conversa { display: flex; align-items: center; gap: 12px; margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--borda); text-align: left; }
+  .quem-conversa img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex-shrink: 0; display: block; }
+  .quem-conversa strong { display: block; color: var(--preto); font-size: 15px; font-weight: 600; }
+  .quem-conversa span { display: block; font-size: 14px; color: var(--suave); line-height: 1.4; }
+  .atalho-rotulo { text-align: left; }
+  .steps { justify-content: flex-start; scroll-margin-top: 100px; }
+
+  .wrap {
+    max-width: var(--max); padding: 56px 24px 96px;
+    display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    grid-template-areas: "intro steps" "intro form"; grid-template-rows: auto 1fr;
+    column-gap: 64px; align-items: start;
+  }
+  .intro { grid-area: intro; text-align: left; max-width: none; margin: 0; position: sticky; top: 108px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 9px; margin-bottom: 18px;
+    font-size: 14.5px; font-weight: 500; letter-spacing: normal; text-transform: none; color: var(--verde);
+  }
+  .eyebrow::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--verde-claro); box-shadow: 0 0 0 4px rgba(116,184,114,0.2); }
+  .intro h1 { font-size: clamp(32px, 3.6vw, 48px); line-height: 1.05; letter-spacing: -0.028em; margin-bottom: 16px; }
+  .intro > p { font-size: 17px; line-height: 1.6; color: var(--suave); }
+  .steps { grid-area: steps; margin: 0 0 20px; }
+  .form { grid-area: form; max-width: none; margin: 0; }
+  .passo { border-color: var(--borda); }
+  @media (max-width: 900px) {
+    .wrap { grid-template-columns: 1fr; grid-template-areas: "intro" "steps" "form"; padding-top: 32px; }
+    .intro { position: static; margin-bottom: 32px; }
+  }
+  @media (max-width: 560px) { .passo { padding: 26px 20px; } }
+</style>
 <script>
 /* Envia os dados do formulario pra Make antes de abrir o WhatsApp.
    Assim o lead fica salvo mesmo que a pessoa nao aperte enviar la dentro. */
@@ -265,24 +412,49 @@ window.psfyMascaraFone = function (campo) {
 </head>
 <body>
 
-<div class="header">
-  <a href="index.html" class="logo"><img src="logo-site.png" alt="PSFY"></a>
-  <div class="header-acoes">
-    <a href="index.html" class="voltar">← Voltar pro site</a>
-    <a href="en/alinhamentos.html" class="lang-switch" hreflang="en" lang="en" title="English version" aria-label="English version">
-      <svg viewBox="0 0 30 21" aria-hidden="true" focusable="false"><rect width="30" height="21" fill="#fff"/><path fill="#B22234" d="M0 0h30v1.62H0zM0 3.23h30v1.62H0zM0 6.46h30v1.62H0zM0 9.69h30v1.62H0zM0 12.92h30v1.62H0zM0 16.15h30v1.62H0zM0 19.38h30v1.62H0z"/><rect width="13" height="11.31" fill="#3C3B6E"/><g fill="#fff"><circle cx="2" cy="2" r=".55"/><circle cx="5" cy="2" r=".55"/><circle cx="8" cy="2" r=".55"/><circle cx="11" cy="2" r=".55"/><circle cx="3.5" cy="4.4" r=".55"/><circle cx="6.5" cy="4.4" r=".55"/><circle cx="9.5" cy="4.4" r=".55"/><circle cx="2" cy="6.8" r=".55"/><circle cx="5" cy="6.8" r=".55"/><circle cx="8" cy="6.8" r=".55"/><circle cx="11" cy="6.8" r=".55"/><circle cx="3.5" cy="9.2" r=".55"/><circle cx="6.5" cy="9.2" r=".55"/><circle cx="9.5" cy="9.2" r=".55"/></g></svg>
-      <span class="lang-switch-texto">EN</span>
-    </a>
+<header class="topo">
+  <div class="topo-inner">
+    <a href="index.html" class="topo-logo"><img src="logo-site.png" alt="PSFY, página inicial" width="154" height="96"></a>
+    <nav class="topo-nav" aria-label="Menu principal">
+      <a href="index.html#casos">Casos</a>
+      <a href="index.html#como-funciona">Como funciona</a>
+      <a href="index.html#comecar">Como começar</a>
+      <a href="seguranca.html">Segurança</a>
+      <a href="blog.html">Blog</a>
+    </nav>
+    <div class="topo-acoes">
+      <a href="en/alinhamentos.html" class="topo-lang" hreflang="en" lang="en" title="English version" aria-label="English version"><svg viewBox="0 0 30 21" aria-hidden="true" focusable="false"><rect width="30" height="21" fill="#fff"/><path fill="#B22234" d="M0 0h30v1.62H0zM0 3.23h30v1.62H0zM0 6.46h30v1.62H0zM0 9.69h30v1.62H0zM0 12.92h30v1.62H0zM0 16.15h30v1.62H0zM0 19.38h30v1.62H0z"/><rect width="13" height="11.31" fill="#3C3B6E"/><g fill="#fff"><circle cx="2" cy="2" r=".55"/><circle cx="5" cy="2" r=".55"/><circle cx="8" cy="2" r=".55"/><circle cx="11" cy="2" r=".55"/><circle cx="3.5" cy="4.4" r=".55"/><circle cx="6.5" cy="4.4" r=".55"/><circle cx="9.5" cy="4.4" r=".55"/><circle cx="2" cy="6.8" r=".55"/><circle cx="5" cy="6.8" r=".55"/><circle cx="8" cy="6.8" r=".55"/><circle cx="11" cy="6.8" r=".55"/><circle cx="3.5" cy="9.2" r=".55"/><circle cx="6.5" cy="9.2" r=".55"/><circle cx="9.5" cy="9.2" r=".55"/></g></svg><span>EN</span></a>
+      <a href="alinhamentos.html" class="topo-cta">Agendar conversa</a>
+      <button type="button" class="topo-menu-btn" aria-expanded="false" aria-controls="menu-movel" aria-label="Abrir menu">
+        <svg class="ic-abrir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="ic-fechar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
   </div>
-</div>
+  <div class="menu-movel" id="menu-movel" hidden>
+    <nav aria-label="Menu principal no celular">
+      <a href="index.html#casos">Casos</a>
+      <a href="index.html#como-funciona">Como funciona</a>
+      <a href="index.html#comecar">Como começar</a>
+      <a href="seguranca.html">Segurança</a>
+      <a href="blog.html">Blog</a>
+      <a href="en/alinhamentos.html" hreflang="en" lang="en">English version</a>
+    </nav>
+    <a href="alinhamentos.html" class="topo-cta">Agendar conversa</a>
+  </div>
+</header>
 
 <div class="wrap">
   <div class="intro">
-    <div class="eyebrow">Agendar alinhamento</div>
-    <h1>Vamos entender seu <span class="italic">processo</span></h1>
+    <div class="eyebrow">Agendar conversa</div>
+    <h1>Vamos entender o seu processo.</h1>
     <p>Uma conversa de 30 minutos, sem compromisso, pra entender onde seu processo trava e se faz sentido seguir junto. São três passos rápidos e a gente confirma o horário pelo WhatsApp.</p>
+    <div class="quem-conversa">
+      <img src="henrique-perfil.jpg" alt="" width="52" height="52">
+      <div><strong>Quem conversa com você é o Henrique</strong><span>Fundador da PSFY e ex-Pipefy. Resposta no mesmo dia.</span></div>
+    </div>
     <span class="atalho-rotulo">Com pressa?</span>
-    <a href="https://wa.me/5541995041300?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20PSFY%20e%20quero%20falar%20com%20um%20especialista." class="atalho" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Fale com um especialista no mesmo dia</a>
+    <a href="https://wa.me/5541995041300?text=Ol%C3%A1%2C%20Henrique!%20Vim%20pelo%20site%20da%20PSFY%20e%20quero%20organizar%20um%20processo%20aqui%20da%20empresa." class="atalho" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Chamar no WhatsApp agora</a>
   </div>
 
   <div class="steps" aria-hidden="true">
@@ -312,7 +484,7 @@ window.psfyMascaraFone = function (campo) {
         <textarea class="form-textarea" id="contexto" placeholder="Ex: hoje os pedidos chegam pelo WhatsApp e a gente copia tudo pra uma planilha..."></textarea>
       </div>
       <div class="passo-acoes">
-        <button type="button" class="btn btn-primary" data-ir="2">Continuar →</button>
+        <button type="button" class="btn btn-primary" data-ir="2">Continuar</button>
       </div>
     </section>
 
@@ -342,8 +514,8 @@ window.psfyMascaraFone = function (campo) {
       </div>
       <p class="fuso">Horários no seu fuso, <strong id="fuso-nome">America/Sao_Paulo</strong></p>
       <div class="passo-acoes">
-        <button type="button" class="btn-voltar" data-ir="1">← Voltar</button>
-        <button type="button" class="btn btn-primary" data-ir="3">Continuar →</button>
+        <button type="button" class="btn-voltar" data-ir="1">Voltar</button>
+        <button type="button" class="btn btn-primary" data-ir="3">Continuar</button>
       </div>
     </section>
 
@@ -370,8 +542,8 @@ window.psfyMascaraFone = function (campo) {
         <input type="email" class="form-input" id="email" autocomplete="email" placeholder="seu@email.com">
       </div>
       <div class="passo-acoes">
-        <button type="button" class="btn-voltar" data-ir="2">← Voltar</button>
-        <button type="submit" class="btn btn-primary">Enviar pelo WhatsApp →</button>
+        <button type="button" class="btn-voltar" data-ir="2">Voltar</button>
+        <button type="submit" class="btn btn-primary">Enviar pelo WhatsApp</button>
       </div>
       <p class="aviso">Ao clicar, abrimos o WhatsApp com a sua mensagem pronta. É só apertar enviar.</p>
       <p class="enviado" id="enviado" hidden>Pronto! Se o WhatsApp não abriu, <a id="link-reenvio" href="#" target="_blank" rel="noopener">clique aqui</a>.</p>
@@ -380,7 +552,18 @@ window.psfyMascaraFone = function (campo) {
   </form>
 </div>
 
-<footer class="footer">PSFY — Processos Simples</footer>
+<footer class="rodape">
+  <div class="rodape-grid">
+    <p>PSFY. Processos Simples<a href="apresentacao.html" class="link-apresentacao" aria-label="Abrir a apresentação" title="Apresentação"></a></p>
+    <nav aria-label="Links do rodapé">
+      <a href="seguranca.html">Segurança e compliance</a>
+      <a href="blog.html">Blog</a>
+      <a href="alinhamentos.html">Agendar conversa</a>
+      <a href="en/alinhamentos.html" hreflang="en" lang="en">English</a>
+      <a href="mailto:contato@psfy.com.br">contato@psfy.com.br</a>
+    </nav>
+  </div>
+</footer>
 
 <script>
 (function () {
@@ -503,6 +686,30 @@ window.psfyMascaraFone = function (campo) {
     document.getElementById('link-reenvio').href = url;
     document.getElementById('enviado').hidden = false;
     window.open(url, '_blank');
+  });
+})();
+</script>
+
+<script>
+// ===== MENU DO CELULAR =====
+(function () {
+  var botao = document.querySelector('.topo-menu-btn');
+  var menu = document.getElementById('menu-movel');
+  if (!botao || !menu) return;
+  function fechar() {
+    menu.hidden = true;
+    botao.setAttribute('aria-expanded', 'false');
+    botao.setAttribute('aria-label', 'Abrir menu');
+  }
+  botao.addEventListener('click', function () {
+    var abrir = menu.hidden;
+    menu.hidden = !abrir;
+    botao.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+    botao.setAttribute('aria-label', abrir ? 'Fechar menu' : 'Abrir menu');
+  });
+  menu.addEventListener('click', function (e) { if (e.target.closest('a')) fechar(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !menu.hidden) { fechar(); botao.focus(); }
   });
 })();
 </script>
